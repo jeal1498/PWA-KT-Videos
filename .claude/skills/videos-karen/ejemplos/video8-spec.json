@@ -1,0 +1,236 @@
+{
+ "id": "karen-8",
+ "duracion": 81.2,
+ "ajustes": {
+  "35.90": "distraes",
+  "19.04": null,
+  "19.22": "alrededor",
+  "58.10": "adecuada."
+ },
+ "claves": [
+  "pregunta",
+  "flojo",
+  "primer",
+  "paso",
+  "partes",
+  "pequeñas",
+  "interrupciones",
+  "descansar",
+  "evaluación",
+  "profesional",
+  "insultarte",
+  "guarda",
+  "video"
+ ],
+ "nametag": {
+  "nombre": "Karen Trujillo",
+  "cargo": "Neuropsicóloga Clínica",
+  "ini": 0.5,
+  "fin": 4.1
+ },
+ "pastillas": [
+  {
+   "texto": "Evitar una tarea",
+   "ini": 4.4,
+   "fin": 6.0
+  },
+  {
+   "n": 1,
+   "texto": "Escribe el primer paso",
+   "ini": 26.7,
+   "fin": 30.8
+  },
+  {
+   "n": 2,
+   "texto": "Divide en partes pequeñas",
+   "ini": 30.9,
+   "fin": 35.2
+  },
+  {
+   "n": 3,
+   "texto": "Menos interrupciones",
+   "ini": 35.3,
+   "fin": 40.6
+  },
+  {
+   "n": 4,
+   "texto": "Descansa o ajusta expectativas",
+   "ini": 40.7,
+   "fin": 47.3
+  }
+ ],
+ "antes_despues": [
+  {
+   "id": "ba1",
+   "ini": 6.5,
+   "fin": 12.0,
+   "etiquetas": [
+    "Antes",
+    "Después"
+   ],
+   "antes": "¿Por qué soy tan flojo?",
+   "despues": "¿Qué parte de esta tarea me está costando?",
+   "antes_en": [
+    "por",
+    6
+   ],
+   "tachar_en": [
+    "flojo",
+    7
+   ],
+   "despues_en": [
+    "qué",
+    "parte",
+    "de",
+    "esta",
+    "tarea",
+    "me",
+    "está",
+    "costando"
+   ],
+   "despues_desde": 8.9
+  }
+ ],
+ "listas": [
+  {
+   "id": "l1",
+   "ini": 12.0,
+   "fin": 22.6,
+   "titulo": "Qué puede estar pasando",
+   "items": [
+    {
+     "texto": "No sé por dónde empezar",
+     "en": [
+      "sabes",
+      12
+     ]
+    },
+    {
+     "texto": "Hay demasiados pasos",
+     "en": [
+      "pasos",
+      14
+     ]
+    },
+    {
+     "texto": "Cansancio",
+     "en": [
+      "cansado",
+      16
+     ]
+    },
+    {
+     "texto": "Distracciones",
+     "en": [
+      "distracciones",
+      17
+     ]
+    },
+    {
+     "texto": "Prioridad poco clara",
+     "en": [
+      "prioridad",
+      20
+     ]
+    }
+   ]
+  }
+ ],
+ "destacados": [
+  {
+   "id": "d1",
+   "ini": 23.2,
+   "fin": 26.4,
+   "texto": "Cada situación necesita una solución diferente",
+   "en": [
+    "situaciones",
+    22
+   ]
+  },
+  {
+   "id": "d2",
+   "ini": 48.3,
+   "fin": 53.4,
+   "texto": "No sustituyen una evaluación",
+   "en": [
+    "sustituyen",
+    47
+   ]
+  },
+  {
+   "id": "d3",
+   "ini": 61.2,
+   "fin": 66.8,
+   "texto": "Si es persistente y afecta varias áreas: consulta a un profesional",
+   "en": [
+    "persistente",
+    60
+   ]
+  },
+  {
+   "id": "d4",
+   "ini": 68.0,
+   "fin": 74.8,
+   "texto": "No necesitas insultarte para mejorar",
+   "en": [
+    "insultarte",
+    67
+   ]
+  }
+ ],
+ "cierre": {
+  "ini": 75.4,
+  "titulo": "Guarda este video",
+  "chips": [],
+  "icono_en": [
+   "video",
+   75
+  ],
+  "chips_en": [
+   "recordarlo",
+   75
+  ],
+  "url": "psicologakarentrujillo.com.mx",
+  "url_en": [
+   "bloqueado",
+   77
+  ]
+ },
+ "zooms": [
+  [
+   6.0,
+   6.3,
+   1.08
+  ],
+  [
+   12.0,
+   12.3,
+   1.0
+  ],
+  [
+   26.5,
+   26.8,
+   1.08
+  ],
+  [
+   47.4,
+   47.7,
+   1.0
+  ],
+  [
+   58.8,
+   59.1,
+   1.08
+  ],
+  [
+   67.4,
+   67.7,
+   1.0
+  ],
+  [
+   75.4,
+   75.7,
+   1.06
+  ]
+ ]
+}
