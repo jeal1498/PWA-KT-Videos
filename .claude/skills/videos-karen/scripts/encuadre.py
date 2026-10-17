@@ -9,7 +9,7 @@ import sys, os, subprocess, shutil, urllib.request
 import numpy as np, cv2, mediapipe as mp
 from mediapipe.tasks import python as mpp
 from mediapipe.tasks.python import vision
-ZOOM = 1.15                                  # fijo; subir solo si hace falta
+ZOOM = 1.15                                  # mínimo; sube solo si ella está muy abajo (ver abajo)
 W_OUT, H_OUT = 1080, 1920
 work = sys.argv[1]; pub = f'{work}/public/input-video.mp4'; orig = f'{work}/input-video-orig.mp4'
 if not os.path.exists(orig): shutil.move(pub, orig)
@@ -29,10 +29,12 @@ while True:
     i += 1
 if len(E) < 30: sys.exit('No se detectó la cara: dejar el encuadre original (renombrar input-video-orig.mp4).')
 ex, ey = np.median(np.array(E), 0)
+# Para que los ojos lleguen a la línea del tercio superior sin topar con el borde: ey <= H - (H*2/3)/ZOOM.
+ZOOM = max(ZOOM, (H_OUT * 2 / 3) / (H_OUT - ey) + 0.005)
 cw, ch = W_OUT / ZOOM, H_OUT / ZOOM
 x0 = min(max(ex - (W_OUT / 2) / ZOOM, 0), W_OUT - cw)          # ojos al centro horizontal
 y0 = min(max(ey - (H_OUT / 3) / ZOOM, 0), H_OUT - ch)          # ojos en la línea del tercio superior
-print(f'ojos ({ex:.0f},{ey:.0f}) → recorte {cw:.0f}x{ch:.0f} en ({x0:.0f},{y0:.0f}); caras {len(E)}')
+print(f'zoom {ZOOM:.3f}; ojos ({ex:.0f},{ey:.0f}) → recorte {cw:.0f}x{ch:.0f} en ({x0:.0f},{y0:.0f}); caras {len(E)}')
 subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', orig, '-vf', f'crop={cw:.0f}:{ch:.0f}:{x0:.0f}:{y0:.0f},scale={W_OUT}:{H_OUT}:flags=lanczos',
     '-c:v', 'libx264', '-crf', '17', '-g', '30', '-keyint_min', '30', '-pix_fmt', 'yuv420p', '-c:a', 'copy', '-movflags', '+faststart', pub], check=True)
 os.system(f'ffmpeg -v error -y -ss 20 -i "{pub}" -frames:v 1 -vf "scale=540:-1,drawgrid=w=iw/3:h=ih/3:t=1:c=yellow" "{work}/tercios.png"')
