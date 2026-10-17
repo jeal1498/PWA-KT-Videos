@@ -14,20 +14,23 @@ h1{font:600 26px/1.2 var(--display);margin:0}
 .pill{font:500 12px var(--display);border-radius:99px;padding:4px 10px;background:var(--lav);color:var(--fg);align-self:flex-start}
 .pill.ok{background:var(--ok-bg);color:var(--ok)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));gap:14px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;gap:16px;min-width:0}
-.player{flex:none;position:relative;width:112px;aspect-ratio:9/16;border-radius:8px;overflow:hidden;border:1px solid var(--line);align-self:flex-start;background:#000}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:14px;min-width:0}
+.head{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.player{flex:none;position:relative;width:200px;max-width:100%;aspect-ratio:9/16;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:#000}
 .player img,.player video{width:100%;height:100%;object-fit:cover;display:block}
 .play{position:absolute;inset:0;margin:auto;width:44px;height:44px;border-radius:50%;padding:0;display:grid;place-items:center;background:var(--accent);color:var(--accent-fg);border:2px solid var(--accent-fg)}
 .play svg{width:18px;height:18px;margin-left:2px}
-@media (min-width:520px){.player{width:140px}}
-.body{min-width:0;flex:1;display:flex;flex-direction:column;gap:8px}
+
+.body{min-width:0;width:100%;display:flex;flex-direction:column;gap:8px}
+.body h3{text-align:center}
+.hint{text-align:center}
 .num{font:500 12px var(--display);color:var(--muted)}
 h2{font:600 18px/1.3 var(--display);margin:0;text-wrap:balance}
 .btns{display:flex;flex-direction:column;gap:8px;margin-top:4px}
 h3{font:600 15px var(--display);margin:6px 0 0}
 .nets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .nets button{min-width:0;padding:10px 4px;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-@media (max-width:420px){.card{flex-direction:column}.player{width:100%;max-width:200px}}
+
 .hint{margin:0;font-size:13px;color:var(--muted)}
 .hint.err{color:#b3261e}
 button,a.btn{font:500 14px var(--display);border-radius:10px;padding:10px 14px;cursor:pointer;text-decoration:none;text-align:center;border:1.5px solid var(--accent);background:transparent;color:var(--accent)}
@@ -157,7 +160,7 @@ async function share(btn,net,text,v,hint){
 }
 DATA.forEach(v=>{
   const c=document.createElement('article');c.className='card';
-  c.innerHTML='<div class="player"><img alt=""><button type="button" class="play" aria-label="Reproducir video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></button></div><div class="body"><span class="num"></span><h2></h2><span class="pill"></span><h3>Compartir video</h3><div class="nets"></div><p class="hint" aria-live="polite">Descarga el video y copia el texto de la red.</p><details><summary>Ver texto de Instagram y Facebook</summary><pre></pre></details></div>';
+  c.innerHTML='<header class="head"><span class="num"></span><h2></h2><span class="pill"></span></header><div class="player"><img alt=""><button type="button" class="play" aria-label="Reproducir video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></button></div><div class="body"><h3>Compartir video</h3><div class="nets"></div><p class="hint" aria-live="polite">Descarga el video y copia el texto de la red.</p><details><summary>Ver texto de Instagram y Facebook</summary><pre></pre></details></div>';
   c.querySelector('img').src=v.img;c.querySelector('img').alt='Portada del video '+v.n;
   const pl=c.querySelector('.player'),pb=c.querySelector('.play');
   pb.onclick=()=>{document.querySelectorAll('.player video').forEach(o=>o.pause());const vd=document.createElement('video');vd.src=v.vid;vd.poster=v.img;vd.controls=true;vd.playsInline=true;vd.preload='metadata';pl.replaceChildren(vd);vd.play().catch(()=>{})};
