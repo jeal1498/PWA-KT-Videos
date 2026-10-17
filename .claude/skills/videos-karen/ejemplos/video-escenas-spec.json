@@ -1,0 +1,188 @@
+{
+ "id": "karen-test",
+ "duracion": 49,
+ "gancho": {
+  "texto": "¿Tu hijo no pone atención?",
+  "ini": 0.3,
+  "fin": 3.6
+ },
+ "nametag": {
+  "nombre": "Karen Trujillo",
+  "cargo": "Neuropsicóloga Clínica",
+  "cedula": "11009616",
+  "ini": 0.5,
+  "fin": 4.1
+ },
+ "escenas": [
+  {
+   "id": "e1",
+   "tipo": "ficha",
+   "servicio": "autismo",
+   "ini": 6.0,
+   "fin": 11.0,
+   "titulo": "ADOS-2",
+   "etiqueta": "Qué mide",
+   "texto": "Comunicación, interacción social y juego",
+   "icono": "prueba"
+  },
+  {
+   "id": "e2",
+   "tipo": "lista",
+   "servicio": "infantil",
+   "ini": 12.0,
+   "fin": 17.5,
+   "titulo": "Qué mide el WISC-V",
+   "items": [
+    {
+     "texto": "Comprensión verbal",
+     "en": [
+      "comprensión",
+      12
+     ]
+    },
+    {
+     "texto": "Razonamiento fluido",
+     "en": [
+      "razonamiento",
+      13
+     ]
+    },
+    {
+     "texto": "Memoria de trabajo",
+     "en": [
+      "memoria",
+      14
+     ]
+    },
+    {
+     "texto": "Velocidad de procesamiento",
+     "en": [
+      "velocidad",
+      15
+     ]
+    }
+   ]
+  },
+  {
+   "id": "e3",
+   "tipo": "dividida",
+   "ini": 18.0,
+   "fin": 23.5,
+   "mito": "«Si le va bien en la escuela, no puede tener TDAH».",
+   "realidad": "Un buen promedio no descarta TDAH. Se evalúa con pruebas, no con calificaciones.",
+   "realidad_en": [
+    "realidad",
+    20
+   ]
+  },
+  {
+   "id": "e4",
+   "tipo": "proceso",
+   "servicio": "informativo",
+   "ini": 24.0,
+   "fin": 29.5,
+   "titulo": "Así es la evaluación",
+   "pasos": [
+    {
+     "texto": "Entrevista",
+     "en": [
+      "entrevista",
+      24
+     ]
+    },
+    {
+     "texto": "Pruebas",
+     "en": [
+      "pruebas",
+      25
+     ]
+    },
+    {
+     "texto": "Informe",
+     "en": [
+      "informe",
+      26
+     ]
+    },
+    {
+     "texto": "Devolución",
+     "en": [
+      "devolución",
+      27
+     ]
+    }
+   ]
+  },
+  {
+   "id": "e5",
+   "tipo": "numero",
+   "servicio": "adultos",
+   "ini": 30.0,
+   "fin": 34.5,
+   "numero": "5.0",
+   "estrellas": 5,
+   "texto": "18 reseñas en Google"
+  },
+  {
+   "id": "e6",
+   "tipo": "esquema",
+   "servicio": "infantil",
+   "ini": 35.0,
+   "fin": 40.5,
+   "centro": "Funciones ejecutivas",
+   "nodos": [
+    {
+     "texto": "Atención sostenida",
+     "en": [
+      "atención",
+      35
+     ]
+    },
+    {
+     "texto": "Memoria de trabajo",
+     "en": [
+      "memoria",
+      36
+     ]
+    },
+    {
+     "texto": "Planeación",
+     "en": [
+      "planeación",
+      37
+     ]
+    },
+    {
+     "texto": "Control de impulsos",
+     "en": [
+      "impulsos",
+      38
+     ]
+    }
+   ]
+  }
+ ],
+ "cierre": {
+  "ini": 41.0,
+  "titulo": "Guarda este video",
+  "chips": [
+   "Entrevista",
+   "Pruebas estandarizadas",
+   "Informe claro"
+  ],
+  "icono_en": [
+   "video",
+   42
+  ],
+  "chips_en": [
+   "recordarlo",
+   43
+  ],
+  "url": "psicologakarentrujillo.com.mx",
+  "url_en": [
+   "bloqueado",
+   44
+  ]
+ },
+ "zooms": []
+}

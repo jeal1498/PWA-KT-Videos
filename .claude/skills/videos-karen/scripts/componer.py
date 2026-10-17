@@ -61,9 +61,13 @@ J = ["const tl=gsap.timeline({paused:true});", "gsap.set('#video-wrap',{transfor
 fin = lambda sel, t, y=24, d=0.45: J.append(f"tl.fromTo('{sel}',{{opacity:0,y:{y}}},{{opacity:1,y:0,duration:{d},ease:'power2.out'}},{q(t)});")
 fout = lambda sel, t, d=0.35: J.append(f"tl.to('{sel}',{{opacity:0,duration:{d},ease:'power2.in'}},{q(t)});")
 shake = lambda sel, t: J.append(f"tl.fromTo('{sel}',{{rotation:-12}},{{rotation:12,duration:0.09,repeat:5,yoyo:true,ease:'sine.inOut',transformOrigin:'50% 60%'}},{q(t)});")
+g = spec.get('gancho')
+if g:
+    H.append(f'<div class="gancho clip" id="gh" data-start="{g["ini"]}" data-duration="{round(g["fin"]-g["ini"]+0.4,2)}" data-track-index="2"><span class="gi">{QUEST}</span><b>{esc(g["texto"])}</b></div>')
+    J.append(f"tl.fromTo('#gh',{{opacity:0,y:-24}},{{opacity:1,y:0,duration:0.38,ease:'power2.out'}},{g['ini']});"); fout('#gh', g['fin'])
 nt = spec.get('nametag')
 if nt:
-    H.append(f'<div class="nametag clip" id="nt" data-start="{nt["ini"]}" data-duration="{nt["fin"]-nt["ini"]}" data-track-index="2"><i class="bar"></i><div><b>{esc(nt["nombre"])}</b><span>{esc(nt["cargo"])}</span></div></div>')
+    H.append(f'<div class="nametag clip" id="nt" data-start="{nt["ini"]}" data-duration="{nt["fin"]-nt["ini"]}" data-track-index="2"><i class="bar"></i><div><b>{esc(nt["nombre"])}</b><span>{esc(nt["cargo"])}</span>{'<span class="ced">Cédula profesional '+esc(nt["cedula"])+'</span>' if nt.get("cedula") else ''}</div></div>')
     J.append(f"tl.fromTo('#nt',{{opacity:0,x:-50}},{{opacity:1,x:0,duration:0.5,ease:'power3.out'}},{nt['ini']});"); fout('#nt', nt['fin']-0.4)
 for pi, p in enumerate(spec.get('pastillas', []), 1):
     pid = f"p{pi}"; ic = f'<span class="ic" id="{pid}ic">{ALARM}</span>' if p.get('icono_alarma_en') else ''
@@ -118,16 +122,84 @@ if c:
     H.append(f'''<div class="card close clip" id="cl" data-start="{c['ini']}" data-duration="{round(DUR-c['ini'],2)}" data-track-index="3">
  <div class="cl-top"><span class="bm">{QUEST if c.get('icono')=='pregunta' else BOOK}</span><b{" style=\"font-size:"+str(c["titulo_tam"])+"px\"" if c.get("titulo_tam") else ""}>{esc(c['titulo'])}</b></div>
  <div class="chips">{chips}</div>
- <div class="url">{esc(c['url'])}</div>
+ <div class="url">{esc(c['url'])}</div>{'<div class="aviso">Este video orienta y no diagnostica.</div>' if c.get('aviso', True) else ''}
 </div>''')
     fin('#cl', c['ini']+0.05, 40, 0.55); tv = anc(c['icono_en']) + 0.1
     if c.get('icono') != 'pregunta': J.append(f"tl.fromTo('#cl .bm path',{{fillOpacity:0}},{{fillOpacity:1,duration:0.5,ease:'power2.out'}},{q(tv)});")
     J.append(f"tl.fromTo('#cl .bm',{{scale:1}},{{scale:1.25,duration:0.22,yoyo:true,repeat:1,ease:'power2.inOut'}},{q(tv)});")
-    J.append("tl.set('#cl .chip,#cl .url',{opacity:0},0);"); te = anc(c['chips_en'])
+    J.append("tl.set('#cl .chip,#cl .url,#cl .aviso',{opacity:0},0);"); te = anc(c['chips_en'])
     for k in range(len(c['chips'])):
         tk = anc(c['chips_anclas'][k]) - 0.1 if c.get('chips_anclas') else te - 0.9 + 0.3*k
         J.append(f"tl.fromTo('#cl .chip:nth-child({k+1})',{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.4,ease:'power2.out'}},{q(tk)});")
     J.append(f"tl.to('#cl .url',{{opacity:1,duration:0.5}},{q(anc(c['url_en'])-0.4)});")
+    if c.get('aviso', True): J.append(f"tl.to('#cl .aviso',{{opacity:1,duration:0.5}},{q(anc(c['url_en'])+0.1)});")
+# ---- escenas gráficas: sustituyen las tomas grabadas; la voz y los subtítulos no se cortan ----
+SERV = {'infantil': ('#C6BCE2', 'TDAH infantil'), 'autismo': ('#F9DEE3', 'Autismo (TEA)'), 'adultos': ('#F5E7D6', 'TDAH adultos'), 'informativo': ('#E1E9EA', '')}
+ICO = {'prueba': '<rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/>',
+       'informe': '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/>',
+       'pregunta': '<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>',
+       'atencion': '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+       'escuela': '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+       'familia': '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>'}
+STAR = '<path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/>'
+for e in spec.get('escenas', []):
+    c = e['id']; ini, fin, tipo = e['ini'], e['fin'], e['tipo']
+    bg, chip = SERV[e.get('servicio', 'informativo')]; chip = e.get('chip', chip)
+    base = ini + 0.55; times = []; extra = []
+    def part(cls, inner, t, style=''):
+        k = len(times); times.append(t)
+        return f'<div class="e-it {cls}" id="{c}-{k}" style="{style}">{inner}</div>'
+    when = lambda it, i: anc(it['en']) - 0.1 if it.get('en') else base + 0.3*i
+    body = ''
+    if tipo == 'ficha':
+        if chip: body += part('e-chip', esc(chip), base)
+        body += part('e-h', esc(e['titulo']), base + 0.1)
+        if e.get('icono'): body += part('e-ic', f'<svg viewBox="0 0 24 24">{ICO[e["icono"]]}</svg>', base + 0.2)
+        body += part('e-dt', esc(e.get('etiqueta', 'Qué mide')), base + 0.4) + part('e-dd', esc(e['texto']), base + 0.45)
+    elif tipo == 'lista':
+        body += part('e-titulo', esc(e['titulo']), base)
+        n = len(e['items']); y0 = 560
+        for i, it in enumerate(e['items']):
+            body += part('e-li', f'<i></i><span>{esc(it["texto"])}</span>', when(it, i + 1), f'top:{y0 + i*(560//max(n-1,1) if n > 1 else 0)}px')
+    elif tipo == 'dividida':
+        bg = '#FAFAFA'
+        body += part('e-top', f'<span class="e-pil">{esc(e.get("etiqueta_mito", "Mito"))}</span><p>{esc(e["mito"])}</p>', base)
+        body += part('e-bot', f'<span class="e-pil">{esc(e.get("etiqueta_realidad", "Realidad"))}</span><p>{esc(e["realidad"])}</p>', anc(e['realidad_en']) - 0.1 if e.get('realidad_en') else base + 1.2)
+    elif tipo == 'proceso':
+        body += part('e-titulo', esc(e['titulo']), base)
+        n = len(e['pasos']); step = 740 / max(n-1, 1)
+        extra.append(f'<svg class="e-it e-pl" id="{c}-ln" viewBox="0 0 20 760"><path pathLength="1" d="M10 10V750"/></svg>')
+        for i, it in enumerate(e['pasos']):
+            y = 530 + i*step
+            body += part('e-node', '', when(it, i + 1), f'top:{y-20:.0f}px') + part('e-pas', esc(it['texto']), when(it, i + 1) + 0.05, f'top:{y-33:.0f}px')
+    elif tipo == 'numero':
+        body += part('e-big', esc(e['numero']), base)
+        body += part('e-st', ''.join(f'<svg viewBox="0 0 24 24">{STAR}</svg>' for _ in range(e.get('estrellas', 0))), base + 0.2) if e.get('estrellas') else ''
+        body += part('e-tx', esc(e['texto']), base + 0.3)
+    elif tipo == 'esquema':
+        POS = [(290, 520), (790, 520), (290, 1140), (790, 1140)]; cx, cy = 540, 830
+        body += part('e-c', esc(e['centro']), base, f'left:{cx-260}px;top:{cy-50}px')
+        extra.append('<svg class="e-it e-ln" id="%s-ln" viewBox="0 0 1080 1920">%s</svg>' % (c, ''.join(f'<path pathLength="1" d="M{cx} {cy}L{x} {y}"/>' for x, y in POS[:len(e['nodos'])])))
+        for i, it in enumerate(e['nodos']):
+            body += part('e-n', esc(it['texto']), when(it, i + 1), f'left:{POS[i][0]-200}px;top:{POS[i][1]-50}px')
+    # las líneas van detrás de los nodos
+    H.append(f'<div class="escena clip" id="{c}" data-layout-allow-occlusion style="background:{bg}" data-start="{ini}" data-duration="{round(fin-ini+0.5,2)}" data-track-index="4">{"".join(extra)}{body}</div>')
+    H.append(f'<div class="barrido clip" id="{c}-sw" data-layout-allow-occlusion data-start="{ini}" data-duration="{round(fin-ini+0.5,2)}" data-track-index="4"></div>')
+    # transición: una línea con nodo barre de izquierda a derecha y deja la escena a su paso; al terminar regresa igual
+    J.append(f"tl.set('#{c}-sw',{{opacity:0}},0);")
+    J.append(f"tl.set('#{c}-sw',{{opacity:1}},{q(ini)});")
+    J.append(f"tl.fromTo('#{c}-sw',{{x:0}},{{x:1080,duration:0.38,ease:'power3.out'}},{q(ini)});")
+    J.append(f"tl.fromTo('#{c}',{{clipPath:'inset(0 100% 0 0)'}},{{clipPath:'inset(0 0% 0 0)',duration:0.38,ease:'power3.out'}},{q(ini)});")
+    J.append(f"tl.set('#{c}-sw',{{opacity:0}},{q(ini+0.38)});")
+    J.append(f"tl.set('#{c}-sw',{{opacity:1}},{q(fin)});")
+    J.append(f"tl.fromTo('#{c}-sw',{{x:1080}},{{x:0,duration:0.38,ease:'power3.in',immediateRender:false}},{q(fin)});")
+    J.append(f"tl.fromTo('#{c}',{{clipPath:'inset(0 0% 0 0)'}},{{clipPath:'inset(0 100% 0 0)',duration:0.38,ease:'power3.in',immediateRender:false}},{q(fin)});")
+    J.append(f"tl.set('#{c}-sw',{{opacity:0}},{q(fin+0.38)});")
+    J.append(f"tl.set('#{c} .e-it',{{opacity:0,y:20}},0);")
+    for k, tt in enumerate(times): J.append(f"tl.to('#{c}-{k}',{{opacity:1,y:0,duration:0.35,ease:'power2.out'}},{q(tt)});")
+    if extra:
+        J.append(f"tl.set('#{c}-ln',{{opacity:1,y:0}},0);")
+        J.append(f"tl.fromTo('#{c}-ln path',{{strokeDashoffset:1}},{{strokeDashoffset:0,duration:0.5,ease:'power2.inOut'}},{q(base)});")
 for (t0, t1, s) in spec.get('zooms', []): J.append(f"tl.to('#video-wrap',{{scale:{s},duration:{q(t1-t0)},ease:'power2.inOut'}},{t0});")
 for i, cp in enumerate(caps):
     inner = ' '.join(f'<em>{esc(t)}</em>' if k else esc(t) for t, k in cp['w'])

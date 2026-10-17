@@ -19,3 +19,5 @@
 - Hecho el 17 oct 2026: se borraron `marketing/videos/` y `videos/` de todo el historial del repo del portafolio (`git filter-repo` + force-push a todas las ramas; el repo bajó de 290 MB a 21 MB). SHA anterior de `main`: `7e7b87a`. Cualquier clon antiguo del portafolio debe volver a clonarse.
 - Punch-ins (acercamientos 1.0 ↔ 1.08 en cambios de bloque) aprobados el 17 oct 2026 para los videos nuevos; no usar otras transiciones. Pruebas en 720p, guardado final en 1080p (≈35 MB).
 - 08 (V9 de Drive, «Otra vez sin encontrar tus llaves») sin zooms: Eduardo los desactivó porque el encuadre iba a zoom 1.26. Pendiente V10 de Drive.
+- Identidad gráfica (17 oct 2026): la marca vive en `docs/marca/` del repo del portafolio (`identidad-grafica.md`, tokens y SVG). Karen pidió escenas gráficas que acompañen el guion (no tomas grabadas): se aprobó una única transición, la línea con nodo que barre la pantalla; los punch-ins siguen. Gancho, cédula en el rótulo y aviso de cierre aplican a los videos nuevos.
+- Sonido de marca: solo borrador, no usar en videos hasta que se apruebe.
