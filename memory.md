@@ -17,3 +17,7 @@
 
 - Este repo se creó el 17 oct 2026 para sacar los videos del repo del portafolio (pesaban ~290 MB y ese repo es público). La skill `videos-karen` se movió aquí.
 - Pendiente: borrar `marketing/videos/` y `videos/` del historial del repo del portafolio. Requiere `git filter-repo --path marketing/videos --path videos --invert-paths` y force-push a `main` (el SHA anterior de `main` es `fa5d09f`). El clasificador de permisos de la sesión lo bloqueó; Eduardo puede darlo de alta como regla de Bash o hacerlo desde Termux.
+
+## Descartados
+
+- V6.mp4 de Drive (17 oct 2026) es el mismo guion del 01 (regrabación); Eduardo decidió descartarlo. El 06 sigue reservado/libre.
