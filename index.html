@@ -163,13 +163,12 @@ async function copyNet(btn,net,text,hint){
 function fileName(v){return 'Karen-Trujillo-'+v.n+'-'+v.name.replace(/[^A-Za-z0-9]+/g,'-').replace(/-+$/,'')+'.mp4'}
 DATA.forEach(v=>{
   const c=document.createElement('article');c.className='card';
-  c.innerHTML='<header class="head"><span class="num"></span><span class="pill"></span></header><div class="player"><img alt=""><button type="button" class="play" aria-label="Reproducir video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></button></div><a class="btn dlbtn">Descargar video</a><div class="body"><h3>Copiar texto por red</h3><div class="nets"></div><p class="hint" aria-live="polite">Toca una red para copiar su texto.</p><details><summary>Ver texto de Instagram y Facebook</summary><pre></pre></details></div>';
+  c.innerHTML='<header class="head"><span class="num"></span><span class="pill"></span></header><div class="player"><img alt=""><button type="button" class="play" aria-label="Reproducir video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></button></div><a class="btn dlbtn">Descargar video</a><div class="body"><h3>Copiar texto por red</h3><div class="nets"></div><p class="hint" aria-live="polite">Toca una red para copiar su texto.</p></div>';
   c.querySelector('img').src=v.img;c.querySelector('img').alt='Portada del video '+v.n;
   const pl=c.querySelector('.player'),pb=c.querySelector('.play');
   pb.onclick=()=>{document.querySelectorAll('.player video').forEach(o=>o.pause());const vd=document.createElement('video');vd.src=v.vid;vd.poster=v.img;vd.controls=true;vd.playsInline=true;vd.preload='metadata';pl.replaceChildren(vd);vd.play().catch(()=>{})};
   c.querySelector('.num').textContent='Video '+v.n;
   const p=c.querySelector('.pill');p.textContent=v.pub?'Subido':'Por subir';if(v.pub)p.classList.add('ok');
-  c.querySelector('pre').textContent=v.ig;
   const nets=c.querySelector('.nets'),hint=c.querySelector('.hint');
   [['Facebook',v.ig],['Instagram',v.ig],['TikTok',v.tk],['YouTube',v.yt]].forEach(([l,t])=>{
     const x=document.createElement('button');x.type='button';x.innerHTML=ICONS[l];x.setAttribute('aria-label','Copiar texto de '+l);x.title='Copiar texto de '+l;
