@@ -153,7 +153,7 @@ for e in spec.get('escenas', []):
     body = ''
     if tipo == 'ficha':
         if chip: body += part('e-chip', esc(chip), base)
-        body += part('e-h', esc(e['titulo']), base + 0.1)
+        body += part('e-h', esc(e['titulo']), base + 0.1, f"font-size:{e['titulo_tam']}px" if e.get('titulo_tam') else '')
         if e.get('icono'): body += part('e-ic', f'<svg viewBox="0 0 24 24">{ICO[e["icono"]]}</svg>', base + 0.2)
         body += part('e-dt', esc(e.get('etiqueta', 'Qué mide')), base + 0.4) + part('e-dd', esc(e['texto']), base + 0.45)
     elif tipo == 'lista':
