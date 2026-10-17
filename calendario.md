@@ -1,6 +1,6 @@
 # Calendario de videos: Marca Personal (Karen Trujillo)
 
-Una sola cuenta. El **número** de cada video lo determina el momento en que se va a subir (01, 02, 03…); la segunda versión de un tema es **otro video con un guion diferente sobre el mismo tema**, con su propio número, no una subcarpeta. La numeración 01 a 05 y el 07 está confirmada (el 06 queda reservado para otro video). Cada video vive en `NN - Nombre/` en la raíz de este repo con `video.mp4`, `portada.png`, `copy.md` y `guion.md`.
+Una sola cuenta. El **número** de cada video lo determina el momento en que se va a subir (01, 02, 03…); la segunda versión de un tema es **otro video con un guion diferente sobre el mismo tema**, con su propio número, no una subcarpeta. La numeración 01 a 07 está confirmada. Cada video vive en `NN - Nombre/` en la raíz de este repo con `video.mp4`, `portada.png`, `copy.md` y `guion.md`.
 
 **Hecho** = copy aprobado (los 6 pasos de la skill `videos-karen`). **Publicado** solo lo marcan Karen o Eduardo al subirlo.
 
@@ -11,5 +11,5 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 03 | [03 - Solo una tarea, no diez](./03%20-%20Solo%20una%20tarea%2C%20no%20diez/) | Solo una tarea, no diez | por definir | Entregado (antes del flujo por etapas) | No |
 | 04 | [04 - 10 minutos que se vuelven una hora](./04%20-%2010%20minutos%20que%20se%20vuelven%20una%20hora/) | 10 minutos que se vuelven una hora | por definir | Entregado (antes del flujo por etapas) | No |
 | 05 | [05 - Planifica tu salida](./05%20-%20Planifica%20tu%20salida/) | Para salir a las 9, empieza a las 8:05 | por definir | Entregado (antes del flujo por etapas) | No |
-| 07 | [07 - Reducir todo a flojera no ayuda](./07%20-%20Reducir%20todo%20a%20flojera%20no%20ayuda/) | Reducir todo a flojera no ayuda | por definir | Hecho | No |
 | 06 | [06 - Cambia la pregunta que te haces](./06%20-%20Cambia%20la%20pregunta%20que%20te%20haces/) | Cambia la pregunta que te haces | por definir | Hecho | No |
+| 07 | [07 - Reducir todo a flojera no ayuda](./07%20-%20Reducir%20todo%20a%20flojera%20no%20ayuda/) | Reducir todo a flojera no ayuda | por definir | Hecho | No |
