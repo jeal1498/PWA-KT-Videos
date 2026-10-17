@@ -65,6 +65,7 @@ Si piden cambios en una etapa, se rehace solo esa etapa y no se avanza hasta su 
 
 ## Elementos del spec (videos 1 a 5; ver `ejemplos/videoN-spec.json`)
 - `pastillas` (con `n` numeradas o sin `n` como etiqueta de tema), `antes_despues` (con `etiquetas` y `tachar:false` para «Tarea → Primer paso»), `alarma` (también sirve de temporizador: `etiqueta`, `ejemplo:false`), `listas` (chips que aparecen al decir cada palabra), `destacados` (frase clave), `cierre` (`icono:"pregunta"` o bookmark, `chips_anclas`, `titulo_tam`) y `zooms`.
+- **Punch-ins (aprobados por Eduardo el 17 oct 2026, desde el 06):** los `zooms` ya no son solo suaves. En cada cambio de bloque (causas, soluciones, matiz clínico, mensaje final) se añade un corte con acercamiento rápido, alternando 1.0 ↔ 1.08 con transición de 0.3 s: `[[6.0,6.3,1.08],[12.0,12.3,1.0],[26.5,26.8,1.08],…]` (ver `ejemplos/video8-spec.json`; el del cierre usa 1.06). Son discretos y sustituyen a las transiciones: **no usar wipes, deslizamientos ni flashes** (marca sobria, una sola toma). Se aplica a los videos nuevos; los ya guardados no se rehacen.
 - `ajustes`: `{"16.46": "acercar", "16.72": null}` cambia o quita la palabra que empieza en ese segundo (ojo: dos palabras con el mismo inicio se afectan juntas).
 - Las tarjetas deben **entrar justo antes de su primer elemento** (si no, salen vacías) y no solaparse en tiempo: todas ocupan la zona y≈1050–1380.
 - Los ganchos de portada salen de lo que ella dice; **no generalizar** («siempre», «todos»). Probar 3–4 cuadros y elegir uno donde sonría a cámara.
@@ -80,6 +81,11 @@ Si piden cambios en una etapa, se rehace solo esa etapa y no se avanza hasta su 
 - Si la página de instalación o el CSS parecen viejos en el teléfono, es caché (agregar `?v=`). No aplica a estos videos, solo a la web.
 - Animar zoom en `#video-wrap`, no en el `<video>`. Sin `Math.random` ni `Date.now`.
 - **Probado en los videos 1 a 5:** `preparar.sh`, `componer.py` (con listas, destacados, ajustes de palabras y etiquetas) y `portada.py` funcionan; el render se corrió a mano con `hyperframes@0.8.163 render` (como en `renderizar.sh`). `guardar.sh` se corrió con éxito con el 07 (V7): crea la carpeta, agrega la fila al calendario y hace un solo commit a `main`.
+
+- **Render incompleto**: `renderizar.sh` termina el `hyperframes render` y luego corre `ffmpeg` para la versión web; no mandar el archivo hasta que ese `ffmpeg` acabe (`pgrep -f "renderizar.sh|ffmpeg"`) y `ffprobe` confirme la duración. Un archivo a medias («moov atom not found») no carga en el visor. La duración del spec debe ser la de `input-video.mp4` (ffprobe), no la de la última palabra.
+- **Pruebas ligeras**: si el visor del chat no abre el 1080p (≈70–90 MB), enviar una copia 720p `-crf 27` (≈14 MB) solo para revisar; lo que se guarda es el 1080p (`-crf 26`, ≈35 MB; el master a `-crf 22` pesa ≈70–90 MB, recomprimir antes de guardar).
+- **Encuadre**: `encuadre.py` necesita `pip install mediapipe opencv-python-headless` y `apt-get update` antes de `apt-get install libegl1 libgles2 libgl1`.
+- **Videos repetidos**: antes de la etapa 1, comparar la transcripción con los `guion.md`/`copy.md` existentes (el V6 de Drive resultó ser una regrabación del 01 y se descartó).
 
 ## Presupuesto de tiempo (referencia, video de 72 s)
 Preparar 4 min · spec 10 min · componer+verificar 10 min · render 6 min · portada 5 min · copy 10 min · guardar 2 min.
