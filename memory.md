@@ -21,3 +21,4 @@
 - 08 (V9 de Drive, «Otra vez sin encontrar tus llaves») sin zooms: Eduardo los desactivó porque el encuadre iba a zoom 1.26. Pendiente V10 de Drive.
 - Identidad gráfica (17 oct 2026): la marca vive en `docs/marca/` del repo del portafolio (`identidad-grafica.md`, tokens y SVG). Karen pidió escenas gráficas que acompañen el guion (no tomas grabadas): se aprobó una única transición, la línea con nodo que barre la pantalla; los punch-ins siguen. Gancho, cédula en el rótulo y aviso de cierre aplican a los videos nuevos.
 - Sonido de marca: solo borrador, no usar en videos hasta que se apruebe.
+- 09 (18 oct 2026): misma toma y guion que el 08, con la identidad gráfica nueva (gancho, cédula, 4 escenas, aviso). Karen lo pidió; se publica el 08 o el 09, no ambos. Pendiente V10 de Drive. Skill: `titulo_tam` en fichas largas.
