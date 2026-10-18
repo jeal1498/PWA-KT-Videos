@@ -14,3 +14,4 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 06 | [06 - Cambia la pregunta que te haces](./06%20-%20Cambia%20la%20pregunta%20que%20te%20haces/) | Cambia la pregunta que te haces | por definir | Hecho | No |
 | 07 | [07 - Reducir todo a flojera no ayuda](./07%20-%20Reducir%20todo%20a%20flojera%20no%20ayuda/) | Reducir todo a flojera no ayuda | por definir | Hecho | No |
 | 08 | [08 - Otra vez sin encontrar tus llaves](./08%20-%20Otra%20vez%20sin%20encontrar%20tus%20llaves/) | ¿Otra vez sin encontrar tus llaves? | por definir | Hecho | No |
+| 09 | [09 - Otra vez sin encontrar tus llaves (gráficos)](./09%20-%20Otra%20vez%20sin%20encontrar%20tus%20llaves%20%28gr%C3%A1ficos%29/) | ¿Otra vez sin encontrar tus llaves? | por definir | Hecho | No |
