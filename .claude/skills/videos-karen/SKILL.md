@@ -107,13 +107,15 @@ Si piden cambios en una etapa, se rehace solo esa etapa y no se avanza hasta su 
 
 - **Portada rechazada**: ofrecer hoja con 3 cuadros (`portada.py --tiempo`) y que elija. **Esperas**: no usar `pgrep -f "renderizar.sh"` en un bucle de Monitor cuyo propio texto contiene ese patrón (nunca termina).
 
+- **`componer.py` y anclas**: las palabras de `en`/`ancla` se escriben sin puntuación (`"olvidar"`, no `"olvidar,"`). **Ficha**: un `titulo` largo con `titulo_tam` 100 roza el borde; usar ≈86.
+
 ## Presupuesto de tiempo (referencia, video de 72 s)
 Preparar 4 min · spec 10 min · componer+verificar 10 min · render 6 min · portada 5 min · copy 10 min · guardar 2 min.
 
 ## Estado y pendientes (23 oct 2026)
-- **Entregados:** 11 La hiperactividad en adultos se ve diferente (V11; spec en `ejemplos/video11-spec.json`), 01 a 05 (antes del flujo por etapas), 06 Cambia la pregunta que te haces (V8), 07 Reducir todo a flojera no ayuda (V7), 08 Otra vez sin encontrar tus llaves (V9), 09 el 08 con gráficos (misma toma y guion), 10 Un lugar fijo para cada objeto (V10). Ninguno está «Publicado»; cada `copy.md` trae un «Por confirmar con Karen» sin resolver. El V6 de Drive se descartó (regrabación del 01).
-- **Numeración:** 01 a 10 confirmada; no se renombra. Los nuevos siguen según el momento de subida (el siguiente es el 12). Un mismo video con otro tratamiento (como el 09) lleva su propio número y su `guion.md` dice de cuál viene.
-- **Origen de los videos:** carpeta de Drive oficial (ver «Fuente de los videos»). Quedan sin hacer **V12, V13 y V14** y los archivos nuevos del 21 oct (**15.1, 15.2, 16, 17**; confirmar a qué video corresponde cada uno). Al iniciar, listar la carpeta (con `pageSize` alto, hay más de una página) y detectar videos nuevos. No se puede subir nada a Drive desde aquí.
+- **Entregados:** 12 Antes de pensar en TDAH, tres preguntas (V12; `ejemplos/video12-spec.json`, guía práctica con `numero`, `esquema` y `proceso`), 11 La hiperactividad en adultos se ve diferente (V11; spec en `ejemplos/video11-spec.json`), 01 a 05 (antes del flujo por etapas), 06 Cambia la pregunta que te haces (V8), 07 Reducir todo a flojera no ayuda (V7), 08 Otra vez sin encontrar tus llaves (V9), 09 el 08 con gráficos (misma toma y guion), 10 Un lugar fijo para cada objeto (V10). Ninguno está «Publicado»; cada `copy.md` trae un «Por confirmar con Karen» sin resolver. El V6 de Drive se descartó (regrabación del 01).
+- **Numeración:** 01 a 10 confirmada; no se renombra. Los nuevos siguen según el momento de subida (el siguiente es el 13). Un mismo video con otro tratamiento (como el 09) lleva su propio número y su `guion.md` dice de cuál viene.
+- **Origen de los videos:** carpeta de Drive oficial (ver «Fuente de los videos»). Quedan sin hacer **V13 y V14** y los archivos nuevos del 21 oct (**15.1, 15.2, 16, 17**; confirmar a qué video corresponde cada uno). Al iniciar, listar la carpeta (con `pageSize` alto, hay más de una página) y detectar videos nuevos. No se puede subir nada a Drive desde aquí.
 - **Versiones:** una «versión con gráficos» de un video ya hecho parte de su `spec.json`, reutiliza portada y guion, y se guarda en carpeta nueva (el 09). Una segunda versión de un tema es otro video con otro guion (el 10 repite el tema de 08 y 09). No publicar seguidos los que comparten tema.
 - **Web del cierre:** `psicologakarentrujillo.com.mx`, confirmada.
 - **Orden de etapas (17 oct 2026):** transcripción → tabla → **portada** → video → copy → hecho; la portada se pone como primer cuadro (`portada_primer_cuadro.sh`) y todo va dentro de y=300–1620.
