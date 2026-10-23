@@ -26,6 +26,12 @@
 - **Formatos que le funcionan:** guía práctica (pasos 1/2/3), mitos con escena `dividida`, mapas `esquema` y pasos `proceso`; cierre con pregunta para comentarios cuando ella la hace.
 - **Respuestas:** cortas, con tabla cuando se compara o se muestra la tabla de elementos.
 
+- **Karen visible (corrección de Eduardo en V15):** las escenas suman como máximo ≈30 % (aunque el tope duro sea 40 %) y entre escenas debe haber ≥3 s de Karen en cámara; ninguna racha de escenas pegadas debe pasar de ≈8 s. Antes de enseñar el video, correr `revisar.sh` y auditar el spec (racha sin Karen, % real con las duraciones finales). Las listas largas van como destacados sobre ella, no como escena.
+- **Fusión de tomas (V15):** cuando Karen manda dos tomas del mismo guion y quiere «lo mejor de cada una»: transcribir ambas, elegir frase por frase (menos errores, mejor pausa, frase completa), minimizar los cambios de toma (2 fue lo ideal) y taparlos con escenas a pantalla completa porque el fondo cambia (seto verde / pared blanca). Se usa `scripts/fusionar.py`; encuadre por toma con `encuadre.py`; cortes en pausas con fundidos de 30 ms.
+- **Portada de un video sin TDAH:** pedir/confirmar la etiqueta («Consejo de bienestar»). Eduardo prefiere ganchos muy cortos (≤25 caracteres) que llamen la atención («¿Qué me pasa?») y rechaza cuadros hablando con la boca abierta; si rechaza las 3 opciones, revisar ≈28 cuadros en una hoja y proponer otros 3.
+- **Etiquetas de escena:** `servicio: adultos` pinta «TDAH ADULTOS»; usar `informativo` en videos que no hablan de TDAH.
+- **Esperas:** no usar `pgrep -f` con un texto que aparezca en el propio comando del bucle; guardar el PID del script (`pgrep -f "^bash …/renderizar.sh"`) y esperar con `kill -0`.
+
 ## Videos hechos (23 oct 2026)
 
 - 01 a 05 y 07 entregados antes; 06 «Cambia la pregunta que te haces» (V8 de Drive); 08 «Otra vez sin encontrar tus llaves» (V9); 09 es el 08 con gráficos (misma toma y guion; se publica uno u otro, no ambos); 10 «Un lugar fijo para cada objeto» (V10).
@@ -35,7 +41,8 @@
 - 12 «Antes de pensar en TDAH, tres preguntas» (V12, mismo tema que el 11; no publicarlos seguidos).
 - 13 «3 frases que parecen ciertas sobre el TDAH» (V13, 3 mitos; mismo tema que 11 y 12, no publicarlos seguidos).
 - 14 «Esto explica toda mi vida» (V14; toca el mito 3 del 13, no publicarlos seguidos).
-- Pendientes en Drive: archivos del 21 oct: **15.1, 15.2, 16 y 17** (preguntar qué número/tema corresponde antes de asignar `NN`). Ninguno «Publicado»; cada `copy.md` trae un «Por confirmar con Karen» sin resolver.
+- 15 «Qué me pasa, cambia la pregunta» (V15 = fusión de 15.1 y 15.2; no habla de TDAH; parecido al 06, no publicarlos seguidos).
+- Pendientes en Drive: archivos del 21 oct: **16 y 17** (preguntar qué número/tema corresponde antes de asignar `NN`). Ninguno «Publicado»; cada `copy.md` trae un «Por confirmar con Karen» sin resolver.
 - Antes de la etapa 1 de cada video, comparar la transcripción con los `guion.md` existentes por si es una regrabación.
 
 - **Portadas:** si no le gusta el cuadro, mandar una hoja con 3 opciones (cuadros distintos, mismo gancho) y que elija; mirar a cámara con la boca cerrada sonriendo suele gustarle más.
