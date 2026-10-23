@@ -20,8 +20,12 @@
 - 01 a 05 y 07 entregados antes; 06 «Cambia la pregunta que te haces» (V8 de Drive); 08 «Otra vez sin encontrar tus llaves» (V9); 09 es el 08 con gráficos (misma toma y guion; se publica uno u otro, no ambos); 10 «Un lugar fijo para cada objeto» (V10).
 - El V6 de Drive se descartó: era una regrabación del guion del 01.
 - 08, 09 y 10 tratan el mismo tema (objetos que se pierden): no publicarlos seguidos.
-- Pendientes en Drive: **V11, V12, V13 y V14** (subidos el 18 oct). Ninguno «Publicado»; cada `copy.md` trae un «Por confirmar con Karen» sin resolver.
+- 11 «La hiperactividad en adultos se ve diferente» (V11, TDAH en adultos, zoom 1.15 con punch-ins; portada con cuadro de cierre sonriendo, elegido por Karen tras rechazar el primero).
+- Pendientes en Drive: **V12, V13 y V14** (18 oct) y archivos nuevos del 21 oct: **15.1, 15.2, 16 y 17** (preguntar qué número/tema corresponde antes de asignar `NN`). Ninguno «Publicado»; cada `copy.md` trae un «Por confirmar con Karen» sin resolver.
 - Antes de la etapa 1 de cada video, comparar la transcripción con los `guion.md` existentes por si es una regrabación.
+
+- **Portadas:** si no le gusta el cuadro, mandar una hoja con 3 opciones (cuadros distintos, mismo gancho) y que elija; mirar a cámara con la boca cerrada sonriendo suele gustarle más.
+- **Monitor/espera de render:** no usar `pgrep -f renderizar.sh` dentro de un bucle que mencione ese texto (se encuentra a sí mismo y nunca termina); mirar el log o `ls` del archivo final.
 
 ## Repo
 
