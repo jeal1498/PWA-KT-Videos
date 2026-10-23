@@ -18,3 +18,4 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 10 | [10 - Un lugar fijo para cada objeto](./10%20-%20Un%20lugar%20fijo%20para%20cada%20objeto/) | Un lugar fijo para cada objeto | por definir | Hecho | No |
 | 11 | [11 - La hiperactividad en adultos se ve diferente](./11%20-%20La%20hiperactividad%20en%20adultos%20se%20ve%20diferente/) | ¿Siempre corriendo o saltando? | por definir | Hecho | No |
 | 12 | [12 - Antes de pensar en TDAH, tres preguntas](./12%20-%20Antes%20de%20pensar%20en%20TDAH%2C%20tres%20preguntas/) | ¿Te cuesta estar quieto? | por definir | Hecho | No |
+| 13 | [13 - 3 frases que parecen ciertas sobre el TDAH](./13%20-%203%20frases%20que%20parecen%20ciertas%20sobre%20el%20TDAH/) | 3 frases que parecen ciertas | por definir | Hecho | No |
