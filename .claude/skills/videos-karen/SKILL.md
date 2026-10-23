@@ -22,6 +22,9 @@ Todos los videos grabados por Karen se suben a esta carpeta, que es la **fuente 
 - Descargar con `curl -L "https://drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t"` (el conector limita a 10 MB). Si falla por permisos, pedir que compartan el archivo.
 - Usar siempre el original de la carpeta, no el de WhatsApp. Si un video no dice a qué tema o número corresponde, preguntar antes de asignarle `NN`.
 
+## ⭐ Aprender sobre la marcha
+Al terminar **cada** video (etapa 6), antes de pasar al siguiente: actualizar `memory.md` (sección «Cómo le gusta editar») y esta skill con lo nuevo (preferencias de Karen/Eduardo, errores, trucos de scripts), y subirlo en el mismo push. Es una regla fija pedida por Eduardo el 23 oct 2026; no hay que esperar a que la repita. Antes de empezar un video, releer esa sección de `memory.md`.
+
 ## ⭐ Antes de editar
 Al empezar una sesión de videos: **`git pull origin main`** y lee la sección «Estado y pendientes» de abajo. Revisa también `calendario.md` para saber qué número toca.
 

@@ -15,6 +15,17 @@
 - **Identidad gráfica (17 oct 2026, pedido de Karen):** desde el 09, los videos nuevos llevan gancho, rótulo con cédula 11009616, escenas gráficas (máx. 40 % del video, 3 a 5 s cada una, transición de línea con nodo) y aviso «Este video orienta y no diagnostica.». Los 01 a 08 no se rehacen. La marca vive en `docs/marca/` del repo del portafolio. Sonido de marca: solo borrador, no usar.
 - Los cambios aprobados se suben directo a `main`.
 
+## Cómo le gusta editar (aprendido en V11 a V14)
+
+- **Regla de trabajo:** al terminar cada video, actualizar `memory.md` y la skill con lo aprendido (preferencias, errores, trucos). No esperar a que lo pida.
+- **Aprobaciones:** responde «Aprobado», «Continúa» o elige una opción por número/nombre. Si una opción es ambigua, tomar la lectura literal y decirlo en una línea.
+- **Cuando rechaza una tabla** («dame algo nuevo», «más retenedor»): no repetir la anterior con retoques. Rehacerla con otra idea o preguntar antes con `AskUserQuestion`. Si pregunta «¿cuál es la diferencia?», responder con una tabla comparada corta.
+- **Portada:** primero se elige el gancho entre 3 y luego el cuadro entre 3 (hoja con 3 portadas lado a lado). Prefiere cuadros con sonrisa leve o mirada serena a cámara; descartó uno hablando con la boca abierta.
+- **Ritmo y retención:** quiere elementos que mantengan al espectador: gancho fuerte, algo en pantalla cada 3 a 5 s, pastillas numeradas como avance y cierre que repite los pasos. Pidió menos zooms en V12 (2 a 3) y aceptó 5 a 6 en V13 y V14.
+- **Guiones:** respeta lo que Karen dice; corregir solo errores de Whisper, anotar el resto en «Por confirmar». Los videos de un mismo tema (11 a 14) llevan aviso de «no publicar seguidos».
+- **Formatos que le funcionan:** guía práctica (pasos 1/2/3), mitos con escena `dividida`, mapas `esquema` y pasos `proceso`; cierre con pregunta para comentarios cuando ella la hace.
+- **Respuestas:** cortas, con tabla cuando se compara o se muestra la tabla de elementos.
+
 ## Videos hechos (23 oct 2026)
 
 - 01 a 05 y 07 entregados antes; 06 «Cambia la pregunta que te haces» (V8 de Drive); 08 «Otra vez sin encontrar tus llaves» (V9); 09 es el 08 con gráficos (misma toma y guion; se publica uno u otro, no ambos); 10 «Un lugar fijo para cada objeto» (V10).
