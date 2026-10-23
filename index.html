@@ -340,7 +340,7 @@
     window.addEventListener('load', function () { ir(idx, false); });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ir(idx, false); });
   }
-  fetch('web/data.json').then(function (r) { return r.json(); }).then(arrancar).catch(function () {
+  fetch('web/data.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.json(); }).then(arrancar).catch(function () {
     document.getElementById('detalle').innerHTML = '<p class="pie">No se pudo cargar web/data.json.</p>';
   });
 </script>
