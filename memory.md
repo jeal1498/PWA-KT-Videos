@@ -23,7 +23,8 @@
 - 11 «La hiperactividad en adultos se ve diferente» (V11, TDAH en adultos, zoom 1.15 con punch-ins; portada con cuadro de cierre sonriendo, elegido por Karen tras rechazar el primero).
 - 12 «Antes de pensar en TDAH, tres preguntas» (V12, mismo tema que el 11; no publicarlos seguidos).
 - 13 «3 frases que parecen ciertas sobre el TDAH» (V13, 3 mitos; mismo tema que 11 y 12, no publicarlos seguidos).
-- Pendientes en Drive: **V14** (18 oct) y archivos nuevos del 21 oct: **15.1, 15.2, 16 y 17** (preguntar qué número/tema corresponde antes de asignar `NN`). Ninguno «Publicado»; cada `copy.md` trae un «Por confirmar con Karen» sin resolver.
+- 14 «Esto explica toda mi vida» (V14; toca el mito 3 del 13, no publicarlos seguidos).
+- Pendientes en Drive: archivos del 21 oct: **15.1, 15.2, 16 y 17** (preguntar qué número/tema corresponde antes de asignar `NN`). Ninguno «Publicado»; cada `copy.md` trae un «Por confirmar con Karen» sin resolver.
 - Antes de la etapa 1 de cada video, comparar la transcripción con los `guion.md` existentes por si es una regrabación.
 
 - **Portadas:** si no le gusta el cuadro, mandar una hoja con 3 opciones (cuadros distintos, mismo gancho) y que elija; mirar a cámara con la boca cerrada sonriendo suele gustarle más.
@@ -34,6 +35,10 @@
 
 - **Videos de mitos:** pastilla numerada por mito + escena `dividida` mito/realidad + destacados; cierre con pregunta a la audiencia (`icono: pregunta`). Si Whisper deja una frase incompleta, volver a transcribir el tramo y dejarla como la dijo, anotándola en «Por confirmar».
 - **`ajustes` del spec:** la clave es el inicio con 2 decimales (`"60.60"`, no `"60.6"`).
+
+- **Más retención (pedido en V14):** una escena mito/realidad en los primeros 5 a 9 s, pastillas numeradas 1/2/3 como avance, sin huecos de más de 2 s sin elemento en pantalla, destacados cortos y cierre que repite los pasos. Se ofrecen opciones con `AskUserQuestion` o una tabla comparada («cuál es la diferencia») antes de aprobar. «Opción 2» = la segunda de las que se listaron.
+- Si dice «Continúa» ante una tabla o texto, se toma como aprobación y se avisa.
+- El `renderizar.sh` termina antes que su `ffmpeg` final en el log: esperar al PID de `ffmpeg` y confirmar con `ffprobe`.
 
 ## Repo
 

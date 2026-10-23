@@ -1,0 +1,28 @@
+{
+ "id": "karen-14",
+ "duracion": 74.3,
+ "ajustes": {"67.64": "Guarda"},
+ "claves": ["TDAH","identificarte","historia","completa","diagnosticarte","profesional","guía","preguntas"],
+ "gancho": {"texto": "¿Esto explica toda mi vida?", "ini": 0.3, "fin": 3.8},
+ "nametag": {"nombre": "Karen Trujillo", "cargo": "Neuropsicóloga Clínica", "cedula": "11009616", "ini": 0.5, "fin": 3.4},
+ "pastillas": [
+  {"n": 1, "texto": "Anota qué te identificó", "ini": 9.9, "fin": 14.7},
+  {"n": 2, "texto": "Observa la historia completa", "ini": 20.4, "fin": 22.9},
+  {"n": 3, "texto": "Descarta otras explicaciones", "ini": 36.5, "fin": 42.8}
+ ],
+ "destacados": [
+  {"id": "d1", "ini": 48.4, "fin": 53.0, "texto": "Explorar antes de diagnosticar", "en": ["explorar", 48.3]},
+  {"id": "d2", "ini": 53.6, "fin": 58.6, "texto": "Llévalas a un profesional capacitado", "en": ["llevar", 53.5]},
+  {"id": "d3", "ini": 59.4, "fin": 63.8, "texto": "Tus experiencias merecen ser escuchadas", "en": ["merecen", 59.4]},
+  {"id": "d4", "ini": 64.5, "fin": 67.4, "texto": "No resuelvas todo con un video", "en": ["resolver", 64.5]}
+ ],
+ "escenas": [
+  {"id": "e1", "tipo": "dividida", "servicio": "informativo", "ini": 5.0, "fin": 9.2, "etiqueta_mito": "No ignores", "mito": "Esa sensación", "etiqueta_realidad": "Tampoco te apresures", "realidad": "A diagnosticarte", "realidad_en": ["tampoco", 6.6]},
+  {"id": "e2", "tipo": "lista", "servicio": "adultos", "ini": 15.0, "fin": 20.0, "titulo": "Lo que anotas", "items": [{"texto": "Olvidos frecuentes", "en": ["olvidos", 15.0]}, {"texto": "Dificultad para organizarte", "en": ["dificultad", 16.5]}, {"texto": "Problemas para terminar tareas", "en": ["problemas", 18.3]}]},
+  {"id": "e3", "tipo": "dividida", "servicio": "informativo", "ini": 23.3, "fin": 28.3, "etiqueta_mito": "Lo que ves", "mito": "Un video corto", "etiqueta_realidad": "Lo que falta", "realidad": "La historia completa", "realidad_en": ["historia", 24.2]},
+  {"id": "e4", "tipo": "proceso", "servicio": "informativo", "ini": 28.6, "fin": 35.3, "titulo": "Tu historia completa", "pasos": [{"texto": "Desde etapas tempranas", "en": ["tempranas", 28.6]}, {"texto": "En más de un contexto", "en": ["contexto", 31.5]}, {"texto": "Afectan tus actividades", "en": ["afectan", 33]}]},
+  {"id": "e5", "tipo": "esquema", "servicio": "informativo", "ini": 43.4, "fin": 48.0, "centro": "Atención y organización", "nodos": [{"texto": "Sueño", "en": ["sueño", 43.4]}, {"texto": "Estrés", "en": ["estrés", 44.5]}, {"texto": "Ansiedad", "en": ["ansiedad", 45.4]}, {"texto": "Otras condiciones", "en": ["condiciones", 46.5]}]}
+ ],
+ "cierre": {"ini": 67.8, "titulo": "Guarda esta guía", "numerados": false, "chips": ["Anota", "Observa la historia", "Descarta otras causas"], "icono_en": ["guía", 67.8], "chips_en": ["preparar", 69.3], "chips_anclas": [["preparar", 69.3], ["preguntas", 70.0], ["evaluación", 70.8]], "url": "psicologakarentrujillo.com.mx", "url_en": ["profesional", 71]},
+ "zooms": [[5.0,5.3,1.08],[9.6,9.9,1.0],[36.5,36.8,1.08],[48.4,48.7,1.0],[64.5,64.8,1.08],[67.8,68.1,1.06]]
+}
