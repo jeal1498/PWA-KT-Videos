@@ -41,6 +41,8 @@
 - **Datos de Whisper a revisar siempre:** género/número que no concuerdan («rutina… lo abandonas») se dejan como suenan y se anotan; imperativo «revise» vs «revisa» se unifica con el trato de «tú» del video; frases con preguntas se puntúan con signos (`ajustes` con «¿Te», «ayuda?»).
 - **Cierre de la serie V11 a V17:** los 7 videos son de TDAH adulto, rutinas y bienestar; avisar siempre qué videos se parecen para no publicarlos seguidos y proponer orden de subida si lo piden.
 
+- **Calendario y página (23 oct 2026):** `index.html` + `web/data.json` (los genera `python3 -I scripts/exportar_web.py` desde `calendario.md` y cada `copy.md`; correrlo y commitear `web/` cada vez que cambie una fecha o un copy). Orden de subida aceptado por Eduardo para 11 a 17: **11, 16, 13, 17, 12, 15, 14** (25 a 31 oct); la numeración de carpetas no cambia, solo las fechas. Al terminar un video nuevo: guardar con `guardar.sh`, correr `exportar_web.py` y commitear `web/` en el mismo push.
+
 ## Videos hechos (23 oct 2026)
 
 - 01 a 05 y 07 entregados antes; 06 «Cambia la pregunta que te haces» (V8 de Drive); 08 «Otra vez sin encontrar tus llaves» (V9); 09 es el 08 con gráficos (misma toma y guion; se publica uno u otro, no ambos); 10 «Un lugar fijo para cada objeto» (V10).
