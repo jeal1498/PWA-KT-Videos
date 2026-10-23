@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#433860">
+<title>Calendario de videos · Karen Trujillo</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23433860'/%3E%3Ccircle cx='11' cy='12' r='3' fill='%23C6BCE2'/%3E%3Ccircle cx='21' cy='12' r='3' fill='%23C6BCE2'/%3E%3Ccircle cx='11' cy='21' r='3' fill='%23C6BCE2'/%3E%3Ccircle cx='21' cy='21' r='3' fill='%23C6BCE2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;700&family=Outfit:wght@600;700&display=swap">
+<style>
+  /* Concepto: agenda de contenido. Un mes que se desliza y, debajo (o al lado), el video del día con su copy listo para copiar.
+     Marca de Karen: ciruela y lavanda, Outfit en titulares y Maven Pro en texto. */
+  :root {
+    --bg: #FBF6EE; --panel: #FFFFFF; --panel-2: #F3EAF4; --line: #DCD3E8;
+    --fg: #2E2545; --mute: #6B5F8A; --accent: #433860; --lav: #C6BCE2; --on-accent: #FFFFFF;
+    --ok: #0C8A60; --ok-t: rgba(16,183,127,.14);
+    --warn: #433860; --warn-t: rgba(198,188,226,.55);
+    --idle: #6B5F8A; --idle-t: rgba(107,95,138,.12);
+    --f-display: 'Outfit', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --f-body: 'Maven Pro', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1E1830; --panel: #2A2242; --panel-2: #352B52; --line: #4A3F6B;
+      --fg: #F3EEFA; --mute: #B9AFD6; --accent: #C6BCE2; --lav: #6B5F8A; --on-accent: #2E2545;
+      --ok: #34D39E; --ok-t: rgba(52,211,158,.16);
+      --warn: #C6BCE2; --warn-t: rgba(198,188,226,.18);
+      --idle: #B9AFD6; --idle-t: rgba(185,175,214,.14);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1E1830; --panel: #2A2242; --panel-2: #352B52; --line: #4A3F6B;
+    --fg: #F3EEFA; --mute: #B9AFD6; --accent: #C6BCE2; --lav: #6B5F8A; --on-accent: #2E2545;
+    --ok: #34D39E; --ok-t: rgba(52,211,158,.16);
+    --warn: #C6BCE2; --warn-t: rgba(198,188,226,.18);
+    --idle: #B9AFD6; --idle-t: rgba(185,175,214,.14);
+    color-scheme: dark;
+  }
+  [hidden] { display: none !important; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font-family: var(--f-body); font-size: 15px; line-height: 1.5;
+    padding-block: max(20px, env(safe-area-inset-top, 0px)) max(40px, env(safe-area-inset-bottom, 0px));
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  button:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 20px; }
+  @media (min-width: 900px) { .wrap { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: start; } .top, .sinfecha { grid-column: 1 / -1; } }
+
+  .top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+  .top h1 { margin: 0; font: 700 26px/1.1 var(--f-display); letter-spacing: -.01em; }
+  .top small { display: block; font: 500 12px/1.3 var(--f-body); letter-spacing: .14em; text-transform: uppercase; color: var(--mute); margin-top: 4px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 14px; font: 500 13px var(--f-body); color: var(--mute); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); display: inline-block; }
+  .dot.prop { background: transparent; border: 2px dashed var(--c); }
+
+  .cal { background: var(--panel); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; }
+  .cal-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 14px 14px 6px; }
+  .cal-head h2 { margin: 0; font: 700 26px/1 var(--f-display); text-align: center; flex: 1; }
+  .cal-head h2::first-letter { text-transform: uppercase; }
+  .nav { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--panel-2); display: grid; place-items: center; }
+  .nav:disabled { opacity: .35; cursor: default; }
+  .sub { display: flex; justify-content: center; padding-bottom: 8px; }
+  .hoy-btn { font: 700 12px var(--f-body); letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--line); background: transparent; border-radius: 999px; padding: 6px 14px; color: var(--mute); }
+
+  .pager { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .pager::-webkit-scrollbar { display: none; }
+  .month { flex: 0 0 100%; scroll-snap-align: start; scroll-snap-stop: always; padding: 0 8px 12px; min-width: 0; }
+  .dow, .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .dow span { text-align: center; font: 700 11px var(--f-body); letter-spacing: .08em; color: var(--mute); padding: 8px 0; text-transform: uppercase; }
+  .grid { gap: 4px; }
+  .day { min-width: 0; min-height: 70px; padding: 6px 3px 5px; border-radius: 14px; border: 1px solid transparent; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+  .day:hover { background: var(--panel-2); }
+  .day.out { opacity: .32; }
+  .day .n { font: 700 13px/1 var(--f-body); width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; }
+  .day.hoy .n { background: var(--accent); color: var(--on-accent); }
+  .day.sel { background: var(--panel-2); border-color: var(--accent); }
+  .chips { display: flex; flex-direction: column; gap: 3px; width: 100%; }
+  .chip { display: block; font: 700 11px/1 var(--f-body); padding: 5px 0; border-radius: 999px; color: var(--c); background: var(--t); border: 1.5px solid transparent; }
+  .chip.prop { background: transparent; border: 1.5px dashed var(--c); }
+  .ok { --c: var(--ok); --t: var(--ok-t); }
+  .warn { --c: var(--warn); --t: var(--warn-t); }
+  .idle { --c: var(--idle); --t: var(--idle-t); }
+  @media (min-width: 560px) { .day { min-height: 84px; } .chip { font-size: 12px; padding: 6px 0; } }
+
+  .detalle { display: grid; gap: 14px; min-width: 0; }
+  .detalle > header h3 { margin: 0; font: 700 28px/1.1 var(--f-display); }
+  .detalle > header h3::first-letter { text-transform: uppercase; }
+  .detalle > header p { margin: 4px 0 0; color: var(--mute); font: 500 12px var(--f-body); letter-spacing: .1em; text-transform: uppercase; }
+
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 14px; display: grid; gap: 12px; min-width: 0; }
+  .card.vacio { border-style: dashed; background: transparent; color: var(--mute); padding: 18px 14px; display: grid; gap: 10px; justify-items: start; }
+  .row { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 14px; }
+  .thumb { position: relative; padding: 0; width: 92px; aspect-ratio: 9 / 16; border-radius: 12px; overflow: hidden; background: var(--panel-2); border: 1px solid var(--line); display: grid; place-items: center; font: 700 28px var(--f-display); color: var(--mute); cursor: pointer; }
+  .thumb.sinplay { cursor: default; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .play { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(46,37,69,.28); transition: background .15s; }
+  .play i { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.94); display: grid; place-items: center; box-shadow: 0 6px 18px rgba(46,37,69,.4); }
+  .play svg { margin-left: 3px; }
+  .thumb:hover .play { background: rgba(46,37,69,.1); }
+  .thumb:hover .play i { transform: scale(1.08); }
+  .info { min-width: 0; display: grid; gap: 8px; align-content: start; }
+  .info h5 { margin: 0; font: 700 21px/1.15 var(--f-display); text-wrap: balance; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill { font: 700 12px/1 var(--f-body); padding: 6px 10px; border-radius: 999px; background: var(--t, var(--panel-2)); color: var(--c, var(--mute)); border: 1.5px solid transparent; white-space: nowrap; }
+  .pill.n { border-color: var(--line); background: transparent; color: var(--mute); }
+  .pill.prop { border: 1.5px dashed var(--c, var(--mute)); background: transparent; }
+  .nota { margin: 0; font-size: 13px; color: var(--mute); }
+  .gancho { margin: 0; font-size: 13px; color: var(--mute); }
+  .gancho b { color: var(--fg); font-weight: 700; }
+
+  .seg { display: flex; flex-wrap: wrap; gap: 6px; }
+  .seg button { border: 1px solid var(--line); background: var(--panel-2); border-radius: 999px; padding: 8px 14px; min-height: 40px; font-weight: 700; font-size: 13px; }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  .copybox { background: var(--panel-2); border-radius: 14px; padding: 12px 14px; font-size: 14px; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; }
+  .copybox .tags { display: block; margin-top: 8px; color: var(--mute); font-size: 13px; }
+  .acts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn { border: 1px solid var(--line); background: var(--panel-2); border-radius: 999px; padding: 10px 16px; min-height: 44px; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: inherit; }
+  .btn.pri { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  details { border-top: 1px solid var(--line); padding-top: 10px; }
+  summary { font: 700 12px var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--mute); cursor: pointer; min-height: 32px; display: flex; align-items: center; }
+  details .txt { margin: 8px 0 0; font-size: 13px; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .pie { color: var(--mute); font-size: 12px; text-align: center; padding-top: 4px; margin: 0; }
+
+  .sinfecha { display: grid; gap: 14px; }
+  .sinfecha > h3 { margin: 0; font: 700 22px var(--f-display); }
+  .sinfecha > p { margin: 0; color: var(--mute); font-size: 13px; }
+  .lista { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); align-items: start; }
+
+  .modal { position: fixed; inset: 0; z-index: 20; background: rgba(30,24,48,.88); display: grid; place-items: center; align-content: center; gap: 12px;
+    padding-block: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-bottom, 0px));
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .modal .barra { width: min(100%, 340px); display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #F3EEFA; }
+  .modal .barra strong { font: 700 18px/1.15 var(--f-display); min-width: 0; }
+  .modal .cerrar { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #4A3F6B; background: #352B52; color: #F3EEFA; display: grid; place-items: center; }
+  .modal video { display: block; width: min(100%, 340px); max-height: calc(100vh - 150px); aspect-ratio: 9 / 16; background: #000; border-radius: 18px; object-fit: contain; }
+  @media (max-width: 380px) { .row { grid-template-columns: 76px minmax(0, 1fr); } .thumb { width: 76px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Calendario de videos</h1>
+      <small>Karen Trujillo · Neuropsicóloga clínica</small>
+    </div>
+    <div class="legend" aria-label="Leyenda">
+      <span><i class="dot" style="--c:var(--ok)"></i>Publicado</span>
+      <span><i class="dot" style="--c:var(--warn)"></i>Hecho, listo para subir</span>
+      <span><i class="dot prop" style="--c:var(--warn)"></i>Fecha propuesta</span>
+    </div>
+  </header>
+
+  <section class="cal" aria-label="Calendario">
+    <div class="cal-head">
+      <button class="nav" id="prev" aria-label="Mes anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <h2 id="mes" aria-live="polite"></h2>
+      <button class="nav" id="next" aria-label="Mes siguiente"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="sub"><button class="hoy-btn" id="hoy">Ir a hoy</button></div>
+    <div class="pager" id="pager"></div>
+  </section>
+
+  <section class="detalle" id="detalle" aria-live="polite"></section>
+  <section class="sinfecha" id="sinfecha" hidden></section>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Reproductor de video" hidden>
+  <div class="barra"><strong id="m-tit"></strong><button class="cerrar" id="m-x" aria-label="Cerrar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <video id="m-v" controls playsinline></video>
+</div>
+
+<script>
+  var hoyD = new Date();
+  var HOY = hoyD.getFullYear() + '-' + ('0' + (hoyD.getMonth() + 1)).slice(-2) + '-' + ('0' + hoyD.getDate()).slice(-2);
+  var VIDEOS = [], MESES = [], porDia = {}, sel = HOY, idx = 0;
+  var ESTADO = { pub: ['Publicado', 'ok'], listo: ['Hecho, listo para subir', 'warn'], proceso: ['En proceso', 'idle'] };
+  var NOM_MES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  var NOM_DIA = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  var pager = document.getElementById('pager');
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+  var key = function (y, m, d) { return y + '-' + pad(m + 1) + '-' + pad(d); };
+  function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function fechaLarga(k) {
+    var p = k.split('-').map(Number), d = new Date(Date.UTC(p[0], p[1] - 1, p[2]));
+    return { dia: NOM_DIA[d.getUTCDay()], txt: p[2] + ' de ' + NOM_MES[p[1] - 1], corta: p[2] + ' ' + NOM_MES[p[1] - 1].slice(0, 3) };
+  }
+  function mesDe(k) { var p = k.split('-'); return MESES.findIndex(function (x) { return x[0] === +p[0] && x[1] === p[1] - 1; }); }
+
+  function armarMes(y, m) {
+    var primero = new Date(Date.UTC(y, m, 1)), dias = new Date(Date.UTC(y, m + 1, 0)).getUTCDate(), lead = (primero.getUTCDay() + 6) % 7;
+    var h = '<div class="month"><div class="dow" aria-hidden="true">' + ['L','M','M','J','V','S','D'].map(function (x) { return '<span>' + x + '</span>'; }).join('') + '</div><div class="grid">';
+    var total = Math.ceil((lead + dias) / 7) * 7;
+    for (var i = 0; i < total; i++) {
+      var d = new Date(Date.UTC(y, m, 1 - lead + i)), yy = d.getUTCFullYear(), mm = d.getUTCMonth(), dd = d.getUTCDate();
+      var k = key(yy, mm, dd), out = mm !== m, items = porDia[k] || [];
+      var chips = items.map(function (v) { return '<span class="chip ' + ESTADO[v.e][1] + (v.propuesta ? ' prop' : '') + '">' + v.n + '</span>'; }).join('');
+      var lab = dd + ' de ' + NOM_MES[mm] + (items.length ? ', video ' + items.map(function (v) { return v.n; }).join(' y ') : ', sin video');
+      h += '<button class="day' + (out ? ' out' : '') + (k === HOY ? ' hoy' : '') + (k === sel ? ' sel' : '') + '" data-k="' + k + '" aria-label="' + lab + '"><span class="n">' + dd + '</span><span class="chips">' + chips + '</span></button>';
+    }
+    return h + '</div></div>';
+  }
+  function pintarMeses() { pager.innerHTML = MESES.map(function (x) { return armarMes(x[0], x[1]); }).join(''); }
+
+  function miniatura(v) {
+    var img = v.th ? '<img alt="Portada del video ' + v.n + '" src="' + esc(v.th) + '">' : v.n;
+    if (!v.v) return '<div class="thumb sinplay">' + img + '</div>';
+    return '<button class="thumb" data-play="' + v.n + '" aria-label="Reproducir el video ' + v.n + '">' + img +
+      '<span class="play"><i><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l15-8.5z" fill="#2E2545"/></svg></i></span></button>';
+  }
+  function textoPlat(v, plat) {
+    if (plat === 'yt') return { txt: v.titulo || '', tags: '' };
+    return { txt: (plat === 'tt' ? v.tiktok : v.ig) || '', tags: v.tags || '' };
+  }
+  function cajaCopy(v, plat) {
+    var t = textoPlat(v, plat);
+    if (!t.txt) return '<p class="nota">Este video todavía no tiene copy.</p>';
+    return '<p class="copybox" id="cb-' + v.n + '">' + esc(t.txt) + (t.tags ? '<span class="tags">' + esc(t.tags) + '</span>' : '') + '</p>';
+  }
+  function tarjeta(v, k) {
+    var e = ESTADO[v.e];
+    var nota = v.p ? 'Publicado el ' + fechaLarga(v.p).corta + '.' : (v.propuesta && v.f ? 'Fecha propuesta: Karen puede cambiarla.' : '');
+    var nombre = 'karen-' + v.n + '-' + v.t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '.mp4';
+    var h = '<article class="card" data-n="' + v.n + '"><div class="row">' + miniatura(v) + '<div class="info"><h5>' + v.n + ' · ' + esc(v.t) + '</h5>' +
+      '<div class="meta"><span class="pill ' + e[1] + '">' + e[0] + '</span>' + (v.propuesta ? '<span class="pill n prop">Fecha propuesta</span>' : '') + '</div>' +
+      (v.gancho ? '<p class="gancho">Portada: <b>' + esc(v.gancho) + '</b></p>' : '') +
+      (nota ? '<p class="nota">' + nota + '</p>' : '') + (v.relacion ? '<p class="nota">' + esc(v.relacion) + '</p>' : '') + '</div></div>';
+    h += '<div class="seg" role="group" aria-label="Plataforma"><button data-plat="ig" aria-pressed="true">Instagram y Facebook</button><button data-plat="tt" aria-pressed="false">TikTok</button><button data-plat="yt" aria-pressed="false">YouTube Shorts</button></div>';
+    h += '<div class="copywrap">' + cajaCopy(v, 'ig') + '</div>';
+    h += '<div class="acts"><button class="btn pri" data-copiar="' + v.n + '">Copiar texto</button>' +
+      (v.v ? '<a class="btn" href="' + esc(v.v) + '" download="' + nombre + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg> Descargar video · ' + v.mb + ' MB</a>' : '') + '</div>';
+    if (v.confirmar) h += '<details><summary>Por confirmar con Karen</summary><div class="txt">' + esc(v.confirmar) + '</div></details>';
+    return h + '</article>';
+  }
+
+  function siguiente(desde) {
+    var ks = Object.keys(porDia).filter(function (k) { return k >= desde; }).sort();
+    return ks[0] || null;
+  }
+  function pintarDetalle() {
+    var f = fechaLarga(sel), items = porDia[sel] || [], h = '<header><h3>' + f.dia + ' ' + f.txt + '</h3><p>' + (sel === HOY ? 'Hoy · ' : '') + (items.length ? 'Video del día' : 'Sin video programado') + '</p></header>';
+    if (items.length) h += items.map(function (v) { return tarjeta(v, sel); }).join('');
+    else {
+      var sg = siguiente(sel);
+      h += '<div class="card vacio"><span>No hay video programado este día.</span>' + (sg ? '<button class="btn" data-ir="' + sg + '">Ir al siguiente: ' + fechaLarga(sg).dia + ' ' + fechaLarga(sg).corta + '</button>' : '') + '</div>';
+    }
+    document.getElementById('detalle').innerHTML = h + '<p class="pie">Información de ayuda, no diagnóstico.</p>';
+  }
+  function pintarSinFecha() {
+    var sin = VIDEOS.filter(function (v) { return !v.f; }), box = document.getElementById('sinfecha');
+    if (!sin.length) { box.hidden = true; return; }
+    box.hidden = false;
+    box.innerHTML = '<h3>Sin fecha (' + sin.length + ')</h3><p>Videos ya subidos o sin día asignado. Todos tienen su copy, reproductor y descarga.</p><div class="lista">' + sin.map(function (v) { return tarjeta(v, null); }).join('') + '</div>';
+  }
+
+  function marcarSel() {
+    Array.prototype.forEach.call(document.querySelectorAll('.day.sel'), function (b) { b.classList.remove('sel'); });
+    Array.prototype.forEach.call(document.querySelectorAll('.day[data-k="' + sel + '"]:not(.out)'), function (b) { b.classList.add('sel'); });
+  }
+  function etiqueta() {
+    var x = MESES[idx];
+    document.getElementById('mes').textContent = NOM_MES[x[1]] + ' ' + x[0];
+    document.getElementById('prev').disabled = idx === 0;
+    document.getElementById('next').disabled = idx === MESES.length - 1;
+  }
+  function ir(i, suave) {
+    idx = Math.max(0, Math.min(MESES.length - 1, i));
+    if (suave) pager.scrollTo({ left: idx * pager.clientWidth, behavior: 'smooth' });
+    else pager.scrollLeft = idx * pager.clientWidth;
+    etiqueta();
+  }
+  function elegir(k, suave) { sel = k; var i = mesDe(k); marcarSel(); pintarDetalle(); if (i >= 0) ir(i, suave); }
+
+  pager.addEventListener('scroll', function () {
+    var i = Math.round(pager.scrollLeft / Math.max(1, pager.clientWidth));
+    if (i !== idx && i >= 0 && i < MESES.length) { idx = i; etiqueta(); }
+  }, { passive: true });
+  pager.addEventListener('click', function (e) { var b = e.target.closest('.day'); if (b) { sel = b.getAttribute('data-k'); marcarSel(); pintarDetalle(); } });
+  document.getElementById('prev').addEventListener('click', function () { ir(idx - 1, true); });
+  document.getElementById('next').addEventListener('click', function () { ir(idx + 1, true); });
+  document.getElementById('hoy').addEventListener('click', function () { elegir(HOY, true); });
+  window.addEventListener('resize', function () { pager.scrollLeft = idx * pager.clientWidth; });
+
+  var modal = document.getElementById('modal'), mv = document.getElementById('m-v'), ultimo = null;
+  function cerrar() { mv.pause(); modal.hidden = true; mv.removeAttribute('src'); mv.load(); if (ultimo) ultimo.focus(); }
+  document.getElementById('m-x').addEventListener('click', cerrar);
+  modal.addEventListener('click', function (e) { if (e.target === modal) cerrar(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) cerrar(); });
+
+  document.addEventListener('click', function (e) {
+    var pl = e.target.closest('[data-play]');
+    if (pl) {
+      var v = VIDEOS.filter(function (x) { return x.n === pl.getAttribute('data-play'); })[0];
+      ultimo = pl; document.getElementById('m-tit').textContent = v.n + ' · ' + v.t;
+      mv.src = v.v; modal.hidden = false;
+      var pr = mv.play(); if (pr && pr.catch) pr.catch(function () {});
+      document.getElementById('m-x').focus(); return;
+    }
+    var ir2 = e.target.closest('[data-ir]');
+    if (ir2) { elegir(ir2.getAttribute('data-ir'), true); return; }
+    var pb = e.target.closest('[data-plat]');
+    if (pb) {
+      var card = pb.closest('.card'), v2 = VIDEOS.filter(function (x) { return x.n === card.getAttribute('data-n'); })[0];
+      Array.prototype.forEach.call(card.querySelectorAll('[data-plat]'), function (b) { b.setAttribute('aria-pressed', b === pb ? 'true' : 'false'); });
+      card.querySelector('.copywrap').innerHTML = cajaCopy(v2, pb.getAttribute('data-plat'));
+      card.querySelector('[data-copiar]').textContent = pb.getAttribute('data-plat') === 'yt' ? 'Copiar título' : 'Copiar texto';
+      return;
+    }
+    var b = e.target.closest('[data-copiar]'); if (!b) return;
+    var cardC = b.closest('.card'), el = cardC.querySelector('.copybox'); if (!el) return;
+    var txt = el.innerText.trim(), ant = b.textContent;
+    function listo() { b.textContent = 'Copiado'; setTimeout(function () { b.textContent = ant; }, 1400); }
+    function seleccionar() {
+      var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      b.textContent = 'Seleccionado: copia con tu teclado'; setTimeout(function () { b.textContent = ant; }, 2200);
+    }
+    try { navigator.clipboard.writeText(txt).then(listo, seleccionar); } catch (err) { seleccionar(); }
+  });
+
+  function arrancar(datos) {
+    VIDEOS = datos;
+    VIDEOS.forEach(function (v) { if (v.f) (porDia[v.f] = porDia[v.f] || []).push(v); });
+    var fs = Object.keys(porDia).concat([HOY]).sort(), a = fs[0].split('-').map(Number), z = fs[fs.length - 1].split('-').map(Number);
+    var y = a[0], m = a[1] - 1, fin = z[0] * 12 + (z[1] - 1) + 2;
+    for (; y * 12 + m <= fin; m++) { if (m > 11) { m = 0; y++; } MESES.push([y, m]); }
+    idx = Math.max(0, mesDe(HOY));
+    pintarMeses(); pintarDetalle(); pintarSinFecha(); etiqueta();
+    requestAnimationFrame(function () { ir(idx, false); });
+    window.addEventListener('load', function () { ir(idx, false); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ir(idx, false); });
+  }
+  fetch('web/data.json').then(function (r) { return r.json(); }).then(arrancar).catch(function () {
+    document.getElementById('detalle').innerHTML = '<p class="pie">No se pudo cargar web/data.json.</p>';
+  });
+</script>
+</body>
+</html>
