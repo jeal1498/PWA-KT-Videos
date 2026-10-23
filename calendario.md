@@ -15,3 +15,4 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 07 | [07 - Reducir todo a flojera no ayuda](./07%20-%20Reducir%20todo%20a%20flojera%20no%20ayuda/) | Reducir todo a flojera no ayuda | por definir | Hecho | No |
 | 08 | [08 - Otra vez sin encontrar tus llaves](./08%20-%20Otra%20vez%20sin%20encontrar%20tus%20llaves/) | ¿Otra vez sin encontrar tus llaves? | por definir | Hecho | No |
 | 09 | [09 - Otra vez sin encontrar tus llaves (gráficos)](./09%20-%20Otra%20vez%20sin%20encontrar%20tus%20llaves%20%28gr%C3%A1ficos%29/) | ¿Otra vez sin encontrar tus llaves? | por definir | Hecho | No |
+| 10 | [10 - Un lugar fijo para cada objeto](./10%20-%20Un%20lugar%20fijo%20para%20cada%20objeto/) | Un lugar fijo para cada objeto | por definir | Hecho | No |
