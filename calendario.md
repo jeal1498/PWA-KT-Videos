@@ -22,3 +22,4 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 14 | [14 - Esto explica toda mi vida](./14%20-%20Esto%20explica%20toda%20mi%20vida/) | ¿Esto explica toda mi vida? | por definir | Hecho | No |
 | 15 | [15 - Qué me pasa, cambia la pregunta](./15%20-%20Qu%C3%A9%20me%20pasa%2C%20cambia%20la%20pregunta/) | ¿Qué me pasa? | por definir | Hecho | No |
 | 16 | [16 - Sientes que no avanzas, 3 preguntas](./16%20-%20Sientes%20que%20no%20avanzas%2C%203%20preguntas/) | ¿Sientes que no avanzas? | por definir | Hecho | No |
+| 17 | [17 - Abandonas tu rutina, 3 ideas](./17%20-%20Abandonas%20tu%20rutina%2C%203%20ideas/) | ¿Abandonas tu rutina? | por definir | Hecho | No |
