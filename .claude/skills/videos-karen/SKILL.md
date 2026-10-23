@@ -120,7 +120,7 @@ Si piden cambios en una etapa, se rehace solo esa etapa y no se avanza hasta su 
 
 - **Anclas**: la palabra de `en`/`chips_anclas`/`url_en` debe empezar después del tiempo dado (usar 0.1 a 0.3 s antes y sin puntuación). Cierre: `url_en` ≈4 s antes del final para que el aviso se vea ≥3 s, y chips de ≤3 palabras.
 
-- **Página de calendario**: después de `guardar.sh`, correr `python3 -I scripts/exportar_web.py` (desde la raíz del repo de videos) y commitear `web/` para que `index.html` muestre el video nuevo con su copy. Las fechas «(propuesta)» de `calendario.md` las decide Eduardo/Karen; el orden de subida de 11 a 17 es 11, 16, 13, 17, 12, 15, 14.
+- **Página de calendario**: después de `guardar.sh`, correr `python3 -I scripts/exportar_web.py` (desde la raíz del repo de videos) y commitear `web/` para que `index.html` muestre el video nuevo con su copy; agregar también su fila a `tabla-publicacion.md` (enlace de descarga + copy de IG/FB, TikTok, hashtags y título de YouTube desde su `copy.md`). Las fechas «(propuesta)» de `calendario.md` las decide Eduardo/Karen; el orden de subida de 11 a 17 es 11, 16, 13, 17, 12, 15, 14.
 
 ## Presupuesto de tiempo (referencia, video de 72 s)
 Preparar 4 min · spec 10 min · componer+verificar 10 min · render 6 min · portada 5 min · copy 10 min · guardar 2 min.
