@@ -32,6 +32,12 @@
 - **Etiquetas de escena:** `servicio: adultos` pinta «TDAH ADULTOS»; usar `informativo` en videos que no hablan de TDAH.
 - **Esperas:** no usar `pgrep -f` con un texto que aparezca en el propio comando del bucle; guardar el PID del script (`pgrep -f "^bash …/renderizar.sh"`) y esperar con `kill -0`.
 
+- **Tomas con encuadre cercano (V16):** ella casi llena el cuadro aunque el zoom base sea 1.15; se pregunta y, si Eduardo dice sin zooms, `"zooms": []`. Con cámara cercana, todos los elementos van fuera de la cara (gancho arriba, cierre abajo).
+- **Cierre:** que el aviso «Este video orienta y no diagnostica.» se vea ≥3 s: `url_en` ≈4 s antes del final (el aviso entra 0.1 s después) y chips cortos (≤3 palabras) para que no se parta en 3 líneas y choque con el subtítulo.
+- **Anclas de `componer.py`:** la palabra buscada debe empezar *después* del tiempo dado; usar 0.1 a 0.3 s antes (por redondeos) y sin puntuación. Whisper puede saltarse palabras tras una pausa: volver a transcribir ese tramo y parchar `words.json`.
+- **Etiquetas de `dividida`:** que se lean bien al decirlas (`Antes/Después`, `Elige/Sin convertirla`), no «De/A».
+- **Portada rechazada dos veces (V15, V16):** Eduardo prefiere cuadros con sonrisa hablando o mirada abierta a cámara; mostrar 3 nuevos con una hoja de ≈24 cuadros revisada por mí.
+
 ## Videos hechos (23 oct 2026)
 
 - 01 a 05 y 07 entregados antes; 06 «Cambia la pregunta que te haces» (V8 de Drive); 08 «Otra vez sin encontrar tus llaves» (V9); 09 es el 08 con gráficos (misma toma y guion; se publica uno u otro, no ambos); 10 «Un lugar fijo para cada objeto» (V10).
@@ -42,7 +48,8 @@
 - 13 «3 frases que parecen ciertas sobre el TDAH» (V13, 3 mitos; mismo tema que 11 y 12, no publicarlos seguidos).
 - 14 «Esto explica toda mi vida» (V14; toca el mito 3 del 13, no publicarlos seguidos).
 - 15 «Qué me pasa, cambia la pregunta» (V15 = fusión de 15.1 y 15.2; no habla de TDAH; parecido al 06, no publicarlos seguidos).
-- Pendientes en Drive: archivos del 21 oct: **16 y 17** (preguntar qué número/tema corresponde antes de asignar `NN`). Ninguno «Publicado»; cada `copy.md` trae un «Por confirmar con Karen» sin resolver.
+- 16 «Sientes que no avanzas, 3 preguntas» (V16; ubicación nueva con sofá morado, encuadre cercano y sin zooms aprobado por Eduardo; parecido a 12, 14 y 15).
+- Pendientes en Drive: **17** (21 oct) (preguntar qué número/tema corresponde antes de asignar `NN`). Ninguno «Publicado»; cada `copy.md` trae un «Por confirmar con Karen» sin resolver.
 - Antes de la etapa 1 de cada video, comparar la transcripción con los `guion.md` existentes por si es una regrabación.
 
 - **Portadas:** si no le gusta el cuadro, mandar una hoja con 3 opciones (cuadros distintos, mismo gancho) y que elija; mirar a cámara con la boca cerrada sonriendo suele gustarle más.
