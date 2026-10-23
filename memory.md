@@ -22,7 +22,8 @@
 - 08, 09 y 10 tratan el mismo tema (objetos que se pierden): no publicarlos seguidos.
 - 11 «La hiperactividad en adultos se ve diferente» (V11, TDAH en adultos, zoom 1.15 con punch-ins; portada con cuadro de cierre sonriendo, elegido por Karen tras rechazar el primero).
 - 12 «Antes de pensar en TDAH, tres preguntas» (V12, mismo tema que el 11; no publicarlos seguidos).
-- Pendientes en Drive: **V13 y V14** (18 oct) y archivos nuevos del 21 oct: **15.1, 15.2, 16 y 17** (preguntar qué número/tema corresponde antes de asignar `NN`). Ninguno «Publicado»; cada `copy.md` trae un «Por confirmar con Karen» sin resolver.
+- 13 «3 frases que parecen ciertas sobre el TDAH» (V13, 3 mitos; mismo tema que 11 y 12, no publicarlos seguidos).
+- Pendientes en Drive: **V14** (18 oct) y archivos nuevos del 21 oct: **15.1, 15.2, 16 y 17** (preguntar qué número/tema corresponde antes de asignar `NN`). Ninguno «Publicado»; cada `copy.md` trae un «Por confirmar con Karen» sin resolver.
 - Antes de la etapa 1 de cada video, comparar la transcripción con los `guion.md` existentes por si es una regrabación.
 
 - **Portadas:** si no le gusta el cuadro, mandar una hoja con 3 opciones (cuadros distintos, mismo gancho) y que elija; mirar a cámara con la boca cerrada sonriendo suele gustarle más.
@@ -30,6 +31,9 @@
 
 - **Tablas de elementos:** si Karen pide «algo nuevo» o rechaza una tabla, preguntar antes con `AskUserQuestion` (estilo, qué no convenció, protagonista, zooms) y rehacerla. En V12 aprobó: guía práctica, pastillas numeradas 1/2/3, ritmo pausado (≈14 elementos), solo 2 punch-ins y cierre con las 3 preguntas como checklist. Escenas `numero` (sin cifra de datos), `esquema` y `proceso` funcionan bien.
 - Si cambia la tabla tras renderizar, se rehace el video completo y se vuelve a pedir el «aprobado».
+
+- **Videos de mitos:** pastilla numerada por mito + escena `dividida` mito/realidad + destacados; cierre con pregunta a la audiencia (`icono: pregunta`). Si Whisper deja una frase incompleta, volver a transcribir el tramo y dejarla como la dijo, anotándola en «Por confirmar».
+- **`ajustes` del spec:** la clave es el inicio con 2 decimales (`"60.60"`, no `"60.6"`).
 
 ## Repo
 

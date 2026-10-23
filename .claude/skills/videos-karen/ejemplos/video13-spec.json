@@ -1,0 +1,28 @@
+{
+ "id": "karen-13",
+ "duracion": 77.5,
+ "ajustes": {"9.82": "Uno.", "26.02": "Dos.", "40.26": "Tres.", "24.14": "sí", "60.60": "su", "60.72": "historia", "61.02": "desde"},
+ "claves": ["TDAH","concentrarte","niños","neurodesarrollo","diagnóstico","evaluación","profesional","preguntas","mitos"],
+ "gancho": {"texto": "3 frases que parecen ciertas", "ini": 0.3, "fin": 3.8},
+ "nametag": {"nombre": "Karen Trujillo", "cargo": "Neuropsicóloga Clínica", "cedula": "11009616", "ini": 0.5, "fin": 3.4},
+ "pastillas": [
+  {"texto": "Tres frases sobre el TDAH", "ini": 4.3, "fin": 6.9},
+  {"n": 1, "texto": "Concentrarte en lo que te gusta", "ini": 10.0, "fin": 15.4},
+  {"n": 2, "texto": "Solamente cosa de niños", "ini": 26.0, "fin": 30.2},
+  {"n": 3, "texto": "Me identifico con todos los videos", "ini": 40.2, "fin": 45.2}
+ ],
+ "destacados": [
+  {"id": "d1", "ini": 7.2, "fin": 9.6, "texto": "La tercera es especialmente importante", "en": ["tercera", 7.2]},
+  {"id": "d2", "ini": 35.8, "fin": 39.4, "texto": "Las manifestaciones cambian con la edad", "en": ["manifestaciones", 35.8]},
+  {"id": "d3", "ini": 46.7, "fin": 50.6, "texto": "Muchos comportamientos son comunes", "en": ["muchos", 46.5]},
+  {"id": "d4", "ini": 51.0, "fin": 56.9, "texto": "Un video no puede explicar tu historia clínica", "en": ["video", 50.9]},
+  {"id": "d5", "ini": 66.6, "fin": 71.4, "texto": "Para aprender, no para diagnosticarte", "en": ["usa", 66.3]}
+ ],
+ "escenas": [
+  {"id": "e1", "tipo": "dividida", "servicio": "informativo", "ini": 20.0, "fin": 25.0, "mito": "Si puedes concentrarte en algo que te gusta, no tienes TDAH", "realidad": "Concentrarte intensamente no descarta el TDAH por sí solo", "realidad_en": ["descarta", 22.5]},
+  {"id": "e2", "tipo": "dividida", "servicio": "adultos", "ini": 30.4, "fin": 35.4, "mito": "El TDAH es solamente cosa de niños", "realidad": "Es del neurodesarrollo y puede persistir en la edad adulta", "realidad_en": ["persistir", 33.0]},
+  {"id": "e3", "tipo": "esquema", "servicio": "informativo", "ini": 59.6, "fin": 65.6, "centro": "Evaluación profesional", "nodos": [{"texto": "Síntomas", "en": ["síntomas", 59.6]}, {"texto": "Historia", "en": ["infancia", 61]}, {"texto": "Persistencia", "en": ["persistencia", 62.2]}, {"texto": "Impacto funcional", "en": ["funcional", 64.5]}]}
+ ],
+ "cierre": {"ini": 71.8, "icono": "pregunta", "titulo": "Dime en los comentarios", "numerados": false, "chips": ["¿Qué mitos te gustaría que expliquemos?"], "icono_en": ["mitos", 71.8], "chips_en": ["expliquemos", 73.5], "chips_anclas": [["expliquemos", 73.5]], "url": "psicologakarentrujillo.com.mx", "url_en": ["video", 74.5]},
+ "zooms": [[9.8,10.1,1.08],[26.0,26.3,1.0],[40.2,40.5,1.08],[57.8,58.1,1.0],[71.6,71.9,1.06]]
+}
