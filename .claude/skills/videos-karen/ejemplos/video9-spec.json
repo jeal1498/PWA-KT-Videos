@@ -1,0 +1,235 @@
+{
+ "id": "karen-9b",
+ "duracion": 74.4,
+ "ajustes": {
+  "18.90": "extravíen"
+ },
+ "claves": [
+  "llaves",
+  "cartera",
+  "celular",
+  "atención",
+  "estación",
+  "salida",
+  "lugar",
+  "fijo",
+  "visible",
+  "accesible",
+  "bandeja",
+  "gancho",
+  "nota",
+  "memoria",
+  "entorno",
+  "comentarios"
+ ],
+ "nametag": {
+  "nombre": "Karen Trujillo",
+  "cargo": "Neuropsicóloga Clínica",
+  "cedula": "11009616",
+  "ini": 0.5,
+  "fin": 3.0
+ },
+ "pastillas": [
+  {
+   "n": 1,
+   "texto": "Un lugar fijo",
+   "ini": 30.8,
+   "fin": 35.8
+  },
+  {
+   "n": 2,
+   "texto": "Llaves, cartera, esenciales",
+   "ini": 36.0,
+   "fin": 41.8
+  },
+  {
+   "n": 3,
+   "texto": "Visible y accesible",
+   "ini": 42.0,
+   "fin": 47.3
+  },
+  {
+   "n": 4,
+   "texto": "Nota visual al principio",
+   "ini": 54.8,
+   "fin": 60.0
+  }
+ ],
+ "antes_despues": [
+  {
+   "id": "ba1",
+   "ini": 47.9,
+   "fin": 54.8,
+   "etiquetas": [
+    "Antes",
+    "Después"
+   ],
+   "antes": "Cajón",
+   "despues": "Bandeja abierta o gancho",
+   "antes_en": [
+    "cajón",
+    47
+   ],
+   "tachar_en": [
+    "olvides",
+    49
+   ],
+   "despues_en": [
+    "bandeja",
+    "abierta",
+    "o",
+    "gancho"
+   ],
+   "despues_desde": 51.5
+  }
+ ],
+ "listas": [],
+ "destacados": [
+  {
+   "id": "d1",
+   "ini": 11.0,
+   "fin": 14.0,
+   "texto": "Comenzar el día buscando",
+   "en": [
+    "buscando",
+    11
+   ]
+  },
+  {
+   "id": "d2",
+   "ini": 14.8,
+   "fin": 20.6,
+   "texto": "La atención puede contribuir a perder cosas",
+   "en": [
+    "atención",
+    14
+   ]
+  },
+  {
+   "id": "d4",
+   "ini": 60.5,
+   "fin": 63.5,
+   "texto": "No depender de la memoria",
+   "en": [
+    "depender",
+    60
+   ]
+  }
+ ],
+ "cierre": {
+  "ini": 69.0,
+  "icono": "pregunta",
+  "numerados": false,
+  "titulo": "Dime en los comentarios",
+  "chips": [
+   "¿Qué objetos pierdes con más frecuencia?"
+  ],
+  "icono_en": [
+   "comentarios",
+   69
+  ],
+  "chips_en": [
+   "objetos",
+   70
+  ],
+  "chips_anclas": [
+   [
+    "objetos",
+    70
+   ]
+  ],
+  "url": "psicologakarentrujillo.com.mx",
+  "url_en": [
+   "frecuencia",
+   71
+  ],
+  "aviso": true
+ },
+ "zooms": [],
+ "gancho": {
+  "texto": "¿Otra vez has salido tarde?",
+  "ini": 0.3,
+  "fin": 3.0
+ },
+ "escenas": [
+  {
+   "id": "e1",
+   "tipo": "lista",
+   "servicio": "adultos",
+   "ini": 3.1,
+   "fin": 7.0,
+   "titulo": "Lo que buscas",
+   "items": [
+    {
+     "texto": "Llaves",
+     "en": [
+      "llaves",
+      3
+     ]
+    },
+    {
+     "texto": "Cartera",
+     "en": [
+      "cartera",
+      3.5
+     ]
+    },
+    {
+     "texto": "Celular",
+     "en": [
+      "celular",
+      4.5
+     ]
+    }
+   ]
+  },
+  {
+   "id": "e2",
+   "tipo": "esquema",
+   "servicio": "informativo",
+   "ini": 21.4,
+   "fin": 26.4,
+   "centro": "Perder cosas con frecuencia",
+   "nodos": [
+    {
+     "texto": "TDAH",
+     "en": [
+      "tdah",
+      22
+     ]
+    },
+    {
+     "texto": "Otras explicaciones",
+     "en": [
+      "explicaciones",
+      24
+     ]
+    }
+   ]
+  },
+  {
+   "id": "e3",
+   "tipo": "ficha",
+   "servicio": "adultos",
+   "ini": 27.0,
+   "fin": 30.8,
+   "titulo": "Estación de salida",
+   "etiqueta": "Estrategia",
+   "texto": "Un lugar fijo para llaves y objetos esenciales",
+   "icono": "familia",
+   "titulo_tam": 130
+  },
+  {
+   "id": "e4",
+   "tipo": "ficha",
+   "servicio": "informativo",
+   "ini": 64.0,
+   "fin": 68.8,
+   "titulo": "Diseña tu entorno",
+   "texto": "Para que te resulte más fácil encontrar tus pertenencias",
+   "icono": "atencion",
+   "titulo_tam": 130,
+   "etiqueta": "Idea clave"
+  }
+ ]
+}

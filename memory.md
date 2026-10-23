@@ -8,18 +8,23 @@
 ## Videos de Karen
 
 - Flujo con una aprobación por etapa (ver la skill). Orden desde el 17 oct 2026: transcripción → tabla → portada → video → copy → hecho. Cada etapa se envía y se espera su «aprobado».
-- La portada va como primer cuadro del video y debe quedar entre y=300 y y=1620 (Instagram la recorta a 3:4).
-- Encuadre de ojos fijo en la línea del tercio superior (`encuadre.py`), sin seguimiento de movimiento.
+- La portada va como primer cuadro del video y debe quedar entre y=300 y y=1620 (Instagram la recorta a 3:4). Ganchos cortos (≈30 caracteres máximo): los largos tapan la cara.
+- Encuadre de ojos fijo en la línea del tercio superior (`encuadre.py`), sin seguimiento. El script sube el zoom solo si ella está muy abajo en el cuadro (08: 1.26).
+- **Zooms:** punch-ins (1.0 ↔ 1.08, 0.3 s) en cambios de bloque solo si el zoom base es ≈1.15 (06). Con zoom base alto o ella muy cerca de la cámara, `"zooms": []` (08, 09, 10). Ante la duda, mostrar la prueba y preguntar. No usar otras transiciones.
+- **Archivos de prueba:** siempre en 720p con `SendUserFile` (los de ≈70–90 MB no cargan en el visor); el guardado final es 1080p (`-crf 26`, ≈27–37 MB). No enviar un archivo hasta que el `ffmpeg` del render termine y `ffprobe` confirme la duración.
+- **Identidad gráfica (17 oct 2026, pedido de Karen):** desde el 09, los videos nuevos llevan gancho, rótulo con cédula 11009616, escenas gráficas (máx. 40 % del video, 3 a 5 s cada una, transición de línea con nodo) y aviso «Este video orienta y no diagnostica.». Los 01 a 08 no se rehacen. La marca vive en `docs/marca/` del repo del portafolio. Sonido de marca: solo borrador, no usar.
 - Los cambios aprobados se suben directo a `main`.
-- Numeración: 01 a 08 confirmadas (el 06 es V8 de Drive, «Cambia la pregunta que te haces»).
+
+## Videos hechos (23 oct 2026)
+
+- 01 a 05 y 07 entregados antes; 06 «Cambia la pregunta que te haces» (V8 de Drive); 08 «Otra vez sin encontrar tus llaves» (V9); 09 es el 08 con gráficos (misma toma y guion; se publica uno u otro, no ambos); 10 «Un lugar fijo para cada objeto» (V10).
+- El V6 de Drive se descartó: era una regrabación del guion del 01.
+- 08, 09 y 10 tratan el mismo tema (objetos que se pierden): no publicarlos seguidos.
+- Pendientes en Drive: **V11, V12, V13 y V14** (subidos el 18 oct). Ninguno «Publicado»; cada `copy.md` trae un «Por confirmar con Karen» sin resolver.
+- Antes de la etapa 1 de cada video, comparar la transcripción con los `guion.md` existentes por si es una regrabación.
 
 ## Repo
 
 - Este repo se creó el 17 oct 2026 para sacar los videos del repo del portafolio (pesaban ~290 MB y ese repo es público). La skill `videos-karen` se movió aquí.
 - Hecho el 17 oct 2026: se borraron `marketing/videos/` y `videos/` de todo el historial del repo del portafolio (`git filter-repo` + force-push a todas las ramas; el repo bajó de 290 MB a 21 MB). SHA anterior de `main`: `7e7b87a`. Cualquier clon antiguo del portafolio debe volver a clonarse.
-- Punch-ins (acercamientos 1.0 ↔ 1.08 en cambios de bloque) aprobados el 17 oct 2026 para los videos nuevos; no usar otras transiciones. Pruebas en 720p, guardado final en 1080p (≈35 MB).
-- 08 (V9 de Drive, «Otra vez sin encontrar tus llaves») sin zooms: Eduardo los desactivó porque el encuadre iba a zoom 1.26. Pendiente V10 de Drive.
-- Identidad gráfica (17 oct 2026): la marca vive en `docs/marca/` del repo del portafolio (`identidad-grafica.md`, tokens y SVG). Karen pidió escenas gráficas que acompañen el guion (no tomas grabadas): se aprobó una única transición, la línea con nodo que barre la pantalla; los punch-ins siguen. Gancho, cédula en el rótulo y aviso de cierre aplican a los videos nuevos.
-- Sonido de marca: solo borrador, no usar en videos hasta que se apruebe.
-- 09 (18 oct 2026): misma toma y guion que el 08, con la identidad gráfica nueva (gancho, cédula, 4 escenas, aviso). Karen lo pidió; se publica el 08 o el 09, no ambos. Pendiente V10 de Drive. Skill: `titulo_tam` en fichas largas.
-- 10 (23 oct 2026, V10 de Drive, «Un lugar fijo para cada objeto»): con identidad gráfica (gancho, cédula, 5 escenas, aviso), sin zooms (ella ocupa casi todo el cuadro). Mismo tema que 08 y 09. Pendientes en Drive: V11, V12, V13 y V14. El `hyperframes check` a veces no abre el navegador (se agota el tiempo): si pasa, validar con snapshots y render.
+- El `hyperframes check` a veces no abre el navegador («Browser session never ran», se agota el tiempo): si pasa, validar con `snapshot` y el render.
