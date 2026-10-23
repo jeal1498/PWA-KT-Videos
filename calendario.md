@@ -4,7 +4,7 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 
 **Fechas de subida 01 a 08:** uno por día del 15 al 22 oct 2026 (confirmado por Eduardo: el 08 se subió el 22 oct y el 02 el 16 oct; el 01, 03, 04, 05, 06 y 07 se deducen del orden diario).
 
-**Fechas «(propuesta)» (23 oct 2026):** orden armado para no publicar seguidos los videos de tema parecido (08-09-10; 11 a 14; 12, 14, 16 y 17); Karen lo ajusta. El 09 queda sin fecha: es el 08 con gráficos y se publica uno u otro.
+**Fechas «(propuesta)» (23 oct 2026):** un video por día en orden consecutivo desde hoy (10 el vie 23 oct, 11, 12… hasta el 17 el vie 30 oct), saltando el 09 (es el 08 con gráficos; se publica uno u otro). Pedido de Eduardo. Ojo: así quedan seguidos los de tema parecido (10 con 08; 11 a 14; 12, 14, 16 y 17), que Karen había pedido no publicar juntos; ella puede ajustar el orden.
 
 **Hecho** = copy aprobado (los 6 pasos de la skill `videos-karen`). **Publicado** solo lo marcan Karen o Eduardo al subirlo.
 
@@ -19,11 +19,11 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 07 | [07 - Reducir todo a flojera no ayuda](./07%20-%20Reducir%20todo%20a%20flojera%20no%20ayuda/) | Reducir todo a flojera no ayuda | mié 21 oct 2026 | Hecho | **Sí** (21 oct 2026) |
 | 08 | [08 - Otra vez sin encontrar tus llaves](./08%20-%20Otra%20vez%20sin%20encontrar%20tus%20llaves/) | ¿Otra vez sin encontrar tus llaves? | jue 22 oct 2026 | Hecho | **Sí** (22 oct 2026) |
 | 09 | [09 - Otra vez sin encontrar tus llaves (gráficos)](./09%20-%20Otra%20vez%20sin%20encontrar%20tus%20llaves%20%28gr%C3%A1ficos%29/) | ¿Otra vez sin encontrar tus llaves? | por definir | Hecho | No |
-| 10 | [10 - Un lugar fijo para cada objeto](./10%20-%20Un%20lugar%20fijo%20para%20cada%20objeto/) | Un lugar fijo para cada objeto | dom 25 oct 2026 (propuesta) | Hecho | No |
-| 11 | [11 - La hiperactividad en adultos se ve diferente](./11%20-%20La%20hiperactividad%20en%20adultos%20se%20ve%20diferente/) | ¿Siempre corriendo o saltando? | mié 28 oct 2026 (propuesta) | Hecho | No |
-| 12 | [12 - Antes de pensar en TDAH, tres preguntas](./12%20-%20Antes%20de%20pensar%20en%20TDAH%2C%20tres%20preguntas/) | ¿Te cuesta estar quieto? | lun 26 oct 2026 (propuesta) | Hecho | No |
-| 13 | [13 - 3 frases que parecen ciertas sobre el TDAH](./13%20-%203%20frases%20que%20parecen%20ciertas%20sobre%20el%20TDAH/) | 3 frases que parecen ciertas | vie 30 oct 2026 (propuesta) | Hecho | No |
-| 14 | [14 - Esto explica toda mi vida](./14%20-%20Esto%20explica%20toda%20mi%20vida/) | ¿Esto explica toda mi vida? | sáb 24 oct 2026 (propuesta) | Hecho | No |
-| 15 | [15 - Qué me pasa, cambia la pregunta](./15%20-%20Qu%C3%A9%20me%20pasa%2C%20cambia%20la%20pregunta/) | ¿Qué me pasa? | mar 27 oct 2026 (propuesta) | Hecho | No |
-| 16 | [16 - Sientes que no avanzas, 3 preguntas](./16%20-%20Sientes%20que%20no%20avanzas%2C%203%20preguntas/) | ¿Sientes que no avanzas? | sáb 31 oct 2026 (propuesta) | Hecho | No |
-| 17 | [17 - Abandonas tu rutina, 3 ideas](./17%20-%20Abandonas%20tu%20rutina%2C%203%20ideas/) | ¿Abandonas tu rutina? | jue 29 oct 2026 (propuesta) | Hecho | No |
+| 10 | [10 - Un lugar fijo para cada objeto](./10%20-%20Un%20lugar%20fijo%20para%20cada%20objeto/) | Un lugar fijo para cada objeto | vie 23 oct 2026 (propuesta) | Hecho | No |
+| 11 | [11 - La hiperactividad en adultos se ve diferente](./11%20-%20La%20hiperactividad%20en%20adultos%20se%20ve%20diferente/) | ¿Siempre corriendo o saltando? | sáb 24 oct 2026 (propuesta) | Hecho | No |
+| 12 | [12 - Antes de pensar en TDAH, tres preguntas](./12%20-%20Antes%20de%20pensar%20en%20TDAH%2C%20tres%20preguntas/) | ¿Te cuesta estar quieto? | dom 25 oct 2026 (propuesta) | Hecho | No |
+| 13 | [13 - 3 frases que parecen ciertas sobre el TDAH](./13%20-%203%20frases%20que%20parecen%20ciertas%20sobre%20el%20TDAH/) | 3 frases que parecen ciertas | lun 26 oct 2026 (propuesta) | Hecho | No |
+| 14 | [14 - Esto explica toda mi vida](./14%20-%20Esto%20explica%20toda%20mi%20vida/) | ¿Esto explica toda mi vida? | mar 27 oct 2026 (propuesta) | Hecho | No |
+| 15 | [15 - Qué me pasa, cambia la pregunta](./15%20-%20Qu%C3%A9%20me%20pasa%2C%20cambia%20la%20pregunta/) | ¿Qué me pasa? | mié 28 oct 2026 (propuesta) | Hecho | No |
+| 16 | [16 - Sientes que no avanzas, 3 preguntas](./16%20-%20Sientes%20que%20no%20avanzas%2C%203%20preguntas/) | ¿Sientes que no avanzas? | jue 29 oct 2026 (propuesta) | Hecho | No |
+| 17 | [17 - Abandonas tu rutina, 3 ideas](./17%20-%20Abandonas%20tu%20rutina%2C%203%20ideas/) | ¿Abandonas tu rutina? | vie 30 oct 2026 (propuesta) | Hecho | No |
