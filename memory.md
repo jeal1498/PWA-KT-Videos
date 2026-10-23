@@ -38,6 +38,9 @@
 - **Etiquetas de `dividida`:** que se lean bien al decirlas (`Antes/Después`, `Elige/Sin convertirla`), no «De/A».
 - **Portada rechazada dos veces (V15, V16):** Eduardo prefiere cuadros con sonrisa hablando o mirada abierta a cámara; mostrar 3 nuevos con una hoja de ≈24 cuadros revisada por mí.
 
+- **Datos de Whisper a revisar siempre:** género/número que no concuerdan («rutina… lo abandonas») se dejan como suenan y se anotan; imperativo «revise» vs «revisa» se unifica con el trato de «tú» del video; frases con preguntas se puntúan con signos (`ajustes` con «¿Te», «ayuda?»).
+- **Cierre de la serie V11 a V17:** los 7 videos son de TDAH adulto, rutinas y bienestar; avisar siempre qué videos se parecen para no publicarlos seguidos y proponer orden de subida si lo piden.
+
 ## Videos hechos (23 oct 2026)
 
 - 01 a 05 y 07 entregados antes; 06 «Cambia la pregunta que te haces» (V8 de Drive); 08 «Otra vez sin encontrar tus llaves» (V9); 09 es el 08 con gráficos (misma toma y guion; se publica uno u otro, no ambos); 10 «Un lugar fijo para cada objeto» (V10).
@@ -49,7 +52,9 @@
 - 14 «Esto explica toda mi vida» (V14; toca el mito 3 del 13, no publicarlos seguidos).
 - 15 «Qué me pasa, cambia la pregunta» (V15 = fusión de 15.1 y 15.2; no habla de TDAH; parecido al 06, no publicarlos seguidos).
 - 16 «Sientes que no avanzas, 3 preguntas» (V16; ubicación nueva con sofá morado, encuadre cercano y sin zooms aprobado por Eduardo; parecido a 12, 14 y 15).
-- Pendientes en Drive: **17** (21 oct) (preguntar qué número/tema corresponde antes de asignar `NN`). Ninguno «Publicado»; cada `copy.md` trae un «Por confirmar con Karen» sin resolver.
+- 17 «Abandonas tu rutina, 3 ideas» (V17; encuadre cercano y sin zooms, mismo estilo de guía numerada que 12, 14 y 16).
+- **Todos los pendientes de Drive (V11 a V17) están hechos.** Antes de empezar otro video, listar la carpeta con `pageSize` alto y buscar archivos nuevos.
+- Pendientes anteriores: ninguno (preguntar qué número/tema corresponde antes de asignar `NN`). Ninguno «Publicado»; cada `copy.md` trae un «Por confirmar con Karen» sin resolver.
 - Antes de la etapa 1 de cada video, comparar la transcripción con los `guion.md` existentes por si es una regrabación.
 
 - **Portadas:** si no le gusta el cuadro, mandar una hoja con 3 opciones (cuadros distintos, mismo gancho) y que elija; mirar a cámara con la boca cerrada sonriendo suele gustarle más.
