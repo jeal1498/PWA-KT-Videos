@@ -1,7 +1,7 @@
 #!/bin/bash
 # Uso (SOLO con el copy aprobado = etapa 6; se puede correr desde cualquier carpeta):
 #   guardar.sh <NN> "<Nombre del video>" <video.mp4> <portada.png> <copy.md> "<gancho>" [guion.md]
-# Guarda en el repo privado de videos (jeal1498/videos-karen-trujillo): carpeta "NN - Nombre/" con video.mp4, portada.png,
+# Guarda en el repo privado de videos (jeal1498/PWA-KT-Videos): carpeta "NN - Nombre/" con video.mp4, portada.png,
 # copy.md (y guion.md), agrega la fila a calendario.md como «Hecho» (Publicado = No; ese lo marcan Karen o Eduardo)
 # y hace UN solo commit + push a main. NN lo determina el momento de subida (01, 02, 03…).
 # Se ejecuta sobre el repo en que vive esta skill (4 niveles arriba de scripts/); VIDEOS_REPO solo para pruebas.

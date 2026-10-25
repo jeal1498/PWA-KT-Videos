@@ -1,6 +1,6 @@
 ---
 name: videos-karen
-description: Editar los videos de la psicóloga Karen Trujillo (9:16, ella hablando a cámara) con la identidad de su marca (ciruela y lavanda, Outfit y Maven Pro, nada que ver con Checa) y entregar video editado, portada con gancho y copy .md guardados en `NN - Nombre/` (repo privado `jeal1498/videos-karen-trujillo`) del repo. Úsala cuando Eduardo o Karen pasen un video nuevo, pidan portada, copy, o continuar con el siguiente video. No usar `videos-checa` para esto.
+description: Editar los videos de la psicóloga Karen Trujillo (9:16, ella hablando a cámara) con la identidad de su marca (ciruela y lavanda, Outfit y Maven Pro, nada que ver con Checa) y entregar video editado, portada con gancho y copy .md guardados en `NN - Nombre/` (repo privado `jeal1498/PWA-KT-Videos`) del repo. Úsala cuando Eduardo o Karen pasen un video nuevo, pidan portada, copy, o continuar con el siguiente video. No usar `videos-checa` para esto.
 ---
 
 # Videos de Karen Trujillo (Neuropsicóloga Clínica)
@@ -32,7 +32,7 @@ Al empezar una sesión de videos: **`git pull origin main`** y lee la sección �
 La «segunda versión» de un tema es **otro video con un guion diferente que habla del mismo tema**, y se sube en otro momento en la misma cuenta. No es una subcarpeta, ni un recorte del mismo video, ni una v2 para otra cuenta. Lleva su propio número y su propia carpeta, y su `guion.md` dice de qué tema viene («Mismo tema que el 03, otro guion»). No repite el gancho, los ejemplos ni el texto del primero. Como el video lo graba Karen, la segunda versión parte de un video nuevo suyo; si solo se pide «otra versión» de un video ya editado, se pregunta qué guion se quiere antes de empezar.
 
 ## ⭐ Carpetas (Marca Personal)
-Todo vive en `NN - Nombre del video/` en la raíz de **este repo** (`jeal1498/videos-karen-trujillo`, privado). Checa usa `CHECA` y `PERSONAL`; **aquí no aplica**. **`NN` lo determina el momento en que se va a subir** (01, 02, 03… 09, 10…), no el orden en que se editó; si Karen o Eduardo cambian el orden de subida, se renombra la carpeta y se actualiza `calendario.md` del repo de videos. Cada carpeta lleva `video.mp4`, `portada.png`, `copy.md` y `guion.md` (transcripción corregida + tabla de elementos aprobada). La fecha de subida y el estado «Hecho» / «Publicado» van solo en el calendario.
+Todo vive en `NN - Nombre del video/` en la raíz de **este repo** (`jeal1498/PWA-KT-Videos`, privado). Checa usa `CHECA` y `PERSONAL`; **aquí no aplica**. **`NN` lo determina el momento en que se va a subir** (01, 02, 03… 09, 10…), no el orden en que se editó; si Karen o Eduardo cambian el orden de subida, se renombra la carpeta y se actualiza `calendario.md` del repo de videos. Cada carpeta lleva `video.mp4`, `portada.png`, `copy.md` y `guion.md` (transcripción corregida + tabla de elementos aprobada). La fecha de subida y el estado «Hecho» / «Publicado» van solo en el calendario.
 
 ## ⭐ Git
 - El `video.mp4` final se commitea **una sola vez, ya aprobado** (etapa 6). Las versiones de prueba se mandan con `SendUserFile` desde la carpeta de trabajo del scratchpad (fuera del repo) y **no se commitean**; `renders/` está en `.gitignore`. Cada re-render commiteado engorda el repo para siempre.
