@@ -8,6 +8,8 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 
 **Orden de subida sugerido para el 11 al 17 (23 oct 2026, aceptado por Eduardo):** 11, 16, 13, 17, 12, 15, 14. Así no quedan seguidos los videos parecidos (12, 14 y 16 son guías de preguntas; 13 y 14 tocan el mismo punto; 15 se parece al 06). La numeración de las carpetas no cambia: solo cambian las fechas.
 
+**Versiones sin cara (27 oct 2026):** el 19 es la v2 del 18 para prueba A/B (guion nuevo, animación a dos tintas, voz clonada). Lleva voz provisional: no publicar hasta regenerarla con la voz de Karen. Se harán igual las v2 del 09 al 17.
+
 **Hecho** = copy aprobado (los 6 pasos de la skill `videos-karen`). **Publicado** solo lo marcan Karen o Eduardo al subirlo.
 
 | # | Carpeta | Gancho de portada | Fecha de subida | Hecho | Publicado |
@@ -30,3 +32,4 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 16 | [16 - Sientes que no avanzas, 3 preguntas](./16%20-%20Sientes%20que%20no%20avanzas%2C%203%20preguntas/) | ¿Sientes que no avanzas? | lun 26 oct 2026 (propuesta) | Hecho | No |
 | 17 | [17 - Abandonas tu rutina, 3 ideas](./17%20-%20Abandonas%20tu%20rutina%2C%203%20ideas/) | ¿Abandonas tu rutina? | mié 28 oct 2026 (propuesta) | Hecho | No |
 | 18 | [18 - Y si no era ansiedad](./18%20-%20Y%20si%20no%20era%20ansiedad/) | ¿Y si no era ansiedad? | mar 27 oct 2026 (hoy) | Hecho | No |
+| 19 | [19 - Seguro que es ansiedad (v2 sin cara)](./19%20-%20Seguro%20que%20es%20ansiedad%20%28v2%20sin%20cara%29/) | ¿Seguro que es ansiedad? | por definir | Hecho | No |
