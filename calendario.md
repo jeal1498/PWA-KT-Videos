@@ -24,9 +24,9 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 10 | [10 - Un lugar fijo para cada objeto](./10%20-%20Un%20lugar%20fijo%20para%20cada%20objeto/) | Un lugar fijo para cada objeto | sáb 24 oct 2026 (propuesta) | Hecho | No |
 | 11 | [11 - La hiperactividad en adultos se ve diferente](./11%20-%20La%20hiperactividad%20en%20adultos%20se%20ve%20diferente/) | ¿Siempre corriendo o saltando? | dom 25 oct 2026 (propuesta) | Hecho | No |
 | 12 | [12 - Antes de pensar en TDAH, tres preguntas](./12%20-%20Antes%20de%20pensar%20en%20TDAH%2C%20tres%20preguntas/) | ¿Te cuesta estar quieto? | jue 29 oct 2026 (propuesta) | Hecho | No |
-| 13 | [13 - 3 frases que parecen ciertas sobre el TDAH](./13%20-%203%20frases%20que%20parecen%20ciertas%20sobre%20el%20TDAH/) | 3 frases que parecen ciertas | mar 27 oct 2026 (propuesta) | Hecho | No |
+| 13 | [13 - 3 frases que parecen ciertas sobre el TDAH](./13%20-%203%20frases%20que%20parecen%20ciertas%20sobre%20el%20TDAH/) | 3 frases que parecen ciertas | dom 1 nov 2026 (propuesta) | Hecho | No |
 | 14 | [14 - Esto explica toda mi vida](./14%20-%20Esto%20explica%20toda%20mi%20vida/) | ¿Esto explica toda mi vida? | sáb 31 oct 2026 (propuesta) | Hecho | No |
 | 15 | [15 - Qué me pasa, cambia la pregunta](./15%20-%20Qu%C3%A9%20me%20pasa%2C%20cambia%20la%20pregunta/) | ¿Qué me pasa? | vie 30 oct 2026 (propuesta) | Hecho | No |
 | 16 | [16 - Sientes que no avanzas, 3 preguntas](./16%20-%20Sientes%20que%20no%20avanzas%2C%203%20preguntas/) | ¿Sientes que no avanzas? | lun 26 oct 2026 (propuesta) | Hecho | No |
 | 17 | [17 - Abandonas tu rutina, 3 ideas](./17%20-%20Abandonas%20tu%20rutina%2C%203%20ideas/) | ¿Abandonas tu rutina? | mié 28 oct 2026 (propuesta) | Hecho | No |
-| 18 | [18 - Y si no era ansiedad](./18%20-%20Y%20si%20no%20era%20ansiedad/) | ¿Y si no era ansiedad? | mar 27 oct 2026 (propuesta) | Hecho | No |
+| 18 | [18 - Y si no era ansiedad](./18%20-%20Y%20si%20no%20era%20ansiedad/) | ¿Y si no era ansiedad? | mar 27 oct 2026 (hoy) | Hecho | No |
