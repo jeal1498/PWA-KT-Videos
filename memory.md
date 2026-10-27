@@ -86,3 +86,11 @@
 - `ficha` con `titulo` largo se desborda: usar `titulo_tam` 86 desde el principio.
 - Un master de 1080p sale a ≈66 MB y con la portada ≈87 MB: recomprimir a `-crf 28 -preset medium` (≈25 MB) antes de `guardar.sh`.
 - `check` volvió a fallar sin navegador; `snapshot` basta. `encuadre.py` necesitó reinstalar mediapipe/opencv y las libs de apt.
+
+## Versiones v2 sin cara (27 oct 2026, piloto con el 18)
+
+- **Qué es:** por cada video pendiente (09 a 18) se hace una v2 sin la cara de Karen, para prueba A/B: **guion nuevo** (mismo tema, otro gancho, otros ejemplos), 100 % animación y voz clonada de Karen en ElevenLabs. Mientras no esté su voz, la provisional es la de Checa (Fernando Martínez, `dlGxemPxFMTY7iXagmOj`, velocidad 1.0), solo para pruebas.
+- **Estilo elegido:** «propuesta 3, dibujo a dos tintas»: rellenos planos lavanda, rosa y arena con contorno ciruela profundo, trazo que vibra 12 veces por segundo (feTurbulence + feDisplacementMap), entradas con rebote elástico y palabras clave como calcomanía (arena, inclinada −2.5°, sombra lavanda). Textos fuera del filtro para que se lean limpios.
+- **Personaje:** Open Peeps de DiceBear (CC0, sin atribución), `seed: 'Mar'`, `head: long`, piel arena, ropa lavanda, trazo ciruela. **Solo aparece donde suma** (gancho, momentos emocionales, cierre); el resto son gráficos. Cambia de cara en cada giro del guion (Preocupada → Tranquila). Sin manos: los gestos se hacen con movimiento.
+- **No dibujar personajes a mano en SVG:** salieron feos tres veces. Usar una librería ilustrada y recolorear. Trampas: cada avatar necesita ids con prefijo (comparten `viewboxMask`) y no recolorear el blanco de dentro de `<mask>`.
+- **Render:** HyperFrames (`npx hyperframes@0.8.163 render`), el audio se pega después con ffmpeg. Propuestas de estilo en clips de ≤6 s antes de hacer el video completo.
