@@ -29,3 +29,4 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 15 | [15 - Qué me pasa, cambia la pregunta](./15%20-%20Qu%C3%A9%20me%20pasa%2C%20cambia%20la%20pregunta/) | ¿Qué me pasa? | vie 30 oct 2026 (propuesta) | Hecho | No |
 | 16 | [16 - Sientes que no avanzas, 3 preguntas](./16%20-%20Sientes%20que%20no%20avanzas%2C%203%20preguntas/) | ¿Sientes que no avanzas? | lun 26 oct 2026 (propuesta) | Hecho | No |
 | 17 | [17 - Abandonas tu rutina, 3 ideas](./17%20-%20Abandonas%20tu%20rutina%2C%203%20ideas/) | ¿Abandonas tu rutina? | mié 28 oct 2026 (propuesta) | Hecho | No |
+| 18 | [18 - Y si no era ansiedad](./18%20-%20Y%20si%20no%20era%20ansiedad/) | ¿Y si no era ansiedad? | por definir | Hecho | No |
