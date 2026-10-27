@@ -77,3 +77,12 @@
 - Este repo se creó el 17 oct 2026 para sacar los videos del repo del portafolio (pesaban ~290 MB y ese repo es público). La skill `videos-karen` se movió aquí.
 - Hecho el 17 oct 2026: se borraron `marketing/videos/` y `videos/` de todo el historial del repo del portafolio (`git filter-repo` + force-push a todas las ramas; el repo bajó de 290 MB a 21 MB). SHA anterior de `main`: `7e7b87a`. Cualquier clon antiguo del portafolio debe volver a clonarse.
 - El `hyperframes check` a veces no abre el navegador («Browser session never ran», se agota el tiempo): si pasa, validar con `snapshot` y el render.
+
+## V20 → video 18 (27 oct 2026)
+
+- 18 «¿Y si no era ansiedad?» (V20 de Drive, `20.mp4`, video respuesta a una pregunta sobre el 11; se sube el 27 oct). Encuadre cercano, sin zooms, 5 escenas (27 %). Parecido a 11 a 14: no publicarlo seguido. Fecha del 18 y del 13 coinciden (27 oct): Eduardo decide.
+- Eduardo pide al terminar: actualizar la página (`exportar_web.py` + fila en `tabla-publicacion.md`) en el mismo flujo, sin esperar a que lo repita. Cuando avisa «se sube hoy», poner esa fecha en `calendario.md`.
+- Portada: el gancho B («¿Y si no era {ansiedad}?», frase de ella) gustó; rechazó los 3 primeros cuadros y eligió el de sonrisa abierta (87.8 s, cierre del video). Los mejores cuadros suelen estar al final, cuando sonríe al despedirse.
+- `ficha` con `titulo` largo se desborda: usar `titulo_tam` 86 desde el principio.
+- Un master de 1080p sale a ≈66 MB y con la portada ≈87 MB: recomprimir a `-crf 28 -preset medium` (≈25 MB) antes de `guardar.sh`.
+- `check` volvió a fallar sin navegador; `snapshot` basta. `encuadre.py` necesitó reinstalar mediapipe/opencv y las libs de apt.

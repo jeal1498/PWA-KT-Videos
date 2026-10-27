@@ -122,6 +122,8 @@ Si piden cambios en una etapa, se rehace solo esa etapa y no se avanza hasta su 
 
 - **Página de calendario**: después de `guardar.sh`, correr `python3 -I scripts/exportar_web.py` (desde la raíz del repo de videos) y commitear `web/` para que `index.html` muestre el video nuevo con su copy; agregar también su fila a `tabla-publicacion.md` (enlace de descarga + copy de IG/FB, TikTok, hashtags y título de YouTube desde su `copy.md`). Las fechas «(propuesta)» de `calendario.md` las decide Eduardo/Karen; el orden de subida de 11 a 17 es 11, 16, 13, 17, 12, 15, 14.
 
+- **V20 (video 18):** poner `titulo_tam` 86 en toda `ficha`; recomprimir el master+portada con `-crf 28 -preset medium` antes de guardar (de ≈87 a ≈25 MB); al terminar, actualizar la página (`exportar_web.py` y fila en `tabla-publicacion.md`) en el mismo push sin que lo pidan; los mejores cuadros para portada suelen estar al final (sonrisa de despedida).
+
 ## Presupuesto de tiempo (referencia, video de 72 s)
 Preparar 4 min · spec 10 min · componer+verificar 10 min · render 6 min · portada 5 min · copy 10 min · guardar 2 min.
 
