@@ -1,5 +1,7 @@
 # Videos v2 sin cara (versión B para prueba A/B)
 
+> **⚠️ Pendiente:** el `voice_id` de la voz clonada de Karen en ElevenLabs (lo pasa Eduardo). Al recibirlo: ponerlo en `VOZ_KAREN` de `voz.py`, regenerar el 19 (paso 8) y anotarlo aquí. Hasta entonces todo sale con la voz provisional.
+
 Aprobado por Eduardo el 27 oct 2026 con el 19 (v2 del 18). Se repite igual para las v2 del 09 al 17.
 
 **Qué es:** el mismo tema de un video ya hecho, con **guion nuevo** (otro gancho, otros ejemplos, otra estructura), sin la cara de Karen: 100 % animación a dos tintas y voz clonada de Karen. Lleva su propio número y carpeta (`19 - … (v2 sin cara)`), y su `guion.md` dice de qué video viene. No publicarla seguida de su versión A.
@@ -30,6 +32,7 @@ Aprobado por Eduardo el 27 oct 2026 con el 19 (v2 del 18). Se repite igual para 
 - **Movimiento:** entradas con `elastic.out(1,0.55)`, ramas y líneas que se dibujan, la nube se revienta en burbujas. Palabras clave como **calcomanía**: arena, inclinada −2.5°, sombra lavanda `7px 8px`.
 - **Transición:** la línea con nodo de la marca, hecha a mano, entre escenas.
 - **Personaje:** Open Peeps de DiceBear (CC0, sin atribución), `seed: 'Mar'`, `head: long`. **Solo donde suma:** gancho, momentos emocionales y cierre (4 de 13 escenas en el 19). Cambia de cara en cada giro del guion (cruce de 0.25 s entre dos avatares). Sin manos: gestos con movimiento (asentir, negar, inclinar, temblar, respirar, rebote).
+- **Personaje elegido (27 oct 2026):** el genérico (`seed: 'Mar'`). Hay un avatar de Karen en el mismo estilo (`avatar-karen.cjs`: lentes rosas, labios rojos, puntas caramelo, blusa floreada), pero por ahora **no se usa**.
 - **Caras útiles:** problema → `concerned`, `concernedFear`, `fear`, `hectic`, `tired`; duda → `suspicious`, `solemn`, `blank`, `serious`; «¡ah!» → `awe`, `driven`; solución → `calm`, `smile`, `smileBig`, `eyesClosed`; explicar → `explaining`.
 
 ## Trampas que ya costaron tiempo
