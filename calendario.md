@@ -51,3 +51,5 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 31 | [31 - Rutina para tu peor día (v2 sin cara)](./31%20-%20Rutina%20para%20tu%20peor%20d%C3%ADa%20%28v2%20sin%20cara%29/) | Rutina para tu peor día | mar 24 nov 2026 (plan) | Hecho | No |
 | 32 | [32 - Antes de ponerle nombre (v2 sin cara)](./32%20-%20Antes%20de%20ponerle%20nombre%20%28v2%20sin%20cara%29/) | ¿Te cuesta estar quieto? | jue 26 nov 2026 (plan) | Hecho | No |
 | 33 | [33 - Vacía tu cabeza (v2 sin cara)](./33%20-%20Vac%C3%ADa%20tu%20cabeza%20%28v2%20sin%20cara%29/) | Vacía tu cabeza | sáb 28 nov 2026 (plan) | Hecho | No |
+| 34 | [34 - Qué me pasa (v2 sin cara)](./34%20-%20Qu%C3%A9%20me%20pasa%20%28v2%20sin%20cara%29/) | ¿Qué me pasa? | lun 30 nov 2026 (plan) | Hecho | No |
+| 35 | [35 - Sientes que no avanzas (v2 sin cara)](./35%20-%20Sientes%20que%20no%20avanzas%20%28v2%20sin%20cara%29/) | ¿Sientes que no avanzas? | vie 4 dic 2026 (plan) | Hecho | No |
