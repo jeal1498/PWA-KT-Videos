@@ -1,27 +1,30 @@
 #!/bin/bash
-# Uso (SOLO con el copy aprobado = etapa 6; se puede correr desde cualquier carpeta):
-#   guardar.sh <NN> "<Nombre del video>" <video.mp4> <portada.png> <copy.md> "<gancho>" [guion.md]
-# Guarda en el repo privado de videos (jeal1498/PWA-KT-Videos): carpeta "NN - Nombre/" con video.mp4, portada.png,
-# copy.md (y guion.md), agrega la fila a calendario.md como «Hecho» (Publicado = No; ese lo marcan Karen o Eduardo)
-# y hace UN solo commit + push a main. NN lo determina el momento de subida (01, 02, 03…).
-# Se ejecuta sobre el repo en que vive esta skill (4 niveles arriba de scripts/); VIDEOS_REPO solo para pruebas.
+# Guarda uno o un lote de videos ya aprobados en UN solo commit y lo sube a la rama actual (en el trabajo normal, main).
+# Uso:  guardar.sh <trabajo> <NN> "<Nombre>" "<gancho>" ["<fecha>"]
+#       guardar.sh <lote.tsv>      una línea por video, separada por tabuladores: trabajo  NN  Nombre  gancho  [fecha]
+# Cada <trabajo> lleva final.mp4 (con la portada como primer cuadro), portada.png, copy.md y guion.md.
+# Hace: carpeta «NN - Nombre/», fila en calendario.md (Hecho), fila en tabla-publicacion.md, web/ (exportar_web.py),
+# qc.py --repo de todo el lote (si algo falla, no hace commit) y commit + push.
 set -e
-NN="$1"; NOM="$2"; V="$(realpath "$3")"; P="$(realpath "$4")"; C="$(realpath "$5")"; G="$6"; GU="${7:+$(realpath "$7")}"
-R="${VIDEOS_REPO:-$(cd "$(dirname "$0")/../../../.." && pwd)}"
-cd "$R"; git pull -q --rebase origin main
-D="$NN - $NOM"; mkdir -p "$D"; cp "$V" "$D/video.mp4"; cp "$P" "$D/portada.png"; cp "$C" "$D/copy.md"; [ -n "$GU" ] && cp "$GU" "$D/guion.md"
-python3 - "$NN" "$NOM" "$G" <<'PY'
-import sys, urllib.parse
-nn, nom, gancho = sys.argv[1:4]
-carpeta = f"{nn} - {nom}"
-fila = f"| {nn} | [{carpeta}](./{urllib.parse.quote(carpeta)}/) | {gancho} | por definir | Hecho | No |\n"
-p = "calendario.md"; t = open(p, encoding="utf-8").read().splitlines(keepends=True)
-t = [l for l in t if not l.startswith(f"| {nn} |")]
-i = max([k for k, l in enumerate(t) if l.startswith("| ") and l[2:4].isdigit()] or [len(t) - 1]) + 1
-t.insert(i, fila); open(p, "w", encoding="utf-8").write("".join(t))
-PY
-git add -A
-git commit -q -m "Video $NN - $NOM (hecho: copy aprobado)
+SK="$(cd "$(dirname "$0")/.." && pwd)"; R="$(cd "$SK/../../.." && pwd)"; PY="python3 -I"
+if [ $# -eq 1 ]; then LOTE="$(realpath "$1")"; else LOTE=$(mktemp); printf '%s\t%s\t%s\t%s\t%s\n' "$(realpath "$1")" "$2" "$3" "$4" "$5" > "$LOTE"; fi
+cd "$R"; git pull -q --rebase origin "$(git branch --show-current)" || true
+CARPETAS=(); NUMS=()
+while IFS=$'\t' read -r W NN NOM G FE; do
+  [ -z "$W" ] && continue
+  D="$NN - $NOM"; mkdir -p "$D"
+  for f in final.mp4:video.mp4 portada.png:portada.png copy.md:copy.md guion.md:guion.md; do
+    [ -f "$W/${f%%:*}" ] || { echo "✗ falta $W/${f%%:*}"; exit 1; }; cp "$W/${f%%:*}" "$D/${f##*:}"
+  done
+  $PY "$SK/scripts/calendario.py" fila "$NN" "$D" "$G" ${FE:+"$FE"}
+  $PY "$SK/scripts/calendario.py" tabla "$D"
+  CARPETAS+=("$D"); NUMS+=("$NN")
+done < "$LOTE"
+$PY scripts/exportar_web.py
+$PY "$SK/scripts/calendario.py" revisar
+$PY "$SK/scripts/qc.py" "${CARPETAS[@]}" --repo || { echo "✗ No se guardó: corregir y volver a correr (los archivos ya están copiados)."; exit 1; }
+git add "${CARPETAS[@]}" calendario.md tabla-publicacion.md web
+git commit -q -m "Videos ${NUMS[*]}: hechos (lote aprobado)
 
-Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>"
-git push origin HEAD:main
+Co-Authored-By: Claude <noreply@anthropic.com>"
+git push -u origin HEAD
