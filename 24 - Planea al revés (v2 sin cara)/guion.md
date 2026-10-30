@@ -1,0 +1,17 @@
+# Guion 24 (v2 del 05, sin cara)
+
+Mismo tema que el 05 («Planifica tu salida»), otro guion: versión B para prueba A/B. Sin la cara de Karen. Guion del editor, aprobado por Eduardo el 30 oct 2026; falta que Karen lo revise.
+
+## Guion (con tags)
+
+Tienes una cita a las diez. Piensas: [curious] me baño, me visto y salgo. Y aun así, sales tarde.
+
+No es que seas impuntual. Es que calculas solo las tareas que ves, y olvidas las invisibles: buscar las llaves, contestar un mensaje, cambiarte porque no te gustó la blusa, [sighs] y el tráfico.
+
+Prueba planear al revés. Empieza por la hora de llegada y retrocede: ¿cuánto dura el camino?, ¿cuánto tardas en arreglarte de verdad? Súmale diez minutos de margen para lo inesperado.
+
+Luego, durante una semana, mide cuánto tardas en realidad. Quizá no son veinte minutos, sino treinta y cinco. Así tu plan se ajusta a tu vida, no a la que imaginas.
+
+Y si pasar de una tarea a otra te cuesta, pon una alarma que diga: [softly] ya toca salir de la ducha.
+
+Esto puede servirle a cualquier persona, tenga o no TDAH. Si llegar tarde te genera problemas constantes, vale la pena consultarlo. [warmly] Cuéntame: ¿cuántos minutos extra necesitas tú? Este video orienta y no diagnostica.

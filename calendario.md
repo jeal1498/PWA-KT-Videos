@@ -41,3 +41,4 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 21 | [21 - Querer y arrancar no son lo mismo (v2 sin cara)](./21%20-%20Querer%20y%20arrancar%20no%20son%20lo%20mismo%20%28v2%20sin%20cara%29/) | Querer y arrancar no son lo mismo | mar 4 nov 2026 (plan) | Hecho | No |
 | 22 | [22 - Crea tu zona de aterrizaje (v2 sin cara)](./22%20-%20Crea%20tu%20zona%20de%20aterrizaje%20%28v2%20sin%20cara%29/) | Crea tu zona de aterrizaje | jue 6 nov 2026 (plan) | Hecho | No |
 | 23 | [23 - Por dentro no paras (v2 sin cara)](./23%20-%20Por%20dentro%20no%20paras%20%28v2%20sin%20cara%29/) | Por dentro no paras | sáb 8 nov 2026 (plan) | Hecho | No |
+| 24 | [24 - Planea al revés (v2 sin cara)](./24%20-%20Planea%20al%20rev%C3%A9s%20%28v2%20sin%20cara%29/) | Planea al revés | mar 10 nov 2026 (plan) | Hecho | No |
