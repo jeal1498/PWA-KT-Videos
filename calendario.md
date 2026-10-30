@@ -40,3 +40,4 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 20 | [20 - Solo voy a revisar un mensaje (v2 sin cara)](./20%20-%20Solo%20voy%20a%20revisar%20un%20mensaje%20%28v2%20sin%20cara%29/) | Solo voy a revisar un mensaje | lun 2 nov 2026 (plan) | Hecho | No |
 | 21 | [21 - Querer y arrancar no son lo mismo (v2 sin cara)](./21%20-%20Querer%20y%20arrancar%20no%20son%20lo%20mismo%20%28v2%20sin%20cara%29/) | Querer y arrancar no son lo mismo | mar 4 nov 2026 (plan) | Hecho | No |
 | 22 | [22 - Crea tu zona de aterrizaje (v2 sin cara)](./22%20-%20Crea%20tu%20zona%20de%20aterrizaje%20%28v2%20sin%20cara%29/) | Crea tu zona de aterrizaje | jue 6 nov 2026 (plan) | Hecho | No |
+| 23 | [23 - Por dentro no paras (v2 sin cara)](./23%20-%20Por%20dentro%20no%20paras%20%28v2%20sin%20cara%29/) | Por dentro no paras | sáb 8 nov 2026 (plan) | Hecho | No |
