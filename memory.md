@@ -108,3 +108,31 @@ Karen vio el 19 y le gustó mucho. Las siguientes v2 (09 a 17) y los videos nuev
 Todo el detalle está en `.claude/skills/videos-karen/v2-sin-cara/README.md`.
 - **Calendario intercalado (30 oct 2026, Karen):** un día video sin cara (v2), al día siguiente video con Karen, y así. El 19 se sube el sáb 31 oct. Al planear fechas o el orden de las v2, respetar la alternancia (y que dos videos seguidos no repitan tema).
 - **Publicados (30 oct 2026):** Karen ya subió todos los videos hasta el 18. Siguen: el 19 (sáb 31 oct, sin cara) y lo nuevo. Los días con Karen necesitan videos que ella grabe; las v2 sin cara salen de los temas 09 al 17.
+
+### ⏳ PENDIENTE: hacer la v2 (sin cara) de TODOS los videos hechos hasta ahora
+
+Pedido de Eduardo el 30 oct 2026. Con la receta aprobada (guion nuevo, voz de Karen en Eleven v3 con tags y silencios recortados, animación a dos tintas; ver `.claude/skills/videos-karen/v2-sin-cara/README.md`).
+
+| Video original | v2 |
+|---|---|
+| 01 Organiza tus pendientes | pendiente |
+| 02 No todo olvido es TDAH | pendiente |
+| 03 Solo una tarea, no diez | pendiente |
+| 04 10 minutos que se vuelven una hora | pendiente |
+| 05 Planifica tu salida | pendiente |
+| 06 Cambia la pregunta que te haces | pendiente |
+| 07 Reducir todo a flojera no ayuda | pendiente |
+| 08 Otra vez sin encontrar tus llaves (el 09 es el 08 con gráficos) | pendiente |
+| 10 Un lugar fijo para cada objeto | pendiente |
+| 11 La hiperactividad en adultos se ve diferente | pendiente |
+| 12 Antes de pensar en TDAH, tres preguntas | pendiente |
+| 13 3 frases que parecen ciertas sobre el TDAH | pendiente |
+| 14 Esto explica toda mi vida | pendiente |
+| 15 Qué me pasa, cambia la pregunta | pendiente |
+| 16 Sientes que no avanzas, 3 preguntas | pendiente |
+| 17 Abandonas tu rutina, 3 ideas | pendiente |
+| 18 Y si no era ansiedad | **hecha: es el 19** |
+
+- Cada v2 lleva su propio número (desde el 20) y su `guion.md` dice de qué video viene.
+- Van en los días **sin cara** del calendario intercalado (un día sin cara, al siguiente con Karen).
+- Al terminar cada una: marcar «hecha» aquí con su número.
