@@ -46,3 +46,8 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 26 | [26 - Veinte pendientes (v2 sin cara)](./26%20-%20Veinte%20pendientes%20%28v2%20sin%20cara%29/) | Veinte pendientes | sáb 14 nov 2026 (plan) | Hecho | No |
 | 27 | [27 - Háblate como a un amigo (v2 sin cara)](./27%20-%20H%C3%A1blate%20como%20a%20un%20amigo%20%28v2%20sin%20cara%29/) | Háblate como a un amigo | lun 16 nov 2026 (plan) | Hecho | No |
 | 28 | [28 - Tres frases sobre el TDAH (v2 sin cara)](./28%20-%20Tres%20frases%20sobre%20el%20TDAH%20%28v2%20sin%20cara%29/) | 3 frases, segunda mirada | mié 18 nov 2026 (plan) | Hecho | No |
+| 29 | [29 - En piloto automático (v2 sin cara)](./29%20-%20En%20piloto%20autom%C3%A1tico%20%28v2%20sin%20cara%29/) | En piloto automático | vie 20 nov 2026 (plan) | Hecho | No |
+| 30 | [30 - Llega con tu historia (v2 sin cara)](./30%20-%20Llega%20con%20tu%20historia%20%28v2%20sin%20cara%29/) | Llega con tu historia | dom 22 nov 2026 (plan) | Hecho | No |
+| 31 | [31 - Rutina para tu peor día (v2 sin cara)](./31%20-%20Rutina%20para%20tu%20peor%20d%C3%ADa%20%28v2%20sin%20cara%29/) | Rutina para tu peor día | mar 24 nov 2026 (plan) | Hecho | No |
+| 32 | [32 - Antes de ponerle nombre (v2 sin cara)](./32%20-%20Antes%20de%20ponerle%20nombre%20%28v2%20sin%20cara%29/) | ¿Te cuesta estar quieto? | jue 26 nov 2026 (plan) | Hecho | No |
+| 33 | [33 - Vacía tu cabeza (v2 sin cara)](./33%20-%20Vac%C3%ADa%20tu%20cabeza%20%28v2%20sin%20cara%29/) | Vacía tu cabeza | sáb 28 nov 2026 (plan) | Hecho | No |
