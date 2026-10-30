@@ -118,7 +118,7 @@ Pedido de Eduardo el 30 oct 2026. Con la receta aprobada (guion nuevo, voz de Ka
 | 01 Organiza tus pendientes | pendiente |
 | 02 No todo olvido es TDAH | pendiente |
 | 03 Solo una tarea, no diez | pendiente |
-| 04 10 minutos que se vuelven una hora | pendiente |
+| 04 10 minutos que se vuelven una hora | **hecha: es el 20** (plan lun 2 nov 2026) |
 | 05 Planifica tu salida | pendiente |
 | 06 Cambia la pregunta que te haces | pendiente |
 | 07 Reducir todo a flojera no ayuda | pendiente |
@@ -136,3 +136,5 @@ Pedido de Eduardo el 30 oct 2026. Con la receta aprobada (guion nuevo, voz de Ka
 - Cada v2 lleva su propio número (desde el 20) y su `guion.md` dice de qué video viene.
 - Van en los días **sin cara** del calendario intercalado (un día sin cara, al siguiente con Karen).
 - Al terminar cada una: marcar «hecha» aquí con su número.
+
+- **v2 del 04 = video 20 «Solo voy a revisar un mensaje»** (30 oct 2026, hecho, plan lun 2 nov): receta aprobada de principio a fin, una aprobación por etapa. Fuente reutilizable en `v2-sin-cara/ejemplo-20/` (`build.py` con `sc()`, `anim.js`, `avs.json`; caras: awe, tired, hectic, suspicious, calm, smile). Render ≈6 min; `snapshot` con 22 tiempos revisa todo. Con tiempos directos, `warp.json` es identidad `[[0,0],[100,100]]`. Portada hecha en HTML + Playwright (`portada.py` es solo con foto). Tras revisar el snapshot, subir los textos `.q` si tapan el avatar. El `guardar.sh` empuja a `main`: en esta rama se guardó a mano. Siguen las v2 de 01 a 03, 05 a 08 y 10 a 17.

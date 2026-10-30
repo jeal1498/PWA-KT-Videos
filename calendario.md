@@ -37,3 +37,4 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 17 | [17 - Abandonas tu rutina, 3 ideas](./17%20-%20Abandonas%20tu%20rutina%2C%203%20ideas/) | ¿Abandonas tu rutina? | mié 28 oct 2026 (plan) | Hecho | **Sí** (Karen los subió, informado el 30 oct 2026) |
 | 18 | [18 - Y si no era ansiedad](./18%20-%20Y%20si%20no%20era%20ansiedad/) | ¿Y si no era ansiedad? | mar 27 oct 2026 (plan) | Hecho | **Sí** (Karen los subió, informado el 30 oct 2026) |
 | 19 | [19 - Seguro que es ansiedad (v2 sin cara)](./19%20-%20Seguro%20que%20es%20ansiedad%20%28v2%20sin%20cara%29/) | ¿Seguro que es ansiedad? | sáb 31 oct 2026 | Hecho | No |
+| 20 | [20 - Solo voy a revisar un mensaje (v2 sin cara)](./20%20-%20Solo%20voy%20a%20revisar%20un%20mensaje%20%28v2%20sin%20cara%29/) | Solo voy a revisar un mensaje | lun 2 nov 2026 (plan) | Hecho | No |

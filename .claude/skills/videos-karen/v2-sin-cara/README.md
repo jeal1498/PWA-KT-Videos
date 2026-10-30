@@ -14,7 +14,7 @@ Aprobado por Eduardo el 27 oct 2026 con el 19 (v2 del 18). Se repite igual para 
 2. **Voz:** `python3 -I voz.py guion.txt <trabajo> --modelo v3 --max-silencio 0.35` (aprobado el 30 oct 2026) → `voz.mp3` y `words.json` con tiempos por palabra (ElevenLabs *with-timestamps*; la clave `ELEVENLABS_API_KEY` no tiene permiso de *speech-to-text*). Sale con la voz clonada de Karen (`VOZ_KAREN`); para otra voz, pasar su `voice_id` como tercer argumento.
 3. **Tabla de elementos** (etapa 2): `Segundo · Frase · Escena · Personaje`, con los tiempos de `words.json`. Escenas de 3 a 7 s, una idea cada una.
 4. **Portada** (etapa 3): 3 ganchos, eligen uno; tipográfica con ilustración (sin cuadro de Karen), zona segura y=300–1620.
-5. **Video** (etapa 4): copiar `ejemplo-19/` a la carpeta de trabajo, cambiar escenas en `build.py` y tiempos en `anim.js`, generar las caras con `avatares.cjs` (el 19 usa `avs.json duda:suspicious preocupada:concerned tranquila:calm sonrisa:smile preocupada2:concerned sonrisa2:smile`; una clave por aparición), y:
+5. **Video** (etapa 4): copiar `ejemplo-20/` (el más limpio: sin `warp.json` real, tiempos directos; el 19 sirve de ejemplo de cambio de voz) a la carpeta de trabajo, cambiar escenas en `build.py` y tiempos en `anim.js`, generar las caras con `avatares.cjs` (el 19 usa `avs.json duda:suspicious preocupada:concerned tranquila:calm sonrisa:smile preocupada2:concerned sonrisa2:smile`; una clave por aparición), y:
    ```
    python3 build.py                                  # → public/index.html
    npx --yes hyperframes@0.8.163 snapshot public --at t1,t2,…   # revisar la hoja
