@@ -48,3 +48,4 @@ Leer cuando se arme la animación (`scenes.py` / `anim.js`) o la portada. Receta
 - Rótulos dentro de tarjetas con icono: bajar la etiqueta (`ly`) para que no pise el dibujo; un `fromTo` con escala o sin `opacity:0` se ve antes de su hora.
 - `portada.sh` y `armar.sh` necesitan `NODE_PATH=/opt/node22/lib/node_modules` (playwright); el render de 68 s tardó ≈16 min por video.
 - Ganchos de portada de más de 25 caracteres se acortan («3 frases, segunda mirada»).
+- Iconos con trazo ciruela (llaves, etc.) no se ven sobre el fondo oscuro: ponerlos dentro de una tarjeta arena. Si el guion se pasa de 185 palabras, recortar antes de la voz (el lote 2 salió entre 70 y 77 s).
