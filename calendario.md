@@ -10,6 +10,8 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 
 **Versiones sin cara (27 oct 2026):** el 19 es la v2 del 18 para prueba A/B (guion nuevo, animación a dos tintas, voz clonada). Ya lleva la voz clonada de Karen (30 oct 2026). Se harán igual las v2 del 09 al 17.
 
+**Intercalado (30 oct 2026, pedido de Karen):** desde el sáb 31 oct se alterna un día con un video **sin cara** (v2: animación a dos tintas y su voz clonada) y al día siguiente uno **donde sale ella**: sáb 31 → 19 (sin cara), dom 1 nov → 13 (con Karen), lun 2 nov → v2 por hacer, mar 3 nov → 14 (con Karen, se movió del 31 oct), mié 4 nov → v2 por hacer, y así. Las v2 del 09 al 17 se van haciendo para cubrir los días sin cara.
+
 **Hecho** = copy aprobado (los 6 pasos de la skill `videos-karen`). **Publicado** solo lo marcan Karen o Eduardo al subirlo.
 
 | # | Carpeta | Gancho de portada | Fecha de subida | Hecho | Publicado |
@@ -27,9 +29,9 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 11 | [11 - La hiperactividad en adultos se ve diferente](./11%20-%20La%20hiperactividad%20en%20adultos%20se%20ve%20diferente/) | ¿Siempre corriendo o saltando? | dom 25 oct 2026 (propuesta) | Hecho | No |
 | 12 | [12 - Antes de pensar en TDAH, tres preguntas](./12%20-%20Antes%20de%20pensar%20en%20TDAH%2C%20tres%20preguntas/) | ¿Te cuesta estar quieto? | jue 29 oct 2026 (propuesta) | Hecho | No |
 | 13 | [13 - 3 frases que parecen ciertas sobre el TDAH](./13%20-%203%20frases%20que%20parecen%20ciertas%20sobre%20el%20TDAH/) | 3 frases que parecen ciertas | dom 1 nov 2026 (propuesta) | Hecho | No |
-| 14 | [14 - Esto explica toda mi vida](./14%20-%20Esto%20explica%20toda%20mi%20vida/) | ¿Esto explica toda mi vida? | sáb 31 oct 2026 (propuesta) | Hecho | No |
+| 14 | [14 - Esto explica toda mi vida](./14%20-%20Esto%20explica%20toda%20mi%20vida/) | ¿Esto explica toda mi vida? | mar 3 nov 2026 (propuesta) | Hecho | No |
 | 15 | [15 - Qué me pasa, cambia la pregunta](./15%20-%20Qu%C3%A9%20me%20pasa%2C%20cambia%20la%20pregunta/) | ¿Qué me pasa? | vie 30 oct 2026 (propuesta) | Hecho | No |
 | 16 | [16 - Sientes que no avanzas, 3 preguntas](./16%20-%20Sientes%20que%20no%20avanzas%2C%203%20preguntas/) | ¿Sientes que no avanzas? | lun 26 oct 2026 (propuesta) | Hecho | No |
 | 17 | [17 - Abandonas tu rutina, 3 ideas](./17%20-%20Abandonas%20tu%20rutina%2C%203%20ideas/) | ¿Abandonas tu rutina? | mié 28 oct 2026 (propuesta) | Hecho | No |
 | 18 | [18 - Y si no era ansiedad](./18%20-%20Y%20si%20no%20era%20ansiedad/) | ¿Y si no era ansiedad? | mar 27 oct 2026 (hoy) | Hecho | No |
-| 19 | [19 - Seguro que es ansiedad (v2 sin cara)](./19%20-%20Seguro%20que%20es%20ansiedad%20%28v2%20sin%20cara%29/) | ¿Seguro que es ansiedad? | por definir | Hecho | No |
+| 19 | [19 - Seguro que es ansiedad (v2 sin cara)](./19%20-%20Seguro%20que%20es%20ansiedad%20%28v2%20sin%20cara%29/) | ¿Seguro que es ansiedad? | sáb 31 oct 2026 | Hecho | No |
