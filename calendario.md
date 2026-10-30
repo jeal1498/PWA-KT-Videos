@@ -8,7 +8,7 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 
 **Orden de subida sugerido para el 11 al 17 (23 oct 2026, aceptado por Eduardo):** 11, 16, 13, 17, 12, 15, 14. Así no quedan seguidos los videos parecidos (12, 14 y 16 son guías de preguntas; 13 y 14 tocan el mismo punto; 15 se parece al 06). La numeración de las carpetas no cambia: solo cambian las fechas.
 
-**Versiones sin cara (27 oct 2026):** el 19 es la v2 del 18 para prueba A/B (guion nuevo, animación a dos tintas, voz clonada). Lleva voz provisional: no publicar hasta regenerarla con la voz de Karen (**pendiente: el ID de su voz clonada en ElevenLabs**). Se harán igual las v2 del 09 al 17.
+**Versiones sin cara (27 oct 2026):** el 19 es la v2 del 18 para prueba A/B (guion nuevo, animación a dos tintas, voz clonada). Ya lleva la voz clonada de Karen (30 oct 2026). Se harán igual las v2 del 09 al 17.
 
 **Hecho** = copy aprobado (los 6 pasos de la skill `videos-karen`). **Publicado** solo lo marcan Karen o Eduardo al subirlo.
 

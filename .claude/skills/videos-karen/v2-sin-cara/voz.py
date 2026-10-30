@@ -5,8 +5,8 @@ Necesita ELEVENLABS_API_KEY. Voz por defecto: provisional de Checa (Fernando Mar
 Escribe <salida_dir>/voz.mp3 y <salida_dir>/words.json ([palabra, inicio, fin] en segundos)."""
 import base64, json, os, sys, urllib.request
 txt, out = open(sys.argv[1], encoding='utf-8').read().strip(), sys.argv[2]
-# PENDIENTE: voice_id de la voz clonada de Karen en ElevenLabs (lo pasa Eduardo). Al tenerlo, ponerlo aquí y regenerar el 19.
-VOZ_KAREN = None
+# Voz por defecto: la clonada de Karen.
+VOZ_KAREN = 'sSQiAF9Uq1K3xnyvFi8w'  # voz clonada de Karen (Eduardo, 30 oct 2026)
 VOZ_PROVISIONAL = 'dlGxemPxFMTY7iXagmOj'  # Fernando Martínez, la voz de Checa
 vid = sys.argv[3] if len(sys.argv) > 3 else (VOZ_KAREN or VOZ_PROVISIONAL)
 if vid == VOZ_PROVISIONAL: print('Aviso: voz provisional (Fernando), no es la de Karen.')

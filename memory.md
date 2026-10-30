@@ -94,5 +94,5 @@
 - **Personaje:** Open Peeps de DiceBear (CC0, sin atribución), `seed: 'Mar'`, `head: long`, piel arena, ropa lavanda, trazo ciruela. **Solo aparece donde suma** (gancho, momentos emocionales, cierre); el resto son gráficos. Cambia de cara en cada giro del guion (Preocupada → Tranquila). Sin manos: los gestos se hacen con movimiento.
 - **No dibujar personajes a mano en SVG:** salieron feos tres veces. Usar una librería ilustrada y recolorear. Trampas: cada avatar necesita ids con prefijo (comparten `viewboxMask`) y no recolorear el blanco de dentro de `<mask>`.
 - **Render:** HyperFrames (`npx hyperframes@0.8.163 render`), el audio se pega después con ffmpeg. Propuestas de estilo en clips de ≤6 s antes de hacer el video completo.
-- **Pendiente:** el `voice_id` de la voz clonada de Karen (ElevenLabs). Va en `VOZ_KAREN` de `.claude/skills/videos-karen/v2-sin-cara/voz.py`.
+- **Voz clonada de Karen (30 oct 2026):** ElevenLabs `sSQiAF9Uq1K3xnyvFi8w`, ya en `VOZ_KAREN` de `voz.py`. El 19 se regeneró con ella.
 - **Personaje (27 oct 2026):** se queda el genérico. Se probó un avatar de Karen en el mismo estilo (cabello a los hombros, sonrisa con dientes y labios rojos); está guardado en `avatar-karen.cjs` pero no se usa por ahora.

@@ -1,6 +1,13 @@
 import json, html as H
 AV=json.load(open('avs.json')); W=json.load(open('words.json'))
-DUR=75.6
+# Las escenas se escribieron con los tiempos de la voz anterior: se trasladan a la nueva con una
+# interpolación por palabra (warp.json = [[t_viejo, t_nuevo], ...]); el JS hace lo mismo con cada posición.
+KN=json.load(open('warp.json'))
+def wp(t):
+    for (a0,b0),(a1,b1) in zip(KN,KN[1:]):
+        if t<=a1: return round(b0+(t-a0)*(b1-b0)/max(a1-a0,1e-6),3)
+    return round(KN[-1][1]+(t-KN[-1][0]),3)
+DUR=round(W[-1][2]+0.1,2)
 L,R,A,D,G='#C6BCE2','#F9DEE3','#F5E7D6','#2E2545','#10b77f'
 # ---- subtítulos ----
 ch=[];cur=[]
@@ -17,7 +24,7 @@ for i,(t,a,b) in enumerate(ch):
     e=min(max(b+0.12,a+0.3),nx); a=max(0.02,a-0.02)
     caps.append((t,round(a,2),round(e-a,2)))
 SC=[]  # (id,a,b,html)
-def sc(i,a,b,body): SC.append((i,a,b,body))
+def sc(i,a,b,body): SC.append((i,wp(a),wp(b) if b<75.6 else DUR,body))
 def av(k,cls,style): return f'<div class="av {cls}" style="{style}">{AV[k]}</div>'
 def svg(inner,txt=''): return f'<svg class="full" viewBox="0 0 1080 1920"><g filter="url(#rough)">{inner}</g>{txt}</svg>'
 def chip(t,col=A,top=330): return f'<div class="chip" style="top:{top}px;background:{col}">{t}</div>'
@@ -145,7 +152,7 @@ doodles=f'''<svg class="full" viewBox="0 0 1080 1920"><defs><filter id="rough" x
 trsvg=f'<svg id="tr" viewBox="0 0 1080 1920"><g filter="url(#rough)"><line id="trl" x1="-40" y1="1380" x2="-40" y2="1380" stroke="{L}" stroke-width="12" stroke-linecap="round" opacity="0"/><circle id="trn" cx="-40" cy="1380" r="26" fill="{A}" stroke="{D}" stroke-width="7" opacity="0"/></g></svg>'
 body=''.join(f'<div class="sc clip" id="{i}" data-start="{a}" data-duration="{round(b-a,2)}" data-track-index="1">{h}</div>' for i,a,b,h in SC)
 capsh=''.join(f'<div class="cap clip" id="cap{k}" data-start="{a}" data-duration="{d}" data-track-index="5"><span class="plate">{H.escape(t)}</span></div>' for k,(t,a,d) in enumerate(caps))
-js=open('anim.js').read().replace('__BOUND__',json.dumps(BOUND)).replace('__NCAP__',str(len(caps))).replace('__CAPS__',json.dumps([[a] for _,a,_ in caps]))
+js=open('anim.js').read().replace('__KN__',json.dumps(KN)).replace('__DUR__',str(DUR)).replace('__BOUND__',json.dumps(BOUND)).replace('__NCAP__',str(len(caps))).replace('__CAPS__',json.dumps([[a] for _,a,_ in caps]))
 doc=f'''<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=1080, height=1920"><style>{css}</style></head><body>
 <div id="root" data-composition-id="kt18full" data-start="0" data-duration="{DUR}" data-width="1080" data-height="1920" data-fps="30">
 <div id="cam"><div class="lay" id="glow"></div>{doodles}{body}<div class="lay" id="vig"></div></div>{trsvg}{capsh}

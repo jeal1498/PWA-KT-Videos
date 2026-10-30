@@ -2,7 +2,7 @@
 
 Mismo tema que el 18 («¿Y si no era ansiedad?»), otro guion: versión B para prueba A/B. Sin la cara de Karen: 100 % animación a dos tintas con personaje ilustrado y voz clonada. Guion escrito por el editor y aprobado por Eduardo el 27 oct 2026; falta que Karen lo revise.
 
-**Voz:** provisional, Fernando Martínez (ElevenLabs `dlGxemPxFMTY7iXagmOj`, `eleven_multilingual_v2`, velocidad 1.0). Cambiar por la voz clonada de Karen antes de publicar y volver a renderizar (ver `.claude/skills/videos-karen/v2-sin-cara/`).
+**Voz:** clonada de Karen (ElevenLabs `sSQiAF9Uq1K3xnyvFi8w`, `eleven_multilingual_v2`, velocidad 1.0), 30 oct 2026. La primera versión llevaba la voz provisional de Fernando.
 
 ## Guion
 
@@ -18,7 +18,7 @@ Ninguna de estas pistas es un diagnóstico. Lo que sí ayuda es una evaluación 
 
 ## Tabla de elementos aprobada (estilo dos tintas)
 
-Segundos del audio provisional (sin los 0.2 s de portada).
+Segundos de la voz provisional con la que se armó (sin los 0.2 s de portada); con la voz de Karen se trasladan con `warp.json` (ver el README del método).
 
 | Segundo | Escena | Personaje |
 |---|---|---|

@@ -1,6 +1,6 @@
 # Videos v2 sin cara (versión B para prueba A/B)
 
-> **⚠️ Pendiente:** el `voice_id` de la voz clonada de Karen en ElevenLabs (lo pasa Eduardo). Al recibirlo: ponerlo en `VOZ_KAREN` de `voz.py`, regenerar el 19 (paso 8) y anotarlo aquí. Hasta entonces todo sale con la voz provisional.
+> **Voz de Karen:** clonada en ElevenLabs, `sSQiAF9Uq1K3xnyvFi8w` (30 oct 2026). Ya es la que usa `voz.py` por defecto.
 
 Aprobado por Eduardo el 27 oct 2026 con el 19 (v2 del 18). Se repite igual para las v2 del 09 al 17.
 
@@ -9,7 +9,7 @@ Aprobado por Eduardo el 27 oct 2026 con el 19 (v2 del 18). Se repite igual para 
 ## Flujo (las mismas etapas con una aprobación cada una)
 
 1. **Guion nuevo** (etapa 1): escribirlo en el chat (≈190 palabras ≈ 75 s), con «Cómo se diferencia del original» en 4 líneas y «Por confirmar con Karen» (ejemplos que ella no dijo). Respetar las reglas de siempre: orienta, no diagnostica.
-2. **Voz:** `python3 -I voz.py guion.txt <trabajo>` → `voz.mp3` y `words.json` con tiempos por palabra (ElevenLabs *with-timestamps*; la clave `ELEVENLABS_API_KEY` no tiene permiso de *speech-to-text*). Voz de Karen: pasar su `voice_id` como tercer argumento. **Mientras no esté, provisional = Fernando Martínez** (`dlGxemPxFMTY7iXagmOj`, la voz de Checa) y se marca en el copy.
+2. **Voz:** `python3 -I voz.py guion.txt <trabajo>` → `voz.mp3` y `words.json` con tiempos por palabra (ElevenLabs *with-timestamps*; la clave `ELEVENLABS_API_KEY` no tiene permiso de *speech-to-text*). Sale con la voz clonada de Karen (`VOZ_KAREN`); para otra voz, pasar su `voice_id` como tercer argumento.
 3. **Tabla de elementos** (etapa 2): `Segundo · Frase · Escena · Personaje`, con los tiempos de `words.json`. Escenas de 3 a 7 s, una idea cada una.
 4. **Portada** (etapa 3): 3 ganchos, eligen uno; tipográfica con ilustración (sin cuadro de Karen), zona segura y=300–1620.
 5. **Video** (etapa 4): copiar `ejemplo-19/` a la carpeta de trabajo, cambiar escenas en `build.py` y tiempos en `anim.js`, generar las caras con `avatares.cjs` (el 19 usa `avs.json duda:suspicious preocupada:concerned tranquila:calm sonrisa:smile preocupada2:concerned sonrisa2:smile`; una clave por aparición), y:
@@ -21,9 +21,9 @@ Aprobado por Eduardo el 27 oct 2026 con el 19 (v2 del 18). Se repite igual para 
    bash ../scripts/portada_primer_cuadro.sh master.mp4 portada.png final.mp4   # ≈17 MB
    ```
    `public/` lleva `gsap.min.js` y `fonts/` (de `assets/`). Prueba en 720p con `SendUserFile`.
-6. **Copy** (etapa 5) con la plantilla de siempre; en «Relación»: «Versión B del NN para prueba A/B». En «Por confirmar»: voz provisional, guion del editor y el personaje ilustrado.
+6. **Copy** (etapa 5) con la plantilla de siempre; en «Relación»: «Versión B del NN para prueba A/B». En «Por confirmar»: que Karen apruebe su voz clonada, el guion del editor y el personaje ilustrado.
 7. **Hecho** (etapa 6): carpeta, calendario («por definir»), `tabla-publicacion.md` y `exportar_web.py`, en un solo commit.
-8. **Cuando llegue la voz de Karen:** regenerar con `voz.py … <voice_id>`, ajustar en `anim.js` los tiempos que se muevan (revisar con `snapshot`), volver a renderizar y reemplazar `video.mp4` de la carpeta (un commit).
+8. **Cambiar la voz de un video ya armado** (así se pasó el 19 de Fernando a Karen): regenerar con `voz.py`, crear `warp.json` con pares `[inicio_viejo, inicio_nuevo]` de cada palabra (mismo guion = mismas palabras) y volver a correr `build.py`. `anim.js` envuelve `tl` para trasladar cada posición con esa tabla (`tl0` es el timeline real: subtítulos, cámara y vibración van directo en `tl0`). Revisar con `snapshot`, renderizar y reemplazar `video.mp4` (un commit). `ejemplo-19/` ya trae esto.
 
 ## Estilo «dos tintas» (propuesta 3, elegida por Karen y Eduardo)
 
