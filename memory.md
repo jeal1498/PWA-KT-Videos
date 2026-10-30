@@ -121,7 +121,7 @@ Pedido de Eduardo el 30 oct 2026. Con la receta aprobada (guion nuevo, voz de Ka
 | 04 10 minutos que se vuelven una hora | **hecha: es el 20** (plan lun 2 nov 2026) |
 | 05 Planifica tu salida | pendiente |
 | 06 Cambia la pregunta que te haces | pendiente |
-| 07 Reducir todo a flojera no ayuda | pendiente |
+| 07 Reducir todo a flojera no ayuda | **hecha: es el 21** (plan mar 4 nov 2026) |
 | 08 Otra vez sin encontrar tus llaves (el 09 es el 08 con gráficos) | pendiente |
 | 10 Un lugar fijo para cada objeto | pendiente |
 | 11 La hiperactividad en adultos se ve diferente | pendiente |
@@ -139,3 +139,5 @@ Pedido de Eduardo el 30 oct 2026. Con la receta aprobada (guion nuevo, voz de Ka
 
 - **v2 del 04 = video 20 «Solo voy a revisar un mensaje»** (30 oct 2026, hecho, plan lun 2 nov): receta aprobada de principio a fin, una aprobación por etapa. Fuente reutilizable en `v2-sin-cara/ejemplo-20/` (`build.py` con `sc()`, `anim.js`, `avs.json`; caras: awe, tired, hectic, suspicious, calm, smile). Render ≈6 min; `snapshot` con 22 tiempos revisa todo. Con tiempos directos, `warp.json` es identidad `[[0,0],[100,100]]`. Portada hecha en HTML + Playwright (`portada.py` es solo con foto). Tras revisar el snapshot, subir los textos `.q` si tapan el avatar. El `guardar.sh` empuja a `main`: en esta rama se guardó a mano. Siguen las v2 de 01 a 03, 05 a 08 y 10 a 17.
 - **Avance v2 (30 oct 2026):** 2 de 17 hechas (19 = v2 del 18; 20 = v2 del 04). Faltan 15: 01, 02, 03, 05, 06, 07, 08, 10, 11, 12, 13, 14, 15, 16, 17. Calendario: 31 oct = 19, 1 nov = Karen, 2 nov = 20, 3 nov = Karen, 4 nov = siguiente v2 (número 21).
+- **v2 del 07 = video 21 «Querer y arrancar no son lo mismo»** (30 oct 2026, hecho, plan mar 4 nov). Avance: 3 de 17 hechas (19, 20, 21); faltan 14: 01, 02, 03, 05, 06, 08, 10, 11, 12, 13, 14, 15, 16, 17. Fuente en `v2-sin-cara/ejemplo-21/`.
+- **Lecciones del 21 (Eduardo):** (1) **No abrir el guion con `[pause]`**: un video no empieza en silencio. (2) **Sin cuadros vacíos:** en cada escena entran elementos desde el principio (tarjetas atenuadas que se encienden al decirlas, burbujas que se sustituyen); nunca más de ≈1.5 s con solo el título. Revisar con `snapshot` cada ≈3 s, sobre todo justo después del título de cada escena. (3) Revisar signos en portada (salió «=» donde iba «≠»).
