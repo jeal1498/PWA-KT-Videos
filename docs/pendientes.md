@@ -2,9 +2,20 @@
 
 Actualizar al guardar cada lote. Fechas en `calendario.md` (`calendario.py fechas` propone las siguientes).
 
+## Lote 1 (borrador, falta la aprobación 1 de Karen)
+Guiones en `docs/lote-1/` (texto con tags, listos para `voz.py`). Fechas sin cara: 26 sáb 14 nov, 27 lun 16 nov, 28 mié 18 nov.
+
+| NN | Es la v2 de | Ganchos de portada (A recomendado) |
+|---|---|---|
+| 26 | 03 Solo una tarea, no diez | A «Veinte pendientes» · B «¿Por dónde empiezo?» · C «Tu primer gesto» |
+| 27 | 06 Cambia la pregunta | A «Háblate como a un amigo» · B «Una pregunta mejor» · C «¿Y si preguntas distinto?» |
+| 28 | 13 3 frases sobre el TDAH | A «3 frases, una segunda mirada» · B «¿Moda o TDAH?» · C «No es falta de disciplina» |
+
+Por confirmar: los ejemplos del 26 (recibo de la luz, dentista, escritorio) y la escena del correo del 27 los puse yo; en el 28, si Karen quiere tratar el mito de «moda» y si «compensan con esfuerzo extra» coincide con lo que ve en consulta. Con la aprobación: producir con `videos-karen` (primer lote de 3) y armar la página de revisión (aprobación 2) con los videos terminados.
+
 ## Siguiente
-- **Siguiente número:** 26.
-- **Días sin cara:** ocupados hasta el jue 12 nov (19 a 25); el siguiente es el sáb 14 nov 2026.
+- **Siguiente número:** 29 (26 a 28 reservados para el lote 1).
+- **Días sin cara:** ocupados hasta el jue 12 nov (19 a 25); el siguiente libre es el vie 20 nov (26 a 28 reservan 14, 16 y 18 nov).
 - **Días con Karen** (jue 5, sáb 7, lun 9, mié 11 y vie 13 nov, …): libres; necesitan videos que ella grabe. Antes de empezar, listar la carpeta de Drive y buscar videos nuevos.
 
 ## v2 sin cara de todos los videos (pedido de Eduardo, 30 oct 2026)
