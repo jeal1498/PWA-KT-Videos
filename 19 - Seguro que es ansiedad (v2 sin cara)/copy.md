@@ -94,7 +94,8 @@ Los segundos ya incluyen los 0.2 s de portada.
 | 78.0 | Cuéntame en comentarios. |
 ## Por confirmar con Karen
 
-- **Voz clonada de Karen** (ElevenLabs `sSQiAF9Uq1K3xnyvFi8w`, modelo Eleven v3 con Audio Tags, 30 oct 2026): confirmar con ella que suena natural y que está de acuerdo con publicarla.
+- ✅ **Voz y estilo aprobados por Karen** (30 oct 2026): voz clonada en Eleven v3 con Audio Tags y animación a dos tintas.
+
 - **Guion escrito por el editor**, no por Karen (versión B del 18). Confirmar el texto completo, en especial los ejemplos «Intentas calmarte y lo que te pasa sigue ahí» y «revisar, anotar y controlar todo para no perderte».
 - Rótulos del editor: «Se mueve por el miedo», «¿y si sale mal?», «No hace falta ningún miedo», «A veces es una estrategia», «Aprenden a disimular», «Pueden convivir», «Las pistas no son un diagnóstico».
 - Personaje ilustrado (Open Peeps, licencia CC0, sin atribución): confirmar que a Karen le parece bien que la represente una ilustración.

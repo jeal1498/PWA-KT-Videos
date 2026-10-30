@@ -97,3 +97,12 @@
 - **Voz clonada de Karen (30 oct 2026):** ElevenLabs `sSQiAF9Uq1K3xnyvFi8w`, ya en `VOZ_KAREN` de `voz.py`. El 19 se regeneró con ella.
 - **Personaje (27 oct 2026):** se queda el genérico. Se probó un avatar de Karen en el mismo estilo (cabello a los hombros, sonrisa con dientes y labios rojos); está guardado en `avatar-karen.cjs` pero no se usa por ahora.
 - **Audio Tags (30 oct 2026):** a Eduardo le gustó más la voz en Eleven v3 con tags, pero con los silencios recortados (máx. 0.35 s). Pocos tags, solo en giros emocionales. Antes de rehacer todo, prueba corta con comparación.
+
+### ✅ Receta aprobada por Karen (30 oct 2026): así se hacen los videos de ahora en adelante
+
+Karen vio el 19 y le gustó mucho. Las siguientes v2 (09 a 17) y los videos nuevos sin cara se hacen igual, sin volver a proponer estilos ni voces:
+1. **Guion nuevo** del tema (≈190 palabras, ≈80 s) → aprobación.
+2. **Voz de Karen en Eleven v3** con 4 a 6 Audio Tags solo en giros emocionales (`[pause]`, `[sighs]`, `[curious]`, `[softly]`, `[warmly]`) y silencios recortados: `voz.py guion.txt <trabajo> --modelo v3 --max-silencio 0.35`.
+3. **Animación a dos tintas** (HyperFrames) con el personaje genérico solo donde suma, como en `v2-sin-cara/ejemplo-19/`.
+4. Portada, copy y guardado con el flujo de siempre (una aprobación por etapa).
+Todo el detalle está en `.claude/skills/videos-karen/v2-sin-cara/README.md`.

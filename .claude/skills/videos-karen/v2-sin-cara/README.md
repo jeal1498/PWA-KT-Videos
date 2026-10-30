@@ -1,5 +1,7 @@
 # Videos v2 sin cara (versión B para prueba A/B)
 
+> **✅ Receta aprobada por Karen el 30 oct 2026** con el 19: guion nuevo, voz clonada de Karen en Eleven v3 con Audio Tags y silencios recortados (`--modelo v3 --max-silencio 0.35`), animación a dos tintas y personaje solo donde suma. Es el estándar para las v2 del 09 al 17 y para los videos nuevos sin cara; no volver a proponer estilos ni voces salvo que lo pidan.
+
 > **Voz de Karen:** clonada en ElevenLabs, `sSQiAF9Uq1K3xnyvFi8w` (30 oct 2026). Ya es la que usa `voz.py` por defecto.
 
 Aprobado por Eduardo el 27 oct 2026 con el 19 (v2 del 18). Se repite igual para las v2 del 09 al 17.
