@@ -2,7 +2,7 @@
 
 Actualizar al guardar cada lote. Fechas en `calendario.md` (`calendario.py fechas` propone las siguientes).
 
-## Lote 1 (borrador, falta la aprobación 1 de Karen)
+## Lote 1 (guiones aprobados por Karen el 30 oct 2026; videos producidos, falta la aprobación 2)
 Guiones en `docs/lote-1/` (texto con tags, listos para `voz.py`). Fechas sin cara: 26 sáb 14 nov, 27 lun 16 nov, 28 mié 18 nov.
 
 | NN | Es la v2 de | Ganchos de portada (A recomendado) |
@@ -11,7 +11,7 @@ Guiones en `docs/lote-1/` (texto con tags, listos para `voz.py`). Fechas sin car
 | 27 | 06 Cambia la pregunta | A «Háblate como a un amigo» · B «Una pregunta mejor» · C «¿Y si preguntas distinto?» |
 | 28 | 13 3 frases sobre el TDAH | A «3 frases, una segunda mirada» · B «¿Moda o TDAH?» · C «No es falta de disciplina» |
 
-Por confirmar: los ejemplos del 26 (recibo de la luz, dentista, escritorio) y la escena del correo del 27 los puse yo; en el 28, si Karen quiere tratar el mito de «moda» y si «compensan con esfuerzo extra» coincide con lo que ve en consulta. Con la aprobación: producir con `videos-karen` (primer lote de 3) y armar la página de revisión (aprobación 2) con los videos terminados.
+Por confirmar: los ejemplos del 26 (recibo de la luz, dentista, escritorio) y la escena del correo del 27 los puse yo; en el 28, si Karen quiere tratar el mito de «moda» y si «compensan con esfuerzo extra» coincide con lo que ve en consulta. Producidos (68 a 69 s, QC sin ✗) y subidos a la página de revisión; faltan «aprobado / cambios» de Karen por video. Con eso: `guardar.sh` (carpetas 26 a 28, calendario, tabla y web). Portada del 28: «3 frases, segunda mirada» (24 caracteres; la A original tenía 28).
 
 ## Siguiente
 - **Siguiente número:** 29 (26 a 28 reservados para el lote 1).
