@@ -96,3 +96,4 @@
 - **Render:** HyperFrames (`npx hyperframes@0.8.163 render`), el audio se pega después con ffmpeg. Propuestas de estilo en clips de ≤6 s antes de hacer el video completo.
 - **Voz clonada de Karen (30 oct 2026):** ElevenLabs `sSQiAF9Uq1K3xnyvFi8w`, ya en `VOZ_KAREN` de `voz.py`. El 19 se regeneró con ella.
 - **Personaje (27 oct 2026):** se queda el genérico. Se probó un avatar de Karen en el mismo estilo (cabello a los hombros, sonrisa con dientes y labios rojos); está guardado en `avatar-karen.cjs` pero no se usa por ahora.
+- **Audio Tags (30 oct 2026):** a Eduardo le gustó más la voz en Eleven v3 con tags, pero con los silencios recortados (máx. 0.35 s). Pocos tags, solo en giros emocionales. Antes de rehacer todo, prueba corta con comparación.

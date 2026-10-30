@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Formato | 9:16, 1080×1920, 77.9 s (incluye 0.2 s de portada al inicio) |
+| Formato | 9:16, 1080×1920, 79.4 s (incluye 0.2 s de portada al inicio) |
 | Gancho de portada | **¿Seguro que es ansiedad?** |
 | Plataformas | Instagram Reels, TikTok, YouTube Shorts, Facebook Reels |
 | Archivos | `video.mp4`, `portada.png` |
@@ -50,51 +50,51 @@ Los segundos ya incluyen los 0.2 s de portada.
 | Segundo | Texto |
 |---|---|
 | 0.2 | Llevas años diciendo «tengo ansiedad» |
-| 2.6 | y, aun así, algo no cuadra. |
-| 5.1 | Intentas calmarte y lo que te pasa |
-| 7.2 | sigue ahí. |
-| 8.3 | Antes de buscar más ansiedad, |
-| 10.0 | vale la pena hacerte otra pregunta. |
-| 11.9 | La ansiedad se mueve por el miedo: |
-| 13.8 | tu mente se adelanta a lo que podría |
-| 15.6 | salir mal. |
-| 16.6 | En el TDAH no hace falta ningún |
-| 18.8 | miedo. |
-| 19.5 | Lo que cuesta es sostener la atención, |
-| 22.0 | frenar impulsos y organizarte. |
-| 24.3 | Y a veces lo que parece perfeccionismo |
-| 26.8 | es una estrategia: |
-| 28.4 | revisar, anotar y controlar todo |
-| 30.8 | para no perderte. |
-| 32.1 | Hay tres pistas para mirar. |
-| 33.9 | Primera: |
-| 34.7 | ¿desde cuándo? |
-| 35.8 | El TDAH y el autismo no aparecen |
-| 38.1 | de un día para otro, |
-| 39.5 | vienen desde la infancia. |
-| 41.1 | Segunda: |
-| 41.8 | ¿dónde pasa? |
-| 43.0 | En casa, en la escuela y en el trabajo, |
-| 45.3 | no solo cuando estás bajo estrés. |
-| 47.3 | Tercera: |
-| 48.2 | ¿a quién más en tu familia se parece? |
-| 50.9 | Son rasgos hereditarios. |
-| 52.9 | Muchas mujeres aprenden a disimular |
-| 55.0 | tan bien que, por fuera, |
-| 57.0 | solo se ve a alguien nerviosa. |
-| 59.2 | Y claro, todo esto puede convivir |
-| 61.3 | con la ansiedad. |
-| 62.6 | Ninguna de estas pistas es un diagnóstico. |
-| 65.4 | Lo que sí ayuda es una evaluación |
-| 67.4 | con pruebas estandarizadas que ordene |
-| 69.5 | tu historia. |
-| 70.7 | Este video orienta y no diagnostica. |
-| 73.4 | ¿Cuál de las tres pistas te hizo |
-| 75.1 | pensar? |
-| 76.3 | Cuéntame en comentarios. |
+| 2.4 | y, aun así… algo no cuadra. |
+| 4.6 | Intentas calmarte y lo que te pasa |
+| 7.4 | sigue ahí. |
+| 8.6 | Antes de buscar más ansiedad, |
+| 10.2 | vale la pena hacerte otra pregunta. |
+| 12.7 | La ansiedad se mueve por el miedo: |
+| 14.9 | tu mente se adelanta a lo que podría |
+| 16.7 | salir mal. |
+| 17.7 | En el TDAH no hace falta ningún |
+| 20.3 | miedo. |
+| 20.9 | Lo que cuesta es sostener la atención, |
+| 23.1 | frenar impulsos y organizarte. |
+| 25.4 | Y a veces lo que parece perfeccionismo |
+| 27.9 | es una estrategia: |
+| 29.4 | revisar, anotar y controlar todo |
+| 31.7 | para no perderte. |
+| 32.9 | Hay tres pistas para mirar. |
+| 34.8 | Primera: |
+| 35.5 | ¿desde cuándo? |
+| 36.7 | El TDAH y el autismo no aparecen |
+| 39.3 | de un día para otro, |
+| 40.7 | vienen desde la infancia. |
+| 42.2 | Segunda: |
+| 43.2 | ¿dónde pasa? |
+| 44.5 | En casa, en la escuela y en el trabajo, |
+| 47.4 | no solo cuando estás bajo estrés. |
+| 49.6 | Tercera: |
+| 50.5 | ¿a quién más en tu familia se parece? |
+| 52.8 | Son rasgos hereditarios. |
+| 54.7 | Muchas mujeres aprenden a disimular |
+| 56.8 | tan bien que, por fuera, |
+| 58.9 | solo se ve a alguien nerviosa. |
+| 60.7 | Y claro, todo esto puede convivir |
+| 63.1 | con la ansiedad. |
+| 64.2 | Ninguna de estas pistas es un diagnóstico. |
+| 66.9 | Lo que sí ayuda es una evaluación |
+| 69.1 | con pruebas estandarizadas que ordene |
+| 71.2 | tu historia. |
+| 72.1 | Este video orienta y no diagnostica. |
+| 75.3 | ¿Cuál de las tres pistas te hizo |
+| 77.0 | pensar? |
+| 78.0 | Cuéntame en comentarios. |
 ## Por confirmar con Karen
 
-- **Voz clonada de Karen** (ElevenLabs `sSQiAF9Uq1K3xnyvFi8w`, regenerada el 30 oct 2026): confirmar con ella que suena natural y que está de acuerdo con publicarla.
+- **Voz clonada de Karen** (ElevenLabs `sSQiAF9Uq1K3xnyvFi8w`, modelo Eleven v3 con Audio Tags, 30 oct 2026): confirmar con ella que suena natural y que está de acuerdo con publicarla.
 - **Guion escrito por el editor**, no por Karen (versión B del 18). Confirmar el texto completo, en especial los ejemplos «Intentas calmarte y lo que te pasa sigue ahí» y «revisar, anotar y controlar todo para no perderte».
 - Rótulos del editor: «Se mueve por el miedo», «¿y si sale mal?», «No hace falta ningún miedo», «A veces es una estrategia», «Aprenden a disimular», «Pueden convivir», «Las pistas no son un diagnóstico».
 - Personaje ilustrado (Open Peeps, licencia CC0, sin atribución): confirmar que a Karen le parece bien que la represente una ilustración.

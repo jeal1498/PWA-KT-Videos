@@ -2,11 +2,13 @@
 
 Mismo tema que el 18 («¿Y si no era ansiedad?»), otro guion: versión B para prueba A/B. Sin la cara de Karen: 100 % animación a dos tintas con personaje ilustrado y voz clonada. Guion escrito por el editor y aprobado por Eduardo el 27 oct 2026; falta que Karen lo revise.
 
-**Voz:** clonada de Karen (ElevenLabs `sSQiAF9Uq1K3xnyvFi8w`, `eleven_multilingual_v2`, velocidad 1.0), 30 oct 2026. La primera versión llevaba la voz provisional de Fernando.
+**Voz:** clonada de Karen (ElevenLabs `sSQiAF9Uq1K3xnyvFi8w`), modelo **Eleven v3 con Audio Tags** y silencios recortados a 0.35 s (`voz.py --modelo v3 --max-silencio 0.35`), aprobada el 30 oct 2026. Antes llevó la voz provisional de Fernando y luego la de Karen en v2.
+
+**Texto para la voz (con tags):** `[pause]` tras «aun así…», `[sighs]` en «Intentas calmarte», `[curious]` antes de «Antes de buscar», `[softly]` antes de «solo se ve a alguien nerviosa» y `[warmly]` antes de «Cuéntame en comentarios». Los tags no salen en subtítulos.
 
 ## Guion
 
-Llevas años diciendo «tengo ansiedad» y, aun así, algo no cuadra. Intentas calmarte y lo que te pasa sigue ahí. Antes de buscar más ansiedad, vale la pena hacerte otra pregunta.
+Llevas años diciendo «tengo ansiedad» y, aun así… algo no cuadra. Intentas calmarte y lo que te pasa sigue ahí. Antes de buscar más ansiedad, vale la pena hacerte otra pregunta.
 
 La ansiedad se mueve por el miedo: tu mente se adelanta a lo que podría salir mal. En el TDAH no hace falta ningún miedo. Lo que cuesta es sostener la atención, frenar impulsos y organizarte. Y a veces lo que parece perfeccionismo es una estrategia: revisar, anotar y controlar todo para no perderte.
 
