@@ -10,8 +10,8 @@ Actualizar al guardar cada lote. Fechas en `calendario.md` (`calendario.py fecha
 
 ## Siguiente
 - **Siguiente número:** 34.
-- **Días sin cara:** ocupados hasta el jue 12 nov (19 a 25); el siguiente libre es el lun 30 nov (14 a 28 nov: 26 a 33).
-- **Días con Karen** (jue 5, sáb 7, lun 9, mié 11 y vie 13 nov, …): libres; necesitan videos que ella grabe. Antes de empezar, listar la carpeta de Drive y buscar videos nuevos.
+- **Días sin cara:** el 19 salió el vie 30 oct (Karen lo subió un día antes); del 20 al 33 se recorrieron un día antes (30 oct). Ocupados hasta el vie 27 nov; el siguiente libre es el dom 29 nov.
+- **Días con Karen** (sáb 31 oct, lun 2, mié 4, vie 6, dom 8 nov, …): libres; necesitan videos que ella grabe. Antes de empezar, listar la carpeta de Drive y buscar videos nuevos.
 
 ## v2 sin cara de todos los videos (pedido de Eduardo, 30 oct 2026)
 

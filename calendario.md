@@ -12,7 +12,7 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 
 **Versiones sin cara (27 oct 2026):** el 19 es la v2 del 18 para prueba A/B (guion nuevo, animación a dos tintas, voz clonada). Ya lleva la voz clonada de Karen (30 oct 2026). Se harán igual las v2 del 09 al 17.
 
-**Intercalado (30 oct 2026, pedido de Karen):** desde el sáb 31 oct se alterna un día con un video **sin cara** (v2: animación a dos tintas y su voz clonada) y al día siguiente uno **donde sale ella**. Como ya se publicó todo hasta el 18, lo que sigue es nuevo: sáb 31 oct → 19 (sin cara, listo); dom 1 nov → video nuevo con Karen (por grabar); lun 2 nov → v2 sin cara por hacer; y así. Las v2 del 09 al 17 (mismo tema, guion nuevo) cubren los días sin cara.
+**Intercalado (30 oct 2026, pedido de Karen):** desde el sáb 31 oct se alterna un día con un video **sin cara** (v2: animación a dos tintas y su voz clonada) y al día siguiente uno **donde sale ella**. Como ya se publicó todo hasta el 18, lo que sigue es nuevo: vie 30 oct → 19 (sin cara, Karen lo subió ese día, un día antes); sáb 31 oct → video nuevo con Karen (por grabar); dom 1 nov → 20 (sin cara); y así. **Recorrido el 30 oct 2026:** los videos 20 a 33 se movieron un día antes. Las v2 del 09 al 17 (mismo tema, guion nuevo) cubren los días sin cara.
 
 **Hecho** = copy aprobado (los 6 pasos de la skill `videos-karen`). **Publicado** solo lo marcan Karen o Eduardo al subirlo.
 
@@ -36,18 +36,18 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 16 | [16 - Sientes que no avanzas, 3 preguntas](./16%20-%20Sientes%20que%20no%20avanzas%2C%203%20preguntas/) | ¿Sientes que no avanzas? | lun 26 oct 2026 (plan) | Hecho | **Sí** (Karen los subió, informado el 30 oct 2026) |
 | 17 | [17 - Abandonas tu rutina, 3 ideas](./17%20-%20Abandonas%20tu%20rutina%2C%203%20ideas/) | ¿Abandonas tu rutina? | mié 28 oct 2026 (plan) | Hecho | **Sí** (Karen los subió, informado el 30 oct 2026) |
 | 18 | [18 - Y si no era ansiedad](./18%20-%20Y%20si%20no%20era%20ansiedad/) | ¿Y si no era ansiedad? | mar 27 oct 2026 (plan) | Hecho | **Sí** (Karen los subió, informado el 30 oct 2026) |
-| 19 | [19 - Seguro que es ansiedad (v2 sin cara)](./19%20-%20Seguro%20que%20es%20ansiedad%20%28v2%20sin%20cara%29/) | ¿Seguro que es ansiedad? | sáb 31 oct 2026 | Hecho | No |
-| 20 | [20 - Solo voy a revisar un mensaje (v2 sin cara)](./20%20-%20Solo%20voy%20a%20revisar%20un%20mensaje%20%28v2%20sin%20cara%29/) | Solo voy a revisar un mensaje | lun 2 nov 2026 (plan) | Hecho | No |
-| 21 | [21 - Querer y arrancar no son lo mismo (v2 sin cara)](./21%20-%20Querer%20y%20arrancar%20no%20son%20lo%20mismo%20%28v2%20sin%20cara%29/) | Querer y arrancar no son lo mismo | mar 4 nov 2026 (plan) | Hecho | No |
-| 22 | [22 - Crea tu zona de aterrizaje (v2 sin cara)](./22%20-%20Crea%20tu%20zona%20de%20aterrizaje%20%28v2%20sin%20cara%29/) | Crea tu zona de aterrizaje | jue 6 nov 2026 (plan) | Hecho | No |
-| 23 | [23 - Por dentro no paras (v2 sin cara)](./23%20-%20Por%20dentro%20no%20paras%20%28v2%20sin%20cara%29/) | Por dentro no paras | sáb 8 nov 2026 (plan) | Hecho | No |
-| 24 | [24 - Planea al revés (v2 sin cara)](./24%20-%20Planea%20al%20rev%C3%A9s%20%28v2%20sin%20cara%29/) | Planea al revés | mar 10 nov 2026 (plan) | Hecho | No |
-| 25 | [25 - No todo olvido es TDAH (v2 sin cara)](./25%20-%20No%20todo%20olvido%20es%20TDAH%20%28v2%20sin%20cara%29/) | No todo olvido es TDAH | jue 12 nov 2026 (plan) | Hecho | No |
-| 26 | [26 - Veinte pendientes (v2 sin cara)](./26%20-%20Veinte%20pendientes%20%28v2%20sin%20cara%29/) | Veinte pendientes | sáb 14 nov 2026 (plan) | Hecho | No |
-| 27 | [27 - Háblate como a un amigo (v2 sin cara)](./27%20-%20H%C3%A1blate%20como%20a%20un%20amigo%20%28v2%20sin%20cara%29/) | Háblate como a un amigo | lun 16 nov 2026 (plan) | Hecho | No |
-| 28 | [28 - Tres frases sobre el TDAH (v2 sin cara)](./28%20-%20Tres%20frases%20sobre%20el%20TDAH%20%28v2%20sin%20cara%29/) | 3 frases, segunda mirada | mié 18 nov 2026 (plan) | Hecho | No |
-| 29 | [29 - En piloto automático (v2 sin cara)](./29%20-%20En%20piloto%20autom%C3%A1tico%20%28v2%20sin%20cara%29/) | En piloto automático | vie 20 nov 2026 (plan) | Hecho | No |
-| 30 | [30 - Llega con tu historia (v2 sin cara)](./30%20-%20Llega%20con%20tu%20historia%20%28v2%20sin%20cara%29/) | Llega con tu historia | dom 22 nov 2026 (plan) | Hecho | No |
-| 31 | [31 - Rutina para tu peor día (v2 sin cara)](./31%20-%20Rutina%20para%20tu%20peor%20d%C3%ADa%20%28v2%20sin%20cara%29/) | Rutina para tu peor día | mar 24 nov 2026 (plan) | Hecho | No |
-| 32 | [32 - Antes de ponerle nombre (v2 sin cara)](./32%20-%20Antes%20de%20ponerle%20nombre%20%28v2%20sin%20cara%29/) | ¿Te cuesta estar quieto? | jue 26 nov 2026 (plan) | Hecho | No |
-| 33 | [33 - Vacía tu cabeza (v2 sin cara)](./33%20-%20Vac%C3%ADa%20tu%20cabeza%20%28v2%20sin%20cara%29/) | Vacía tu cabeza | sáb 28 nov 2026 (plan) | Hecho | No |
+| 19 | [19 - Seguro que es ansiedad (v2 sin cara)](./19%20-%20Seguro%20que%20es%20ansiedad%20%28v2%20sin%20cara%29/) | ¿Seguro que es ansiedad? | vie 30 oct 2026 | Hecho | **Sí** (Karen lo subió el 30 oct 2026, un día antes; informado por Eduardo) |
+| 20 | [20 - Solo voy a revisar un mensaje (v2 sin cara)](./20%20-%20Solo%20voy%20a%20revisar%20un%20mensaje%20%28v2%20sin%20cara%29/) | Solo voy a revisar un mensaje | dom 1 nov 2026 (plan) | Hecho | No |
+| 21 | [21 - Querer y arrancar no son lo mismo (v2 sin cara)](./21%20-%20Querer%20y%20arrancar%20no%20son%20lo%20mismo%20%28v2%20sin%20cara%29/) | Querer y arrancar no son lo mismo | mar 3 nov 2026 (plan) | Hecho | No |
+| 22 | [22 - Crea tu zona de aterrizaje (v2 sin cara)](./22%20-%20Crea%20tu%20zona%20de%20aterrizaje%20%28v2%20sin%20cara%29/) | Crea tu zona de aterrizaje | jue 5 nov 2026 (plan) | Hecho | No |
+| 23 | [23 - Por dentro no paras (v2 sin cara)](./23%20-%20Por%20dentro%20no%20paras%20%28v2%20sin%20cara%29/) | Por dentro no paras | sáb 7 nov 2026 (plan) | Hecho | No |
+| 24 | [24 - Planea al revés (v2 sin cara)](./24%20-%20Planea%20al%20rev%C3%A9s%20%28v2%20sin%20cara%29/) | Planea al revés | lun 9 nov 2026 (plan) | Hecho | No |
+| 25 | [25 - No todo olvido es TDAH (v2 sin cara)](./25%20-%20No%20todo%20olvido%20es%20TDAH%20%28v2%20sin%20cara%29/) | No todo olvido es TDAH | mié 11 nov 2026 (plan) | Hecho | No |
+| 26 | [26 - Veinte pendientes (v2 sin cara)](./26%20-%20Veinte%20pendientes%20%28v2%20sin%20cara%29/) | Veinte pendientes | vie 13 nov 2026 (plan) | Hecho | No |
+| 27 | [27 - Háblate como a un amigo (v2 sin cara)](./27%20-%20H%C3%A1blate%20como%20a%20un%20amigo%20%28v2%20sin%20cara%29/) | Háblate como a un amigo | dom 15 nov 2026 (plan) | Hecho | No |
+| 28 | [28 - Tres frases sobre el TDAH (v2 sin cara)](./28%20-%20Tres%20frases%20sobre%20el%20TDAH%20%28v2%20sin%20cara%29/) | 3 frases, segunda mirada | mar 17 nov 2026 (plan) | Hecho | No |
+| 29 | [29 - En piloto automático (v2 sin cara)](./29%20-%20En%20piloto%20autom%C3%A1tico%20%28v2%20sin%20cara%29/) | En piloto automático | jue 19 nov 2026 (plan) | Hecho | No |
+| 30 | [30 - Llega con tu historia (v2 sin cara)](./30%20-%20Llega%20con%20tu%20historia%20%28v2%20sin%20cara%29/) | Llega con tu historia | sáb 21 nov 2026 (plan) | Hecho | No |
+| 31 | [31 - Rutina para tu peor día (v2 sin cara)](./31%20-%20Rutina%20para%20tu%20peor%20d%C3%ADa%20%28v2%20sin%20cara%29/) | Rutina para tu peor día | lun 23 nov 2026 (plan) | Hecho | No |
+| 32 | [32 - Antes de ponerle nombre (v2 sin cara)](./32%20-%20Antes%20de%20ponerle%20nombre%20%28v2%20sin%20cara%29/) | ¿Te cuesta estar quieto? | mié 25 nov 2026 (plan) | Hecho | No |
+| 33 | [33 - Vacía tu cabeza (v2 sin cara)](./33%20-%20Vac%C3%ADa%20tu%20cabeza%20%28v2%20sin%20cara%29/) | Vacía tu cabeza | vie 27 nov 2026 (plan) | Hecho | No |
