@@ -1,0 +1,15 @@
+# Guion 26 (v2 del 03, sin cara)
+
+Mismo tema que el 03 («Solo una tarea, no diez»), otro guion: versión B para prueba A/B. Sin la cara de Karen. Guion del editor, aprobado por Karen el 30 oct 2026 (lote 1).
+
+## Guion (con tags)
+
+Abres tu lista de pendientes y son veinte. [sighs] Cierras la lista y revisas el celular. [curious] ¿Te suena? Cuando todo parece urgente, el cerebro no sabe por dónde entrar, y no hacer nada se siente más fácil que elegir.
+
+Prueba esto. Primero, escoge una sola tarea: la que más pesaría mañana si hoy no la haces. Segundo, busca su primer gesto, el movimiento más pequeño que la pone en marcha. Pagar el recibo de la luz es abrir la aplicación. Llamar al dentista es buscar el número. Ordenar el escritorio es guardar tres cosas. Tercero, hazlo ahora, con lo que tienes a la mano.
+
+[softly] Si después de ese primer gesto quieres seguir, sigue. Si necesitas parar, también vale. Solo observa qué fue lo que te costó.
+
+Esto no resuelve por sí solo una dificultad de atención, pero puede ser una forma distinta de empezar. Si llevas años sintiendo que no logras arrancar, y eso afecta tu trabajo o tu casa, consúltalo con un profesional.
+
+[warmly] Cuéntame: ¿cuál es el primer gesto de tu tarea de hoy? Este video orienta y no diagnostica.

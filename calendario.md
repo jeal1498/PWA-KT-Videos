@@ -43,3 +43,6 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 23 | [23 - Por dentro no paras (v2 sin cara)](./23%20-%20Por%20dentro%20no%20paras%20%28v2%20sin%20cara%29/) | Por dentro no paras | sáb 8 nov 2026 (plan) | Hecho | No |
 | 24 | [24 - Planea al revés (v2 sin cara)](./24%20-%20Planea%20al%20rev%C3%A9s%20%28v2%20sin%20cara%29/) | Planea al revés | mar 10 nov 2026 (plan) | Hecho | No |
 | 25 | [25 - No todo olvido es TDAH (v2 sin cara)](./25%20-%20No%20todo%20olvido%20es%20TDAH%20%28v2%20sin%20cara%29/) | No todo olvido es TDAH | jue 12 nov 2026 (plan) | Hecho | No |
+| 26 | [26 - Veinte pendientes (v2 sin cara)](./26%20-%20Veinte%20pendientes%20%28v2%20sin%20cara%29/) | Veinte pendientes | sáb 14 nov 2026 (plan) | Hecho | No |
+| 27 | [27 - Háblate como a un amigo (v2 sin cara)](./27%20-%20H%C3%A1blate%20como%20a%20un%20amigo%20%28v2%20sin%20cara%29/) | Háblate como a un amigo | lun 16 nov 2026 (plan) | Hecho | No |
+| 28 | [28 - Tres frases sobre el TDAH (v2 sin cara)](./28%20-%20Tres%20frases%20sobre%20el%20TDAH%20%28v2%20sin%20cara%29/) | 3 frases, segunda mirada | mié 18 nov 2026 (plan) | Hecho | No |

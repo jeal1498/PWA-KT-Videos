@@ -1,0 +1,17 @@
+# Guion 27 (v2 del 06, sin cara)
+
+Mismo tema que el 06 («Cambia la pregunta que te haces»), otro guion: versión B para prueba A/B. Sin la cara de Karen. Guion del editor, aprobado por Karen el 30 oct 2026 (lote 1).
+
+## Guion (con tags)
+
+Es domingo en la noche y ese correo lleva tres días sin respuesta. Y una voz dentro de ti pregunta: [sighs] ¿por qué lo dejas todo para el último minuto? Esa pregunta no te lleva a ningún lado. Suma culpa y no te da información.
+
+[curious] Imagina que un amigo te cuenta lo mismo. No le dirías «eres un desastre». Le preguntarías con calma. Haz lo mismo contigo y cambia esa pregunta por tres más útiles.
+
+Una: ¿qué parte de esto me estorba? Quizá no sé cómo empezar, o me faltan datos. Dos: ¿qué lo haría un poco más fácil? Apagar notificaciones, dividirlo, pedir ayuda. Tres: ¿qué necesito ahora, descansar o empezar con algo pequeño?
+
+[softly] No hay una respuesta correcta. La pregunta es una puerta para observar lo que pasa.
+
+Si estas dificultades llevan años y aparecen en varias áreas de tu vida, consultarlo con un profesional puede darte más claridad. Esto no sustituye una evaluación.
+
+[warmly] Hablarte como le hablarías a alguien que quieres no es ser blando, es ser útil. ¿Qué pregunta te vas a hacer hoy? Este video orienta y no diagnostica.
