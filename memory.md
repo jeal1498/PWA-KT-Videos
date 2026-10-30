@@ -107,3 +107,4 @@ Karen vio el 19 y le gustó mucho. Las siguientes v2 (09 a 17) y los videos nuev
 4. Portada, copy y guardado con el flujo de siempre (una aprobación por etapa).
 Todo el detalle está en `.claude/skills/videos-karen/v2-sin-cara/README.md`.
 - **Calendario intercalado (30 oct 2026, Karen):** un día video sin cara (v2), al día siguiente video con Karen, y así. El 19 se sube el sáb 31 oct. Al planear fechas o el orden de las v2, respetar la alternancia (y que dos videos seguidos no repitan tema).
+- **Publicados (30 oct 2026):** Karen ya subió todos los videos hasta el 18. Siguen: el 19 (sáb 31 oct, sin cara) y lo nuevo. Los días con Karen necesitan videos que ella grabe; las v2 sin cara salen de los temas 09 al 17.
