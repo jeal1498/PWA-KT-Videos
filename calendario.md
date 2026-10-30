@@ -14,6 +14,8 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 
 **Intercalado (30 oct 2026, pedido de Karen):** desde el sáb 31 oct se alterna un día con un video **sin cara** (v2: animación a dos tintas y su voz clonada) y al día siguiente uno **donde sale ella**. Como ya se publicó todo hasta el 18, lo que sigue es nuevo: vie 30 oct → 19 (sin cara, Karen lo subió ese día, un día antes); sáb 31 oct → video nuevo con Karen (por grabar); dom 1 nov → 20 (sin cara); y así. **Recorrido el 30 oct 2026:** los videos 20 a 33 se movieron un día antes. Las v2 del 09 al 17 (mismo tema, guion nuevo) cubren los días sin cara.
 
+**Domingos (30 oct 2026):** vuelven a ser de subida; no se saltan. Los días con Karen (34 a 38) son sáb 31 oct, lun 2, mié 4, vie 6 y dom 8 nov.
+
 **Hecho** = copy aprobado (los 6 pasos de la skill `videos-karen`). **Publicado** solo lo marcan Karen o Eduardo al subirlo.
 
 | # | Carpeta | Gancho de portada | Fecha de subida | Hecho | Publicado |
@@ -51,3 +53,8 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 31 | [31 - Rutina para tu peor día (v2 sin cara)](./31%20-%20Rutina%20para%20tu%20peor%20d%C3%ADa%20%28v2%20sin%20cara%29/) | Rutina para tu peor día | lun 23 nov 2026 (plan) | Hecho | No |
 | 32 | [32 - Antes de ponerle nombre (v2 sin cara)](./32%20-%20Antes%20de%20ponerle%20nombre%20%28v2%20sin%20cara%29/) | ¿Te cuesta estar quieto? | mié 25 nov 2026 (plan) | Hecho | No |
 | 33 | [33 - Vacía tu cabeza (v2 sin cara)](./33%20-%20Vac%C3%ADa%20tu%20cabeza%20%28v2%20sin%20cara%29/) | Vacía tu cabeza | vie 27 nov 2026 (plan) | Hecho | No |
+| 34 | [34 - Instrucciones de una en una](./34%20-%20Instrucciones%20de%20una%20en%20una/) | ¿Tu hijo te ignora? | sáb 31 oct 2026 (plan) | Guion aprobado, falta grabar | No |
+| 35 | [35 - Camuflaje en mujeres adultas](./35%20-%20Camuflaje%20en%20mujeres%20adultas/) | Sí tiene amigas, ¿y? | lun 2 nov 2026 (plan) | Guion aprobado, falta grabar | No |
+| 36 | [36 - Qué esperar de la evaluación de tu hijo](./36%20-%20Qu%C3%A9%20esperar%20de%20la%20evaluaci%C3%B3n%20de%20tu%20hijo/) | ¿Qué esperar al evaluar? | mié 4 nov 2026 (plan) | Guion aprobado, falta grabar | No |
+| 37 | [37 - Dormir tarde por tiempo para ti](./37%20-%20Dormir%20tarde%20por%20tiempo%20para%20ti/) | Tarde por tiempo para ti | vie 6 nov 2026 (plan) | Guion aprobado, falta grabar | No |
+| 38 | [38 - Cambios de rutina sin tanto drama](./38%20-%20Cambios%20de%20rutina%20sin%20tanto%20drama/) | ¿Cambió la rutina? | dom 8 nov 2026 (plan) | Guion aprobado, falta grabar | No |
