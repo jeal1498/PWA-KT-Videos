@@ -42,3 +42,9 @@ Leer cuando se arme la animación (`scenes.py` / `anim.js`) o la portada. Receta
 - Tipográfica con ilustración, sin cuadro de Karen; todo entre y=300 y 1620 (`qc.py` lo revisa). Etiqueta: «Consejo para TDAH» o «Consejo de bienestar» si no habla de TDAH.
 - Gancho de ≤25 caracteres, de la idea del guion. Revisar signos (salió «=» donde iba «≠»).
 - Aprobadas: dos paneles «Por fuera / Por dentro» (23), reloj grande con flecha antihoraria (24), cocina con signos de interrogación (25).
+
+## Lote 1 (26 a 28)
+- Cada aparición de un avatar necesita su propia clave (`seria`, `seria2`): repetida, la segunda no se ve. `smileBig` sale con dientes; usar `smile`.
+- Rótulos dentro de tarjetas con icono: bajar la etiqueta (`ly`) para que no pise el dibujo; un `fromTo` con escala o sin `opacity:0` se ve antes de su hora.
+- `portada.sh` y `armar.sh` necesitan `NODE_PATH=/opt/node22/lib/node_modules` (playwright); el render de 68 s tardó ≈16 min por video.
+- Ganchos de portada de más de 25 caracteres se acortan («3 frases, segunda mirada»).

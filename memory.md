@@ -13,6 +13,7 @@ Solo lo vigente, una línea por preferencia. La historia completa está en `docs
 - Al guardar, actualizar sin que lo pidan: calendario, `tabla-publicacion.md`, página (`web/`) y `docs/pendientes.md`.
 - Si avisan «se sube hoy», poner esa fecha en `calendario.md`.
 - Calendario intercalado (Karen): un día video sin cara, al siguiente uno con ella. Nunca dos del mismo tema en días seguidos.
+- Primer lote (26 a 28): Karen aprobó guiones y lote con un «aprobado» general; las pruebas van en 720p y se revisan en la página privada con «aprobado / cambios» por video.
 - Pruebas de video en 720p (el visor no abre los de 70 a 90 MB).
 
 ## Gusto
