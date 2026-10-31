@@ -11,9 +11,12 @@ Actualizar al guardar cada lote. Fechas en `calendario.md` (`calendario.py fecha
 ## Lote 3 (guiones aprobados por Karen el 30 oct 2026; falta que ella grabe)
 34 Instrucciones de una en una (sáb 31 oct), 35 Camuflaje en mujeres adultas (lun 2 nov), 36 Qué esperar de la evaluación de tu hijo (mié 4), 37 Dormir tarde por tiempo para ti (vie 6) y 38 Cambios de rutina (dom 8 nov). Todos con Karen; cada `guion.md` conserva su «Por confirmar».
 
+## Lote 4 (hecho; aprobado por Karen el 31 oct 2026)
+39 Qué me pasa (v2 del 15, dom 29 nov) y 40 Sientes que no avanzas (v2 del 16, jue 3 dic). Sin cara, últimas v2 del plan. Falta que Karen o Eduardo los marquen «Publicado». Cada `copy.md` conserva su «Por confirmar». Los guiones están en `docs/lote-4/` (se escribieron como 34 y 35 y se renumeraron al aparecer el lote 3 con Karen).
+
 ## Siguiente
-- **Siguiente número:** 39.
-- **Días sin cara:** el 19 salió el vie 30 oct (Karen lo subió un día antes); del 20 al 33 se recorrieron un día antes (30 oct). Ocupados hasta el vie 27 nov; el siguiente libre es el dom 29 nov.
+- **Siguiente número:** 41.
+- **Días sin cara:** el 19 salió el vie 30 oct (Karen lo subió un día antes); del 20 al 33 se recorrieron un día antes (30 oct). Ocupados hasta el jue 3 dic (39 y 40); el mar 1 dic quedó libre entre los dos. Siguiente libre: vie 4 dic. `calendario.py fechas` aún usa la alternancia vieja (sin cara en días pares desde el 31 oct): no fiarse de su columna «sin cara / con Karen».
 - **Días con Karen:** 31 oct a 8 nov cubiertos (34 a 38); siguientes libres: mar 10 nov en adelante, según la alternancia. Antes de empezar, listar la carpeta de Drive y buscar videos nuevos.
 
 ## v2 sin cara de todos los videos (pedido de Eduardo, 30 oct 2026)
@@ -33,12 +36,12 @@ Actualizar al guardar cada lote. Fechas en `calendario.md` (`calendario.py fecha
 | 12 Antes de pensar en TDAH, tres preguntas | 32 |
 | 13 3 frases que parecen ciertas sobre el TDAH | 28 |
 | 14 Esto explica toda mi vida | 30 |
-| 15 Qué me pasa, cambia la pregunta | pendiente |
-| 16 Sientes que no avanzas, 3 preguntas | pendiente |
+| 15 Qué me pasa, cambia la pregunta | 39 |
+| 16 Sientes que no avanzas, 3 preguntas | 40 |
 | 17 Abandonas tu rutina, 3 ideas | 31 |
 | 18 Y si no era ansiedad | 19 |
 
-Faltan 2: 15 y 16 (guías de preguntas; no seguidos).
+Plan completo: las 17 v2 están hechas.
 
 ## Abiertos
 - Cada `copy.md` tiene un «Por confirmar con Karen» sin resolver.

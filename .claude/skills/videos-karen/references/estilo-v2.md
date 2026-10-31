@@ -49,3 +49,9 @@ Leer cuando se arme la animación (`scenes.py` / `anim.js`) o la portada. Receta
 - `portada.sh` y `armar.sh` necesitan `NODE_PATH=/opt/node22/lib/node_modules` (playwright); el render de 68 s tardó ≈16 min por video.
 - Ganchos de portada de más de 25 caracteres se acortan («3 frases, segunda mirada»).
 - Iconos con trazo ciruela (llaves, etc.) no se ven sobre el fondo oscuro: ponerlos dentro de una tarjeta arena. Si el guion se pasa de 185 palabras, recortar antes de la voz (el lote 2 salió entre 70 y 77 s).
+
+## Lote 4 (39 y 40)
+- Un render lanzado con `nohup ... &` se cancela cuando termina el comando (`render_cancelled_parent_exited`): usar siempre `run_in_background` de la herramienta.
+- Los subtítulos ocupan y≥1460: dejar el contenido de la escena por encima (torres, notas y barras que bajaban de 1450 quedaban tapados).
+- Un título con `span.w` en dos líneas pisa la etiqueta de la línea de arriba: poner el texto en una sola pieza y animar el `.t` completo.
+- Antes de numerar y de guardar, `git fetch` y leer `docs/pendientes.md` de `main`: otra sesión pudo ocupar los números y las fechas. Si la rama de la sesión ya tiene commits subidos, `guardar.sh` (que hace `pull --rebase`) puede dejar un rebase a medias; guardar desde `main` actualizado.
