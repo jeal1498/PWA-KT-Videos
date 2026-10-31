@@ -1,4 +1,4 @@
-# Guion 40 (v2 del 16, sin cara)
+# Guion 35 (v2 del 16, sin cara)
 
 Mismo tema que el 16 («Sientes que no avanzas, 3 preguntas»), otro guion: avance visto en el tiempo y lo que no está en la lista. Versión B para prueba A/B. Sin la cara de Karen. Guion del editor, aprobado por Karen (lote 3).
 

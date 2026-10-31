@@ -8,16 +8,16 @@ Actualizar al guardar cada lote. Fechas en `calendario.md` (`calendario.py fecha
 ## Lote 2 (hecho; aprobado por Karen el 30 oct 2026)
 29 En piloto automático (v2 del 08, vie 20 nov), 30 Llega con tu historia (v2 del 14, dom 22), 31 Rutina para tu peor día (v2 del 17, mar 24), 32 ¿Te cuesta estar quieto? (v2 del 12, jue 26) y 33 Vacía tu cabeza (v2 del 01, sáb 28 nov). Falta que Karen o Eduardo los marquen «Publicado». Cada `copy.md` conserva su «Por confirmar».
 
-## Lote 3 (guiones aprobados por Karen el 30 oct 2026; falta que ella grabe)
-34 Instrucciones de una en una (sáb 31 oct), 35 Camuflaje en mujeres adultas (lun 2 nov), 36 Qué esperar de la evaluación de tu hijo (mié 4), 37 Dormir tarde por tiempo para ti (vie 6) y 38 Cambios de rutina (dom 8 nov). Todos con Karen; cada `guion.md` conserva su «Por confirmar».
+## Lote 3 (hecho; aprobado por Karen el 31 oct 2026)
+34 Qué me pasa (v2 del 15, dom 29 nov) y 35 Sientes que no avanzas (v2 del 16, jue 3 dic). Sin cara, últimas v2 del plan. Falta que Karen o Eduardo los marquen «Publicado». Cada `copy.md` conserva su «Por confirmar». Guiones en `docs/lote-3/`.
 
-## Lote 4 (hecho; aprobado por Karen el 31 oct 2026)
-39 Qué me pasa (v2 del 15, dom 29 nov) y 40 Sientes que no avanzas (v2 del 16, jue 3 dic). Sin cara, últimas v2 del plan. Falta que Karen o Eduardo los marquen «Publicado». Cada `copy.md` conserva su «Por confirmar». Los guiones están en `docs/lote-4/` (se escribieron como 34 y 35 y se renumeraron al aparecer el lote 3 con Karen).
+## Lote 4 (guiones aprobados por Karen el 30 oct 2026; falta que ella grabe)
+36 Instrucciones de una en una (sáb 31 oct), 37 Camuflaje en mujeres adultas (lun 2 nov), 38 Qué esperar de la evaluación de tu hijo (mié 4), 39 Dormir tarde por tiempo para ti (vie 6) y 40 Cambios de rutina (dom 8 nov). Todos con Karen; cada `guion.md` conserva su «Por confirmar». Se escribieron como 34 a 38 y se renumeraron el 31 oct 2026 porque los números del lote sin cara (34 y 35) tienen prioridad.
 
 ## Siguiente
 - **Siguiente número:** 41.
-- **Días sin cara:** el 19 salió el vie 30 oct (Karen lo subió un día antes); del 20 al 33 se recorrieron un día antes (30 oct). Ocupados hasta el jue 3 dic (39 y 40); el mar 1 dic quedó libre entre los dos. Siguiente libre: vie 4 dic. `calendario.py fechas` aún usa la alternancia vieja (sin cara en días pares desde el 31 oct): no fiarse de su columna «sin cara / con Karen».
-- **Días con Karen:** 31 oct a 8 nov cubiertos (34 a 38); siguientes libres: mar 10 nov en adelante, según la alternancia. Antes de empezar, listar la carpeta de Drive y buscar videos nuevos.
+- **Días sin cara:** el 19 salió el vie 30 oct (Karen lo subió un día antes); del 20 al 33 se recorrieron un día antes (30 oct). Ocupados hasta el jue 3 dic (34 y 35); el mar 1 dic quedó libre entre los dos. Siguiente libre: vie 4 dic. `calendario.py fechas` aún usa la alternancia vieja (sin cara en días pares desde el 31 oct): no fiarse de su columna «sin cara / con Karen».
+- **Días con Karen:** 31 oct a 8 nov cubiertos (36 a 40); siguientes libres: mar 10 nov en adelante, según la alternancia. Antes de empezar, listar la carpeta de Drive y buscar videos nuevos.
 
 ## v2 sin cara de todos los videos (pedido de Eduardo, 30 oct 2026)
 
@@ -36,8 +36,8 @@ Actualizar al guardar cada lote. Fechas en `calendario.md` (`calendario.py fecha
 | 12 Antes de pensar en TDAH, tres preguntas | 32 |
 | 13 3 frases que parecen ciertas sobre el TDAH | 28 |
 | 14 Esto explica toda mi vida | 30 |
-| 15 Qué me pasa, cambia la pregunta | 39 |
-| 16 Sientes que no avanzas, 3 preguntas | 40 |
+| 15 Qué me pasa, cambia la pregunta | 34 |
+| 16 Sientes que no avanzas, 3 preguntas | 35 |
 | 17 Abandonas tu rutina, 3 ideas | 31 |
 | 18 Y si no era ansiedad | 19 |
 

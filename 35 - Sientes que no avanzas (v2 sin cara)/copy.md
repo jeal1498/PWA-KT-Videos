@@ -1,4 +1,4 @@
-# Video 40 (v2 del 16): Sientes que no avanzas
+# Video 35 (v2 del 16): Sientes que no avanzas
 
 | | |
 |---|---|
@@ -6,7 +6,7 @@
 | Gancho de portada | **¿Sientes que no avanzas?** |
 | Plataformas | Instagram Reels, TikTok, YouTube Shorts, Facebook Reels |
 | Archivos | `video.mp4`, `portada.png` |
-| Relación | Versión B del 16 para prueba A/B: mismo tema, guion nuevo, sin la cara de Karen (animación a dos tintas y voz clonada). No publicarlo seguido del 16 ni del 01, 15, 39 |
+| Relación | Versión B del 16 para prueba A/B: mismo tema, guion nuevo, sin la cara de Karen (animación a dos tintas y voz clonada). No publicarlo seguido del 16 ni del 01, 15, 34 |
 
 ## Título (YouTube Shorts)
 
@@ -89,4 +89,4 @@ Los segundos ya incluyen los 0.2 s de portada.
 - **Guion escrito por el editor**, no por Karen (versión B del 16). Aprobado por Karen con el lote 3. Por confirmar con ella: el matiz sobre tristeza persistente o pérdida de interés y el ejemplo «miércoles a las siete, abrir el documento».
 - Rótulos del editor: «¿Sientes que no avanzas?», «Tu lista no lo registra», «Compárate contigo», «Fuera de la lista», «Una sola cosa», «Si pesa por semanas», «Orientación profesional», «Lo que no se ve cuenta», «Lo que no anotaste».
 - Personaje ilustrado (Open Peeps, licencia CC0, sin atribución): confirmar que a Karen le parece bien que la represente una ilustración.
-- Número 40: la fecha de subida la deciden Karen o Eduardo.
+- Número 35: la fecha de subida la deciden Karen o Eduardo.

@@ -53,10 +53,10 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 31 | [31 - Rutina para tu peor día (v2 sin cara)](./31%20-%20Rutina%20para%20tu%20peor%20d%C3%ADa%20%28v2%20sin%20cara%29/) | Rutina para tu peor día | lun 23 nov 2026 (plan) | Hecho | No |
 | 32 | [32 - Antes de ponerle nombre (v2 sin cara)](./32%20-%20Antes%20de%20ponerle%20nombre%20%28v2%20sin%20cara%29/) | ¿Te cuesta estar quieto? | mié 25 nov 2026 (plan) | Hecho | No |
 | 33 | [33 - Vacía tu cabeza (v2 sin cara)](./33%20-%20Vac%C3%ADa%20tu%20cabeza%20%28v2%20sin%20cara%29/) | Vacía tu cabeza | vie 27 nov 2026 (plan) | Hecho | No |
-| 34 | [34 - Instrucciones de una en una](./34%20-%20Instrucciones%20de%20una%20en%20una/) | ¿Tu hijo te ignora? | sáb 31 oct 2026 (plan) | Guion aprobado, falta grabar | No |
-| 35 | [35 - Camuflaje en mujeres adultas](./35%20-%20Camuflaje%20en%20mujeres%20adultas/) | Sí tiene amigas, ¿y? | lun 2 nov 2026 (plan) | Guion aprobado, falta grabar | No |
-| 36 | [36 - Qué esperar de la evaluación de tu hijo](./36%20-%20Qu%C3%A9%20esperar%20de%20la%20evaluaci%C3%B3n%20de%20tu%20hijo/) | ¿Qué esperar al evaluar? | mié 4 nov 2026 (plan) | Guion aprobado, falta grabar | No |
-| 37 | [37 - Dormir tarde por tiempo para ti](./37%20-%20Dormir%20tarde%20por%20tiempo%20para%20ti/) | Tarde por tiempo para ti | vie 6 nov 2026 (plan) | Guion aprobado, falta grabar | No |
-| 38 | [38 - Cambios de rutina sin tanto drama](./38%20-%20Cambios%20de%20rutina%20sin%20tanto%20drama/) | ¿Cambió la rutina? | dom 8 nov 2026 (plan) | Guion aprobado, falta grabar | No |
-| 39 | [39 - Qué me pasa (v2 sin cara)](./39%20-%20Qu%C3%A9%20me%20pasa%20%28v2%20sin%20cara%29/) | ¿Qué me pasa? | dom 29 nov 2026 (plan) | Hecho | No |
-| 40 | [40 - Sientes que no avanzas (v2 sin cara)](./40%20-%20Sientes%20que%20no%20avanzas%20%28v2%20sin%20cara%29/) | ¿Sientes que no avanzas? | jue 3 dic 2026 (plan) | Hecho | No |
+| 34 | [34 - Qué me pasa (v2 sin cara)](./34%20-%20Qu%C3%A9%20me%20pasa%20%28v2%20sin%20cara%29/) | ¿Qué me pasa? | dom 29 nov 2026 (plan) | Hecho | No |
+| 35 | [35 - Sientes que no avanzas (v2 sin cara)](./35%20-%20Sientes%20que%20no%20avanzas%20%28v2%20sin%20cara%29/) | ¿Sientes que no avanzas? | jue 3 dic 2026 (plan) | Hecho | No |
+| 36 | [36 - Instrucciones de una en una](./36%20-%20Instrucciones%20de%20una%20en%20una/) | ¿Tu hijo te ignora? | sáb 31 oct 2026 (plan) | Guion aprobado, falta grabar | No |
+| 37 | [37 - Camuflaje en mujeres adultas](./37%20-%20Camuflaje%20en%20mujeres%20adultas/) | Sí tiene amigas, ¿y? | lun 2 nov 2026 (plan) | Guion aprobado, falta grabar | No |
+| 38 | [38 - Qué esperar de la evaluación de tu hijo](./38%20-%20Qu%C3%A9%20esperar%20de%20la%20evaluaci%C3%B3n%20de%20tu%20hijo/) | ¿Qué esperar al evaluar? | mié 4 nov 2026 (plan) | Guion aprobado, falta grabar | No |
+| 39 | [39 - Dormir tarde por tiempo para ti](./39%20-%20Dormir%20tarde%20por%20tiempo%20para%20ti/) | Tarde por tiempo para ti | vie 6 nov 2026 (plan) | Guion aprobado, falta grabar | No |
+| 40 | [40 - Cambios de rutina sin tanto drama](./40%20-%20Cambios%20de%20rutina%20sin%20tanto%20drama/) | ¿Cambió la rutina? | dom 8 nov 2026 (plan) | Guion aprobado, falta grabar | No |

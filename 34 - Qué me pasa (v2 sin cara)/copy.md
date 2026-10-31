@@ -1,4 +1,4 @@
-# Video 39 (v2 del 15): Qué me pasa
+# Video 34 (v2 del 15): Qué me pasa
 
 | | |
 |---|---|
@@ -96,4 +96,4 @@ Los segundos ya incluyen los 0.2 s de portada.
 - **Guion escrito por el editor**, no por Karen (versión B del 15). Aprobado por Karen con el lote 3. Por confirmar con ella: la analogía del tablero del coche y que «combustible, carga, ruta» suene natural en su voz.
 - Rótulos del editor: «¿Qué me pasa?», «Una luz en el tablero», «Tres revisiones», «Combustible», «Carga», «Ruta», «No te pasa nada raro», «Si lleva años», «Orientación profesional», «Antes de juzgarte, revisa».
 - Personaje ilustrado (Open Peeps, licencia CC0, sin atribución): confirmar que a Karen le parece bien que la represente una ilustración.
-- Número 39: la fecha de subida la deciden Karen o Eduardo.
+- Número 34: la fecha de subida la deciden Karen o Eduardo.

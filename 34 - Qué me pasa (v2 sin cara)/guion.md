@@ -1,4 +1,4 @@
-# Guion 39 (v2 del 15, sin cara)
+# Guion 34 (v2 del 15, sin cara)
 
 Mismo tema que el 15 («Qué me pasa, cambia la pregunta»), otro guion: analogía del tablero del coche y tres revisiones (combustible, carga, ruta). Versión B para prueba A/B. Sin la cara de Karen. Guion del editor, aprobado por Karen (lote 3).
 
