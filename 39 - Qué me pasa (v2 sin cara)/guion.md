@@ -1,0 +1,17 @@
+# Guion 39 (v2 del 15, sin cara)
+
+Mismo tema que el 15 («Qué me pasa, cambia la pregunta»), otro guion: analogía del tablero del coche y tres revisiones (combustible, carga, ruta). Versión B para prueba A/B. Sin la cara de Karen. Guion del editor, aprobado por Karen (lote 3).
+
+## Guion (con tags)
+
+Es martes por la tarde, miras tu lista y no te mueves. Y esa voz que conoces pregunta: [sighs] ¿qué me pasa?
+
+Esa pregunta suena a que algo está descompuesto. Pero cuando se prende una luz en el tablero de tu coche, no preguntas qué defecto tiene el coche. Lo revisas.
+
+[curious] Haz lo mismo contigo, con tres revisiones. Una: combustible. ¿Dormí, comí y tomé agua? Sin recursos, el cuerpo rinde distinto. Dos: carga. ¿Cuánto llevo encima hoy, entre trabajo, casa y preocupaciones? A veces el problema no es la tarea, es la mochila completa. Tres: ruta. ¿Sé cuál es el primer paso, o solo veo una tarea enorme? Si no hay ruta, escríbela en una línea.
+
+[softly] Tal vez descubras que no te pasa nada raro: hoy te faltaba gasolina.
+
+Si estas dificultades llevan años, aparecen en varios lugares y afectan tu vida, consúltalo con un profesional. Esto no sustituye una evaluación.
+
+[warmly] La próxima vez que te oigas decir «¿qué me pasa?», revisa una de las tres. ¿Cuál se te acaba primero: combustible, carga o ruta? Este video orienta y no diagnostica.

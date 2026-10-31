@@ -58,3 +58,5 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 36 | [36 - Qué esperar de la evaluación de tu hijo](./36%20-%20Qu%C3%A9%20esperar%20de%20la%20evaluaci%C3%B3n%20de%20tu%20hijo/) | ¿Qué esperar al evaluar? | mié 4 nov 2026 (plan) | Guion aprobado, falta grabar | No |
 | 37 | [37 - Dormir tarde por tiempo para ti](./37%20-%20Dormir%20tarde%20por%20tiempo%20para%20ti/) | Tarde por tiempo para ti | vie 6 nov 2026 (plan) | Guion aprobado, falta grabar | No |
 | 38 | [38 - Cambios de rutina sin tanto drama](./38%20-%20Cambios%20de%20rutina%20sin%20tanto%20drama/) | ¿Cambió la rutina? | dom 8 nov 2026 (plan) | Guion aprobado, falta grabar | No |
+| 39 | [39 - Qué me pasa (v2 sin cara)](./39%20-%20Qu%C3%A9%20me%20pasa%20%28v2%20sin%20cara%29/) | ¿Qué me pasa? | dom 29 nov 2026 (plan) | Hecho | No |
+| 40 | [40 - Sientes que no avanzas (v2 sin cara)](./40%20-%20Sientes%20que%20no%20avanzas%20%28v2%20sin%20cara%29/) | ¿Sientes que no avanzas? | jue 3 dic 2026 (plan) | Hecho | No |
