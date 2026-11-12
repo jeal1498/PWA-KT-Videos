@@ -23,3 +23,4 @@ Solo lo vigente, una línea por preferencia. La historia completa está en `docs
 - Portadas: ganchos de ≤25 caracteres que llamen la atención. Con foto, sonrisa con boca cerrada o mirada serena a cámara, nunca hablando. Si rechaza, 3 opciones nuevas en una hoja.
 - Videos con Karen: que se la vea; escenas ≤30 % y ≥3 s de ella entre escenas.
 - Videos con cara (aprobado el 36, 12 nov 2026): subtítulos palabra por palabra con rebote, gráficos arriba y Karen abajo, animación por bloques (máx. 4 palabras, analogías literales), sin silencios y con color grading natural (sin viñeta ni saturación). Revisar cuadro por cuadro antes de entregar.
+- Cada cambio a `parte.md` se commitea y sube directo a `main`, aunque la sesión tenga otra rama (Karen, 12 nov 2026).
