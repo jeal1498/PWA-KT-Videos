@@ -24,3 +24,4 @@ Solo lo vigente, una línea por preferencia. La historia completa está en `docs
 - Videos con Karen: que se la vea; escenas ≤30 % y ≥3 s de ella entre escenas.
 - Videos con cara (aprobado el 36, 12 nov 2026): subtítulos palabra por palabra con rebote, gráficos arriba y Karen abajo, animación por bloques (máx. 4 palabras, analogías literales), sin silencios y con color grading natural (sin viñeta ni saturación). Revisar cuadro por cuadro antes de entregar.
 - Cada cambio a `parte.md` se commitea y sube directo a `main`, aunque la sesión tenga otra rama (Karen, 12 nov 2026).
+- Copy único (12 nov, Karen): el mismo texto largo para Instagram, Facebook, TikTok y descripción de YouTube; solo cambia el título de YouTube (≤60 caracteres, SEO). Incluir SEO, GEO y AEO.
