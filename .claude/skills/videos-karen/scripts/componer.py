@@ -261,6 +261,9 @@ for i, cp in enumerate(caps):
     J.append(f"tl.fromTo('#cap{i} .plate',{{opacity:0,y:14}},{{opacity:1,y:0,duration:0.18,ease:'power2.out'}},{q(cp['s'])});")
 J.append(f"window.__timelines=window.__timelines||{{}};window.__timelines['{spec['id']}']=tl;")
 css = open(f'{SK}/plantillas/estilo.css').read()
+if spec.get('layout') == 'split':   # gráficos arriba, ella abajo; subtítulos sobre la costura (y≈900)
+    css += '#root{background:radial-gradient(ellipse at 50% 30%,#433860 0%,#2E2545 70%)}#video-wrap{top:900px;height:1020px}#video-wrap video{object-position:50% 30%}.cap{top:850px}#stg{top:440px!important}.card{top:500px}'
+
 doc = f'''<!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=1080, height=1920">
 <style>
