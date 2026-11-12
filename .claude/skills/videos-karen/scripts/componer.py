@@ -208,6 +208,7 @@ REF = {
  'grifo': f'<path d="M10 20H58Q80 20 80 42V54H64V44Q64 36 56 36H10Z" fill="#C6BCE2" {S}/><path d="M30 20V9M20 9H40" fill="none" {S}/><rect x="60" y="54" width="24" height="9" rx="3" fill="#fff" {S}/><path d="M72 68Q80 80 72 87Q64 80 72 68Z" fill="#C6BCE2" {S}/><circle cx="28" cy="78" r="9" fill="#fff" {S}/><circle cx="46" cy="90" r="6" fill="#fff" {S}/><circle cx="20" cy="56" r="5" fill="#fff" {S}/>',
  'plato': f'<circle cx="50" cy="52" r="30" fill="#fff" {S}/><circle cx="50" cy="52" r="18" fill="#F9DEE3" {S}/><path d="M9 20V40Q9 46 14 46V84M14 20V40M19 20V40Q19 46 14 46" fill="none" {S}/><path d="M88 22Q78 34 82 54H88V82Z" fill="#fff" {S}/>',
  'globo': f'<path d="M14 20Q14 12 22 12H78Q86 12 86 20V58Q86 66 78 66H46L28 85V66H22Q14 66 14 58Z" fill="#C6BCE2" {S}/><circle cx="36" cy="39" r="4.5" fill="#2E2545"/><circle cx="50" cy="39" r="4.5" fill="#2E2545"/><circle cx="64" cy="39" r="4.5" fill="#2E2545"/>',
+ 'globo0': f'<path d="M14 20Q14 12 22 12H78Q86 12 86 20V58Q86 66 78 66H46L28 85V66H22Q14 66 14 58Z" fill="#fff" {S}/>',
  'ojo': f'<path d="M5 50Q50 6 95 50Q50 94 5 50Z" fill="#fff" {S}/><circle cx="50" cy="50" r="20" fill="#C6BCE2" {S}/><circle cx="50" cy="50" r="8" fill="#2E2545"/><circle cx="56" cy="44" r="3" fill="#fff"/>',
  'casa': f'<rect x="22" y="46" width="56" height="44" rx="4" fill="#fff" {S}/><path d="M9 50L50 12L91 50Z" fill="#F9DEE3" {S}/><rect x="42" y="62" width="16" height="28" rx="3" fill="#C6BCE2" {S}/><rect x="28" y="56" width="10" height="10" rx="2" fill="#C6BCE2" {S}/><rect x="62" y="56" width="10" height="10" rx="2" fill="#C6BCE2" {S}/>',
  'check': f'<circle cx="50" cy="50" r="38" fill="#fff" {S}/><path d="M30 52L45 67L72 34" fill="none" stroke="#10b77f" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>',
@@ -236,6 +237,17 @@ if REFS:
         J.append(f"tl.fromTo('#{rid}',{{scale:0,rotation:{r.get('rot',-3)-14},opacity:0,transformOrigin:'50% 60%'}},{{scale:1,rotation:{r.get('rot',-3)},opacity:1,duration:0.75,ease:'elastic.out(1,0.5)'}},{q(ini)});")
         J.append(f"tl.to('#{rid}',{{scale:1.05,y:-5,duration:0.9,yoyo:true,repeat:{max(1,int((fin-ini)/0.9))},ease:'sine.inOut'}},{q(ini+0.8)});")
         J.append(f"tl.to('#{rid}',{{opacity:0,scale:0.6,duration:0.3,ease:'power2.in'}},{q(fin)});")
+
+# ---- bloque animado a medida (escenario sobre ella; html con [[icono|id|tam]] y js de GSAP con la línea de tiempo `tl`) ----
+CU = spec.get('custom')
+if CU:
+    def _ic(m):
+        n, i, s = m.group(1), m.group(2), float(m.group(3))
+        return f'<g id="{i}" class="zo"><g transform="translate({-s/2} {-s/2}) scale({s/100})">{REF[n]}</g></g>'
+    body = re.sub(r'\[\[(\w+)\|(\w+)\|([\d.]+)\]\]', _ic, CU['html'])
+    H.append(f'<div id="stg" class="clip" data-start="{CU["ini"]}" data-duration="{round(CU["fin"]-CU["ini"],2)}" data-track-index="3">{body}</div>')
+    for k in range(int(CU['ini']*12), int(CU['fin']*12)): J.append(f"tl.set('#rtb',{{attr:{{seed:{k%7+1}}}}},{q(k/12)});")
+    J.append(CU['js'])
 for (t0, t1, s) in spec.get('zooms', []): J.append(f"tl.to('#video-wrap',{{scale:{s},duration:{q(t1-t0)},ease:'power2.inOut'}},{t0});")
 for i, cp in enumerate(caps):
     if spec.get('subs_palabra'):   # palabra por palabra, sincronizada con la voz, con rebote
