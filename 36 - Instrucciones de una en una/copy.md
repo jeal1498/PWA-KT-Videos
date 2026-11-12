@@ -10,7 +10,7 @@
 
 ## Título (YouTube Shorts)
 
-¿Por qué mi hijo con TDAH no sigue instrucciones? 3 estrategias
+¿Por qué mi hijo con TDAH no sigue instrucciones?
 
 ## Texto para Instagram y Facebook
 
@@ -39,7 +39,19 @@ psicologakarentrujillo.com.mx
 
 #TDAH #TDAHinfantil #neuropsicologia #crianza #padres #funcionesejecutivas #memoriadetrabajo #saludmental #Cancun
 
-## GEO y AEO (para buscadores y asistentes de IA)
+## SEO, GEO y AEO (buscadores y asistentes de IA)
+
+### SEO (buscadores)
+
+- **Palabra clave principal:** niño con TDAH no sigue instrucciones
+- **Secundarias:** cómo dar instrucciones a un niño con TDAH, TDAH infantil, funciones ejecutivas en niños, memoria de trabajo, mi hijo no me hace caso, neuropsicóloga infantil Cancún
+- **Título SEO (≤60 caracteres):** ¿Por qué mi hijo con TDAH no sigue instrucciones? (49)
+- **Meta descripción (≤155):** Por qué un niño con TDAH no sigue instrucciones y 3 estrategias para casa, por la neuropsicóloga clínica Karen Trujillo en Cancún.
+- **Nombre del archivo y enlace sugeridos:** nino-tdah-no-sigue-instrucciones
+- **Primeras 125 caracteres de la descripción:** deben llevar la clave y la respuesta (ya van así en el texto de IG y Facebook).
+- **Local:** mencionar «Cancún» en descripción y firma; sin prometer resultados.
+
+### GEO y AEO (respuestas de asistentes de IA)
 
 - **Pregunta que responde:** ¿por qué mi hijo con TDAH no sigue instrucciones?
 - **Respuesta directa (AEO):** En niños con TDAH, procesar varias instrucciones seguidas puede ser difícil por la memoria de trabajo y las funciones ejecutivas; no siempre es desobediencia. Ayuda dar una instrucción a la vez, acercarse y ponerse a su altura, y comprobar que entendió.

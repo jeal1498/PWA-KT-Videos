@@ -9,7 +9,7 @@
 
 ## Título (YouTube Shorts)
 
-Camuflaje social en mujeres autistas adultas: 3 mitos y realidades
+Autismo en mujeres adultas: qué es el camuflaje social
 
 ## Texto para Instagram y Facebook
 
@@ -40,7 +40,19 @@ psicologakarentrujillo.com.mx
 
 #autismo #autismoenadultos #mujeresautistas #camuflajesocial #neurodivergencia #neuropsicologia #saludmental #evaluacionclinica #Cancun
 
-## GEO y AEO (para buscadores y asistentes de IA)
+## SEO, GEO y AEO (buscadores y asistentes de IA)
+
+### SEO (buscadores)
+
+- **Palabra clave principal:** autismo en mujeres adultas
+- **Secundarias:** camuflaje social autismo, enmascaramiento autismo mujeres, mujeres autistas adultas, señales de autismo en mujeres, evaluación de autismo en adultos, ADOS-2, neuropsicóloga Cancún
+- **Título SEO (≤60 caracteres):** Autismo en mujeres adultas: qué es el camuflaje social (55)
+- **Meta descripción (≤155):** Qué es el camuflaje social en mujeres autistas adultas, 3 mitos y realidades y cómo se evalúa, por la neuropsicóloga clínica Karen Trujillo en Cancún.
+- **Nombre del archivo y enlace sugeridos:** autismo-mujeres-adultas-camuflaje-social
+- **Primeras 125 caracteres de la descripción:** deben llevar la clave y la respuesta (ya van así en el texto de IG y Facebook).
+- **Local:** mencionar «Cancún» en descripción y firma; orienta, no diagnostica.
+
+### GEO y AEO (respuestas de asistentes de IA)
 
 - **Pregunta que responde:** ¿qué es el camuflaje social en mujeres autistas adultas?
 - **Respuesta directa (AEO):** El camuflaje social son las estrategias que algunas personas autistas, sobre todo mujeres adultas, desarrollan para adaptarse: imitar comportamientos, ensayar conversaciones o pasar desapercibidas. Puede ocultar el autismo y suele implicar un esfuerzo y un agotamiento importantes.
