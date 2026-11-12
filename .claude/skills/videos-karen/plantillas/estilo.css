@@ -88,3 +88,7 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
 .e-c,.e-n{border-radius:44px;text-align:center;font:700 50px/1.15 "Outfit",sans-serif;padding:26px 36px}
 .e-c{background:#433860;color:#fff;width:520px}
 .e-n{background:#FAFAFA;color:#433860;width:400px}
+
+.capw{line-height:1.55}
+.pw{display:inline-block;background:rgba(46,37,69,.88);color:#fff;font:700 54px/1.25 "Maven Pro",sans-serif;padding:6px 18px;margin:5px 4px;border-radius:18px}
+.pw.k{color:#C6BCE2}

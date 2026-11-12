@@ -47,7 +47,7 @@ def split(ws):
 caps = []
 for s in sents:
     for g in split(s):
-        caps.append({'s': g[0]['s'], 'e': g[-1]['e']+0.3, 'w': [(x['t'], norm(x['t']) in KEY) for x in g]})
+        caps.append({'s': g[0]['s'], 'e': g[-1]['e']+0.3, 'w': [(x['t'], norm(x['t']) in KEY) for x in g], 'ts': [x['s'] for x in g]})
 for i in range(len(caps)-1): caps[i]['e'] = min(caps[i]['e'], caps[i+1]['s']-0.03)
 DUR = spec['duracion']; caps[-1]['e'] = min(caps[-1]['e'], DUR-0.2)
 SV = lambda d: f'<svg viewBox="0 0 24 24">{d}</svg>'
@@ -202,6 +202,12 @@ for e in spec.get('escenas', []):
         J.append(f"tl.fromTo('#{c}-ln path',{{strokeDashoffset:1}},{{strokeDashoffset:0,duration:0.5,ease:'power2.inOut'}},{q(base)});")
 for (t0, t1, s) in spec.get('zooms', []): J.append(f"tl.to('#video-wrap',{{scale:{s},duration:{q(t1-t0)},ease:'power2.inOut'}},{t0});")
 for i, cp in enumerate(caps):
+    if spec.get('subs_palabra'):   # palabra por palabra, sincronizada con la voz, con rebote
+        inner = ' '.join(f'<span class="pw{" k" if k else ""}" id="c{i}w{j}">{esc(t)}</span>' for j, (t, k) in enumerate(cp['w']))
+        H.append(f'<div class="cap capw clip" id="cap{i}" data-start="{q(cp["s"])}" data-duration="{q(cp["e"]-cp["s"])}" data-track-index="5">{inner}</div>')
+        J.append(f"tl.set('#cap{i} .pw',{{opacity:0,scale:0.4,y:12,transformOrigin:'50% 80%'}},0);")
+        for j, ts in enumerate(cp['ts']): J.append(f"tl.to('#c{i}w{j}',{{opacity:1,scale:1,y:0,duration:0.32,ease:'back.out(3.2)'}},{q(ts)});")
+        continue
     inner = ' '.join(f'<em>{esc(t)}</em>' if k else esc(t) for t, k in cp['w'])
     H.append(f'<div class="cap clip" id="cap{i}" data-start="{q(cp["s"])}" data-duration="{q(cp["e"]-cp["s"])}" data-track-index="5"><span class="plate">{inner}</span></div>')
     J.append(f"tl.fromTo('#cap{i} .plate',{{opacity:0,y:14}},{{opacity:1,y:0,duration:0.18,ease:'power2.out'}},{q(cp['s'])});")
