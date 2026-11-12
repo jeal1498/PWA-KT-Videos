@@ -92,3 +92,5 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
 .capw{line-height:1.55}
 .pw{display:inline-block;background:rgba(46,37,69,.88);color:#fff;font:700 54px/1.25 "Maven Pro",sans-serif;padding:6px 18px;margin:5px 4px;border-radius:18px}
 .pw.k{color:#C6BCE2}
+.ref{position:absolute}.ref svg{width:100%;height:100%;filter:url(#rough)}
+.ref.card{background:#F5E7D6;border:6px solid #2E2545;border-radius:26px;box-shadow:7px 8px 0 #C6BCE2;padding:10px 8px;box-sizing:border-box}

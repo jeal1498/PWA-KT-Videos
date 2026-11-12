@@ -200,6 +200,28 @@ for e in spec.get('escenas', []):
     if extra:
         J.append(f"tl.set('#{c}-ln',{{opacity:1,y:0}},0);")
         J.append(f"tl.fromTo('#{c}-ln path',{{strokeDashoffset:1}},{{strokeDashoffset:0,duration:0.5,ease:'power2.inOut'}},{q(base)});")
+
+# ---- gráficos de referencia (objetos a dos tintas sobre ella, y 1050 a 1380) ----
+S = 'stroke="#2E2545" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"'
+REF = {
+ 'mochila': f'<path d="M38 22Q38 7 50 7Q62 7 62 22" fill="none" {S}/><rect x="13" y="55" width="10" height="28" rx="5" fill="#F9DEE3" {S}/><rect x="77" y="55" width="10" height="28" rx="5" fill="#F9DEE3" {S}/><path d="M22 38Q22 20 40 20H60Q78 20 78 38V86Q78 93 71 93H29Q22 93 22 86Z" fill="#C6BCE2" {S}/><rect x="30" y="56" width="40" height="29" rx="9" fill="#fff" {S}/><path d="M30 64H70M30 38Q50 32 70 38" fill="none" {S}/><circle cx="50" cy="75" r="3" fill="#2E2545"/>',
+ 'grifo': f'<path d="M10 20H58Q80 20 80 42V54H64V44Q64 36 56 36H10Z" fill="#C6BCE2" {S}/><path d="M30 20V9M20 9H40" fill="none" {S}/><rect x="60" y="54" width="24" height="9" rx="3" fill="#fff" {S}/><path d="M72 68Q80 80 72 87Q64 80 72 68Z" fill="#C6BCE2" {S}/><circle cx="28" cy="78" r="9" fill="#fff" {S}/><circle cx="46" cy="90" r="6" fill="#fff" {S}/><circle cx="20" cy="56" r="5" fill="#fff" {S}/>',
+ 'plato': f'<circle cx="50" cy="52" r="30" fill="#fff" {S}/><circle cx="50" cy="52" r="18" fill="#F9DEE3" {S}/><path d="M9 20V40Q9 46 14 46V84M14 20V40M19 20V40Q19 46 14 46" fill="none" {S}/><path d="M90 20Q80 32 84 54H90V84" fill="#fff" {S}/>',
+ 'x': f'<circle cx="50" cy="50" r="40" fill="#F9DEE3" {S}/><path d="M32 32L68 68M68 32L32 68" fill="none" stroke="#2E2545" stroke-width="6" stroke-linecap="round"/>',
+}
+REFS = spec.get('referencias', [])
+if REFS:
+    H.append('<svg width="0" height="0" style="position:absolute"><defs><filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence id="rtb" type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="1"/><feDisplacementMap in="SourceGraphic" scale="5"/></filter></defs></svg>')
+    for k in range(int(DUR*12)): J.append(f"tl.set('#rtb',{{attr:{{seed:{k%7+1}}}}},{q(k/12)});")
+    for ri, r in enumerate(REFS):
+        rid = f'rf{ri}'; ini = anc(r['en']) - 0.1 if r.get('en') else r['ini']; fin = r['fin']; tam = r.get('tam', 140)
+        card = r.get('icono') != 'x'
+        sty = f'left:{r["x"]}px;top:{r["y"]}px;width:{tam}px;height:{int(tam*1.12) if card else tam}px'
+        cls = 'ref card' if card else 'ref'
+        H.append(f'<div class="{cls} clip" id="{rid}" data-start="{q(ini)}" data-duration="{q(fin-ini+0.4)}" data-track-index="3" style="{sty}"><svg viewBox="0 0 100 100">{REF[r["icono"]]}</svg></div>')
+        J.append(f"tl.fromTo('#{rid}',{{scale:0,rotation:{r.get('rot',-3)-14},opacity:0,transformOrigin:'50% 60%'}},{{scale:1,rotation:{r.get('rot',-3)},opacity:1,duration:0.75,ease:'elastic.out(1,0.5)'}},{q(ini)});")
+        J.append(f"tl.to('#{rid}',{{scale:1.05,y:-5,duration:0.9,yoyo:true,repeat:{max(1,int((fin-ini)/0.9))},ease:'sine.inOut'}},{q(ini+0.8)});")
+        J.append(f"tl.to('#{rid}',{{opacity:0,scale:0.6,duration:0.3,ease:'power2.in'}},{q(fin)});")
 for (t0, t1, s) in spec.get('zooms', []): J.append(f"tl.to('#video-wrap',{{scale:{s},duration:{q(t1-t0)},ease:'power2.inOut'}},{t0});")
 for i, cp in enumerate(caps):
     if spec.get('subs_palabra'):   # palabra por palabra, sincronizada con la voz, con rebote
