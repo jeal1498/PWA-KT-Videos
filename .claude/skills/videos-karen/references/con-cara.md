@@ -26,3 +26,20 @@ Leer solo cuando haya un video nuevo de Karen en Drive. El estilo no cambia: sub
 - **Cierre:** `url_en` ≈4 s antes del final para que el aviso se vea ≥3 s; chips de ≤3 palabras.
 - Ganchos de portada de ≤30 caracteres (los largos tapan la cara), de lo que ella dice; sin «siempre» ni «todos».
 - Sonido de marca: solo borrador, no usar.
+
+## Estilo aprobado con el 36 (12 nov 2026): aplicarlo a los videos con cara
+Orden: `preparar.sh` → `encuadre.py` → spec → `recortar.py` → `color.sh` → animación → `componer.py` → vistazo cada 1 s → render.
+- **Subtítulos palabra por palabra** con rebote: `"subs_palabra": true` en el spec.
+- **Layout dividido:** `"layout": "split"`. Gráficos arriba (escenario lavanda de y≈330 a 900), Karen abajo y subtítulos en la costura. El gancho va encima del escenario; el cierre sube a la zona de gráficos.
+- **Escenario animado por bloques** (`"custom"`): una acción visual por bloque, máximo 4 palabras en pantalla, analogías dibujadas literal (embudo que se atasca, carriles, compuerta, pared, dominós), escala para magnitudes y los mismos objetos que se transforman entre bloques. Ejemplo completo en `ejemplos/video36-bloques.py`. La zona de gráficos nunca se queda vacía más de ≈1 s; cada bloque con su zoom (`ZM`) para llenar el escenario.
+- **Silencios:** `recortar.py` corta toda pausa de más de 0.5 s (deja 0.15 s por lado) y remapea spec, palabras y anclas; tramos donde ella calla sonriendo van en `--extra`. El 36 bajó de 83.5 a 74.3 s.
+- **Color grading:** `color.sh <trabajo>` aplica `assets/karen.cube` (de `grade.py`) solo al video de ella. Correctivo primero: camisa blanca neutra, piel ≈67 % de luz sobre la línea de piel (≈123 a 125° en el vectorescopio), curva suave con hombro en blancos, fondo morado y turquesa un poco menos saturado, sombras con un toque ciruela. Nada de viñeta, afilado ni saturación general (Karen rechazó ese primer intento). Revisar con `scopes.py`. La portada se hace con `--foto` de un cuadro con el mismo LUT.
+- Opción más simple, sin escenario: `"referencias"` (iconos de `REF` en tarjeta arena junto a ella).
+
+## Trampas técnicas (36)
+- GSAP en SVG gira y escala desde la esquina superior izquierda: poner `transformOrigin:'50% 50%'` (el ejemplo lo hace con `.zo`). Para pivotes exactos (dominós) animar el atributo `transform` con `attr:{transform:'translate(x y) rotate(a)'}`.
+- Física creíble (cosas que caen, se apilan o se atoran): calcularla (posiciones tangentes, simulación cuadro a cuadro con `shapely`) y no a ojo; si no, «vuelan» o se enciman.
+- Los trazos con `stroke-dasharray` dejan un punto visible antes de dibujarse: `opacity:0` hasta que empieza el `DRAW`.
+- Correr los scripts con `python3 -I`: sin `-I`, el `copy.py` de `scripts/` tapa el módulo `copy` de Python y cualquier script que importe numpy falla con el uso de `copy.py`.
+- `encuadre.py` (mediapipe) necesita `apt-get update && apt-get install -y libegl1 libgles2 libgl1`.
+- Antes de entregar: `armar.sh <trabajo> --vistazo 1` y revisar todas las hojas (huecos, encimados, cortes en bordes, objetos flotando).

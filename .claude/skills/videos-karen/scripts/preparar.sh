@@ -12,4 +12,4 @@ ffprobe -v error -show_entries stream=width,height,duration -show_entries stream
 ffmpeg -v error -y -i "$V" -vf "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30" \
   -c:v libx264 -crf 17 -g 30 -keyint_min 30 -pix_fmt yuv420p -af "highpass=f=70,loudnorm=I=-16:TP=-1.5:LRA=9" \
   -ar 48000 -c:a aac -b:a 192k -movflags +faststart "$W/public/input-video.mp4"
-python3 "$SK/scripts/transcribir.py" "$V" "$W/words.json"
+python3 -I "$SK/scripts/transcribir.py" "$V" "$W/words.json"

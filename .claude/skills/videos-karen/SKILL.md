@@ -38,6 +38,9 @@ Mandar con `SendUserFile` en un solo mensaje: los `prueba-720.mp4`, las portadas
 ## Videos grabados por Karen
 El mismo esquema de lote: su guion entra en la aprobación 1 y el video editado en la 2. Los pasos técnicos (`preparar.sh`, `encuadre.py`, spec, `componer.py`, `portada.py`) están en `references/con-cara.md`; después se sigue igual con `armar.sh`, `copy.py`, `qc.py` y `guardar.sh`.
 
+## Estilo con cara aprobado (36)
+Subtítulos palabra por palabra, layout dividido (gráficos arriba, Karen abajo), escenario animado por bloques, silencios recortados (`recortar.py`) y color grading (`color.sh`). Pasos, ejemplo y trampas en `references/con-cara.md`; revisar cuadro por cuadro (`--vistazo 1`) antes de entregar.
+
 ## Reglas que no cambian
 - Orienta, no diagnostica: nunca «cura» ni diagnosticar por video. Todo video cierra con «Este video orienta y no diagnostica.» y `psicologakarentrujillo.com.mx`.
 - Marca: ciruela `#433860`, ciruela profundo `#2E2545`, lavanda `#C6BCE2`, rosa `#F9DEE3`, arena `#F5E7D6`; Outfit (titulares) y Maven Pro (texto), ya en `assets/fonts/`. La fuente única de la identidad es `docs/marca/` del repo `jeal1498/Portfolio-Karen-Trujillo`; si algo choca, manda esa carpeta.
