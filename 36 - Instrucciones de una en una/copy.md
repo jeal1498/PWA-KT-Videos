@@ -33,7 +33,22 @@ psicologakarentrujillo.com.mx
 
 ## Texto para TikTok
 
-¿Tu hijo con TDAH no hace caso a la primera? Casi nunca es desobediencia: es la memoria de trabajo y las funciones ejecutivas. 3 estrategias: una instrucción a la vez, acércate y busca su atención, y pídele que te cuente qué tiene que hacer. ¿Cuántas veces repites la misma instrucción al día?
+¿Por qué mi hijo con TDAH no hace caso a la primera? Muchas veces no es desobediencia: en niños con TDAH, seguir varias instrucciones seguidas puede ser difícil porque intervienen la memoria de trabajo y las funciones ejecutivas.
+
+Si le pides que guarde la mochila, se lave las manos y venga a comer, y al final no hace nada, prueba estas 3 estrategias para dar instrucciones a un niño con TDAH:
+
+1. Una instrucción a la vez. Empieza con «guarda tu mochila» y, cuando termine, dale la siguiente.
+2. Acércate y ponte a su altura. Busca su atención y háblale con claridad; evita dar instrucciones desde otra habitación.
+3. Comprueba que entendió. Pídele: «Cuéntame, ¿qué es lo que tienes que hacer?».
+
+No siempre es desobediencia. A veces basta con adaptar la manera de dar instrucciones, y los pequeños cambios en casa pueden hacer una gran diferencia.
+
+Cuéntame en los comentarios: ¿cuántas veces al día repites la misma instrucción en casa?
+
+Este video orienta y no diagnostica.
+
+Karen Trujillo, Neuropsicóloga Clínica en Cancún
+psicologakarentrujillo.com.mx
 
 ## Hashtags
 

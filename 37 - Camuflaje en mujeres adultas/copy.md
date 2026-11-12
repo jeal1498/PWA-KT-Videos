@@ -34,7 +34,24 @@ psicologakarentrujillo.com.mx
 
 ## Texto para TikTok
 
-«Mira cuántas amigas tiene, no puede ser autista.» Sí puede: muchas mujeres adultas aprenden a camuflarse socialmente y eso agota. 3 mitos y realidades del autismo en mujeres. ¿Alguna te resulta familiar? Te leo en los comentarios.
+¿Una mujer con amigas no puede ser autista? Sí puede. El autismo no siempre se manifiesta de la misma manera, especialmente en algunas mujeres adultas, que pueden aprender a imitar comportamientos, ensayar conversaciones o pasar desapercibidas. A eso se le conoce como camuflaje social.
+
+Autismo en mujeres adultas: 3 mitos y realidades
+
+1. Mito: si hace contacto visual, no es autista. Realidad: puede haber aprendido a mantenerlo conscientemente, aunque le resulte incómodo o agotador.
+2. Mito: si tiene amistades, no es autista. Realidad: puede establecer y mantener relaciones sociales, pero eso puede implicar un esfuerzo considerable.
+3. Mito: si tiene éxito profesional, no es autista. Realidad: puede desenvolverse muy bien en el trabajo y sentir un agotamiento importante después de sostener tantas demandas sociales.
+
+A veces, lo que los demás ven como facilidad para relacionarse esconde un esfuerzo que nadie imagina.
+
+¿Te identificas con alguna de estas experiencias? Identificarte no significa necesariamente que seas autista. Una evaluación clínica integral, que considere tu historia del desarrollo y las características actuales, puede ayudarte a determinarlo. Instrumentos como el ADOS-2 pueden formar parte de ese proceso.
+
+Una propuesta para hoy: identifica qué situaciones sociales te agotan más de lo que esperabas. ¿Alguna te resulta familiar? Te leo en los comentarios.
+
+Este video orienta y no diagnostica.
+
+Karen Trujillo, Neuropsicóloga Clínica en Cancún
+psicologakarentrujillo.com.mx
 
 ## Hashtags
 
