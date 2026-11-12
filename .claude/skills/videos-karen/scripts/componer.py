@@ -245,7 +245,7 @@ if CU:
         n, i, s = m.group(1), m.group(2), float(m.group(3))
         return f'<g id="{i}" class="zo"><g transform="translate({-s/2} {-s/2}) scale({s/100})">{REF[n]}</g></g>'
     body = re.sub(r'\[\[(\w+)\|(\w+)\|([\d.]+)\]\]', _ic, CU['html'])
-    H.append(f'<div id="stg" class="clip" data-start="{CU["ini"]}" data-duration="{round(CU["fin"]-CU["ini"],2)}" data-track-index="3">{body}</div>')
+    H.append(f'<div id="stg" class="clip" data-start="{CU["ini"]}" data-duration="{round(CU["fin"]-CU["ini"],2)}" data-track-index="3"><div id="zin">{body}</div></div>')
     for k in range(int(CU['ini']*12), int(CU['fin']*12)): J.append(f"tl.set('#rtb',{{attr:{{seed:{k%7+1}}}}},{q(k/12)});")
     J.append(CU['js'])
 for (t0, t1, s) in spec.get('zooms', []): J.append(f"tl.to('#video-wrap',{{scale:{s},duration:{q(t1-t0)},ease:'power2.inOut'}},{t0});")
@@ -262,7 +262,7 @@ for i, cp in enumerate(caps):
 J.append(f"window.__timelines=window.__timelines||{{}};window.__timelines['{spec['id']}']=tl;")
 css = open(f'{SK}/plantillas/estilo.css').read()
 if spec.get('layout') == 'split':   # gráficos arriba, ella abajo; subtítulos sobre la costura (y≈900)
-    css += '#root{background:radial-gradient(ellipse at 50% 30%,#433860 0%,#2E2545 70%)}#video-wrap{top:900px;height:1020px}#video-wrap video{object-position:50% 30%}.cap{top:850px}#stg{top:440px!important}.card{top:500px}'
+    css += '#root{background:radial-gradient(ellipse at 50% 30%,#433860 0%,#2E2545 70%)}#video-wrap{top:900px;height:1020px}#video-wrap video{object-position:50% 30%}.cap{top:850px}#stg{left:20px!important;top:328px!important;width:1034px!important;height:566px!important}#zin{transform-origin:0 0}#zin svg,#zin .zp,#zin .zn,#zin .zt{margin-top:38px}.gancho{z-index:60}.card{top:470px}'
 
 doc = f'''<!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=1080, height=1920">
