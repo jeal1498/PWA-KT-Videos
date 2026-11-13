@@ -134,6 +134,8 @@ Los segundos ya incluyen los 0.2 s de portada.
 
 ## Por confirmar con Karen
 
+Confirmado por Karen (12 nov 2026):
+
 - Abre diciendo «No puede ser autista, mira cuántas amigas tiene»; Whisper dio «puedes» y «tienes» y se corrigió a la forma del guion. Confirmar que lo dice así.
 - «Si ese contacto visual no es autista» se corrigió a «Si hace contacto visual, no es autista».
 - «A2 -2» se corrigió a «ADOS-2» (audio dudoso).

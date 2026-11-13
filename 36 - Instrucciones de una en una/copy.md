@@ -118,6 +118,8 @@ Los segundos ya incluyen los 0.2 s de portada.
 
 ## Por confirmar con Karen
 
+Confirmado por Karen (12 nov 2026):
+
 - «que guarde la mochila»: suena «guarda» en el audio; se corrigió a «guarde» en el subtítulo.
 - «memoria del trabajo» se corrigió a «memoria de trabajo» y «Dos,» / «Tres,» a «Dos.» / «Tres.».
 - Sustituyó el «con sus palabras» del guion por «Cuéntame, ¿qué es lo que tienes que hacer?»: es lo que dice en el video.
