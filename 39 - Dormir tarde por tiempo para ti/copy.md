@@ -119,6 +119,8 @@ Los segundos ya incluyen los 0.2 s de portada.
 
 ## Por confirmar con Karen
 
+Confirmado por Karen (13 nov 2026):
+
 - «Procrastinación»: dice «a esto se le conoce como procrastinación» y la frase queda sin terminar (¿«procrastinación de la hora de dormir»?). Se dejó como la dijo, con punto.
 - «A veces no es falta de disciplina»: Whisper entendió «nos falta disciplina, ni simplemente que no tengas sueño»; se corrigió a «no es falta de disciplina» por el sentido. Confirmar que lo dice así.
 - Paso 1: termina diciendo «un momento para» sin «ti»; se dejó como suena.

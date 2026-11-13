@@ -8,13 +8,12 @@
 - 36 (jue 12 nov) y 37 (sáb 14 nov) guardados en el repo y en el calendario; Karen los sube en esas fechas. «Publicado» lo marcan ellos. El 37 se rehízo con el estilo nuevo y Karen lo aprobó.
 - Copy único para Instagram, Facebook, TikTok y descripción de YouTube (mismo texto largo); solo cambia el título de YouTube (≤60 caracteres). Cada `copy.md` lleva SEO, GEO y AEO.
 - 38 (lun 16 nov) y 39 (mié 18 nov) hechos con el estilo del 36, aprobados por Karen y guardados en `main` con calendario, tabla y página. Los videos 36 a 39 están hechos; solo falta el 40.
-- Karen confirmó los «Por confirmar» de los copys 36, 37 y 38.
+- Karen confirmó los «Por confirmar» de los copys 36, 37, 38 y 39 (el 39, el 13 nov).
 - Con cara, el rótulo con cédula se sube a y≈620 (`.nametag{top:620px!important}` en el bloque custom) para no tapar los ojos.
 - Todo cambio a `parte.md` se guarda directo en `main` (Karen).
 
 ## … Falta
 - Karen tiene que grabar el 40 (Cambios de rutina): no vino en Drive. Después: estilo del 36, fecha con `calendario.py` y `guardar.sh`.
-- Confirmar con Karen el «Por confirmar» del copy del 39: «procrastinación» queda incompleta, «no es falta de disciplina» (Whisper entendió «nos falta») y el paso 1 termina en «para» sin «ti».
 
 ## ✗ No tocar
 - Diagnosticar o decir que algo «cura»: el contenido orienta, no diagnostica.
