@@ -58,5 +58,5 @@ Una sola cuenta. El **número** de cada video lo determina el momento en que se 
 | 36 | [36 - Instrucciones de una en una](./36%20-%20Instrucciones%20de%20una%20en%20una/) | ¿Tu hijo te ignora? | jue 12 nov 2026 (plan) | Hecho | No |
 | 37 | [37 - Camuflaje en mujeres adultas](./37%20-%20Camuflaje%20en%20mujeres%20adultas/) | Sí tiene amigas, ¿y? | sáb 14 nov 2026 (plan) | Hecho | No |
 | 38 | [38 - Qué esperar de la evaluación de tu hijo](./38%20-%20Qu%C3%A9%20esperar%20de%20la%20evaluaci%C3%B3n%20de%20tu%20hijo/) | Evaluar no es etiquetar | lun 16 nov 2026 | Hecho | No |
-| 39 | [39 - Dormir tarde por tiempo para ti](./39%20-%20Dormir%20tarde%20por%20tiempo%20para%20ti/) | Tarde por tiempo para ti | vie 6 nov 2026 (plan) | Guion aprobado, falta grabar | No |
+| 39 | [39 - Dormir tarde por tiempo para ti](./39%20-%20Dormir%20tarde%20por%20tiempo%20para%20ti/) | ¿Por qué no duermes? | mié 18 nov 2026 | Hecho | No |
 | 40 | [40 - Cambios de rutina sin tanto drama](./40%20-%20Cambios%20de%20rutina%20sin%20tanto%20drama/) | ¿Cambió la rutina? | dom 8 nov 2026 (plan) | Guion aprobado, falta grabar | No |
