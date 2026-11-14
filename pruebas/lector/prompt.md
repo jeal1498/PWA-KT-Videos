@@ -6,7 +6,7 @@ Tarea: leer 30 capturas de pop-ups de ofertas de viaje del bucket `capturas` de 
 1. Lista los objetos del bucket `capturas` (tabla `storage.objects`, solo lectura), ordenados por `created_at` y luego por `name`. Toma las primeras 30.
 2. Para cada imagen, léela y responde SOLO lo que se ve en pantalla. No adivines: si un dato no se ve, pon `null`.
 3. Anota el tiempo que tardas por imagen (en segundos, aproximado).
-4. Guarda el resultado en `pruebas/lector/resultados_<modelo>.json` (`haiku` o `sonnet`). No hagas commit ni push.
+4. Guarda el resultado en `pruebas/lector/resultados_<modelo>.json` (`haiku` o `sonnet`). Luego haz `git pull`, un solo commit con ese archivo y push directo a `main` (`git push origin HEAD:main`), para que la otra conversación lo vea.
 
 ## Formato (una entrada por imagen)
 ```json
