@@ -1,0 +1,298 @@
+<!doctype html><html><head><meta charset="utf-8"><title>001 gráficos</title>
+<style>
+@font-face{font-family:Outfit;src:url(Outfit-700-latin.woff2);font-weight:700}
+@font-face{font-family:'Maven Pro';src:url(MavenPro-700-latin.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#2E2545;overflow:hidden;font-family:Outfit,sans-serif}
+#top{position:absolute;left:0;top:0;width:1080px;height:864px;background:#2E2545;display:flex;align-items:center;justify-content:center}
+body.sinref #top{display:none}
+#top div{border:4px dashed #C6BCE2;border-radius:30px;color:#C6BCE2;font:700 40px/1.3 Outfit;text-align:center;padding:40px 70px;opacity:.55}
+#bot{position:absolute;left:0;top:864px;width:1080px;height:1056px;background:radial-gradient(ellipse at 50% 40%,#5a4b82 0%,#433860 55%,#2E2545 100%);overflow:hidden}
+#card{position:absolute;left:50px;top:40px;width:980px;height:700px;background:#C6BCE2;border:6px solid #2E2545;border-radius:40px;box-shadow:8px 10px 0 rgba(46,37,69,.55);overflow:hidden}
+#sv{position:absolute;left:0;top:0}
+.st{position:absolute;white-space:nowrap;background:#F5E7D6;border:5px solid #2E2545;border-radius:26px;font:700 50px/1 Outfit;color:#2E2545;padding:14px 30px;box-shadow:6px 7px 0 #F9DEE3;opacity:0;transform-origin:50% 50%}
+.pl{position:absolute;white-space:nowrap;background:#fff;border:6px solid #2E2545;border-radius:30px;font:700 44px/1 Outfit;color:#2E2545;padding:0 30px 0 100px;height:104px;line-height:92px;opacity:0;box-shadow:5px 6px 0 #F9DEE3}
+.big{position:absolute;font:700 230px/1 Outfit;color:#2E2545;opacity:0;white-space:nowrap}
+.q{position:absolute;font:700 40px/1 Outfit;color:#2E2545;opacity:0}
+#bot{background:linear-gradient(180deg,#C6BCE2 0%,#F9DEE3 100%) !important}
+#bot::before{content:"";position:absolute;left:-140px;top:760px;width:460px;height:460px;border-radius:50%;background:rgba(255,255,255,.28);box-shadow:900px -40px 0 -40px rgba(245,231,214,.45)}
+#card{background:transparent !important;border:none !important;box-shadow:none !important}
+#top{background:#433860}
+#card{top:120px !important;transform:scale(.9);transform-origin:50% 0}
+.cap{position:absolute;left:50px;right:50px;top:842px;text-align:center;z-index:50;opacity:0;line-height:1.5}
+.pw{display:inline-block;background:rgba(46,37,69,.88);color:#fff;font:700 54px/1.25 "Maven Pro",sans-serif;padding:6px 18px;margin:5px 4px;border-radius:18px;opacity:0}
+.pw.k{color:#C6BCE2}
+.pl{width:400px}
+.slot{position:absolute;width:400px;height:104px;border:5px dashed #2E2545;border-radius:30px;opacity:0}
+</style></head><body>
+<div id="top"><div>ZONA DE KAREN<br>(45 % · 1080×864)</div></div>
+<div id="bot"><div id="card">
+<svg id="sv" width="980" height="700" viewBox="0 0 980 700"><defs>
+<filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence id="rtb" type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="1"/><feDisplacementMap in="SourceGraphic" scale="5"/></filter></defs>
+<g id="gg" filter="url(#rough)"></g></svg>
+<div id="ht"></div></div></div>
+<script src="gsap.min.js"></script>
+<script>
+const S='stroke="#2E2545" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"';
+const GR='#10b77f';
+// ---------- texto del guion por sección: [inicio, fin, texto]
+const SEC={
+ hook:[0.2,5,"Si la maestra de tu hijo dice que es inteligente, pero no pone atención, escucha esto."],
+ des:[5,18,"Puede entender rápidamente las explicaciones, responder correctamente las preguntas y tener buenas ideas… Pero cuando llega el momento de trabajar, se distrae, pierde las instrucciones o deja sus actividades sin terminar. Y entonces aparece la pregunta: ¿cómo puede ser tan inteligente y tener tantas dificultades para concentrarse?"],
+ giro:[18,34,"Porque tener la capacidad de comprender algo no significa necesariamente tener la misma facilidad para mantener la atención, organizarse y terminar una actividad. Son habilidades diferentes. Y algo muy importante: no todas las dificultades de atención significan que un niño tenga TDAH."],
+ prov:[34,46,"Así que antes de llamarlo flojo, desobediente o distraído, vale la pena preguntarnos algo: ¿Y si no es que no quiere hacerlo, sino que existe una dificultad que todavía no hemos identificado?"],
+ cie:[46,60,"Las dificultades de atención pueden tener distintas causas y necesitan investigarse. Una evaluación especializada puede ayudar a comprender qué está pasando y qué necesita ese niño. Porque no se trata de ponerle una etiqueta. Se trata de entenderlo y ayudarlo."]
+};
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9ñ\s]/g,' ').split(/\s+/).filter(Boolean);
+function at(sec,frag,off){const [a,b,tx]=SEC[sec];const w=norm(tx),f=norm(frag);
+ for(let i=0;i<=w.length-f.length;i++){let ok=true;for(let j=0;j<f.length;j++)if(w[i+j]!==f[j]){ok=false;break;}
+  if(ok)return +(a+(b-a)*i/w.length+(off||0)).toFixed(2);}
+ throw new Error('no encuentro: '+frag);}
+// ---------- dibujos (centrados en 0,0)
+const D={
+bulb:`<g id="bulbR" class="ry"><path d="M0 -150V-122M-96 -112L-78 -94M96 -112L78 -94M-118 -30H-92M118 -30H92" fill="none" ${S}/></g><circle id="bulbC" cx="0" cy="-30" r="84" fill="#F5E7D6" ${S}/><path d="M-34 -20Q-17 -62 0 -20Q17 -62 34 -20" fill="none" ${S}/><rect x="-36" y="46" width="72" height="30" rx="10" fill="#fff" ${S}/><rect x="-26" y="80" width="52" height="22" rx="10" fill="#fff" ${S}/>`,
+check:`<path d="M-34 0L-10 26L38 -30" fill="none" stroke="${GR}" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>`,
+notebook:`<rect x="-120" y="-150" width="240" height="300" rx="16" fill="#fff" ${S}/><path d="M-76 -90H80M-76 -36H80M-76 18H80M-76 72H40" fill="none" stroke="#C6BCE2" stroke-width="8" stroke-linecap="round"/><path d="M-120 -110H-96M-120 -50H-96M-120 10H-96M-120 70H-96" fill="none" ${S}/>`,
+eye:`<path d="M-84 0Q0 -72 84 0Q0 72 -84 0Z" fill="#fff" ${S}/><circle id="pup" cx="0" cy="0" r="26" fill="#2E2545"/>`,
+flag:`<path d="M0 60V-70" fill="none" ${S}/><path d="M0 -70L70 -48L0 -26Z" fill="#F9DEE3" ${S}/>`,
+note:`<rect x="-30" y="-36" width="60" height="72" rx="8" fill="#fff" ${S}/><path d="M-14 -14H14M-14 4H14M-14 22H4" fill="none" stroke="#C6BCE2" stroke-width="6" stroke-linecap="round"/>`,
+lupa:`<circle cx="0" cy="0" r="74" fill="rgba(255,255,255,.4)" ${S}/><path d="M52 52L112 112" fill="none" stroke="#2E2545" stroke-width="20" stroke-linecap="round"/>`,
+head:`<path d="M-130 150Q-130 70 0 70Q130 70 130 150Z" fill="#F9DEE3" ${S}/><circle cx="0" cy="-20" r="72" fill="#F5E7D6" ${S}/>`,
+clip:`<rect x="-130" y="-170" width="260" height="340" rx="20" fill="#F5E7D6" ${S}/><rect x="-50" y="-190" width="100" height="42" rx="14" fill="#fff" ${S}/>`,
+tag:`<path d="M-170 -70H70L170 0L70 70H-170Z" fill="#fff" ${S}/><circle cx="120" cy="0" r="14" fill="#C6BCE2" ${S}/>`,
+heart:`<path d="M0 36C-70 -10 -56 -64 -26 -64C-10 -64 0 -50 0 -40C0 -50 10 -64 26 -64C56 -64 70 -10 0 36Z" fill="#F9DEE3" ${S}/>`,
+cross:`<path d="M-60 -60L60 60M60 -60L-60 60" fill="none" stroke="#2E2545" stroke-width="18" stroke-linecap="round"/>`,
+neq:`<path d="M-60 -22H60M-60 28H60M-34 70L34 -70" fill="none" stroke="#2E2545" stroke-width="20" stroke-linecap="round"/>`
+};
+function slice(i,n,r,fill){const a0=-Math.PI/2+i*2*Math.PI/n,a1=-Math.PI/2+(i+1)*2*Math.PI/n;
+ return `<path d="M0 0L${(r*Math.cos(a0)).toFixed(1)} ${(r*Math.sin(a0)).toFixed(1)}A${r} ${r} 0 0 1 ${(r*Math.cos(a1)).toFixed(1)} ${(r*Math.sin(a1)).toFixed(1)}Z" fill="${fill}" ${S}/>`;}
+const PIE=[0,1,2,3,4].map(i=>`<g id="sl${i}" class="o">${slice(i,5,190,i==0?'#F9DEE3':['','#fff','#F5E7D6','#fff','#F5E7D6'][i])}</g>`).join('');
+const PQ=[1,2,3,4].map(i=>{const a=-Math.PI/2+(i+.5)*2*Math.PI/5;return `<text id="pq${i}" class="o" x="${(115*Math.cos(a)).toFixed(0)}" y="${(115*Math.sin(a)+17).toFixed(0)}" text-anchor="middle" font-family="Outfit" font-weight="700" font-size="52" fill="#2E2545">?</text>`}).join('');
+const PATH='M90 560L330 560C420 560 420 440 350 440C280 440 300 560 420 560L640 560C760 560 780 420 880 330';
+const g=document.getElementById('gg');
+const O=(id,inner)=>`<g id="${id}" class="o">${inner}</g>`;
+g.innerHTML=[
+ O('cA',`<rect x="-150" y="-150" width="300" height="300" rx="34" fill="#fff" ${S}/>`),O('nb',D.notebook),O('ey',D.eye),O('bu',D.bulb),O('ck0',D.check),
+ O('ck1',D.check),O('ck2',D.check),O('ck3',D.check),
+ `<path id="rd" d="${PATH}" fill="none" stroke="#fff" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" opacity="0"/>`,
+ `<path id="rd2" d="${PATH}" fill="none" ${S} stroke-width="6" stroke-dasharray="16 22" opacity="0"/>`,
+ O('fl',D.flag),O('rn',`<circle r="26" fill="#F9DEE3" ${S}/>`),O('nt',D.note),
+ O('qq',''),O('pb',`<rect x="-170" y="-28" width="340" height="56" rx="28" fill="#fff" ${S}/><rect x="-160" y="-19" width="120" height="38" rx="19" fill="#F9DEE3"/><path d="M170 -28V-96" fill="none" ${S}/><path d="M170 -96L220 -80L170 -64Z" fill="#F5E7D6" ${S}/>`),O('nt2',D.note),
+ O('nq',D.neq),
+ O('dv',`<path d="M0 -270V200" fill="none" ${S} stroke-dasharray="14 18"/>`),
+ PIE+PQ,
+ O('hd',D.head),O('sg',''),
+ O('bk',`<rect x="-110" y="-110" width="220" height="220" rx="30" fill="none" stroke="#2E2545" stroke-width="6" stroke-dasharray="14 16"/>`),
+ O('bk2',`<rect x="-110" y="-110" width="220" height="220" rx="30" fill="#F9DEE3" ${S}/><text x="0" y="36" text-anchor="middle" font-family="Outfit" font-weight="700" font-size="110" fill="#2E2545">?</text>`),
+ O('lp',D.lupa),
+ O('nd',`<circle r="110" fill="#fff" ${S}/>`),
+ O('c1',`<circle r="62" fill="#F5E7D6" ${S}/><text y="22" text-anchor="middle" font-family="Outfit" font-weight="700" font-size="70" fill="#2E2545">?</text>`),
+ O('c2',`<circle r="62" fill="#F5E7D6" ${S}/><text y="22" text-anchor="middle" font-family="Outfit" font-weight="700" font-size="70" fill="#2E2545">?</text>`),
+ O('c3',`<circle r="62" fill="#F5E7D6" ${S}/><text y="22" text-anchor="middle" font-family="Outfit" font-weight="700" font-size="70" fill="#2E2545">?</text>`),
+ `<path id="br1" class="dl" pathLength="1" d="M292 262L612 128" fill="none" ${S}/><path id="br2" class="dl" pathLength="1" d="M310 320L656 320" fill="none" ${S}/><path id="br3" class="dl" pathLength="1" d="M292 378L612 512" fill="none" ${S}/>`,
+ O('cl',D.clip),
+ [0,1,2].map(i=>`<g id="rw${i}" class="o"><rect x="-90" y="${-90+i*70}" width="44" height="44" rx="8" fill="#fff" ${S}/><path d="M-50 ${-68+i*70}H80" fill="none" stroke="#C6BCE2" stroke-width="10" stroke-linecap="round"/></g>`).join(''),
+ O('rc0',D.check),O('rc1',D.check),O('rc2',D.check),
+ O('tg',D.tag),O('xx',D.cross),
+ O('hr',D.heart),O('ar',`<path d="M-90 0H90M40 -44L90 0L40 44" fill="none" ${S} stroke-width="12"/>`)
+].join('');
+// pills / stickers HTML
+const H=document.getElementById('ht');
+const st=(id,tx,x,y,fs,rot)=>H.insertAdjacentHTML('beforeend',`<div class="st" id="${id}" data-r="${rot||0}" style="left:${x}px;top:${y}px;${fs?'font-size:'+fs+'px':''}">${tx}</div>`);
+const pl=(id,tx,x,y,ck)=>H.insertAdjacentHTML('beforeend',`<div class="pl" id="${id}" style="left:${x}px;top:${y}px">${ck?'<svg width="56" height="56" viewBox="-40 -40 80 80" style="position:absolute;left:28px;top:18px"><path d="M-34 0L-10 26L38 -30" fill="none" stroke="#10b77f" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg>':''}${tx}</div>`);
+st('sIn','Inteligente',270,560,0,-3);st('sSa','Sin atención',700,560,0,2.5);
+pl('p1','Entiende',360,98,1);pl('p2','Responde',360,228,1);pl('p3','Tiene ideas',360,358,1);
+st('sTr','Trabajar',490,630,0,-2);st('sDi','Se distrae',490,630,0,2);st('sPi','Pierde instrucciones',490,630,0,-2);st('sTe','Sin terminar',490,630,0,2);
+H.insertAdjacentHTML('beforeend','<div class="big" id="qM" style="left:475px;top:350px">¿?</div>');
+[0,1,2].forEach(i=>H.insertAdjacentHTML('beforeend',`<div class="slot" id="slot${i}" style="left:480px;top:${92+136*i}px"></div>`));
+st('sCo','Comprender',190,560,0,-3);
+pl('a1','Atención',480,92);pl('a2','Organizarse',480,228);pl('a3','Terminar',480,364);
+st('sHd','Habilidades diferentes',490,655,0,-2);st('sNs','No siempre TDAH',490,626,0,-2);
+st('sTd','TDAH',770,150,0,3);
+st('sFl','Flojo',250,205,0,-8);st('sDe','Desobediente',730,240,0,6);st('sDs','Distraído',500,610,0,-3);
+H.insertAdjacentHTML('beforeend','<div class="big" id="qH" style="left:490px;top:150px;font-size:200px">¿?</div>');
+st('sDf','Dificultad sin identificar',490,630,46,-2);
+st('sCa','Distintas causas',330,640,0,-2);st('sEv','Evaluación especializada',490,630,46,2);
+st('sEt','Etiqueta',490,620,0,-3);st('sEn','Entenderlo',250,350,0,-3);st('sAy','Ayudarlo',735,350,0,3);
+H.insertAdjacentHTML('beforeend','<div id="end" style="position:absolute;left:0;top:0;width:980px;height:700px;opacity:0"><div style="position:absolute;left:90px;top:210px;width:800px;text-align:center;font:700 64px/1.15 Outfit;color:#2E2545">Este video orienta y no diagnostica.</div><div class="st" style="left:490px;top:470px;opacity:1;font:700 40px/1 \'Maven Pro\';transform:translate(-50%,-50%)">psicologakarentrujillo.com.mx</div></div>');
+// ---------- timeline
+gsap.set('.o',{opacity:0,transformOrigin:'0 0'});gsap.set('.dl',{strokeDasharray:1,strokeDashoffset:1,opacity:0});
+gsap.set('.st,.pl,.big',{xPercent:-50,yPercent:-50});
+document.querySelectorAll('.st').forEach(e=>gsap.set(e,{rotation:+e.dataset.r}));
+gsap.set('.pl',{xPercent:0,yPercent:0});
+const tl=gsap.timeline({paused:true});
+const E='elastic.out(1,.55)';
+const ST=(s,v)=>gsap.set(s,v);
+const POP=(s,t,sc,x,y,d)=>{const v={scale:sc||1,opacity:1,duration:d||.55,ease:E};if(x!==undefined){v.x=x;v.y=y;}tl.fromTo(s,Object.assign({scale:0,opacity:0},x!==undefined?{x:x,y:y}:{}),Object.assign(v,{immediateRender:false}),t);};
+const OUT=(s,t,d)=>tl.to(s,{opacity:0,scale:.6,duration:d||.3,ease:'power2.in'},t);
+const MV=(s,t,v,d,e)=>tl.to(s,Object.assign({duration:d||.7,ease:e||'power2.inOut'},v),t);
+const FADE=(s,t,d)=>tl.to(s,{opacity:0,duration:d||.3},t);
+// posiciones base
+ST('#nb',{x:700,y:330});ST('#ey',{x:700,y:330});ST('#bu',{x:270,y:360});ST('#ck0',{x:340,y:260});
+// ===== HOOK (0–5)
+const tH0=0.15;
+tl.set('#nb',{opacity:1,scale:1,x:700,y:340},0);
+POP('#bu',0.2,1.05,270,350);gsap.set('#bulbC',{fill:'#fff'});gsap.set('#bulbR',{opacity:0});
+tl.to('#bulbC',{fill:'#F5E7D6',duration:.3},at('hook','es inteligente',-.2));tl.fromTo('#bulbR',{opacity:0},{opacity:1,duration:.3,immediateRender:false},at('hook','es inteligente',-.2));
+tl.to('#bu',{scale:1.25,duration:.25,yoyo:true,repeat:1,ease:'sine.inOut'},at('hook','es inteligente',-.2));POP('#ck0',at('hook','es inteligente',.55),.9,400,175);POP('#sIn',at('hook','es inteligente',.15),1);
+POP('#ey',at('hook','no pone atención',-.2),1,700,330);
+tl.to('#pup',{attr:{cx:56,cy:-16},duration:.8,ease:'power2.inOut'},at('hook','no pone atención',.5));
+POP('#sSa',at('hook','no pone atención',.3),1);
+
+// ===== DESARROLLO
+const tD=at('des','Puede entender');
+OUT('#nb',tD-.1);OUT('#ey',tD-.1);OUT('#sIn',tD-.1);OUT('#sSa',tD-.1);OUT('#ck0',tD-.1);
+MV('#bu',tD-.05,{x:150,y:170,scale:.62},.7);
+const tP=[at('des','entender'),at('des','responder'),at('des','tener buenas')];
+['p1','p2','p3'].forEach((id,i)=>{tl.fromTo('#'+id,{opacity:0,x:80,scale:.6},{opacity:1,x:0,scale:1,duration:.55,ease:E,immediateRender:false},tP[i]);
+ ST('#ck'+(i+1),{x:418,y:146+i*130,scale:.85});tl.set('#ck'+(i+1),{opacity:1},at('des','Pero cuando'));});
+// transformación: pills -> checks pequeños, aparece el camino
+const tT=at('des','Pero cuando');
+['p1','p2','p3'].forEach((id,i)=>{tl.to('#'+id,{opacity:0,x:-60,duration:.35,ease:'power2.in'},tT+i*.06);});
+['#ck1','#ck2','#ck3'].forEach((s,i)=>MV(s,tT+.05,{x:270+i*70,y:80,scale:.5},.55));
+const tTr=tT+.35;
+// camino
+const PEL=document.getElementById('rd2');const PL=PEL.getTotalLength();
+ST('#rd',{opacity:0});
+tl.to('#rd',{opacity:.55,duration:.4},tTr);tl.to('#rd2',{opacity:1,duration:.4},tTr);
+POP('#fl',tTr+.2,1.05,880,300);
+const R={p:0};const rpt=p=>PEL.getPointAtLength(PL*p);
+const place=()=>{const q=rpt(R.p);gsap.set('#rn',{x:q.x,y:q.y});};
+POP('#rn',tTr,1,90,560);
+tl.to(R,{p:.18,duration:at('des','trabajar')-tTr+.5,ease:'none',onUpdate:place},tTr+.1);
+tl.to(R,{p:.62,duration:at('des','pierde')-at('des','se distrae'),ease:'none',onUpdate:place},at('des','se distrae'));
+tl.to(R,{p:.62,duration:.01},at('des','pierde'));
+POP('#sTr',at('des','trabajar'),1);OUT('#sTr',at('des','se distrae')-.05);
+POP('#sDi',at('des','se distrae'),1);OUT('#sDi',at('des','pierde')-.05);
+const tPi=at('des','pierde');
+ST('#nt',{x:420,y:470});POP('#nt',tPi,1);tl.to('#nt',{y:640,rotation:40,opacity:0,duration:.9,ease:'power2.in'},tPi+.5);
+POP('#sPi',tPi,1);OUT('#sPi',at('des','o deja')-.05);
+const tSt=at('des','sin terminar');
+tl.to(R,{p:.7,duration:.8,ease:'power2.out',onUpdate:place},tSt-.4);
+POP('#sTe',tSt,1);
+// pregunta: bulb vuelve, camino se encoge
+const tQ=at('des','Y entonces');
+OUT('#sTe',tQ-.1);['#ck1','#ck2','#ck3'].forEach(s=>OUT(s,tQ));
+MV('#bu',tQ,{x:200,y:380,scale:1.05},.6);
+tl.to('#fl,#rn,#rd,#rd2',{opacity:0,duration:.3},tQ-.05);
+POP('#pb',tQ+.3,.75,790,360);OUT('#pb',at('giro','Porque tener')-.15);
+tl.fromTo('#qM',{opacity:0,scale:0,x:-10},{opacity:1,scale:1,duration:.6,ease:E,immediateRender:false},at('des','como puede ser'));
+// miniatura inacabada (barra) a la derecha
+// ===== GIRO
+const tG=at('giro','Porque tener');
+OUT('#qM',tG-.2);
+ST('#cA',{x:200,y:340});
+tl.fromTo('#cA',{opacity:0,scale:.2},{opacity:1,scale:1,duration:.6,ease:E,immediateRender:false},tG-.1);
+MV('#bu',tG-.1,{x:200,y:330,scale:.95},.5);
+POP('#sCo',at('giro','capacidad de comprender',.1),1);
+ST('#nq',{x:415,y:350});
+const tNq=at('giro','tener la misma');
+tl.fromTo('#nq',{opacity:0,scale:0,rotation:-40},{opacity:1,scale:.75,rotation:0,duration:.6,ease:E,immediateRender:false},tNq);
+[0,1,2].forEach(i=>{tl.fromTo('#slot'+i,{opacity:0,scale:.7},{opacity:1,scale:1,duration:.45,ease:E,immediateRender:false},tG+.5+i*.15);});
+
+['a1','a2','a3'].forEach((id,i)=>{const tt=[at('giro','mantener la atención'),at('giro','organizarse'),at('giro','terminar una')][i];tl.set('#slot'+i,{opacity:0},tt);
+ tl.fromTo('#'+id,{opacity:0,x:160,scale:.7},{opacity:1,x:0,scale:1,duration:.55,ease:E,immediateRender:false},tt);});
+// habilidades diferentes: separar
+const tHd=at('giro','Son habilidades');
+OUT('#nq',tHd,.25);
+ST('#dv',{x:445,y:350});tl.set('#dv',{opacity:1},tHd+.1);tl.fromTo('#dv',{scaleY:0},{scaleY:1,duration:.4,immediateRender:false},tHd+.1);
+tl.set('#slot0,#slot1,#slot2',{opacity:0},0.01);
+['#cA','#bu','#sCo'].forEach(s=>MV(s,tHd+.1,{x:'-=34'},.5,'back.out(2)'));
+['#a1','#a2','#a3'].forEach(s=>MV(s,tHd+.1,{x:'+=34'},.5,'back.out(2)'));
+POP('#sHd',tHd+.2,1);
+tl.to('#sHd',{scale:1.12,duration:.25,yoyo:true,repeat:1},tHd+.9);
+// no todas = TDAH: pastel
+const tNT=at('giro','no todas las');
+OUT('#sHd',tNT-.2);['#cA','#bu','#sCo','#a1','#a2','#a3'].forEach(s=>OUT(s,tNT-.15));tl.to('#dv',{opacity:0,duration:.3},tNT-.15);
+[0,1,2,3,4].forEach(i=>{const a=-Math.PI/2+(i+.5)*2*Math.PI/5;tl.fromTo('#sl'+i,{opacity:0,scale:0,x:490,y:330},{opacity:1,scale:1,x:490+(i==0?0:0),y:330,duration:.5,ease:E,immediateRender:false},tNT+i*.07);});
+// los pasteles viven en #pie para el "?"
+[1,2,3,4].forEach(i=>tl.fromTo('#pq'+i,{opacity:0},{opacity:1,duration:.3,immediateRender:false},tNT+.5));
+tl.set('#pq1,#pq2,#pq3,#pq4',{x:490,y:330},0);
+POP('#sNs',tNT+.1,1);
+const tTd=at('giro','TDAH');
+// la rebanada TDAH sale hacia arriba-derecha
+const a0=-Math.PI/2+Math.PI/5;
+tl.to('#sl0',{x:490+Math.cos(a0)*46,y:330+Math.sin(a0)*46,scale:1.04,duration:.5,ease:E},tTd-.2);
+POP('#sTd',tTd,1);
+// ===== PROVOCACIÓN
+const tP0=at('prov','Así que');
+OUT('#sNs',tP0-.2);OUT('#sTd',tP0-.2);[0,1,2,3,4].forEach(i=>OUT('#sl'+i,tP0-.15));OUT('#pq1',tP0-.15);OUT('#pq2',tP0-.15);OUT('#pq3',tP0-.15);OUT('#pq4',tP0-.15);
+ST('#hd',{x:490,y:400});tl.fromTo('#hd',{opacity:0,scale:.4,y:520},{opacity:1,scale:1,y:400,duration:.6,ease:E,immediateRender:false},tP0);
+POP('#sFl',at('prov','flojo'),1);POP('#sDe',at('prov','desobediente'),1);POP('#sDs',at('prov','distraído'),1);
+const tPe=at('prov','vale la pena');
+tl.to('#sFl',{y:-200,x:-120,rotation:-40,opacity:0,duration:.6,ease:'power2.in'},tPe);
+tl.to('#sDe',{y:-200,x:120,rotation:40,opacity:0,duration:.6,ease:'power2.in'},tPe+.1);
+tl.to('#sDs',{y:200,rotation:20,opacity:0,duration:.6,ease:'power2.in'},tPe+.2);
+tl.fromTo('#qH',{opacity:0,scale:0},{opacity:1,scale:1,duration:.6,ease:E,immediateRender:false},at('prov','preguntarnos'));
+MV('#hd',at('prov','y si no es'),{x:290},.6);tl.to('#qH',{x:-200,duration:.6,ease:'power2.inOut'},at('prov','y si no es'));
+const tNQ=at('prov','no quiere hacerlo',-.3);ST('#nt2',{x:730,y:370});POP('#nt2',tNQ,2.4);
+const tDf=at('prov','existe una dificultad');OUT('#nt2',tDf-.05);
+ST('#bk',{x:730,y:370});ST('#bk2',{x:730,y:370});
+tl.fromTo('#bk',{opacity:0,scale:.3},{opacity:1,scale:1,duration:.6,ease:E,immediateRender:false},tDf);
+POP('#sDf',tDf+.1,1);
+const tId=at('prov','que todavía');
+ST('#lp',{x:560,y:520});
+tl.fromTo('#lp',{opacity:0,scale:.3},{opacity:1,scale:1,duration:.5,ease:E,immediateRender:false},tId-.2);
+MV('#lp',tId+.2,{x:690,y:350},1.2);
+tl.fromTo('#bk2',{opacity:0,scale:.6},{opacity:1,scale:1,duration:.5,ease:E,immediateRender:false},at('prov','identificado',-.1));
+tl.to('#qH',{opacity:0,duration:.3},at('prov','identificado',-.1));
+// ===== CIERRE
+const tC=at('cie','Las dificultades');
+OUT('#sDf',tC-.2);OUT('#hd',tC-.2);OUT('#qH',tC-.2);OUT('#bk',tC-.2);OUT('#bk2',tC-.2);
+ST('#nd',{x:200,y:320});
+tl.fromTo('#nd',{opacity:0,scale:.2},{opacity:1,scale:1,duration:.6,ease:E,immediateRender:false},tC);
+H.insertAdjacentHTML('beforeend','<div class="q" id="qA" style="left:200px;top:320px;font-size:44px;transform:translate(-50%,-50%)">Atención</div>');
+gsap.set('#qA',{xPercent:0});tl.fromTo('#qA',{opacity:0},{opacity:1,duration:.3,immediateRender:false},tC+.3);
+OUT('#lp',tC-.2);
+const tCa=at('cie','pueden tener');
+ST('#c1',{x:670,y:110});ST('#c2',{x:720,y:320});ST('#c3',{x:670,y:530});
+[['#br1','#c1'],['#br2','#c2'],['#br3','#c3']].forEach(([b,c],i)=>{tl.fromTo(b,{strokeDashoffset:1,opacity:1},{strokeDashoffset:0,duration:.35,immediateRender:false},tCa+i*.18);
+ tl.fromTo(c,{opacity:0,scale:0},{opacity:1,scale:1,duration:.5,ease:E,immediateRender:false},tCa+.25+i*.18);});
+POP('#sCa',at('cie','distintas causas'),1);
+const tIn=at('cie','necesitan investigarse');tl.fromTo('#lp',{x:670,y:110,scale:0,opacity:0},{x:670,y:110,scale:.8,opacity:1,duration:.4,ease:E,immediateRender:false},tIn);tl.to('#lp',{x:720,y:320,duration:.5,ease:'power2.inOut'},tIn+.5);tl.to('#lp',{x:670,y:530,duration:.5,ease:'power2.inOut'},tIn+1.1);
+// evaluación
+const tE=at('cie','Una evaluación');
+['#nd','#c1','#c2','#c3','#lp','#qA','#sCa'].forEach(s=>OUT(s,tE-.2));tl.to('#br1,#br2,#br3',{opacity:0,duration:.3},tE-.2);
+ST('#cl',{x:490,y:350});tl.fromTo('#cl',{opacity:0,scale:.3,y:520},{opacity:1,scale:1,y:350,duration:.6,ease:E,immediateRender:false},tE);
+[0,1,2].forEach(i=>{ST('#rw'+i,{x:490,y:350+10});ST('#rc'+i,{x:545,y:292+i*70,});});
+[0,1,2].forEach(i=>tl.fromTo('#rw'+i,{opacity:0},{opacity:1,duration:.3,immediateRender:false},tE+.4+i*.15));
+POP('#sEv',tE+.1,1);
+const tCo=at('cie','comprender qué');
+[0,1,2].forEach(i=>{ST('#rc'+i,{x:422,y:292+i*70});POP('#rc'+i,tCo+i*.5,.5,422,292+i*70,.45);});
+// etiqueta tachada
+const tEt=at('cie','Porque no se trata');
+['#cl','#sEv'].forEach(s=>OUT(s,tEt-.2));[0,1,2].forEach(i=>{OUT('#rw'+i,tEt-.2);OUT('#rc'+i,tEt-.2);});
+ST('#tg',{x:490,y:330});tl.fromTo('#tg',{opacity:0,scale:.3,rotation:-20},{opacity:1,scale:1.2,rotation:-6,duration:.6,ease:E,immediateRender:false},tEt+.2);
+H.insertAdjacentHTML('beforeend','<div class="q" id="qT" style="left:478px;top:338px;font-size:62px;transform:translate(-50%,-50%) rotate(-6deg)">Etiqueta</div>');
+tl.fromTo('#qT',{opacity:0},{opacity:1,duration:.3,immediateRender:false},tEt+.5);
+ST('#xx',{x:760,y:200});POP('#xx',tEt+1.0,.8);
+// entenderlo → ayudarlo
+const tEn=at('cie','Se trata de entenderlo');
+['#tg','#xx','#qT'].forEach(s=>OUT(s,tEn-.2));
+ST('#ar',{x:490,y:350});
+tl.fromTo('#ar',{opacity:0,scale:0},{opacity:1,scale:1,duration:.5,ease:E,immediateRender:false},at('cie','ayudarlo',-.5));
+POP('#sEn',tEn+.1,1);
+H.insertAdjacentHTML('beforeend','<div class="slot" id="slotAy" style="left:585px;top:298px;width:300px;height:104px"></div>');
+tl.fromTo('#slotAy',{opacity:0,scale:.6},{opacity:1,scale:1,duration:.45,ease:E,immediateRender:false},tEn+.4);tl.set('#slotAy',{opacity:0},at('cie','ayudarlo'));
+POP('#sAy',at('cie','ayudarlo'),1);
+ST('#hr',{x:735,y:230});POP('#hr',at('cie','ayudarlo',.2),1);
+tl.to('#sAy',{scale:1.12,duration:.3,yoyo:true,repeat:1},at('cie','ayudarlo',.9));
+// cierre: aviso
+const tF=60.1;
+['#sEn','#sAy','#hr','#ar'].forEach(s=>OUT(s,tF-.1));
+tl.fromTo('#end',{opacity:0,scale:.9,transformOrigin:'50% 50%'},{opacity:1,scale:1,duration:.5,ease:'back.out(1.6)',immediateRender:false},tF+.2);
+const KEYS=new Set(['inteligente','atencion','tdah','habilidades','diferentes','flojo','desobediente','distraido','dificultad','etiqueta','entenderlo','ayudarlo','causas']);
+(function(){const caps=[];
+ for(const k in SEC){const [a,b,tx]=SEC[k];const tk=tx.split(/\s+/);const n=tk.length;let cur=[];
+  const flush=()=>{if(cur.length){caps.push(cur);cur=[];}};
+  tk.forEach((w,i)=>{cur.push({w,t:a+(b-a)*i/n});if(cur.length>=3||/[,.:?…]$/.test(w))flush();});flush();}
+ const holder=document.createElement('div');document.body.appendChild(holder);
+ caps.forEach((c,i)=>{const d=document.createElement('div');d.className='cap';d.id='cap'+i;
+  d.innerHTML=c.map((x,j)=>`<span class="pw${KEYS.has(norm(x.w)[0])?' k':''}" id="c${i}w${j}">${x.w.replace('…','…')}</span>`).join(' ');holder.appendChild(d);
+  const s0=c[0].t,e0=Math.min(i+1<caps.length?caps[i+1][0].t-.03:59.9,c[c.length-1].t+1.3);
+  tl.set('#cap'+i,{opacity:1},s0);tl.set('#cap'+i,{opacity:0},e0);
+  c.forEach((x,j)=>tl.fromTo('#c'+i+'w'+j,{opacity:0,scale:.4,y:12,transformOrigin:'50% 80%'},{opacity:1,scale:1,y:0,duration:.32,ease:'back.out(3.2)',immediateRender:false},x.t));});
+})();
+window.DUR=63.4;
+window.seek=t=>{tl.time(Math.min(t,tl.duration()));document.getElementById('rtb').setAttribute('seed',1+Math.floor(t*12)%7);};
+</script></body></html>
