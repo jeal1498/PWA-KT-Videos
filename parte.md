@@ -1,4 +1,4 @@
-# PARTE · 13 nov 2026
+# PARTE · 15 nov 2026
 
 ## ✓ Decidido
 - nov1 a nov4 de Drive son los videos 36 (Instrucciones de una en una), 37 (Camuflaje en mujeres adultas), 38 (Qué esperar de la evaluación de tu hijo) y 39 (Dormir tarde por tiempo para ti).
@@ -10,10 +10,14 @@
 - 38 (lun 16 nov) y 39 (mié 18 nov) hechos con el estilo del 36, aprobados por Karen y guardados en `main` con calendario, tabla y página. Los videos 36 a 39 están hechos; solo falta el 40.
 - Karen confirmó los «Por confirmar» de los copys 36, 37, 38 y 39 (el 39, el 13 nov).
 - Con cara, el rótulo con cédula se sube a y≈620 (`.nametag{top:620px!important}` en el bloque custom) para no tapar los ojos.
+- 41 Cobran la terapia si no voy (vie 4 dic): video 100 % gráfico y sin voz, aprobado el 15 nov y guardado en la rama de la sesión `ccr-5d2398ee-dcl86a` (falta pasarlo a `main`). Zona segura de TikTok (x 60 a 960, y 250 a 1440), centrado, loop (termina en la portada) y textos corregidos por Karen («terapia psicológica»). Recetas en `references/estilo-v2.md` y `loop.sh`.
 - Todo cambio a `parte.md` se guarda directo en `main` (Karen).
 
 ## … Falta
 - Karen tiene que grabar el 40 (Cambios de rutina): no vino en Drive. Después: estilo del 36, fecha con `calendario.py` y `guardar.sh`.
+
+- Karen confirma en el `copy.md` del 41: horas de aviso para cancelar, si deja «Netflix» y la cédula en el primer cuadro.
+- Pasar el 41 de la rama de la sesión a `main`.
 
 ## ✗ No tocar
 - Diagnosticar o decir que algo «cura»: el contenido orienta, no diagnostica.
