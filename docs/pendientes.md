@@ -14,8 +14,11 @@ Actualizar al guardar cada lote. Fechas en `calendario.md` (`calendario.py fecha
 ## Lote 4 (guiones aprobados por Karen el 30 oct 2026; falta que ella grabe)
 36 Instrucciones de una en una (sáb 31 oct), 37 Camuflaje en mujeres adultas (lun 2 nov), 38 Qué esperar de la evaluación de tu hijo (mié 4), 39 Dormir tarde por tiempo para ti (vie 6) y 40 Cambios de rutina (dom 8 nov). Todos con Karen; cada `guion.md` conserva su «Por confirmar». Se escribieron como 34 a 38 y se renumeraron el 31 oct 2026 porque los números del lote sin cara (34 y 35) tienen prioridad.
 
+## Video gráfico sin voz (hecho; aprobado el 15 nov 2026)
+41 Cobran la terapia si no voy (vie 4 dic 2026), 100 % gráfico y sin voz, inspirado en una publicación de otra cuenta con textos propios. Karen corrigió «terapia psicológica» en las pantallas 1 y 7. Falta que confirme en su `copy.md`: las horas de aviso para cancelar, el nombre «Netflix» y la cédula en el primer cuadro. Falta que Karen o Eduardo lo marquen «Publicado».
+
 ## Siguiente
-- **Siguiente número:** 41.
+- **Siguiente número:** 42.
 - **Días sin cara:** el 19 salió el vie 30 oct (Karen lo subió un día antes); del 20 al 33 se recorrieron un día antes (30 oct). Ocupados hasta el jue 3 dic (34 y 35); el mar 1 dic quedó libre entre los dos. Siguiente libre: vie 4 dic. `calendario.py fechas` aún usa la alternancia vieja (sin cara en días pares desde el 31 oct): no fiarse de su columna «sin cara / con Karen».
 - **Días con Karen:** 31 oct a 8 nov cubiertos (36 a 40); siguientes libres: mar 10 nov en adelante, según la alternancia. Antes de empezar, listar la carpeta de Drive y buscar videos nuevos.
 

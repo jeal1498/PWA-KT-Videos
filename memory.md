@@ -26,3 +26,4 @@ Solo lo vigente, una línea por preferencia. La historia completa está en `docs
 - Cada cambio a `parte.md` se commitea y sube directo a `main`, aunque la sesión tenga otra rama (Karen, 12 nov 2026).
 - Copy único (12 nov, Karen): el mismo texto largo para Instagram, Facebook, TikTok y descripción de YouTube; solo cambia el título de YouTube (≤60 caracteres, SEO). Incluir SEO, GEO y AEO.
 - Hooks virales (14 nov 2026): distribución de `PLANTILLA-DISTRIBUCION.md`, fondo degradado lavanda-rosa, subtítulos del 36 y nada vacío ni encimado; receta en `videos-karen/references/hooks-virales.md`. Sin video de Karen, solo previa.
+- Videos gráficos sin voz (15 nov 2026): texto y dibujos dentro de la zona segura de TikTok (x 60 a 960, y 250 a 1440) y centrados; etiqueta con nombre y cédula arriba y olas de adorno abajo; el último cuadro es la portada para que haga loop (`loop.sh`).

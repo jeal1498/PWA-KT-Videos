@@ -55,3 +55,9 @@ Leer cuando se arme la animación (`scenes.py` / `anim.js`) o la portada. Receta
 - Los subtítulos ocupan y≥1460: dejar el contenido de la escena por encima (torres, notas y barras que bajaban de 1450 quedaban tapados).
 - Un título con `span.w` en dos líneas pisa la etiqueta de la línea de arriba: poner el texto en una sola pieza y animar el `.t` completo.
 - Antes de numerar y de guardar, `git fetch` y leer `docs/pendientes.md` de `main`: otra sesión pudo ocupar los números y las fechas. Si la rama de la sesión ya tiene commits subidos, `guardar.sh` (que hace `pull --rebase`) puede dejar un rebase a medias; guardar desde `main` actualizado.
+
+## Video gráfico sin voz (41)
+- Sin voz no hay `words.json`: se escribe un `build.py` propio con escenas de tiempo fijo y `voz.mp3` de silencio (`anullsrc`) para que `armar.sh` y la portada como primer cuadro funcionen.
+- GSAP pisa el `transform` de un `<g>` SVG: poner `translate/rotate/scale` en un `<g>` interior y la clase animada en el exterior.
+- Zona segura de TikTok: contenido en x 60 a 960 y y 250 a 1440; arriba el rótulo y abajo adorno (olas) que TikTok puede tapar. Loop: `loop.sh` (funde a la portada). `xfade` deja yuv444p y el celular lo ve negro: `loop.sh` fuerza yuv420p.
+- Un sticker `.st` de una línea suelta debajo de un texto de varias líneas se encima: ponerlo en su propio `div` con `margin-top` y `line-height:1.3`.
