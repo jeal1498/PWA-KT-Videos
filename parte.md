@@ -20,6 +20,7 @@
 - Hooks virales: 002 aprobado y guardado (gráficos, portada «¿Desobediente… o necesita otro apoyo?», `video.mp4` en bucle con portada como primer cuadro, 58 s).
 - Hooks virales: 003 aprobado y guardado (portada «3 señales que se confunden con mala conducta», 69.6 s, bucle). Regla nueva de Eduardo: cada video con elementos gráficos nuevos (lista de usados en `references/hooks-virales.md`).
 - Hooks virales: 004 aprobado y guardado con elementos nuevos (portada «¿3 horas jugando y 20 min de tarea no?», 65.6 s, bucle).
+- Hooks virales: 005 aprobado y guardado con elementos nuevos (portada «¿La tarea termina en llanto?», 64.2 s, bucle).
 - Todo cambio a `parte.md` se guarda directo en `main` (Karen).
 
 ## … Falta
@@ -29,7 +30,7 @@
 - Pasar el 41 de la rama de la sesión a `main`.
 
 - Hooks virales 031 a 040: generar la voz con la receta cuando haya créditos (Starter no alcanzó para los 40; Eduardo los dejó pendientes).
-- Hooks virales: faltan los gráficos del 005 al 040 (receta del 001 v4). Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
+- Hooks virales: faltan los gráficos del 006 al 040 (receta del 001 v4). Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
 
 ## ✗ No tocar
 - Diagnosticar o decir que algo «cura»: el contenido orienta, no diagnostica.

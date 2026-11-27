@@ -1,0 +1,301 @@
+<!doctype html><html><head><meta charset="utf-8"><title>005 gráficos</title>
+<style>
+@font-face{font-family:Outfit;src:url(Outfit-700-latin.woff2);font-weight:700}
+@font-face{font-family:'Maven Pro';src:url(MavenPro-700-latin.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;font-family:Outfit,sans-serif;background:linear-gradient(180deg,#C6BCE2 0%,#F9DEE3 100%);position:relative}
+body::before{content:"";position:absolute;left:-160px;top:1280px;width:480px;height:480px;border-radius:50%;background:rgba(255,255,255,.28);box-shadow:1000px -1100px 0 -40px rgba(245,231,214,.45)}
+#stage{position:absolute;left:0;top:300px;width:1080px;height:1000px}
+#sv{position:absolute;left:0;top:0}
+#ht{position:absolute;left:0;top:0;width:1080px;height:1000px}
+.st{position:absolute;white-space:nowrap;background:#F5E7D6;border:5px solid #2E2545;border-radius:26px;font:700 52px/1 Outfit;color:#2E2545;padding:14px 30px;box-shadow:6px 7px 0 #F9DEE3;opacity:0}
+.pl{position:absolute;white-space:nowrap;background:#fff;border:6px solid #2E2545;border-radius:30px;font:700 44px/1 Outfit;color:#2E2545;width:440px;height:104px;line-height:92px;text-align:center;opacity:0;box-shadow:5px 6px 0 #F9DEE3}
+.big{position:absolute;font:700 150px/1 Outfit;color:#2E2545;opacity:0;white-space:nowrap}
+.lb{position:absolute;font:700 44px/1 Outfit;color:#2E2545;opacity:0;white-space:nowrap;text-align:center}
+.cap{position:absolute;left:40px;right:40px;top:1290px;text-align:center;z-index:50;opacity:0;line-height:1.5}
+.pw{display:inline-block;background:rgba(46,37,69,.88);color:#fff;font:700 58px/1.25 "Maven Pro",sans-serif;padding:6px 20px;margin:5px 4px;border-radius:18px;opacity:0}
+.pw.k{color:#C6BCE2}
+</style></head><body>
+<div id="stage">
+<svg id="sv" width="1080" height="1000" viewBox="0 0 1080 1000"><defs>
+<filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence id="rtb" type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="1"/><feDisplacementMap in="SourceGraphic" scale="5"/></filter></defs>
+<g id="gg" filter="url(#rough)"></g></svg>
+<div id="ht"></div></div>
+<script src="gsap.min.js"></script>
+<script src="words.js"></script>
+<script>
+const S='stroke="#2E2545" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"';
+const GR='#10b77f';
+// ---------- tiempos reales de la voz
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9ñ\s]/g,' ').split(/\s+/).filter(Boolean);
+const WN=WORDS.map(w=>norm(w[0])[0]||'');
+function at(frag,off,nth){const f=norm(frag);let c=0;
+ for(let i=0;i<=WN.length-f.length;i++){let ok=true;for(let j=0;j<f.length;j++)if(WN[i+j]!==f[j]){ok=false;break;}
+  if(ok){if((nth||0)===c)return +(WORDS[i][1]+(off||0)).toFixed(2);c++;}}
+ throw new Error('no encuentro: '+frag);}
+// ---------- dibujos (centrados en 0,0)
+function gear(r,n,fill){let p=[];const st=2*Math.PI/n;
+ for(let i=0;i<n;i++){const a=i*st;[[-.28,r],[-.18,r+26],[.18,r+26],[.28,r]].forEach(([k,rr])=>{const aa=a+k*st;p.push((rr*Math.cos(aa)).toFixed(1)+' '+(rr*Math.sin(aa)).toFixed(1));});}
+ return `<path d="M${p.join('L')}Z" fill="${fill}" ${S}/><circle r="${r*.38}" fill="#fff" ${S}/><circle r="10" fill="#2E2545"/>`;}
+// ---------- dibujos nuevos del 005 (centrados en 0,0)
+const T=(tx,y,fs,x,col,id)=>`<text ${id?'id="'+id+'"':''} x="${x||0}" y="${y||0}" text-anchor="middle" font-family="Outfit" font-weight="700" font-size="${fs||40}" fill="${col||'#2E2545'}">${tx}</text>`;
+const RED='#C0392B';
+const SHEET=`<rect x="-200" y="-250" width="400" height="500" rx="14" fill="#fff" ${S}/><rect x="-200" y="-250" width="400" height="84" rx="14" fill="#C6BCE2" ${S}/>`+T('Tarea',-192,52)+[-110,-46,18,82,146,210].map(y=>`<path d="M-160 ${y}H160" fill="none" stroke="#C6BCE2" stroke-width="7" stroke-linecap="round"/>`).join('')+`<g id="shs"><circle cx="-60" cy="-20" r="16" fill="#2E2545"/><circle cx="60" cy="-20" r="16" fill="#2E2545"/><path d="M-90 50Q0 140 90 50" fill="none" stroke="#2E2545" stroke-width="14" stroke-linecap="round"/></g>`;
+const BALL=`<path d="M-90 -40L-60 -86L0 -96L60 -78L94 -30L86 40L50 84L-10 96L-70 70L-96 20Z" fill="#fff" ${S}/><path d="M-60 -86L-20 -20L60 -78M-20 -20L-96 20M-20 -20L50 84M-20 -20L86 40" fill="none" stroke="#C6BCE2" stroke-width="5" stroke-linecap="round"/>`;
+const TEAR=`<path d="M0 -24Q16 0 16 10A16 16 0 0 1 -16 10Q-16 0 0 -24Z" fill="#C6BCE2" ${S} stroke-width="4"/>`;
+const SWIRL=`<path d="M-70 0C-70 -40 -20 -50 -10 -20C0 10 -40 20 -40 -10C-40 -50 30 -60 40 -20C50 20 0 30 10 -10C20 -40 70 -40 70 0" fill="none" ${S}/>`;
+const PI=(tx,f)=>`<path d="M-85 -85H85V55L55 85H-85Z" fill="${f}" ${S}/><path d="M85 55H55V85" fill="none" ${S}/>`+T(tx,12,34);
+const STAR=(n,r1,r2)=>'M'+[...Array(n*2)].map((_,i)=>{const a=-Math.PI/2+i*Math.PI/n,r=i%2?r2:r1;return (r*Math.cos(a)).toFixed(1)+' '+(r*Math.sin(a)).toFixed(1);}).join('L')+'Z';
+const SPI='M'+[...Array(64)].map((_,i)=>{const a=i*.36,r=3+i*.9;return (r*Math.cos(a)).toFixed(1)+' '+(r*Math.sin(a)).toFixed(1);}).join('L');
+// laberinto: corredores en x -317/-63/190 · y -240/0/240 (centro del escenario 540,450)
+const MAZE=`<rect x="-380" y="-300" width="760" height="600" fill="rgba(255,255,255,.55)"/><path d="M-380 -180V300H380M380 180V-300H-380M-253 -300V-60M-126 -300V-60M-380 60H0M0 -180V300M0 -120H126M126 -60V180M253 -300V120M253 -60H380M-253 180H-63" fill="none" stroke="#2E2545" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>`;
+const MZ=(x,y)=>[540+x,450+y];
+const SLOT=i=>[120+i*105,+(700+120*Math.sin(i*.75)).toFixed(1)];
+const GAPS=[2,4,6];
+const g=document.getElementById('gg');
+const O=(id,inner)=>`<g id="${id}" class="o">${inner}</g>`;
+g.innerHTML=[
+ O('sh',SHEET),O('bal',BALL),
+ O('clk',`<rect x="-130" y="-60" width="260" height="120" rx="24" fill="#2E2545" ${S}/><rect x="-112" y="-42" width="224" height="84" rx="12" fill="#C6BCE2"/><path d="M-90 60V76M90 60V76" fill="none" ${S}/>`+T('4:00',24,66,0,'#2E2545','clkT')),
+ O('fk',`<circle r="90" fill="#F5E7D6" ${S}/><path d="M-92 -10Q-96 -100 0 -100Q96 -100 92 -10Q60 -64 0 -58Q-40 -62 -92 -10Z" fill="#F9DEE3" ${S}/><ellipse cx="-28" cy="0" rx="14" ry="17" fill="#fff" ${S} stroke-width="4"/><ellipse cx="28" cy="0" rx="14" ry="17" fill="#fff" ${S} stroke-width="4"/><circle cx="-28" cy="5" r="7" fill="#2E2545"/><circle cx="28" cy="5" r="7" fill="#2E2545"/><g id="fkl"><path d="M-46 -20H46V2H-46Z" fill="#F5E7D6"/><path d="M-44 2H-12M12 2H44" fill="none" ${S} stroke-width="5"/></g><path d="M-46 -32L-14 -24M46 -32L14 -24" fill="none" ${S} stroke-width="5"/><path d="M-24 52Q0 32 24 52" fill="none" ${S}/><circle cx="-54" cy="28" r="12" fill="#F9DEE3"/><circle cx="54" cy="28" r="12" fill="#F9DEE3"/>`),
+ O('fa',`<circle cx="0" cy="-118" r="34" fill="#2E2545" ${S}/><circle r="100" fill="#F5E7D6" ${S}/><path d="M-102 -10Q-104 -108 0 -108Q104 -108 102 -10Q70 -70 0 -66Q-50 -70 -102 -10Z" fill="#2E2545" ${S}/><circle cx="-38" cy="4" r="9" fill="#2E2545"/><circle cx="38" cy="4" r="9" fill="#2E2545"/><g id="fal"><path d="M-64 -24H64V4H-64Z" fill="#F5E7D6"/><path d="M-56 4H-20M20 4H56" fill="none" ${S} stroke-width="5"/></g><circle cx="-38" cy="4" r="28" fill="none" ${S} stroke-width="5"/><circle cx="38" cy="4" r="28" fill="none" ${S} stroke-width="5"/><path d="M-10 4H10" fill="none" ${S} stroke-width="5"/><path d="M-26 62Q0 44 26 62" fill="none" ${S}/>`),
+ ...[1,2,3,4].map(i=>O('td'+i,TEAR)),O('sd1',TEAR),O('sd2',TEAR),
+ O('sw1',SWIRL),O('sw2',SWIRL),
+ O('bur',`<path d="${STAR(8,95,62)}" fill="#F5E7D6" ${S}/>`+T('!!',24,74)),
+ O('pnA',`<rect x="-120" y="-18" width="110" height="36" fill="#F5E7D6" ${S}/><rect x="-150" y="-18" width="34" height="36" rx="6" fill="#F9DEE3" ${S}/><path d="M-10 -18L-2 -8L-12 0L-2 8L-10 18" fill="none" ${S} stroke-width="4"/>`),
+ O('pnB',`<path d="M10 -18L2 -8L12 0L2 8L10 18H90L130 0L90 -18Z" fill="#F5E7D6" ${S}/><path d="M112 -8L130 0L112 8Z" fill="#2E2545"/>`),
+ O('pi1',PI('¡Ya!','#F9DEE3')),O('pi2',PI('¡Apúrate!','#F5E7D6')),O('pi3',PI('¡Siéntate!','#fff')),
+ O('mz',MAZE),
+ O('ob1',[['3',-40,-6,-12],['1',0,8,6],['2',40,-4,14]].map(([n,x,y,r])=>`<g transform="translate(${x} ${y}) rotate(${r})"><rect x="-30" y="-38" width="60" height="76" rx="8" fill="#F9DEE3" ${S}/>${T(n,14,40)}</g>`).join('')),
+ O('ob2',`<circle r="72" fill="#fff" ${S}/><path d="${SPI}" fill="none" ${S} stroke-width="5"/>`),
+ O('ob3',`<rect x="-66" y="-56" width="132" height="112" fill="#F5E7D6" ${S}/><circle cx="-66" cy="0" r="16" fill="#F9DEE3" ${S}/><circle cx="66" cy="0" r="16" fill="#F9DEE3" ${S}/>`+T('???',14,44)),
+ O('mtn',`<path d="M-360 260L-120 -200L-40 -80L40 -260L360 260Z" fill="#F5E7D6" ${S}/><path d="M-120 -200L-170 -104Q-150 -120 -130 -100Q-110 -124 -67 -120ZM40 -260L-9 -150Q14 -170 34 -146Q60 -172 104 -156Z" fill="#fff" ${S}/>`),
+ O('qm',`<path d="M-70 -90Q-70 -170 0 -170Q80 -170 80 -100Q80 -50 24 -24Q0 -10 0 30" fill="none" stroke="#2E2545" stroke-width="76" stroke-linecap="round"/><path d="M-70 -90Q-70 -170 0 -170Q80 -170 80 -100Q80 -50 24 -24Q0 -10 0 30" fill="none" stroke="#F9DEE3" stroke-width="54" stroke-linecap="round"/><circle cy="110" r="36" fill="#F9DEE3" ${S}/>`),
+ ...[1,2,3].map(i=>O('rk'+i,`<path d="${i==1?'M-60 0A60 40 0 1 1 -60 1':'M-30 -30L30 30M30 -30L-30 30'}" fill="none" stroke="${RED}" stroke-width="9" stroke-linecap="round"/>`)),
+ O('pen',`<g transform="rotate(-30)"><path d="M0 0L-14 -40H14Z" fill="#F5E7D6" ${S}/><path d="M-4 -12L0 0L4 -12Z" fill="${RED}"/><rect x="-18" y="-200" width="36" height="160" rx="10" fill="${RED}" ${S}/><rect x="-18" y="-200" width="36" height="40" rx="10" fill="#2E2545"/></g>`),
+ O('sgn',`<rect x="-16" y="-260" width="32" height="560" rx="10" fill="#F5E7D6" ${S}/><path d="M-80 300H80" fill="none" ${S} stroke-width="10"/>`),
+ O('arL',`<path d="M-20 -50H-360L-400 0L-360 50H-20Z" fill="#fff" ${S}/>`+T('Exigir más',15,44,-200)),
+ O('arR',`<path d="M20 -50H360L400 0L360 50H20Z" fill="#F9DEE3" ${S}/>`+T('Comprender mejor',14,38,190)),
+ O('meg',`<path d="M-60 -24L40 -70V70L-60 24Z" fill="#F5E7D6" ${S}/><rect x="-92" y="-28" width="36" height="56" rx="8" fill="#C6BCE2" ${S}/><g id="mga"><path d="M66 -40Q90 0 66 40M92 -64Q130 0 92 64" fill="none" ${S}/></g>`),
+ ...[...Array(9).keys()].filter(i=>!GAPS.includes(i)).map(i=>O('pd'+i,`<ellipse rx="44" ry="24" fill="#fff" ${S}/>`)),
+ ...[1,2,3].map(i=>O('pk'+i,`<rect x="-75" y="-18" width="150" height="36" height="32" rx="8" fill="#F5E7D6" ${S}/><circle cx="-56" r="5" fill="#2E2545"/><circle cx="56" r="5" fill="#2E2545"/>`)),
+ ...[1,2,3].map(i=>O('rg'+i,`<circle r="90" fill="none" stroke="#2E2545" stroke-width="6" stroke-dasharray="16 12"/>`)),
+ O('bin',`<circle cx="-46" r="44" fill="#C6BCE2" ${S}/><circle cx="46" r="44" fill="#C6BCE2" ${S}/><circle cx="-46" r="22" fill="#fff" ${S}/><circle cx="46" r="22" fill="#fff" ${S}/><rect x="-18" y="-34" width="36" height="30" rx="8" fill="#2E2545"/>`),
+ O('tk',`<circle r="34" fill="#F9DEE3" ${S}/><circle cx="-11" cy="-4" r="5" fill="#2E2545"/><circle cx="11" cy="-4" r="5" fill="#2E2545"/><path id="tkm" d="M-11 16Q0 8 11 16" fill="none" ${S} stroke-width="4"/><path id="tks" d="M-12 10Q0 22 12 10" fill="none" ${S} stroke-width="4" opacity="0"/>`),
+ O('cht',`<rect x="-300" y="-230" width="600" height="460" rx="16" fill="#fff" ${S}/><path d="M-300 -150H300" fill="none" ${S}/><circle cx="-250" cy="-190" r="20" fill="#F9DEE3" ${S} stroke-width="4"/>`+T('Comentarios',-176,36,-90)+`<rect x="-250" y="-120" width="300" height="70" rx="16" fill="#F9DEE3" ${S}/><path d="M-220 -86H10" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/><rect x="-50" y="-20" width="300" height="70" rx="16" fill="#F5E7D6" ${S}/><path d="M-20 14H210" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/><rect x="-250" y="90" width="170" height="70" rx="16" fill="#C6BCE2" ${S}/>`+[1,2,3].map(i=>`<circle id="dt${i}" cx="${-245+i*40}" cy="125" r="11" fill="#2E2545"/>`).join(''))
+].join('');
+// ---------- HTML: rótulos (≤4 palabras)
+const H=document.getElementById('ht');
+const st=(id,tx,x,y,fs,rot)=>H.insertAdjacentHTML('beforeend',`<div class="st" id="${id}" data-r="${rot||0}" style="left:${x}px;top:${y}px;${fs?'font-size:'+fs+'px':''}">${tx}</div>`);
+const pl=(id,tx,x,y)=>H.insertAdjacentHTML('beforeend',`<div class="pl" id="${id}" style="left:${x}px;top:${y}px;width:auto;padding:0 28px;font-size:40px">${tx}</div>`);
+pl('lAb','Abre tu cuaderno',540,30);
+st('sOt','Otra tarde de llanto',540,900,0,-2);
+st('sAo','Atención y organización',540,900,0,2);
+st('sNv','No siempre es voluntad',540,900,0,-2);
+st('sQp','¿Qué está pasando?',540,900,0,2);
+st('sCe','Comprender antes de exigir',540,900,0,-2);
+st('sNe','No estás solo',540,900,0,2);
+H.insertAdjacentHTML('beforeend','<div id="end" style="position:absolute;left:0;top:0;width:1080px;height:1000px;opacity:0"><div style="position:absolute;left:90px;top:330px;width:900px;text-align:center;font:700 70px/1.15 Outfit;color:#2E2545">Este video orienta y no diagnostica.</div><div class="st" style="left:540px;top:620px;opacity:1;font:700 40px/1 \'Maven Pro\';transform:translate(-50%,-50%)">psicologakarentrujillo.com.mx</div></div>');
+// ============ ESPECIFICACIÓN (se define antes que las escenas) ============
+// Lienzo 1080×1920 (9:16) · 30 fps · 64.2 s · audio = voz.mp3 (1.10x)
+// Zonas seguras: gráficos dentro de x 60–1020 y página y 300–1250 (escenario); subtítulos en y 1290–1440 (nada de gráficos ahí).
+// Micro-copy: máximo 4 palabras por momento visual (sin contar subtítulos). Bucle: nada se anima en los últimos 0.5 s.
+const CFG={FPS:30,DUR:+(WORDS[WORDS.length-1][2]+.1).toFixed(2),W:1080,H:1920,
+ POP:'back.out(1.35)',   // entradas: suaves, un solo rebote leve
+ MOVE:'power3.inOut',    // desplazamientos
+ OUT:'power2.in',        // salidas
+ T:{pop:.5,move:.7,out:.3}};
+gsap.set('.o',{opacity:0,transformOrigin:'50% 50%'});
+gsap.set('#fkl,#fal',{transformOrigin:'50% 0%',scaleY:0});
+gsap.set('#shs',{opacity:0});
+gsap.set('#arL',{transformOrigin:'95% 50%'});
+gsap.set('.st,.big,.lb',{xPercent:-50,yPercent:-50});
+gsap.set('.pl',{xPercent:-50,opacity:0});
+document.querySelectorAll('.st').forEach(e=>gsap.set(e,{rotation:+e.dataset.r}));
+const tl=gsap.timeline({paused:true});
+const ST=(s,v)=>gsap.set(s,v);
+// utilidades: entrar (POP), salir (OUT), mover (MV)
+const POP=(s,t,sc,x,y,d)=>{const f={scale:.3,opacity:0},v={scale:sc||1,opacity:1,duration:d||CFG.T.pop,ease:CFG.POP,immediateRender:false};if(x!==undefined){f.x=x;f.y=y;v.x=x;v.y=y;}tl.fromTo(s,f,v,t);};
+const OUT=(s,t,d)=>tl.to(s,{opacity:0,scale:'*=0.7',duration:d||CFG.T.out,ease:CFG.OUT},t);
+const MV=(s,t,v,d,e)=>tl.to(s,Object.assign({duration:d||CFG.T.move,ease:e||CFG.MOVE},v),t);
+const FROM=(s,t,f,v,d)=>tl.fromTo(s,f,Object.assign({duration:d||CFG.T.pop,ease:CFG.POP,immediateRender:false},v),t);
+const PLI=(s,t)=>tl.fromTo(s,{opacity:0,scale:.6},{opacity:1,scale:1,duration:.4,ease:CFG.POP,immediateRender:false},t);
+const SHAKE=(s,t,n,dx)=>tl.to(s,{x:'+='+(dx||10),duration:.07,yoyo:true,repeat:n||5,ease:'sine.inOut'},t);
+// trazo que se dibuja (marcas de la pluma roja)
+const DRAW=(s,t,d)=>{const p=document.querySelector(s+' path'),L=p.getTotalLength();gsap.set(p,{strokeDasharray:L,strokeDashoffset:L});tl.set(s,{opacity:1,scale:1},t);tl.fromTo(p,{strokeDashoffset:L},{strokeDashoffset:0,duration:d||.35,ease:'power1.inOut',immediateRender:false},t);};
+// reloj digital (h:mm)
+const CKT=document.getElementById('clkT');const fm=m=>Math.floor(m/60)+':'+String(Math.floor(m%60)).padStart(2,'0');
+const COUNT=(t,a,b,d)=>{const o={v:a};tl.fromTo(o,{v:a},{v:b,duration:d,ease:'power1.in',immediateRender:false,onUpdate:()=>{CKT.textContent=fm(o.v);}},t);};
+// lágrima que cae
+const DROP=(s,t,x,y,dy)=>tl.fromTo(s,{opacity:0,scale:.4,x,y},{keyframes:[{opacity:1,scale:1,duration:.15},{y:y+(dy||140),duration:.55,ease:'power1.in'},{opacity:0,duration:.15}],immediateRender:false},t);
+
+// ============ ESCENA 1 · HOOK (0–5.2) ============
+// Acción: hoja de «Tarea», reloj digital que corre de 4:00 a 6:30; la cara del niño llora (lágrimas), estallido «!!» (gritos) y un lápiz que se parte (frustración).
+// Persisten: hoja, cara del niño. Imagen final: hoja, cara y «Otra tarde de llanto».
+function escena1(){
+ ST('#sh',{rotation:-4});
+ POP('#sh',0,.85,540,330);
+ POP('#clk',.1,.8,860,110);COUNT(.3,240,390,4.3);
+ POP('#fk',.2,1.1,540,720);
+ const tLl=at('llanto');
+ DROP('#td1',tLl,509,745);DROP('#td2',tLl+.15,571,745);DROP('#td3',tLl+.6,509,745);DROP('#td4',tLl+.75,571,745);
+ POP('#bur',at('gritos',-.15),.9,220,680);SHAKE('#bur',at('gritos',.3),5,12);SHAKE('#fk',at('gritos'),3,6);
+ FROM('#pnA',at('frustracion',-.4),{opacity:0,scale:.3,x:860,y:640,rotation:0},{opacity:1,scale:.9,x:860,y:640,rotation:0});
+ FROM('#pnB',at('frustracion',-.4),{opacity:0,scale:.3,x:860,y:640,rotation:0},{opacity:1,scale:.9,x:860,y:640,rotation:0});
+ MV('#pnA',at('frustracion',.1),{x:830,y:660,rotation:-30},.3,'back.out(2)');MV('#pnB',at('frustracion',.1),{x:900,y:660,rotation:30},.3,'back.out(2)');
+ POP('#sOt',at('hay algo'),1);
+}
+// ============ ESCENA 2 · DESARROLLO (5.2–19.3) ============
+// Acción: la hoja se endereza; tarjeta «Abre tu cuaderno»; notas adhesivas de recordatorios que tiemblan (quejas); lágrimas;
+//   remolinos sobre la cara del niño y luego sobre la del adulto; el reloj marca 0:20 y corre a 1:45; la hoja se arruga en una bola y las dos caras quedan agotadas.
+// Persisten: hoja (→ bola), cara del niño, reloj. Imagen final: bola de papel, reloj en 1:45 y dos caras agotadas con gotas de sudor.
+function escena2(){
+ const tT=at('todo');
+ ['#bur','#pnA','#pnB','#sOt','#clk'].forEach(s=>OUT(s,tT-.2));
+ MV('#sh',tT,{x:540,y:330,scale:.7,rotation:0});
+ MV('#fk',tT,{x:540,y:760,scale:1.1});
+ PLI('#lAb',at('instruccion'));
+ tl.to('#sh',{y:'-=16',duration:.18,yoyo:true,repeat:1,ease:'sine.out'},at('abre'));
+ [['#pi1',200,300,-8],['#pi2',880,250,6],['#pi3',870,470,-5]].forEach(([s,x,y,r],i)=>FROM(s,at('recordatorios')+i*.3,{opacity:0,scale:.3,x,y,rotation:0},{opacity:1,scale:.9,x,y,rotation:r}));
+ tl.to('#pi1,#pi2,#pi3',{rotation:'+=7',duration:.1,yoyo:true,repeat:5,ease:'sine.inOut'},at('quejas'));
+ const tLg=at('lagrimas');
+ DROP('#td1',tLg,509,785,110);DROP('#td2',tLg+.15,571,785,110);DROP('#td3',tLg+.55,509,785,110);DROP('#td4',tLg+.7,571,785,110);
+ const tDs=at('desespera');
+ ['#pi1','#pi2','#pi3','#lAb'].forEach(s=>OUT(s,tDs-.2));
+ MV('#fk',tDs-.3,{x:290},.5);FROM('#sw1',tDs,{opacity:0,scale:.3,x:290,y:595,rotation:0},{opacity:1,scale:.9,x:290,y:595});
+ tl.to('#sw1',{rotation:12,duration:.25,yoyo:true,repeat:9,ease:'sine.inOut'},tDs+.4);SHAKE('#fk',tDs,5,8);
+ POP('#fa',at('tu tambien',-.2),1.05,790,750);
+ FROM('#sw2',at('tambien',.1),{opacity:0,scale:.3,x:790,y:555,rotation:0},{opacity:1,scale:.9,x:790,y:555});
+ tl.to('#sw2',{rotation:-12,duration:.25,yoyo:true,repeat:7,ease:'sine.inOut'},at('tambien',.5));
+ MV('#sh',at('lo que'),{y:350},.5);
+ POP('#clk',at('veinte',-.2),.8,540,95);COUNT(at('veinte',-.2),20,20,.05);COUNT(at('termina convirtiendose'),20,105,1.3);
+ SHAKE('#clk',at('batalla'),5,8);
+ const tB=at('batalla');
+ OUT('#sh',tB-.15,.2);
+ FROM('#bal',tB-.05,{opacity:0,scale:.3,x:540,y:350,rotation:0},{opacity:1,scale:1.1,x:540,y:350,rotation:20});
+ OUT('#sw1',tB);OUT('#sw2',tB);
+ tl.to('#fkl,#fal',{scaleY:1,duration:.3,ease:CFG.MOVE},tB);
+ POP('#sd1',tB+.2,.9,395,665);POP('#sd2',tB+.3,.9,905,655);
+}
+// ============ ESCENA 3 · GIRO (19.3–35.1) ============
+// Acción: la bola de papel se abre y se vuelve un laberinto; una ficha recorre los pasillos y choca con tres obstáculos:
+//   tarjetas revueltas 3-1-2 (organizar), espiral (atención) y pergamino «???» (instrucciones); el laberinto se desenfoca y una montaña enorme se levanta (abrumado).
+// Persisten: laberinto, ficha, obstáculos. Imagen final: montaña, ficha chiquita y «No siempre es voluntad».
+function escena3(){
+ const tR=at('reaccion');
+ ['#fk','#fa','#sd1','#sd2','#clk'].forEach(s=>OUT(s,tR-.2));
+ MV('#bal',tR,{x:540,y:450,scale:1.5,rotation:200},.8);
+ const tM=at('haber',-.2);
+ tl.to('#bal',{scale:2.6,opacity:0,duration:.35,ease:CFG.OUT},tM);
+ FROM('#mz',tM+.15,{opacity:0,scale:.4,x:540,y:450},{opacity:1,scale:1,x:540,y:450},.55);
+ POP('#tk',at('tal vez',-.3),1,120,210);
+ const path=(t,pts,d)=>pts.forEach(([x,y],i)=>MV('#tk',t+i*d,{x,y},d,'power1.inOut'));
+ path(at('tal vez'),[[223,210],[223,450],[235,450]],.28);
+ POP('#ob1',at('organizar',-.1),.8,...MZ(-190,0));SHAKE('#tk',at('pasos'),3,-8);
+ path(at('mantener'),[[350,370],[477,450],[477,210],[490,210]],.2);
+ POP('#ob2',at('la atencion',-.15),.8,...MZ(63,-240));SHAKE('#tk',at('atencion',.3),3,-8);
+ path(at('comprender'),[[603,140],[730,210],[730,470]],.22);
+ POP('#ob3',at('instrucciones',-.2),.8,...MZ(190,120));SHAKE('#tk',at('instrucciones',.3),3,8);
+ POP('#sAo',at('instrucciones',.4),1);
+ const tAb=at('sentirse');
+ OUT('#sAo',tAb-.1);
+ tl.to('#mz,#ob1,#ob2,#ob3',{filter:'blur(6px)',opacity:.3,duration:.4},tAb);
+ MV('#tk',tAb,{x:540,y:800},.6);
+ FROM('#mtn',at('abrumado',-.2),{opacity:0,scale:.3,x:540,y:620},{opacity:1,scale:.9,x:540,y:470},.6);
+ MV('#mtn',at('demasiado'),{scale:1.05,y:440},.7);SHAKE('#tk',at('dificil'),5,8);
+ POP('#sNv',at('necesariamente'),1);
+}
+// ============ ESCENA 4 · PROVOCACIÓN (35.1–45.2) ============
+// Acción: signo de interrogación grande; la hoja vuelve y una pluma roja la llena de marcas (corregir); «¿Qué está pasando?»;
+//   un poste con dos flechas «Exigir más» / «Comprender mejor» y un megáfono: la flecha de exigir y el megáfono se apagan.
+// Persisten: hoja (vuelve de la escena 2). Imagen final: poste con «Comprender mejor» resaltada.
+function escena4(){
+ const tY=at('y conviene');
+ ['#mtn','#tk','#sNv','#mz','#ob1','#ob2','#ob3'].forEach(s=>OUT(s,tY-.2));
+ FROM('#qm',at('pensar',-.1),{opacity:0,scale:.3,x:770,y:470,rotation:-20},{opacity:1,scale:1.3,x:770,y:470,rotation:0});
+ FROM('#sh',at('esto',-.1),{opacity:0,scale:.3,x:330,y:480,rotation:-3},{opacity:1,scale:.75,x:330,y:480,rotation:-3});
+ const tC=at('corrigiendo');
+ FROM('#pen',tC-.3,{opacity:0,scale:.5,x:520,y:330},{opacity:1,scale:1,x:520,y:330},.4);
+ [['#rk1',290,400],['#rk2',410,530],['#rk3',290,600]].forEach(([s,x,y],i)=>{ST(s,{x,y});MV('#pen',tC+i*.5,{x:x+(i?30:60),y:y+(i?30:0)},.3,'power2.inOut');DRAW(s,tC+i*.5+.25,.3);});
+ OUT('#pen',tC+1.7);
+ tl.to('#qm',{rotation:10,duration:.25,yoyo:true,repeat:5,ease:'sine.inOut'},at('sin saber'));
+ POP('#sQp',at('haciendo'),1);
+ const tP=at('porque exigir');
+ ['#qm','#sh','#rk1','#rk2','#rk3','#sQp'].forEach(s=>OUT(s,tP-.2));
+ POP('#sgn',at('exigir',-.3),1,540,480);
+ FROM('#arL',at('exigir'),{opacity:0,scale:.3,x:540,y:330},{opacity:1,scale:1,x:540,y:330});
+ POP('#meg',at('exigir',.2),1.2,250,700);
+ tl.to('#mga',{scale:1.25,transformOrigin:'0% 50%',duration:.15,yoyo:true,repeat:5},at('exigir mas',.2));
+ FROM('#arR',at('exigir mas',.4),{opacity:0,scale:.3,x:540,y:470},{opacity:1,scale:1,x:540,y:470});
+ const tN=at('no siempre');
+ tl.to('#arL,#meg',{filter:'blur(4px)',opacity:.45,duration:.4},tN);
+ MV('#arL',tN,{rotation:10},.5);
+ tl.to('#arR',{scale:1.08,duration:.25,yoyo:true,repeat:1,ease:'sine.inOut'},at('dificultad',-.2));
+}
+// ============ ESCENA 5 · CIERRE (45.2–60.1) ============
+// Acción: vuelve el laberinto con sus obstáculos; sus muros se van y queda un camino de piedras con tres huecos; unos binoculares
+//   revisan cada obstáculo (evaluación) y los marcan; cada hueco recibe una tabla de apoyo y la ficha cruza saltando;
+//   arriba, una bola de papel se alisa en una hoja con carita feliz.
+// Persisten: laberinto (→ camino), obstáculos, ficha, bola (→ hoja). Imagen final: camino completo, ficha sonriendo, hoja feliz y «Comprender antes de exigir».
+function escena5(){
+ const tS=at('si esta');
+ ['#sgn','#arL','#arR','#meg'].forEach(s=>OUT(s,tS-.2));
+ FROM('#mz',at('situacion',-.2),{opacity:0,scale:.5,x:540,y:450,filter:'blur(0px)'},{opacity:1,scale:1,x:540,y:450});
+ [['#ob1',-190,0],['#ob2',63,-240],['#ob3',190,120]].forEach(([s,x,y],i)=>FROM(s,at('situacion')+i*.2,{opacity:0,scale:.3,x:540+x,y:450+y,filter:'blur(0px)'},{opacity:1,scale:.8,x:540+x,y:450+y}));
+ const tI=at('investigar');
+ tl.to('#mz',{opacity:0,scale:1.15,duration:.5,ease:CFG.OUT},tI);
+ let k=0;for(let i=0;i<9;i++){if(GAPS.includes(i))continue;const [x,y]=SLOT(i);FROM('#pd'+i,tI+.2+(k++)*.05,{opacity:0,scale:.2,x,y},{opacity:1,scale:1,x,y},.4);}
+ const OB=[['#ob1',2],['#ob2',4],['#ob3',6]];
+ OB.forEach(([s,gi])=>{const [x,y]=SLOT(gi);MV(s,tI+.1,{x,y:y-190,scale:1},.7);});
+ POP('#bin',tI+.7,1.1,220,220);
+ tl.to('#bin',{rotation:8,duration:.3,yoyo:true,repeat:3,ease:'sine.inOut'},at('evaluacion'));
+ OB.forEach(([s,gi],i)=>{const [x,y]=SLOT(gi);MV('#bin',at('identificar')+i*.45,{x,y:y-190-150,rotation:0},.4);});
+ OB.forEach(([s,gi],i)=>{const [x,y]=SLOT(gi);POP('#rg'+(i+1),at('habilidades')+i*.3,1.05,x,y-190);});
+ const tA=at('apoyo');
+ ['#bin','#rg1','#rg2','#rg3'].forEach(s=>OUT(s,tA-.2));
+ OB.forEach(([s,gi],i)=>{const [x,y]=SLOT(gi);FROM('#pk'+(i+1),tA+i*.25,{opacity:0,scale:.6,x,y:y-150},{opacity:1,scale:1,x,y},.45);MV(s,tA+i*.25,{y:y-300,scale:.75},.5);});
+ const [x0,y0]=SLOT(0);POP('#tk',tA,1.3,x0,y0-52);
+ const tW=at('hijo no necesita');
+ for(let i=1;i<9;i++){const [xa,ya]=SLOT(i-1),[xb,yb]=SLOT(i);
+  tl.to('#tk',{keyframes:[{x:(xa+xb)/2,y:Math.min(ya,yb)-80,duration:.15,ease:'power1.out'},{x:xb,y:yb-52,duration:.15,ease:'power1.in'}]},tW+(i-1)*.32);}
+ FROM('#bal',at('cada tarea',0,1),{opacity:0,scale:.3,x:540,y:180,rotation:0},{opacity:1,scale:.75,x:540,y:180,rotation:-15});
+ SHAKE('#bal',at('batalla',0,1),5,8);
+ const tN=at('necesita',0,1);
+ OUT('#bal',tN-.1,.2);
+ tl.set('#shs',{opacity:1},tN);
+ FROM('#sh',tN,{opacity:0,scale:.2,x:540,y:190,rotation:0},{opacity:1,scale:.5,x:540,y:180,rotation:0});
+ const tCo=at('comprenda');
+ tl.set('#tkm',{opacity:0},tCo-.1);tl.set('#tks',{opacity:1},tCo-.1);
+ tl.to('#tk',{y:'-=26',duration:.2,yoyo:true,repeat:1,ease:'sine.out'},tCo-.1);
+ POP('#sCe',tCo,1);
+}
+// ============ ESCENA 6 · CTA (60.1–64.2) ============
+// Acción: ventana de comentarios con mensajes y puntos de «escribiendo»; «No estás solo»; aviso final y web (quietos los últimos 0.5 s).
+// Imagen final: aviso «Este video orienta y no diagnostica.» + web.
+function escena6(){
+ const tL=at('las tareas');
+ const all=['#tk','#sh','#sCe','#ob1','#ob2','#ob3','#pk1','#pk2','#pk3',...[...Array(9).keys()].filter(i=>!GAPS.includes(i)).map(i=>'#pd'+i)];
+ all.forEach(s=>OUT(s,tL-.25));
+ POP('#cht',tL,1.15,540,440);
+ [1,2,3].forEach(i=>tl.to('#dt'+i,{y:-12,duration:.25,yoyo:true,repeat:3,ease:'sine.inOut'},tL+.6+i*.12));
+ POP('#sNe',at('dificiles'),1);
+ const tF=at('comenta',-.2);
+ ['#cht','#sNe'].forEach(s=>OUT(s,tF-.1));
+ tl.fromTo('#end',{opacity:0,scale:.92,transformOrigin:'50% 50%'},{opacity:1,scale:1,duration:.5,ease:CFG.POP,immediateRender:false},tF+.15);
+}
+escena1();escena2();escena3();escena4();escena5();escena6();
+// ============ SUBTÍTULOS (tiempos reales de words.json) ============
+const KEYS=new Set(['tarea','llanto','frustracion','cuaderno','recordatorios','lagrimas','batalla','organizar','atencion','comprender','instrucciones','abrumado','dificil','exigir','evaluacion','habilidades','apoyo','comprenda','comenta']);
+(function(){const caps=[];let cur=[];
+ const flush=()=>{if(cur.length){caps.push(cur);cur=[];}};
+ WORDS.forEach((w,i)=>{cur.push({w:w[0],t:w[1],e:w[2]});const nx=WORDS[i+1];
+  if(cur.length>=3||/[,.:?…]$/.test(w[0])||(nx&&nx[1]-w[2]>.45))flush();});flush();
+ caps.forEach((c,i)=>{const d=document.createElement('div');d.className='cap';d.id='cap'+i;
+  d.innerHTML=c.map((x,j)=>`<span class="pw${KEYS.has(norm(x.w)[0])?' k':''}" id="c${i}w${j}">${x.w}</span>`).join(' ');document.body.appendChild(d);
+  const s0=c[0].t,e0=Math.min(i+1<caps.length?caps[i+1][0].t-.03:CFG.DUR-.05,c[c.length-1].e+.9);
+  tl.set('#cap'+i,{opacity:1},s0);tl.set('#cap'+i,{opacity:0},e0);
+  c.forEach((x,j)=>tl.fromTo('#c'+i+'w'+j,{opacity:0,scale:.5,y:10,transformOrigin:'50% 80%'},{opacity:1,scale:1,y:0,duration:.25,ease:'power2.out',immediateRender:false},x.t));});
+})();
+window.DUR=CFG.DUR;
+window.seek=t=>{tl.time(Math.min(t,tl.duration()));document.getElementById('rtb').setAttribute('seed',1+Math.floor(t*12)%7);};
+</script></body></html>
