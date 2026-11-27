@@ -33,7 +33,7 @@
 - Pasar el 41 de la rama de la sesión a `main`.
 
 - Hooks virales 031 a 040: generar la voz con la receta cuando haya créditos (Starter no alcanzó para los 40; Eduardo los dejó pendientes).
-- Hooks virales: faltan los gráficos del 009 al 040 (receta del 008 v2, estilo de referencias). Falta decidir si se rehacen del 001 al 007 con el estilo nuevo. Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
+- Hooks virales: faltan los gráficos del 009 al 040 (receta del 008 v2, estilo de referencias). Del 001 al 007 se quedan como están (estilo ilustrado), decidió Eduardo el 27 nov. Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
 
 ## ✗ No tocar
 - Diagnosticar o decir que algo «cura»: el contenido orienta, no diagnostica.
