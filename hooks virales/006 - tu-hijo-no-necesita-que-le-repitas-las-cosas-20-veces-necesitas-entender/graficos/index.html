@@ -1,0 +1,277 @@
+<!doctype html><html><head><meta charset="utf-8"><title>006 gráficos</title>
+<style>
+@font-face{font-family:Outfit;src:url(Outfit-700-latin.woff2);font-weight:700}
+@font-face{font-family:'Maven Pro';src:url(MavenPro-700-latin.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;font-family:Outfit,sans-serif;background:linear-gradient(180deg,#C6BCE2 0%,#F9DEE3 100%);position:relative}
+body::before{content:"";position:absolute;left:-160px;top:1280px;width:480px;height:480px;border-radius:50%;background:rgba(255,255,255,.28);box-shadow:1000px -1100px 0 -40px rgba(245,231,214,.45)}
+#stage{position:absolute;left:0;top:300px;width:1080px;height:1000px}
+#sv{position:absolute;left:0;top:0}
+#ht{position:absolute;left:0;top:0;width:1080px;height:1000px}
+.st{position:absolute;white-space:nowrap;background:#F5E7D6;border:5px solid #2E2545;border-radius:26px;font:700 52px/1 Outfit;color:#2E2545;padding:14px 30px;box-shadow:6px 7px 0 #F9DEE3;opacity:0}
+.pl{position:absolute;white-space:nowrap;background:#fff;border:6px solid #2E2545;border-radius:30px;font:700 44px/1 Outfit;color:#2E2545;width:440px;height:104px;line-height:92px;text-align:center;opacity:0;box-shadow:5px 6px 0 #F9DEE3}
+.big{position:absolute;font:700 150px/1 Outfit;color:#2E2545;opacity:0;white-space:nowrap}
+.lb{position:absolute;font:700 44px/1 Outfit;color:#2E2545;opacity:0;white-space:nowrap;text-align:center}
+.cap{position:absolute;left:40px;right:40px;top:1290px;text-align:center;z-index:50;opacity:0;line-height:1.5}
+.pw{display:inline-block;background:rgba(46,37,69,.88);color:#fff;font:700 58px/1.25 "Maven Pro",sans-serif;padding:6px 20px;margin:5px 4px;border-radius:18px;opacity:0}
+.pw.k{color:#C6BCE2}
+</style></head><body>
+<div id="stage">
+<svg id="sv" width="1080" height="1000" viewBox="0 0 1080 1000"><defs>
+<filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence id="rtb" type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="1"/><feDisplacementMap in="SourceGraphic" scale="5"/></filter></defs>
+<g id="gg" filter="url(#rough)"></g></svg>
+<div id="ht"></div></div>
+<script src="gsap.min.js"></script>
+<script src="words.js"></script>
+<script>
+const S='stroke="#2E2545" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"';
+const GR='#10b77f';
+// ---------- tiempos reales de la voz
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9ñ\s]/g,' ').split(/\s+/).filter(Boolean);
+const WN=WORDS.map(w=>norm(w[0])[0]||'');
+function at(frag,off,nth){const f=norm(frag);let c=0;
+ for(let i=0;i<=WN.length-f.length;i++){let ok=true;for(let j=0;j<f.length;j++)if(WN[i+j]!==f[j]){ok=false;break;}
+  if(ok){if((nth||0)===c)return +(WORDS[i][1]+(off||0)).toFixed(2);c++;}}
+ throw new Error('no encuentro: '+frag);}
+// ---------- dibujos (centrados en 0,0)
+function gear(r,n,fill){let p=[];const st=2*Math.PI/n;
+ for(let i=0;i<n;i++){const a=i*st;[[-.28,r],[-.18,r+26],[.18,r+26],[.28,r]].forEach(([k,rr])=>{const aa=a+k*st;p.push((rr*Math.cos(aa)).toFixed(1)+' '+(rr*Math.sin(aa)).toFixed(1));});}
+ return `<path d="M${p.join('L')}Z" fill="${fill}" ${S}/><circle r="${r*.38}" fill="#fff" ${S}/><circle r="10" fill="#2E2545"/>`;}
+// ---------- dibujos nuevos del 006 (centrados en 0,0)
+const T=(tx,y,fs,x,col,id)=>`<text ${id?'id="'+id+'"':''} x="${x||0}" y="${y||0}" text-anchor="middle" font-family="Outfit" font-weight="700" font-size="${fs||40}" fill="${col||'#2E2545'}">${tx}</text>`;
+const RED='#C0392B';
+const BLK=(l,f)=>`<rect x="-40" y="-40" width="80" height="80" rx="8" fill="${f}" ${S}/>`+T(l,16,46);
+const IC={
+ blk:BLK('A','#F9DEE3'),
+ nb:`<rect x="-40" y="-50" width="80" height="100" rx="6" fill="#C6BCE2" ${S}/><path d="M-24 -50V50M-8 -20H24M-8 0H24" fill="none" ${S} stroke-width="5"/>`,
+ shoe:`<path d="M-60 40V-4Q-60 -36 -30 -36Q-22 -6 8 -4Q60 0 60 30V40Z" fill="#F5E7D6" ${S}/><path d="M-60 40H60" fill="none" ${S} stroke-width="10"/>`};
+const CARD=(ic)=>`<rect x="-90" y="-110" width="180" height="220" rx="14" fill="#fff" ${S}/><circle cy="-110" r="18" fill="${RED}" ${S}/><g transform="translate(0 10)">${ic}</g>`;
+const KH=[`<circle cy="20" r="16" fill="#2E2545"/>`,`<path d="M0 0L18 34H-18Z" fill="#2E2545"/>`,`<rect x="-16" y="4" width="32" height="32" fill="#2E2545"/>`];
+const KB=[`<circle cy="-42" r="16" fill="#F9DEE3" ${S} stroke-width="4"/>`,`<path d="M0 -62L18 -28H-18Z" fill="#F9DEE3" ${S} stroke-width="4"/>`,`<rect x="-16" y="-60" width="32" height="32" fill="#F9DEE3" ${S} stroke-width="4"/>`];
+let sd=7;const rnd=()=>{sd=(sd*9301+49297)%233280;return sd/233280;};
+const PILE=[...Array(20)].map((_,i)=>[180+(i%5)*180+(rnd()-.5)*70,250+Math.floor(i/5)*160+(rnd()-.5)*60,(rnd()-.5)*50]);
+const g=document.getElementById('gg');
+const O=(id,inner)=>`<g id="${id}" class="o">${inner}</g>`;
+g.innerHTML=[
+ O('ckr',`<g id="cbt"><rect x="-30" y="-128" width="60" height="50" rx="12" fill="#F9DEE3" ${S}/></g><rect x="-120" y="-90" width="240" height="190" rx="40" fill="#C6BCE2" ${S}/><rect x="-84" y="-52" width="168" height="86" rx="12" fill="#fff" ${S}/>`+T('0',14,64,0,'#2E2545','ckN')+`<circle cy="128" r="26" fill="none" ${S}/>`),
+ O('tly',[-330,-110,110,330].map((gx,k)=>[-45,-15,15,45].map((x,j)=>`<path id="tm${k*5+j}" d="M${gx+x} -50V50" fill="none" stroke="#2E2545" stroke-width="10" stroke-linecap="round"/>`).join('')+`<path id="tm${k*5+4}" d="M${gx-70} 40L${gx+70} -40" fill="none" stroke="${RED}" stroke-width="10" stroke-linecap="round"/>`).join('')),
+ O('flr',`<path d="M-440 0H440" fill="none" ${S}/>`),
+ O('blk',`<g transform="translate(-44 40)">${BLK('A','#F9DEE3')}</g><g transform="translate(44 40)">${BLK('B','#C6BCE2')}</g><g transform="translate(0 -44) rotate(8)">${BLK('C','#F5E7D6')}</g>`),
+ O('car',`<path d="M-90 20V-10Q-90 -20 -80 -20H-50L-24 -56H40L70 -20H86Q96 -20 96 -10V20Z" fill="#F9DEE3" ${S}/><path d="M-16 -46H30L52 -20H-36Z" fill="#fff" ${S} stroke-width="4"/><circle cx="-50" cy="24" r="22" fill="#2E2545"/><circle cx="56" cy="24" r="22" fill="#2E2545"/><circle cx="-50" cy="24" r="8" fill="#fff"/><circle cx="56" cy="24" r="8" fill="#fff"/>`),
+ O('dck',`<path d="M-70 10Q-70 60 0 60Q70 60 70 10Q70 -10 40 -10Q30 -30 0 -20Q-40 -10 -70 10Z" fill="#F5E7D6" ${S}/><circle cx="34" cy="-50" r="34" fill="#F5E7D6" ${S}/><path d="M64 -54L96 -44L64 -36Z" fill="#F9DEE3" ${S} stroke-width="4"/><circle cx="42" cy="-58" r="6" fill="#2E2545"/>`),
+ ...[1,2,3].map(i=>O('rr'+i,`<ellipse rx="120" ry="110" fill="none" stroke="#2E2545" stroke-width="5" stroke-dasharray="14 12"/>`)),
+ O('dsk',`<rect x="-280" y="-18" width="560" height="36" rx="10" fill="#F5E7D6" ${S}/><path d="M-240 18V150M240 18V150" fill="none" ${S} stroke-width="12"/>`),
+ O('nbk',[['#C6BCE2',0],['#F9DEE3',-30],['#fff',-60]].map(([f,y],i)=>`<rect x="-100" y="${y-28}" width="200" height="28" rx="6" fill="${f}" ${S} transform="rotate(${[-3,4,-2][i]} 0 ${y})"/>`).join('')),
+ O('dor',`<rect x="-100" y="-170" width="200" height="340" rx="10" fill="#fff" ${S}/><rect x="-70" y="-140" width="140" height="280" rx="6" fill="#C6BCE2" ${S} stroke-width="4"/><circle cx="46" cy="10" r="10" fill="#2E2545"/>`),
+ ...[0,1,2,3].map(i=>O('fp'+i,`<ellipse rx="14" ry="22" fill="rgba(46,37,69,.45)" transform="rotate(70)"/>`)),
+ O('ear',`<path d="M-60 -40Q-60 -130 20 -130Q100 -130 100 -40Q100 10 60 40Q40 56 40 90Q40 130 0 130Q-36 130 -44 100" fill="#F5E7D6" ${S}/><path d="M-10 -40Q-10 -84 26 -84Q62 -84 62 -44Q62 -10 30 10" fill="none" ${S}/>`),
+ O('wv',`<path d="M-20 -60Q20 0 -20 60M20 -90Q80 0 20 90" fill="none" ${S} stroke-width="8"/>`),
+ O('brd',`<rect x="-300" y="-200" width="600" height="400" rx="16" fill="#fff" ${S} stroke-width="10"/><rect x="-276" y="-176" width="552" height="352" rx="8" fill="none" stroke="#C6BCE2" stroke-width="5"/><rect x="-220" y="200" width="440" height="24" rx="8" fill="#F5E7D6" ${S}/><rect x="-150" y="182" width="70" height="18" rx="6" fill="${RED}" ${S} stroke-width="4"/><rect x="-60" y="182" width="70" height="18" rx="6" fill="#C6BCE2" ${S} stroke-width="4"/>`),
+ O('blt',`<rect x="-330" y="-26" width="660" height="52" rx="26" fill="#C6BCE2" ${S}/>`+[-280,-140,0,140,280].map(x=>`<circle cx="${x}" r="16" fill="#fff" ${S} stroke-width="4"/>`).join('')),
+ O('box',`<path d="M-90 -50H90L76 70H-76Z" fill="#F5E7D6" ${S}/><path d="M-100 -50H100" fill="none" ${S} stroke-width="10"/>`),
+ O('c1',CARD(IC.blk)),O('c2',CARD(IC.nb)),O('c3',CARD(IC.shoe)),
+ O('tgt',[[70,'#fff'],[48,'#F9DEE3'],[26,'#fff']].map(([r,f])=>`<circle r="${r}" fill="${f}" ${S}/>`).join('')+`<circle r="8" fill="${RED}"/>`),
+ O('drw',`<rect x="-70" y="-80" width="140" height="160" rx="10" fill="#F5E7D6" ${S}/>`+[-50,0,50].map(y=>`<rect x="-54" y="${y-20}" width="108" height="40" rx="6" fill="#fff" ${S} stroke-width="4"/><path d="M-14 ${y}H14" fill="none" ${S} stroke-width="5"/>`).join('')),
+ ...PILE.map((p,i)=>O('k'+i,`<rect x="-45" y="-55" width="90" height="110" rx="10" fill="${['#fff','#F9DEE3','#F5E7D6'][i%3]}" ${S} stroke-width="5"/><path d="M-26 -20H26M-26 4H26M-26 28H10" fill="none" stroke="#C6BCE2" stroke-width="7" stroke-linecap="round"/>`)),
+ ...[1,2,3].map(i=>O('B'+i,`<rect x="-130" y="-170" width="260" height="340" rx="16" fill="#fff" ${S}/><circle cy="-120" r="34" fill="#C6BCE2" ${S}/>`+T(i,-106,42)+T(['Juguetes','Cuaderno','Zapatos'][i-1],135,40))),
+ O('I1',IC.blk),O('I2',IC.nb),O('I3',IC.shoe),
+ ...[0,1,2].map(i=>O('lk'+(i+1),`<path id="shk${i+1}" d="M-44 -50V-100Q-44 -150 0 -150Q44 -150 44 -100V-50" fill="none" stroke="#2E2545" stroke-width="14" stroke-linecap="round"/><rect x="-80" y="-56" width="160" height="140" rx="20" fill="${['#F5E7D6','#F9DEE3','#C6BCE2'][i]}" ${S}/>${KH[i]}`)),
+ ...[0,1,2].map(i=>O('ky'+(i+1),`<path d="M0 -30V70" fill="none" stroke="#2E2545" stroke-width="12"/>${KB[i]}<circle cy="96" r="30" fill="#F5E7D6" ${S}/><circle cy="96" r="10" fill="#fff" ${S} stroke-width="4"/>`)),
+ O('cal',`<rect x="-300" y="-190" width="600" height="380" rx="16" fill="#fff" ${S}/><path d="M-300 -110H300" fill="none" ${S}/>`+['L','M','M','J','V','S','D'].map((d,i)=>T(d,-136,40,-240+i*80)).join('')+[0,1].map(r=>[...Array(7).keys()].map(c=>`<rect x="${-270+c*80}" y="${-90+r*130}" width="60" height="110" rx="8" fill="#F5E7D6" stroke="none"/>`).join('')).join('')),
+ ...[...Array(14).keys()].filter(i=>![5,9,13].includes(i)).map(i=>O('cd'+i,`<circle r="22" fill="#F9DEE3" ${S}/><path d="M-10 0L-2 8L12 -8" fill="none" ${S} stroke-width="4"/>`)),
+ O('cmp',`<circle r="150" fill="#F5E7D6" ${S}/><circle r="118" fill="#fff" ${S}/>`+T('N',-78,34)+T('S',104,34)+T('E',12,34,90)+T('O',12,34,-90)+`<g id="ndl"><path d="M0 -96L18 0L0 96L-18 0Z" fill="#C6BCE2" ${S} stroke-width="4"/><path d="M0 -96L18 0H-18Z" fill="${RED}" ${S} stroke-width="4"/></g><circle r="12" fill="#2E2545"/>`),
+ O('vol',`<path d="M-430 -30H-400L-360 -70V70L-400 30H-430Z" fill="#F5E7D6" ${S}/><g id="sar"><path d="M-330 -40Q-306 0 -330 40M-306 -66Q-266 0 -306 66" fill="none" ${S}/></g><rect x="-200" y="-14" width="560" height="28" rx="14" fill="#fff" ${S}/><g id="knb"><circle r="40" fill="#F9DEE3" ${S}/></g>`),
+ O('trn',`<path d="M-420 120H420" fill="none" ${S} stroke-width="8"/>`+[-300,-110].map(x=>`<rect x="${x-80}" y="-30" width="160" height="110" rx="12" fill="${x<-200?'#F9DEE3':'#C6BCE2'}" ${S}/><circle cx="${x-44}" cy="92" r="20" fill="#2E2545"/><circle cx="${x+44}" cy="92" r="20" fill="#2E2545"/><path d="M${x+80} 40H${x+110}" fill="none" ${S}/>`).join('')+`<rect x="30" y="-90" width="150" height="170" rx="14" fill="#F5E7D6" ${S}/><rect x="180" y="-10" width="160" height="90" rx="14" fill="#F5E7D6" ${S}/><rect x="230" y="-80" width="40" height="70" rx="6" fill="#2E2545"/><rect x="60" y="-64" width="90" height="60" rx="8" fill="#fff" ${S} stroke-width="4"/><circle cx="80" cy="92" r="26" fill="#2E2545"/><circle cx="280" cy="92" r="26" fill="#2E2545"/><path d="M340 70L380 110H340Z" fill="${RED}" ${S} stroke-width="4"/>`+[[-300,IC.blk],[-110,IC.nb]].map(([x,ic])=>`<g transform="translate(${x} -90) scale(.6)"><rect x="-70" y="-90" width="140" height="160" rx="12" fill="#fff" ${S}/><g transform="translate(0 -6)">${ic}</g></g>`).join('')+`<g transform="translate(105 -150) scale(.6)"><rect x="-70" y="-90" width="140" height="160" rx="12" fill="#fff" ${S}/><g transform="translate(0 -6)">${IC.shoe}</g></g>`),
+ O('bxo',`<g transform="translate(-80 -60)">${BLK('A','#F9DEE3')}</g><g transform="translate(0 -40) scale(.6)"><path d="M-90 20V-10Q-90 -20 -80 -20H-50L-24 -56H40L70 -20H86Q96 -20 96 -10V20Z" fill="#C6BCE2" ${S}/></g><g transform="translate(86 -54) scale(.6)"><circle cx="34" cy="-50" r="34" fill="#F5E7D6" ${S}/><path d="M-70 10Q-70 60 0 60Q70 60 70 10Q70 -10 40 -10Q30 -30 0 -20Q-40 -10 -70 10Z" fill="#F5E7D6" ${S}/></g><path d="M-150 -30H150L130 100H-130Z" fill="#F5E7D6" ${S}/><path d="M-60 30H60" fill="none" ${S} stroke-width="10"/>`),
+ O('frg',`<rect x="-180" y="-280" width="360" height="560" rx="30" fill="#fff" ${S}/><path d="M-180 -110H180" fill="none" ${S}/><path d="M-140 -230V-150M-140 -70V60" fill="none" ${S} stroke-width="14"/>`),
+ O('fn1',`<rect x="-62" y="-62" width="124" height="124" rx="6" fill="#F9DEE3" ${S} transform="rotate(-6)"/><circle cy="-62" r="14" fill="${RED}" ${S} stroke-width="4"/><path d="M-36 -14H36M-36 14H36M-36 40H10" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/>`),
+ O('fn2',`<rect x="-62" y="-62" width="124" height="124" rx="6" fill="#F5E7D6" ${S} transform="rotate(5)"/><circle cy="-62" r="14" fill="#C6BCE2" ${S} stroke-width="4"/><path d="M-36 -14H36M-36 14H20" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/>`)
+].join('');
+// ---------- HTML: rótulos (≤4 palabras)
+const H=document.getElementById('ht');
+const st=(id,tx,x,y,fs,rot)=>H.insertAdjacentHTML('beforeend',`<div class="st" id="${id}" data-r="${rot||0}" style="left:${x}px;top:${y}px;${fs?'font-size:'+fs+'px':''}">${tx}</div>`);
+const pl=(id,tx,x,y)=>H.insertAdjacentHTML('beforeend',`<div class="pl" id="${id}" style="left:${x}px;top:${y}px;width:auto;padding:0 28px;font-size:40px">${tx}</div>`);
+pl('m1','Guarda tus juguetes',540,30);pl('m1b','Guarda tus juguetes',540,150);pl('m2','Prepara tu mochila',540,30);
+pl('pM','Memoria',220,170);pl('pA','Atención',860,170);pl('pO','Organización',540,770);
+st('sOl','¿Otra vez lo olvidó?',540,900,0,-2);
+st('sMt','Memoria de trabajo',540,900,0,2);
+st('sSi','Seguir instrucciones',540,900,0,-2);
+st('sPp','Pasos más pequeños',540,900,0,2);
+st('sNr','No es repetir más',540,900,0,-2);
+st('sQo','¿Qué suele olvidar?',540,900,0,2);
+H.insertAdjacentHTML('beforeend','<div id="end" style="position:absolute;left:0;top:0;width:1080px;height:1000px;opacity:0"><div style="position:absolute;left:90px;top:330px;width:900px;text-align:center;font:700 70px/1.15 Outfit;color:#2E2545">Este video orienta y no diagnostica.</div><div class="st" style="left:540px;top:620px;opacity:1;font:700 40px/1 \'Maven Pro\';transform:translate(-50%,-50%)">psicologakarentrujillo.com.mx</div></div>');
+// ============ ESPECIFICACIÓN (se define antes que las escenas) ============
+// Lienzo 1080×1920 (9:16) · 30 fps · 64.7 s · audio = voz.mp3 (1.10x)
+// Zonas seguras: gráficos dentro de x 60–1020 y página y 300–1250 (escenario); subtítulos en y 1290–1440 (nada de gráficos ahí).
+// Micro-copy: máximo 4 palabras por momento visual (sin contar subtítulos). Bucle: nada se anima en los últimos 0.5 s.
+const CFG={FPS:30,DUR:+(WORDS[WORDS.length-1][2]+.1).toFixed(2),W:1080,H:1920,
+ POP:'back.out(1.35)',   // entradas: suaves, un solo rebote leve
+ MOVE:'power3.inOut',    // desplazamientos
+ OUT:'power2.in',        // salidas
+ T:{pop:.5,move:.7,out:.3}};
+gsap.set('.o',{opacity:0,transformOrigin:'50% 50%'});
+gsap.set('[id^=tm]',{opacity:0});gsap.set('#ndl',{transformOrigin:'50% 50%'});
+gsap.set('.st,.big,.lb',{xPercent:-50,yPercent:-50});
+gsap.set('.pl',{xPercent:-50,opacity:0});
+document.querySelectorAll('.st').forEach(e=>gsap.set(e,{rotation:+e.dataset.r}));
+const tl=gsap.timeline({paused:true});
+const ST=(s,v)=>gsap.set(s,v);
+const POP=(s,t,sc,x,y,d)=>{const f={scale:.3,opacity:0},v={scale:sc||1,opacity:1,duration:d||CFG.T.pop,ease:CFG.POP,immediateRender:false};if(x!==undefined){f.x=x;f.y=y;v.x=x;v.y=y;}tl.fromTo(s,f,v,t);};
+const OUT=(s,t,d)=>tl.to(s,{opacity:0,scale:'*=0.7',duration:d||CFG.T.out,ease:CFG.OUT},t);
+const MV=(s,t,v,d,e)=>tl.to(s,Object.assign({duration:d||CFG.T.move,ease:e||CFG.MOVE},v),t);
+const FROM=(s,t,f,v,d)=>tl.fromTo(s,f,Object.assign({duration:d||CFG.T.pop,ease:CFG.POP,immediateRender:false},v),t);
+const PLI=(s,t)=>tl.fromTo(s,{opacity:0,scale:.6},{opacity:1,scale:1,duration:.4,ease:CFG.POP,immediateRender:false},t);
+const DIM=(s,t)=>tl.to(s,{opacity:.25,filter:'blur(3px)',duration:.4},t);
+const SHAKE=(s,t,n,dx)=>tl.to(s,{x:'+='+(dx||10),duration:.07,yoyo:true,repeat:n||5,ease:'sine.inOut'},t);
+// contador de clics: cada número es un clic del botón
+const CKN=document.getElementById('ckN');
+const COUNT=(t,a,b,d)=>{const o={v:a};tl.fromTo(o,{v:a},{v:b,duration:d,ease:'none',immediateRender:false,onUpdate:()=>{CKN.textContent=Math.round(o.v);}},t);
+ tl.to('#cbt',{y:14,duration:d/(2*(b-a)),yoyo:true,repeat:2*(b-a)-1,ease:'sine.inOut'},t);};
+
+// ============ ESCENA 1 · HOOK (0–4.0) ============
+// Acción: un contador de clics sube de 0 a 12 mientras se llenan las marcas de conteo (palitos) de abajo.
+// Persisten: contador. Imagen final: contador en 12 y marcas de conteo.
+function escena1(){
+ POP('#ckr',0,1.3,540,380);COUNT(.3,0,12,3.4);
+ POP('#tly',.2,1,540,760);
+ for(let i=0;i<12;i++)tl.set('#tm'+i,{opacity:1},.3+(i+1)*3.4/12);
+}
+// ============ ESCENA 2 · DESARROLLO (4.0–17.6) ============
+// Acción: mensaje «Guarda tus juguetes» y juguetes en el piso (cubos, carrito, patito); el mensaje se apaga, se repite y los juguetes
+//   siguen en su lugar (círculos punteados); «Prepara tu mochila», escritorio con cuadernos olvidados y huellas hacia la puerta;
+//   una oreja grande: las ondas del mensaje rebotan.
+// Persisten: contador (sube con cada repetición, hasta 20). Imagen final: oreja con ondas que rebotan y contador en 20.
+function escena2(){
+ const tP=at('le pides');
+ OUT('#tly',tP-.2);
+ MV('#ckr',tP,{x:540,y:430,scale:.9});
+ PLI('#m1',at('pides'));
+ POP('#flr',at('guarde',-.2),1,540,790);
+ POP('#blk',at('juguetes',-.2),.9,270,705);POP('#car',at('juguetes'),1,545,745);POP('#dck',at('juguetes',.2),1,820,735);
+ DIM('#m1',at('cinco'));
+ PLI('#m1b',at('siguen'));COUNT(at('siguen'),12,14,.4);
+ [['#rr1',270,700],['#rr2',545,735],['#rr3',820,725]].forEach(([s,x,y],i)=>POP(s,at('exactamente')+i*.2,1,x,y));
+ DIM('#m1b',at('estaban'));
+ const tR=at('le recuerdas');
+ ['#m1','#m1b','#flr','#blk','#car','#dck','#rr1','#rr2','#rr3'].forEach(s=>OUT(s,tR-.25));
+ MV('#ckr',tR,{x:920,y:110,scale:.55});COUNT(tR+.3,14,17,.6);
+ PLI('#m2',at('prepare'));
+ POP('#dsk',at('mochila',-.2),1,420,640);POP('#nbk',at('mochila'),1,420,620);
+ POP('#dor',at('despues descubres',-.2),1,880,580);
+ [[620,780],[700,760],[780,780],[840,760]].forEach(([x,y],i)=>POP('#fp'+i,at('descubres')+i*.18,1,x,y));
+ tl.to('#nbk',{y:'-=26',duration:.2,yoyo:true,repeat:3,ease:'sine.out'},at('cuadernos'));
+ POP('#sOl',at('cuadernos',.2),1);
+ const tTe=at('terminas');
+ ['#m2','#dsk','#nbk','#dor','#fp0','#fp1','#fp2','#fp3','#sOl'].forEach(s=>OUT(s,tTe-.2));
+ COUNT(tTe,17,20,.6);MV('#ckr',tTe,{x:230,y:470,scale:.9});
+ POP('#ear',at('pensando',-.2),1.4,730,470);
+ FROM('#wv',at('simplemente'),{opacity:0,scale:.6,x:390,y:470,rotation:0},{opacity:1,scale:1,x:470,y:470},.5);
+ tl.to('#wv',{keyframes:[{x:560,duration:.35,ease:'power1.in'},{x:420,rotation:-25,opacity:0,duration:.5,ease:'power2.out'}]},at('no te escucha'));
+}
+// ============ ESCENA 3 · GIRO (17.6–33.8) ============
+// Acción: una pizarra (memoria de trabajo) recibe tres tarjetas con imán; las tarjetas bajan a una banda que las lleva a la caja;
+//   dos se caen en el camino (dificultades); llegan una diana (atención) y un organizador de cajones (organización).
+// Persisten: tarjetas (vuelven en la escena 4 como pasos claros). Imagen final: pizarra, banda, caja con una tarjeta, diana y cajonera.
+function escena3(){
+ const tP=at('pero existe');
+ ['#ckr','#ear','#wv'].forEach(s=>OUT(s,tP-.2));
+ POP('#brd',at('habilidad'),.8,540,300);
+ POP('#sMt',at('memoria'),1);
+ const tM=at('mantener');
+ [['#c1',420],['#c2',540],['#c3',660]].forEach(([s,x],i)=>FROM(s,tM+i*.3,{opacity:0,scale:.2,x:120,y:820,rotation:-30},{opacity:1,scale:.55,x,y:300,rotation:0},.6));
+ OUT('#sMt',at('mente',-.1));
+ POP('#blt',at('llamada'),1,450,730);POP('#box',at('llamada',.2),1,900,690);
+ const tA=at('actividad');
+ const Y=640;
+ FROM('#c1',tA,{x:420,y:300},{x:190,y:Y,scale:.5},.5);MV('#c1',tA+.5,{x:740},3.4,'none');
+ tl.to('#c1',{keyframes:[{x:860,y:560,duration:.3},{x:900,y:650,scale:.3,opacity:0,duration:.3}]},tA+3.95);
+ FROM('#c2',tA+.6,{x:540,y:300},{x:190,y:Y,scale:.5},.5);MV('#c2',tA+1.1,{x:400},1.4,'none');
+ tl.to('#c2',{keyframes:[{x:450,y:760,rotation:70,duration:.35,ease:'power1.in'},{y:850,opacity:0,duration:.3}]},at('dificultades',.1));
+ FROM('#c3',tA+1.2,{x:660,y:300},{x:190,y:Y,scale:.5},.5);MV('#c3',tA+1.7,{x:560},3.2,'none');
+ SHAKE('#c3',at('resultar'),3,6);
+ tl.to('#c3',{keyframes:[{x:610,y:760,rotation:-70,duration:.35,ease:'power1.in'},{y:850,opacity:0,duration:.3}]},at('complicado'));
+ POP('#sSi',at('seguir instrucciones'),1);
+ OUT('#sSi',at('tambien pueden',-.2));
+ POP('#tgt',at('atencion',-.2),1,160,300);POP('#drw',at('organizacion',-.2),1,920,300);
+ tl.to('#tgt',{rotation:20,duration:.2,yoyo:true,repeat:3},at('atencion',.3));
+}
+// ============ ESCENA 4 · PROVOCACIÓN (33.8–47.5) ============
+// Acción: veinte tarjetitas se amontonan (repetir 20 veces) y tiemblan; el montón se cambia por tres tarjetas grandes y ordenadas
+//   (1 Juguetes, 2 Cuaderno, 3 Zapatos) con su dibujo; luego tres candados distintos, cada uno con su propia llave.
+// Persisten: dibujos de las tarjetas (cubo, cuaderno, zapato). Imagen final: tres candados abiertos.
+function escena4(){
+ const tP=at('por eso');
+ ['#brd','#blt','#box','#c1','#tgt','#drw'].forEach(s=>OUT(s,tP-.2));
+ const tR=at('repetir la misma');
+ PILE.forEach(([x,y,r],i)=>FROM('#k'+i,tR+i*.1,{opacity:0,scale:.3,x,y:y-60,rotation:0},{opacity:1,scale:1.45,x,y,rotation:r},.35));
+ tl.to(PILE.map((_,i)=>'#k'+i).join(','),{x:'+=8',duration:.07,yoyo:true,repeat:7},at('suficiente',-.3));
+ const tI=at('indicaciones');
+ tl.to(PILE.map((_,i)=>'#k'+i).join(','),{x:540,y:470,scale:.1,opacity:0,duration:.45,ease:CFG.OUT,stagger:.01},tI-.5);
+ [220,540,860].forEach((x,i)=>POP('#B'+(i+1),tI+i*.2,1,x,500));
+ [220,540,860].forEach((x,i)=>POP('#I'+(i+1),at('visuales',-.4)+i*.2,1.2,x,495));
+ POP('#sPp',at('pasos'),1);
+ [1,2,3].forEach(i=>tl.to(['#B'+i,'#I'+i],{y:'-=24',duration:.18,yoyo:true,repeat:1,ease:'sine.out'},at('pequenos')+i*.2));
+ const tN=at('no todos');
+ ['#B1','#B2','#B3','#I1','#I2','#I3','#sPp'].forEach(s=>OUT(s,tN-.2));
+ [220,540,860].forEach((x,i)=>POP('#lk'+(i+1),tN+i*.15,1.1,x,430));
+ [220,540,860].forEach((x,i)=>{FROM('#ky'+(i+1),at('ninos')+i*.15,{opacity:0,scale:.4,x,y:700},{opacity:1,scale:1.4,x,y:690});
+  MV('#ky'+(i+1),at('exactamente',0,1)+i*.2,{y:530},.4,'power2.inOut');});
+ [1,2,3].forEach(i=>tl.to('#shk'+i,{y:-36,duration:.35,ease:CFG.POP},at('mismo')+i*.12));
+}
+// ============ ESCENA 5 · CIERRE (47.5–60.1) ============
+// Acción: un calendario de la semana se llena de marcas (frecuente); una brújula explora y su aguja apunta a Memoria, Atención y Organización;
+//   un control de volumen baja (no es repetir más fuerte); un tren lleva una tarjeta por vagón y avanza; la caja de juguetes queda ordenada.
+// Persisten: tarjetas (→ vagones), juguetes (→ caja ordenada). Imagen final: tren con las tres tarjetas, caja ordenada.
+function escena5(){
+ const tS=at('si ocurre');
+ [1,2,3].forEach(i=>{OUT('#lk'+i,tS-.5);OUT('#ky'+i,tS-.5);});
+ POP('#cal',tS-.1,1.3,540,470);
+ [...Array(14).keys()].filter(i=>![5,9,13].includes(i)).forEach((i,k)=>POP('#cd'+i,at('frecuentemente')+k*.18,1.3,540+1.3*(-240+(i%7)*80),470+1.3*(-35+Math.floor(i/7)*130)));
+ const tE=at('una evaluacion');
+ OUT('#cal',tE-.3);[...Array(14).keys()].filter(i=>![5,9,13].includes(i)).forEach(i=>OUT('#cd'+i,tE-.3));
+ POP('#cmp',tE,1.2,540,470);
+ tl.fromTo('#ndl',{rotation:0},{rotation:720+40,duration:1.4,ease:'power2.out',immediateRender:false},at('especializada'));
+ const tH=at('explorar');
+ PLI('#pM',tH);MV('#ndl',tH,{rotation:720-50},.4);
+ PLI('#pA',tH+.5);MV('#ndl',tH+.5,{rotation:720+50},.4);
+ PLI('#pO',tH+1);MV('#ndl',tH+1,{rotation:720+180},.4);
+ const tF=at('no se trata');
+ ['#cmp','#pM','#pA','#pO'].forEach(s=>OUT(s,tF-.2));
+ POP('#vol',tF,1.1,600,470);ST('#knb',{x:320});
+ MV('#knb',at('fuerte',-.3),{x:-100},.8);tl.to('#sar',{scale:.3,opacity:.3,transformOrigin:'0% 50%',duration:.8,ease:CFG.MOVE},at('fuerte',-.3));
+ POP('#sNr',at('fuerte'),1);
+ const tD=at('descubrir');
+ OUT('#vol',tD-.3);OUT('#sNr',tD-.3);
+ FROM('#trn',tD,{opacity:0,x:200,y:640,scale:1},{opacity:1,x:500,y:640,scale:1},.9);
+ POP('#bxo',at('apoyo'),1,540,250);
+ MV('#trn',at('avanzar',-.2),{x:560},.6);
+}
+// ============ ESCENA 6 · CTA (60.1–64.7) ============
+// Acción: un refrigerador recibe notas con imán; «¿Qué suele olvidar?»; aviso final y web (quietos los últimos 0.5 s).
+// Imagen final: aviso «Este video orienta y no diagnostica.» + web.
+function escena6(){
+ const tQ=at('que instruccion');
+ OUT('#trn',tQ-.2);OUT('#bxo',tQ-.2);
+ POP('#frg',tQ,1.2,540,470);
+ POP('#fn1',at('repetir',0,2),1.2,455,520);POP('#fn2',at('constantemente'),1.2,630,660);
+ POP('#sQo',at('constantemente',.3),1);
+ const tF=at('compartelo',-.2);
+ ['#frg','#fn1','#fn2','#sQo'].forEach(s=>OUT(s,tF-.1));
+ tl.fromTo('#end',{opacity:0,scale:.92,transformOrigin:'50% 50%'},{opacity:1,scale:1,duration:.5,ease:CFG.POP,immediateRender:false},tF+.15);
+}
+escena1();escena2();escena3();escena4();escena5();escena6();
+// ============ SUBTÍTULOS (tiempos reales de words.json) ============
+const KEYS=new Set(['repetirle','juguetes','mochila','olvido','cuadernos','escucha','memoria','trabajo','informacion','instrucciones','atencion','organizacion','repetir','breves','visuales','pasos','evaluacion','habilidades','fuerte','apoyo','comentarios']);
+(function(){const caps=[];let cur=[];
+ const flush=()=>{if(cur.length){caps.push(cur);cur=[];}};
+ WORDS.forEach((w,i)=>{cur.push({w:w[0],t:w[1],e:w[2]});const nx=WORDS[i+1];
+  if(cur.length>=3||/[,.:?…]$/.test(w[0])||(nx&&nx[1]-w[2]>.45))flush();});flush();
+ caps.forEach((c,i)=>{const d=document.createElement('div');d.className='cap';d.id='cap'+i;
+  d.innerHTML=c.map((x,j)=>`<span class="pw${KEYS.has(norm(x.w)[0])?' k':''}" id="c${i}w${j}">${x.w}</span>`).join(' ');document.body.appendChild(d);
+  const s0=c[0].t,e0=Math.min(i+1<caps.length?caps[i+1][0].t-.03:CFG.DUR-.05,c[c.length-1].e+.9);
+  tl.set('#cap'+i,{opacity:1},s0);tl.set('#cap'+i,{opacity:0},e0);
+  c.forEach((x,j)=>tl.fromTo('#c'+i+'w'+j,{opacity:0,scale:.5,y:10,transformOrigin:'50% 80%'},{opacity:1,scale:1,y:0,duration:.25,ease:'power2.out',immediateRender:false},x.t));});
+})();
+window.DUR=CFG.DUR;
+window.seek=t=>{tl.time(Math.min(t,tl.duration()));document.getElementById('rtb').setAttribute('seed',1+Math.floor(t*12)%7);};
+</script></body></html>
