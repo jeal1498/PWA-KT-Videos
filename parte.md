@@ -1,4 +1,4 @@
-# PARTE · 15 nov 2026
+# PARTE · 27 nov 2026
 
 ## ✓ Decidido
 - nov1 a nov4 de Drive son los videos 36 (Instrucciones de una en una), 37 (Camuflaje en mujeres adultas), 38 (Qué esperar de la evaluación de tu hijo) y 39 (Dormir tarde por tiempo para ti).
@@ -14,6 +14,7 @@
 - Hooks virales (voz en off de ElevenLabs, Karen sin cara): guiones de `hooks virales/` reescritos a tercera persona (001–028 y los de contenido nuevo 029–040); los diálogos de ejemplo entre comillas se dejaron igual.
 - Hooks virales: se borraron las 9 carpetas viejas (solo encabezado) del 029 al 037; quedan 40 carpetas, una por número, con el guion completo.
 - Voces de los hooks virales 001 a 030 aprobadas y guardadas en cada carpeta (`voz.mp3` + `words.json`): voz clonada de Karen en Eleven v3, CTA hablado al final, velocidad 1.10x (ffmpeg `atempo`, no gasta créditos). Plan ElevenLabs: Starter.
+- ElevenLabs: la clave `ELEVENLABS_API_KEY` ya tiene permisos de lectura de voces y cuenta; plan Starter (39,781 créditos). La receta de los hooks virales es guion con CTA hablado, Eleven v3 y velocidad 1.10x (`atempo`); el guion 001 quedó recortado a 60 s.
 - Todo cambio a `parte.md` se guarda directo en `main` (Karen).
 
 ## … Falta
@@ -22,7 +23,9 @@
 - Karen confirma en el `copy.md` del 41: horas de aviso para cancelar, si deja «Netflix» y la cédula en el primer cuadro.
 - Pasar el 41 de la rama de la sesión a `main`.
 
-- Hooks virales 031 a 040: generar la voz con la receta cuando haya créditos (Starter no alcanzó para los 40). Faltan también los gráficos de todos (solo el 001 tiene `graficos/`).
+- Hooks virales 031 a 040: generar la voz con la receta cuando haya créditos (Starter no alcanzó para los 40; Eduardo los dejó pendientes).
+- Hooks virales: faltan los gráficos de los 40 (solo el 001 tiene `graficos/`, hecho con el guion anterior: rehacerlo con el nuevo guion y la nueva voz). Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
+- `PLANTILLA-DISTRIBUCION.md` aún fija a Karen arriba (45 %) y gráficos abajo (55 %); estos videos van sin cara: decidir si pasan a pantalla completa.
 
 ## ✗ No tocar
 - Diagnosticar o decir que algo «cura»: el contenido orienta, no diagnostica.
