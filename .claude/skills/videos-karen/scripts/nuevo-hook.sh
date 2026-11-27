@@ -1,5 +1,8 @@
 #!/bin/bash
-# Uso: nuevo-hook.sh <trabajo>   Copia la plantilla de hooks virales (la del 001) con gsap y fuentes.
+# Uso: nuevo-hook.sh <trabajo> "<carpeta del hook>"   Copia la plantilla (la del 001 v4), gsap, fuentes,
+# la voz (voz.mp3) y los tiempos por palabra (words.json → words.js).
 set -e; SK="$(cd "$(dirname "$0")/.." && pwd)"; mkdir -p "$1"
 cp "$SK"/plantilla-hooks/* "$1"/; cp "$SK"/assets/gsap.min.js "$SK"/assets/fonts/*.woff2 "$1"/
-echo "listo: $1 (editar SEC y escenas en index.html)"
+if [ -n "$2" ]; then cp "$2/voz.mp3" "$1/"
+  python3 -I -c 'import json,sys;w=json.load(open(sys.argv[1]));open(sys.argv[2],"w").write("window.WORDS="+json.dumps([[a,round(s,2),round(e,2)] for a,s,e in w],ensure_ascii=False)+";")' "$2/words.json" "$1/words.js"; fi
+echo "listo: $1 (reescribir las escenas en index.html; el tiempo sale de words.js)"

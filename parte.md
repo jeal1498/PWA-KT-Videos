@@ -15,6 +15,7 @@
 - Hooks virales: se borraron las 9 carpetas viejas (solo encabezado) del 029 al 037; quedan 40 carpetas, una por número, con el guion completo.
 - Voces de los hooks virales 001 a 030 aprobadas y guardadas en cada carpeta (`voz.mp3` + `words.json`): voz clonada de Karen en Eleven v3, CTA hablado al final, velocidad 1.10x (ffmpeg `atempo`, no gasta créditos). Plan ElevenLabs: Starter.
 - ElevenLabs: la clave `ELEVENLABS_API_KEY` ya tiene permisos de lectura de voces y cuenta; plan Starter (39,781 créditos). La receta de los hooks virales es guion con CTA hablado, Eleven v3 y velocidad 1.10x (`atempo`); el guion 001 quedó recortado a 60 s.
+- Hooks virales: gráficos del 001 aprobados (v4, 27 nov) y guardados en `graficos/`: pantalla completa sin Karen, 30 fps, sincronizados con la voz. La instrucción de Eduardo (acciones por bloque, ≤4 palabras, analogías literales, escala, persistencia, zonas seguras, escenas modulares) quedó en `references/hooks-virales.md` y `PLANTILLA-DISTRIBUCION.md` pasó a pantalla completa.
 - Todo cambio a `parte.md` se guarda directo en `main` (Karen).
 
 ## … Falta
@@ -24,8 +25,7 @@
 - Pasar el 41 de la rama de la sesión a `main`.
 
 - Hooks virales 031 a 040: generar la voz con la receta cuando haya créditos (Starter no alcanzó para los 40; Eduardo los dejó pendientes).
-- Hooks virales: faltan los gráficos de los 40 (solo el 001 tiene `graficos/`, hecho con el guion anterior: rehacerlo con el nuevo guion y la nueva voz). Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
-- `PLANTILLA-DISTRIBUCION.md` aún fija a Karen arriba (45 %) y gráficos abajo (55 %); estos videos van sin cara: decidir si pasan a pantalla completa.
+- Hooks virales: faltan los gráficos del 002 al 040 (receta del 001 v4). Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
 
 ## ✗ No tocar
 - Diagnosticar o decir que algo «cura»: el contenido orienta, no diagnostica.
