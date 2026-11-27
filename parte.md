@@ -16,6 +16,7 @@
 - Voces de los hooks virales 001 a 030 aprobadas y guardadas en cada carpeta (`voz.mp3` + `words.json`): voz clonada de Karen en Eleven v3, CTA hablado al final, velocidad 1.10x (ffmpeg `atempo`, no gasta créditos). Plan ElevenLabs: Starter.
 - ElevenLabs: la clave `ELEVENLABS_API_KEY` ya tiene permisos de lectura de voces y cuenta; plan Starter (39,781 créditos). La receta de los hooks virales es guion con CTA hablado, Eleven v3 y velocidad 1.10x (`atempo`); el guion 001 quedó recortado a 60 s.
 - Hooks virales: gráficos del 001 aprobados (v4, 27 nov) y guardados en `graficos/`: pantalla completa sin Karen, 30 fps, sincronizados con la voz. La instrucción de Eduardo (acciones por bloque, ≤4 palabras, analogías literales, escala, persistencia, zonas seguras, escenas modulares) quedó en `references/hooks-virales.md` y `PLANTILLA-DISTRIBUCION.md` pasó a pantalla completa.
+- Hooks virales: portada del 001 aprobada (estilo de los gráficos v4: «Es inteligente, pero no pone atención», bombilla y engranajes Comprender ≠ Atención); guardados `portada.png`, `graficos/portada.html` y `video.mp4` con la portada como primer cuadro (60.3 s).
 - Todo cambio a `parte.md` se guarda directo en `main` (Karen).
 
 ## … Falta
