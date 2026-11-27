@@ -24,6 +24,7 @@
 - Hooks virales: 006 aprobado y guardado con elementos nuevos (portada «¿Se lo repites 20 veces?», 64.7 s, bucle; la mochila se cambió por caja de juguetes y escritorio porque ya se usó en el 003).
 - Hooks virales: 007 aprobado y guardado con elementos nuevos (portada «¿Lo sabe en casa y se bloquea?», 64.6 s, bucle).
 - Hooks virales: 008 v2 aprobado y guardado como el 008 (reemplaza a la v1, ilustrada) con el estilo de los videos de referencia (portada «¿Media hora y ni una palabra?», 60.6 s, bucle). Desde ahora es la receta para los siguientes: plantilla en `plantilla-hooks/`, la ilustrada anterior en `plantilla-hooks-v1/`, referencias en `hooks virales/_referencias/`.
+- Hooks virales: 009 aprobado y guardado con la receta nueva (portada «¿Dos niños con autismo tan distintos?», 71.6 s, bucle).
 - Todo cambio a `parte.md` se guarda directo en `main` (Karen).
 
 ## … Falta
@@ -33,7 +34,7 @@
 - Pasar el 41 de la rama de la sesión a `main`.
 
 - Hooks virales 031 a 040: generar la voz con la receta cuando haya créditos (Starter no alcanzó para los 40; Eduardo los dejó pendientes).
-- Hooks virales: faltan los gráficos del 009 al 040 (receta del 008 v2, estilo de referencias). Del 001 al 007 se quedan como están (estilo ilustrado), decidió Eduardo el 27 nov. Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
+- Hooks virales: faltan los gráficos del 010 al 040 (receta del 008 v2, estilo de referencias). Del 001 al 007 se quedan como están (estilo ilustrado), decidió Eduardo el 27 nov. Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
 
 ## ✗ No tocar
 - Diagnosticar o decir que algo «cura»: el contenido orienta, no diagnostica.

@@ -1,0 +1,271 @@
+<!doctype html><html><head><meta charset="utf-8"><title>009 gráficos</title>
+<style>
+@font-face{font-family:Outfit;src:url(Outfit-700-latin.woff2);font-weight:700}
+@font-face{font-family:'Maven Pro';src:url(MavenPro-700-latin.woff2);font-weight:700}
+:root{--ink:#2E2545;--lav:#C6BCE2;--lav2:#E7E1F4;--rosa:#F9DEE3;--arena:#F5E7D6;--bg:#F7F4FA;--mute:#8E86A6;--ok:#1E9E6A;--red:#C0392B}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;position:relative;font-family:'Maven Pro',sans-serif;color:var(--ink);
+ background-color:var(--bg);background-image:linear-gradient(rgba(198,188,226,.28) 1px,transparent 1px),linear-gradient(90deg,rgba(198,188,226,.28) 1px,transparent 1px);background-size:40px 40px}
+.abs{position:absolute}
+/* línea de tiempo */
+#tl{left:98px;top:0;width:4px;height:1920px;background:#DDD5EE}
+#tlTop{left:98px;top:0;width:4px;height:540px;background:var(--ink)}
+#ticks{left:92px;top:0;width:16px;height:4000px}
+#ticks i{position:absolute;left:4px;width:8px;height:3px;background:#C9C0DE}
+#av{left:68px;top:528px;width:64px;height:64px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px var(--bg)}
+.chip{left:150px;top:540px;height:44px;border-radius:22px;background:var(--ink);color:#fff;font:700 27px/44px 'Maven Pro';padding:0 22px 0 8px;white-space:nowrap;opacity:0;display:flex;align-items:center;gap:12px}
+.chip b{display:inline-block;width:46px;height:30px;line-height:30px;border-radius:15px;background:var(--lav);color:var(--ink);text-align:center;font-size:20px}
+/* subtítulo arriba */
+.ph{left:160px;width:860px;top:300px;text-align:center;font:700 62px/1.25 Outfit;opacity:0}
+.ph span{display:inline-block;margin:0 7px;position:relative;z-index:0}
+.ph span.k{padding:0 10px}
+.ph span .hl{position:absolute;left:-2px;right:-2px;top:6px;bottom:2px;background:var(--lav);border:3px solid var(--ink);z-index:-1;opacity:0}
+.ph span .hl::before,.ph span .hl::after{content:"";position:absolute;width:12px;height:12px;background:#fff;border:3px solid var(--ink)}
+.ph span .hl::before{left:-8px;top:-8px}.ph span .hl::after{right:-8px;bottom:-8px}
+/* tarjetas */
+.card{background:#fff;border:2px solid #E3DCEF;border-radius:28px;box-shadow:0 22px 50px rgba(56,47,81,.12)}
+.sc{left:0;top:0;width:1080px;height:1920px}
+.pill{border-radius:999px;font:700 30px/1 'Maven Pro';padding:14px 26px;white-space:nowrap}
+.lbl{font:700 22px/1 'Maven Pro';letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.ttl{font:700 40px/1.1 Outfit}
+.row{display:flex;align-items:center;gap:22px;height:92px;border-top:2px solid #EFEAF6;padding:0 30px;font:700 34px/1 'Maven Pro'}
+.row .ic{width:56px;height:56px;border-radius:16px;background:var(--lav2);display:flex;align-items:center;justify-content:center}
+.row .tm{margin-left:auto;color:var(--mute);font-size:26px}
+.node{display:flex;flex-direction:column;align-items:center;gap:10px;width:220px}
+.node .sq{width:120px;height:120px;border-radius:30px;background:#fff;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px rgba(56,47,81,.14)}
+.node .nm{font:700 34px/1 Outfit}
+.node .tg{font:700 22px/1 'Maven Pro';background:var(--lav2);border-radius:12px;padding:6px 12px}
+.ck{width:46px;height:46px;border-radius:50%;border:3px solid #CFC7E2;display:flex;align-items:center;justify-content:center;flex:none}
+.end{left:0;top:0;width:1080px;height:1920px;opacity:0}
+</style></head><body>
+<div id="tl" class="abs"></div><div id="tlTop" class="abs"></div><div id="ticks" class="abs"></div>
+<div id="av" class="abs"><svg width="38" height="38" viewBox="-20 -20 40 40"><path d="M-12 12L-14 16L-10 14L12 -8L8 -12Z" fill="#F5E7D6" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+<div id="chips"></div>
+<div id="world"></div>
+<div id="caps"></div>
+<script src="gsap.min.js"></script>
+<script src="words.js"></script>
+<script>
+// ============ ESPECIFICACIÓN ============
+// Lienzo 1080×1920 (9:16) · 30 fps · duración = fin de la última palabra + 0.1 s · audio = voz.mp3 (1.10x)
+// Estilo de las referencias (hooks virales/_referencias): cuadrícula, línea de tiempo con paso numerado, tarjetas tipo app,
+// subtítulo arriba (y 300–460) con palabra clave en recuadro de selección y palabras por venir borrosas.
+// Zonas: subtítulo y 300–460 · paso y 540 · contenido x 160–960, y 640–1420 · nada en los últimos 0.5 s.
+const CFG={FPS:30,DUR:+(WORDS[WORDS.length-1][2]+.1).toFixed(2),POP:'back.out(1.35)',MOVE:'power3.inOut',OUT:'power2.in'};
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9ñ\s]/g,' ').split(/\s+/).filter(Boolean);
+const WN=WORDS.map(w=>norm(w[0])[0]||'');
+function at(frag,off,nth){const f=norm(frag);let c=0;
+ for(let i=0;i<=WN.length-f.length;i++){let ok=true;for(let j=0;j<f.length;j++)if(WN[i+j]!==f[j]){ok=false;break;}
+  if(ok){if((nth||0)===c)return +(WORDS[i][1]+(off||0)).toFixed(2);c++;}}
+ throw new Error('no encuentro: '+frag);}
+// ---------- íconos (SVG en línea, trazo ciruela)
+const I={
+ eye:'<svg width="34" height="34" viewBox="-20 -20 40 40"><path d="M-17 0Q0 -16 17 0Q0 16 -17 0Z" fill="none" stroke="#2E2545" stroke-width="3.5"/><circle r="5" fill="#2E2545"/></svg>',
+ pen:'<svg width="34" height="34" viewBox="-20 -20 40 40"><path d="M-12 12L-14 16L-10 14L12 -8L8 -12Z" fill="#F5E7D6" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/></svg>',
+ spin:'<svg width="34" height="34" viewBox="-20 -20 40 40"><path d="M0 0a3 3 0 0 1 6 0a6 6 0 0 1 -12 0a9 9 0 0 1 18 0a12 12 0 0 1 -24 0" fill="none" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/></svg>',
+ play:'<svg width="56" height="56" viewBox="-20 -20 40 40"><path d="M-7 -11L11 0L-7 11Z" fill="#2E2545"/></svg>',
+ pause:'<svg width="56" height="56" viewBox="-20 -20 40 40"><rect x="-9" y="-11" width="6" height="22" rx="2" fill="#C0392B"/><rect x="3" y="-11" width="6" height="22" rx="2" fill="#C0392B"/></svg>',
+ grid:'<svg width="56" height="56" viewBox="-20 -20 40 40"><rect x="-13" y="-13" width="11" height="11" rx="3" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.5"/><rect x="2" y="-13" width="11" height="11" rx="3" fill="#fff" stroke="#2E2545" stroke-width="2.5"/><rect x="-13" y="2" width="11" height="11" rx="3" fill="#fff" stroke="#2E2545" stroke-width="2.5"/><rect x="2" y="2" width="11" height="11" rx="3" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.5"/></svg>',
+ arrow:'<svg width="56" height="56" viewBox="-20 -20 40 40"><path d="M-12 8L0 -6L12 8" fill="none" stroke="#2E2545" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M0 -6V14" stroke="#2E2545" stroke-width="4" stroke-linecap="round"/></svg>',
+ sliders:'<svg width="70" height="70" viewBox="-20 -20 40 40"><path d="M-12 -9H12M-12 0H12M-12 9H12" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/><circle cx="-4" cy="-9" r="4" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.5"/><circle cx="6" cy="0" r="4" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.5"/><circle cx="-6" cy="9" r="4" fill="#F5E7D6" stroke="#2E2545" stroke-width="2.5"/></svg>',
+ ok:'<svg width="28" height="28" viewBox="-20 -20 40 40"><path d="M-10 0L-3 8L11 -8" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ send:'<svg width="40" height="40" viewBox="-20 -20 40 40"><path d="M-14 -2L14 -12L4 14L0 2Z" fill="#fff"/></svg>',
+ q:'<svg width="60" height="60" viewBox="-20 -20 40 40"><text y="10" text-anchor="middle" font-family="Outfit" font-weight="700" font-size="30" fill="#2E2545">?</text></svg>',
+ hand:'<svg width="70" height="70" viewBox="-20 -20 40 40"><path d="M-9 14V-4M-9 -4V-12M-3 -4V-15M3 -4V-13M9 -2V-9M-9 14H7Q11 14 11 8V-2" fill="none" stroke="#2E2545" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ lock:'<svg width="70" height="70" viewBox="-20 -20 40 40"><path d="M-7 -2V-8Q-7 -15 0 -15Q7 -15 7 -8V-2" fill="none" stroke="#2E2545" stroke-width="3.2"/><rect x="-12" y="-3" width="24" height="18" rx="4" fill="#F9DEE3" stroke="#2E2545" stroke-width="3"/><path d="M-4 3L5 6L-4 10Z" fill="#2E2545"/></svg>'};
+// ---------- pasos de la línea de tiempo
+// ---------- pasos de la línea de tiempo
+const STEPS=[['01','Dos niños'],['02','Lo que se ve'],['03','Un espectro'],['04','El problema'],['05','Comprender']];
+document.getElementById('chips').innerHTML=STEPS.map((s,i)=>`<div class="chip abs" id="st${i}"><b>${s[0]}</b>${s[1]}</div>`).join('');
+document.getElementById('ticks').innerHTML=[...Array(36)].map((_,i)=>`<i style="top:${i*110+30}px"></i>`).join('');
+// ---------- íconos y avatares del 009
+const INF=(w,c)=>`<svg width="${w}" height="${w*.5}" viewBox="-24 -12 48 24"><path d="M0 0C-6 -9 -20 -9 -20 0C-20 9 -6 9 0 0C6 -9 20 -9 20 0C20 9 6 9 0 0Z" fill="none" stroke="${c||'#2E2545'}" stroke-width="4" stroke-linecap="round"/></svg>`;
+const AVA=(bg,hair,skin,k)=>`<svg width="100%" height="100%" viewBox="-50 -50 100 100"><circle r="50" fill="${bg}"/><circle cy="4" r="26" fill="${skin||'#F5E7D6'}" stroke="#2E2545" stroke-width="3"/>${[
+ `<path d="M-27 0Q-28 -30 0 -30Q28 -30 27 0Q14 -16 -27 0Z" fill="${hair}" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/>`,
+ `<path d="M-28 6Q-32 -30 0 -32Q32 -30 28 6Q26 -12 14 -16Q0 -10 -14 -18Q-26 -12 -28 6Z" fill="${hair}" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/>`,
+ `<circle cx="-14" cy="-24" r="10" fill="${hair}" stroke="#2E2545" stroke-width="3"/><circle cx="14" cy="-24" r="10" fill="${hair}" stroke="#2E2545" stroke-width="3"/><path d="M-26 -4Q-26 -28 0 -28Q26 -28 26 -4Q10 -18 -26 -4Z" fill="${hair}" stroke="#2E2545" stroke-width="3"/>`,
+ `<path d="M-26 -6L-20 -26L-8 -18L0 -30L8 -18L20 -26L26 -6Z" fill="${hair}" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/>`][k]}<circle cx="-9" cy="6" r="3" fill="#2E2545"/><circle cx="9" cy="6" r="3" fill="#2E2545"/><path d="M-7 15Q0 20 7 15" fill="none" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/><path d="M-36 50Q-36 30 0 30Q36 30 36 50" fill="${hair==='#2E2545'?'#F9DEE3':'#fff'}" stroke="#2E2545" stroke-width="3"/></svg>`;
+const J={
+ chat:'<svg width="40" height="40" viewBox="-20 -20 40 40"><path d="M-15 -12H9Q13 -12 13 -8V2Q13 6 9 6H-4L-10 12V6H-15Q-19 6 -19 2V-8Q-19 -12 -15 -12Z" fill="#fff" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/><path d="M-12 -3H6" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/></svg>',
+ cards:'<svg width="40" height="40" viewBox="-20 -20 40 40"><rect x="-17" y="-12" width="15" height="20" rx="3" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.8"/><rect x="2" y="-8" width="15" height="20" rx="3" fill="#F5E7D6" stroke="#2E2545" stroke-width="2.8"/><circle cx="-9.5" cy="-3" r="3" fill="#2E2545"/><path d="M6 6L9.5 -1L13 6Z" fill="#2E2545"/></svg>',
+ group:'<svg width="40" height="40" viewBox="-20 -20 40 40"><circle cx="-10" cy="-4" r="6" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.6"/><circle cx="10" cy="-4" r="6" fill="#F5E7D6" stroke="#2E2545" stroke-width="2.6"/><circle cy="-6" r="7" fill="#fff" stroke="#2E2545" stroke-width="2.6"/><path d="M-18 14Q-18 4 -10 4M18 14Q18 4 10 4M-9 14Q-9 2 0 2Q9 2 9 14" fill="none" stroke="#2E2545" stroke-width="2.6" stroke-linecap="round"/></svg>',
+ blocks:'<svg width="40" height="40" viewBox="-20 -20 40 40"><rect x="-15" y="2" width="13" height="13" rx="2" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.6"/><rect x="2" y="2" width="13" height="13" rx="2" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.6"/><rect x="-6.5" y="-12" width="13" height="13" rx="2" fill="#F5E7D6" stroke="#2E2545" stroke-width="2.6"/></svg>',
+ eyeoff:'<svg width="34" height="34" viewBox="-20 -20 40 40"><path d="M-17 0Q0 -16 17 0Q0 16 -17 0Z" fill="none" stroke="#C0392B" stroke-width="3.2"/><circle r="5" fill="#C0392B"/><path d="M-14 -14L14 14" stroke="#C0392B" stroke-width="3.5" stroke-linecap="round"/></svg>',
+ lock:'<svg width="30" height="30" viewBox="-20 -20 40 40"><path d="M-7 -2V-8Q-7 -15 0 -15Q7 -15 7 -8V-2" fill="none" stroke="#8E86A6" stroke-width="3.5"/><rect x="-12" y="-3" width="24" height="18" rx="4" fill="#E7E1F4" stroke="#8E86A6" stroke-width="3"/></svg>',
+ ok:'<svg width="28" height="28" viewBox="-20 -20 40 40"><path d="M-10 0L-3 8L11 -8" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ send:'<svg width="40" height="40" viewBox="-20 -20 40 40"><path d="M-14 -2L14 -12L4 14L0 2Z" fill="#2E2545"/></svg>'};
+const AV=[['#F9DEE3','#2E2545','#F5E7D6',0],['#E7E1F4','#8A6A4E','#F5E7D6',1]];
+// ---------- escenas (HTML)
+const W=document.getElementById('world');
+const add=h=>W.insertAdjacentHTML('beforeend',h);
+// Fichas de los dos niños (hilo de todo el video)
+const PROF=(id,nm,k,x)=>add(`<div class="abs card" id="${id}" style="left:${x}px;top:660px;width:360px;height:380px;opacity:0">
+ <div style="display:flex;flex-direction:column;align-items:center;padding-top:34px;gap:12px">
+  <div style="width:120px;height:120px">${AVA(...AV[k])}</div><div class="ttl" style="font-size:40px">${nm}</div>
+  <div id="${id}b" class="pill" style="background:#E7E1F4;font-size:24px;padding:10px 18px;display:flex;gap:10px;align-items:center">${INF(40)}Autismo</div></div>
+ <div id="${id}r" style="position:absolute;left:0;right:0;top:330px"></div></div>`);
+PROF('pa','Niño A',0,190);PROF('pb','Niño B',1,590);
+const TRAIT=(card,id,ic,tx,i)=>document.getElementById(card+'r').insertAdjacentHTML('beforeend',`<div id="${id}" style="display:flex;align-items:center;gap:16px;height:120px;border-top:2px solid #EFEAF6;padding:0 22px;font:700 30px/1.15 'Maven Pro';opacity:0"><div style="width:62px;height:62px;border-radius:18px;background:#E7E1F4;display:flex;align-items:center;justify-content:center;flex:none">${ic}</div><span>${tx}</span></div>`);
+TRAIT('pa','ta0',J.chat,'Habla<br>mucho');TRAIT('pa','ta1',J.group,'Busca<br>compañía');
+TRAIT('pb','tb0',J.cards,'Se comunica<br>distinto');TRAIT('pb','tb1',J.blocks,'Prefiere<br>jugar solo');
+add(`<svg class="abs" id="brk" style="left:0;top:0;opacity:0" width="1080" height="1920"><path d="M370 1300V1330H770V1300M570 1330V1350" fill="none" stroke="#2E2545" stroke-width="4" stroke-linecap="round"/></svg>`);
+add(`<div class="abs pill" id="same" style="left:570px;top:1350px;transform:translateX(-50%);background:#2E2545;color:#fff;font-size:30px;display:flex;gap:12px;align-items:center;opacity:0">${INF(46,'#fff')}<span id="sameT">Mismo diagnóstico</span></div>`);
+// Espectro: pastilla grande y mezclador con A/B en cada característica
+add(`<div class="abs pill" id="spc" style="left:570px;top:1000px;transform:translate(-50%,-50%);background:#fff;border:4px solid #2E2545;font:700 64px/1 Outfit;padding:26px 48px;display:flex;gap:22px;align-items:center;box-shadow:0 22px 50px rgba(56,47,81,.12);opacity:0">${INF(110)}Espectro</div>`);
+const SL=[['Comunicación social',.22,.7],['Interacción',.75,.3],['Patrones de comportamiento',.4,.85],['Necesidades de apoyo',.3,.66]];
+add(`<div class="abs card" id="mix" style="left:210px;top:660px;width:720px;height:700px;padding:30px 40px;opacity:0"><div class="lbl" style="margin-bottom:6px">Cada niño, en cada característica</div>
+ ${SL.map((s,i)=>`<div id="sl${i}" style="height:150px;padding-top:30px;opacity:0"><div style="font:700 30px/1 'Maven Pro';margin-bottom:28px">${s[0]}</div>
+  <div style="position:relative;height:16px;border-radius:8px;background:linear-gradient(90deg,#F5E7D6,#F9DEE3,#C6BCE2)">
+   ${[...Array(6)].map((_,j)=>`<i class="xd" style="position:absolute;top:-1px;left:${(j*0.17+0.07+(i*0.05))%1*100}%;width:26px;height:26px;margin-left:-13px;top:-5px;border-radius:50%;background:#9E93C4;border:3px solid #fff;opacity:0"></i>`).join('')}
+   <b id="da${i}" style="position:absolute;top:-17px;left:${s[1]*100}%;margin-left:-25px;width:50px;height:50px;border-radius:50%;background:#F9DEE3;border:3px solid #2E2545;font:700 24px/44px Outfit;text-align:center;opacity:0">A</b>
+   <b id="db${i}" style="position:absolute;top:-17px;left:${s[2]*100}%;margin-left:-25px;width:50px;height:50px;border-radius:50%;background:#C6BCE2;border:3px solid #2E2545;font:700 24px/44px Outfit;text-align:center;opacity:0">B</b></div></div>`).join('')}</div>`);
+// El problema: molde rígido vs la ficha real del Niño B
+add(`<div class="abs card" id="mold" style="left:190px;top:700px;width:360px;height:560px;opacity:0;border:3px dashed #8E86A6;background:#F3F0F8;box-shadow:none">
+ <div style="text-align:center;padding-top:30px" class="lbl">Imagen esperada</div>
+ <svg style="display:block;margin:22px auto 0" width="130" height="150" viewBox="-50 -60 100 120"><circle cy="-30" r="22" fill="none" stroke="#8E86A6" stroke-width="4" stroke-dasharray="6 7"/><path d="M-40 56Q-40 6 0 6Q40 6 40 56" fill="none" stroke="#8E86A6" stroke-width="4" stroke-dasharray="6 7"/></svg>
+ ${[0,1,2].map(i=>`<div style="display:flex;align-items:center;gap:14px;margin:14px 34px 0;height:56px;border-radius:14px;background:#fff;padding:0 16px;font:700 26px/1 'Maven Pro';color:#8E86A6">${J.lock}Un solo molde</div>`).join('')}
+ <svg id="crk" class="abs" style="left:0;top:0;opacity:0" width="360" height="560"><path d="M200 0L170 120L210 220L160 330L205 430L175 560" fill="none" stroke="#C0392B" stroke-width="6" stroke-linejoin="round"/></svg></div>`);
+add(`<div class="abs card" id="real" style="left:590px;top:700px;width:360px;height:560px;opacity:0">
+ <div style="display:flex;align-items:center;gap:16px;padding:26px 24px 10px"><div style="width:78px;height:78px">${AVA(...AV[1])}</div><div class="ttl" style="font-size:34px">Niño B</div></div>
+ ${[['Se comunica distinto',J.cards],['Prefiere jugar solo',J.blocks],['Su propia historia',J.chat]].map((r,i)=>`<div id="rr${i}" style="display:flex;align-items:center;gap:14px;height:110px;border-top:2px solid #EFEAF6;padding:0 22px;font:700 27px/1.15 'Maven Pro'"><div style="width:54px;height:54px;border-radius:16px;background:#E7E1F4;display:flex;align-items:center;justify-content:center;flex:none">${r[1]}</div><span style="flex:1">${r[0]}</span><span id="ro${i}" style="opacity:0">${J.eyeoff}</span></div>`).join('')}
+ <div id="miss" class="pill" style="position:absolute;left:24px;bottom:24px;background:#F9DEE3;color:#C0392B;font-size:26px;opacity:0">3 sin ver</div></div>`);
+add(`<div class="abs pill" id="vs" style="left:570px;top:980px;transform:translate(-50%,-50%);width:72px;height:72px;padding:0;background:#2E2545;color:#fff;font:700 40px/72px Outfit;text-align:center;opacity:0">≈?</div>`);
+// Comprender: historia de desarrollo, perfil, galería y acompañar
+add(`<div class="abs card" id="hist" style="left:210px;top:700px;width:720px;height:330px;padding:30px 40px;opacity:0">
+ <div style="display:flex;align-items:center;gap:16px"><div style="width:64px;height:64px">${AVA(...AV[1])}</div><div><div class="lbl">Niño B</div><div class="ttl" style="font-size:36px;margin-top:6px">Historia de desarrollo</div></div></div>
+ <div style="position:relative;margin:56px 10px 0;height:6px;background:#E7E1F4;border-radius:3px"><div id="hfl" style="position:absolute;left:0;top:0;height:6px;width:0;background:#2E2545;border-radius:3px"></div>
+ ${['Bebé','2 años','4 años','Hoy'].map((t,i)=>`<div id="hm${i}" style="position:absolute;left:${i*33.33}%;top:-15px;margin-left:-18px;opacity:0;text-align:center"><div style="width:36px;height:36px;border-radius:50%;background:${['#F5E7D6','#F9DEE3','#C6BCE2','#2E2545'][i]};border:3px solid #2E2545"></div><div style="font:700 24px/1 'Maven Pro';margin-top:14px;white-space:nowrap;transform:translateX(${i==3?'-20px':'0'})">${t}</div></div>`).join('')}</div></div>`);
+add(`<div class="abs card" id="prf" style="left:210px;top:1060px;width:720px;height:330px;padding:28px 40px;opacity:0"><div class="lbl" style="margin-bottom:18px">Perfil · características y apoyos</div>
+ ${[['Comunicación',.55],['Interacción',.4],['Intereses',.8],['Apoyos',.65]].map((b,i)=>`<div style="display:flex;align-items:center;gap:18px;height:62px;font:700 26px/1 'Maven Pro'"><span style="width:190px">${b[0]}</span><div style="flex:1;height:22px;border-radius:11px;background:#F3F0F8;overflow:hidden"><div id="pb${i}" data-w="${b[1]}" style="height:22px;width:0;border-radius:11px;background:${['#F9DEE3','#C6BCE2','#F5E7D6','#2E2545'][i]};border:2px solid #2E2545"></div></div></div>`).join('')}</div>`);
+const GAL=[['#F9DEE3','#2E2545','#F5E7D6',2],['#E7E1F4','#8A6A4E','#E9C9A8',0],['#F5E7D6','#2E2545','#D9B08C',3],['#C6BCE2','#5B3B2A','#F5E7D6',1],['#F9DEE3','#8A6A4E','#E9C9A8',3],['#E7E1F4','#2E2545','#D9B08C',2],['#F5E7D6','#5B3B2A','#F5E7D6',0],['#C6BCE2','#2E2545','#E9C9A8',1],['#F9DEE3','#5B3B2A','#D9B08C',0]];
+add(`<div class="abs" id="gal" style="left:230px;top:680px;width:680px;height:680px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;opacity:0">${GAL.map((a,i)=>`<div id="g${i}" class="card" style="border-radius:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0"><div style="width:120px;height:120px">${AVA(...a)}</div>${INF(34,'#8E86A6')}</div>`).join('')}</div>`);
+add(`<div class="abs pill" id="acm" style="left:570px;top:1300px;transform:translateX(-50%);background:#2E2545;color:#fff;font-size:34px;display:flex;gap:14px;align-items:center;opacity:0"><span style="width:44px;height:44px;border-radius:50%;background:#1E9E6A;display:flex;align-items:center;justify-content:center">${J.ok}</span>Acompañar mejor</div>`);
+// CTA: encuesta y compartir
+add(`<div class="abs card" id="poll" style="left:210px;top:700px;width:720px;height:440px;padding:36px 40px;opacity:0"><div class="lbl">Encuesta</div><div class="ttl" style="font-size:48px;margin:14px 0 30px">¿Conocías esta diversidad?</div>
+ <div id="o1" style="height:96px;border-radius:24px;border:3px solid #2E2545;display:flex;align-items:center;padding:0 28px;font:700 32px/1 'Maven Pro';margin-bottom:18px;gap:16px"><span id="o1c" class="ck" style="width:42px;height:42px"></span>Sí, ya lo sabía</div>
+ <div id="o2" style="height:96px;border-radius:24px;border:3px solid #2E2545;display:flex;align-items:center;padding:0 28px;font:700 32px/1 'Maven Pro';gap:16px"><span id="o2c" class="ck" style="width:42px;height:42px"></span>Es nuevo para mí</div></div>`);
+add(`<div class="abs pill" id="cta" style="left:570px;top:1220px;transform:translateX(-50%);background:#2E2545;color:#fff;font:700 36px/1 'Maven Pro';padding:16px 16px 16px 36px;display:flex;gap:22px;align-items:center;opacity:0">Compártelo con alguien<span id="ctb" style="width:72px;height:72px;border-radius:50%;background:#C6BCE2;display:flex;align-items:center;justify-content:center">${J.send}</span></div>`);
+add(`<div class="abs end" id="end"><div class="abs" style="left:150px;width:840px;top:820px;text-align:center;font:700 74px/1.15 Outfit">Este video orienta y no diagnostica.</div>
+ <div class="abs pill" style="left:570px;top:1080px;transform:translateX(-50%);background:#fff;border:3px solid #2E2545;font-size:34px">psicologakarentrujillo.com.mx</div></div>`);
+
+// ============ LÍNEA DE TIEMPO ============
+gsap.set('#world > *',{opacity:0});
+const tl=gsap.timeline({paused:true});
+const POP=(s,t,d)=>tl.fromTo(s,{opacity:0,y:40,scale:.94},{opacity:1,y:0,scale:1,duration:d||.45,ease:CFG.POP,immediateRender:false},t);
+const OUT=(s,t)=>tl.to(s,{opacity:0,y:-60,duration:.3,ease:CFG.OUT},t);
+const IN=(s,t)=>tl.fromTo(s,{opacity:0},{opacity:1,duration:.3,immediateRender:false},t);
+const DIM=(s,t)=>tl.to(s,{opacity:.35,filter:'blur(2px)',duration:.4},t);
+const LIT=(s,t)=>tl.to(s,{opacity:1,filter:'blur(0px)',duration:.4},t);
+let cur=-1;
+const STEP=(i,t)=>{if(cur>=0)tl.to('#st'+cur,{opacity:0,y:-20,duration:.25},t-.25);
+ tl.fromTo('#st'+i,{opacity:0,y:20},{opacity:1,y:0,duration:.35,ease:CFG.POP,immediateRender:false},t);
+ tl.to('#ticks',{y:-(i+1)*110,duration:.6,ease:CFG.MOVE},t-.25);
+ tl.fromTo('#av',{scale:.8},{scale:1,duration:.35,ease:CFG.POP,immediateRender:false},t);cur=i;};
+const TXT=(s,t,tx)=>tl.call(()=>{document.querySelector(s).innerHTML=tx;},null,t);
+const ROW=(s,t)=>tl.fromTo(s,{opacity:0,x:-30},{opacity:1,x:0,duration:.35,ease:CFG.POP,immediateRender:false},t);
+
+// ESCENA 1 · HOOK (0–6.0) — Acción: dos fichas de niño lado a lado, cada una con la etiqueta «∞ Autismo»; al decir «diferentes»
+//  las fichas se separan un poco; aparece la llave «Mismo diagnóstico» que las une.
+// Persisten: las dos fichas (hilo de todo el video). Imagen final: dos fichas unidas por «Mismo diagnóstico».
+function escena1(){
+ gsap.set('#brk',{y:-260});gsap.set('#same',{top:1090});
+ STEP(0,0);POP('#pa',0);POP('#pb',.2);
+ tl.fromTo(['#pab','#pbb'],{scale:.6,opacity:0},{scale:1,opacity:1,duration:.35,ease:CFG.POP,immediateRender:false,stagger:.12},at('autismo'));
+ tl.to('#pa',{x:-12,rotation:-2,duration:.4,ease:CFG.MOVE},at('diferentes'));tl.to('#pb',{x:12,rotation:2,duration:.4,ease:CFG.MOVE},at('diferentes'));
+ IN('#brk',at('explicacion',-.3));POP('#same',at('explicacion',-.2));
+}
+// ESCENA 2 · DESARROLLO (6.0–20.6) — Acción: a cada ficha se le suman rasgos: A «Habla mucho», B «Se comunica distinto»,
+//  A «Busca compañía», B «Prefiere jugar solo»; al final ambas etiquetas «∞» se iluminan y la llave dice «Mismo espectro».
+// Imagen final: dos fichas con dos rasgos distintos cada una y «Mismo espectro».
+function escena2(){
+ const t0=at('uno puede');
+ STEP(1,t0);tl.to(['#pa','#pb'],{x:0,rotation:0,height:620,duration:.5,ease:CFG.MOVE},t0-.2);tl.to(['#brk','#same'],{opacity:0,duration:.25},t0-.2);tl.set('#brk',{y:0},t0+.2);tl.set('#same',{top:1350},t0+.2);
+ ROW('#ta0',at('hablar'));DIM('#pb',at('hablar'));
+ LIT('#pb',at('otro puede'));DIM('#pa',at('otro puede'));ROW('#tb0',at('comunicarse'));
+ LIT('#pa',at('uno puede',0,1));DIM('#pb',at('uno puede',0,1));ROW('#ta1',at('buscar'));
+ LIT('#pb',at('otro puede',0,1));DIM('#pa',at('otro puede',0,1));ROW('#tb1',at('preferir'));
+ const tA=at('y ambos');LIT('#pa',tA);
+ tl.to(['#pab','#pbb'],{backgroundColor:'#C6BCE2',scale:1.1,duration:.25,yoyo:true,repeat:1},at('espectro'));
+ TXT('#sameT',tA,'Mismo espectro');IN('#brk',tA+.2);POP('#same',tA+.3);
+}
+// ESCENA 3 · GIRO (20.6–37.9) — Acción: «∞ Espectro»; un mezclador con cuatro características (comunicación social, interacción,
+//  patrones de comportamiento, necesidades de apoyo) donde A y B quedan en puntos distintos; luego aparecen muchos puntos más.
+// Persisten: A y B (como puntos). Imagen final: mezclador lleno de puntos, cada niño en un lugar distinto.
+function escena3(){
+ const t0=at('esto ocurre');
+ ['#pa','#pb','#brk','#same'].forEach(s=>OUT(s,t0-.3));STEP(2,t0);
+ tl.fromTo('#spc',{opacity:0,scale:.7},{opacity:1,scale:1,duration:.5,ease:CFG.POP,immediateRender:false},t0);tl.to('#spc',{scale:1.08,duration:.2,yoyo:true,repeat:1},at('espectro',0,1));
+ tl.to('#spc',{opacity:0,scale:.8,duration:.3},at('sus caracteristicas',-.3));
+ POP('#mix',at('sus caracteristicas'));
+ const ts=[at('comunicacion'),at('interaccion'),at('patrones'),at('necesidades')];
+ ts.forEach((t,i)=>{IN('#sl'+i,t-.1);tl.fromTo('#da'+i,{opacity:0,scale:.4},{opacity:1,scale:1,duration:.3,ease:CFG.POP,immediateRender:false},t+.1);
+  tl.fromTo('#db'+i,{opacity:0,scale:.4},{opacity:1,scale:1,duration:.3,ease:CFG.POP,immediateRender:false},t+.3);});
+ tl.fromTo('.xd',{opacity:0,scale:.3},{opacity:1,scale:1,duration:.25,stagger:.03,ease:CFG.POP,immediateRender:false},at('todos'));
+ tl.to('#mix',{scale:1.03,duration:.25,yoyo:true,repeat:1},at('mismas'));
+}
+// ESCENA 4 · PROVOCACIÓN (37.9–49.9) — Acción: un molde punteado «Imagen esperada» con candados junto a la ficha real del Niño B;
+//  «≈?» entre ambos; sus rasgos reales se marcan «sin ver» (3 sin ver); el molde se agrieta y cae.
+// Persisten: Niño B. Imagen final: ficha del Niño B con «3 sin ver» y el molde roto fuera.
+function escena4(){
+ const t0=at('el problema');
+ OUT('#mix',t0-.3);STEP(3,t0);
+ POP('#real',t0+.1);POP('#mold',at('imagen'));
+ tl.fromTo('#vs',{opacity:0,scale:.3},{opacity:1,scale:1,duration:.35,ease:CFG.POP,immediateRender:false},at('especifica'));
+ const tA=at('pasar por alto');
+ [0,1,2].forEach(i=>{tl.to('#rr'+i,{opacity:.4,duration:.3},tA+i*.35);IN('#ro'+i,tA+i*.35);});
+ POP('#miss',at('importantes'));
+ IN('#crk',at('coinciden'));tl.to('#mold',{x:'+=8',duration:.06,yoyo:true,repeat:5},at('coinciden'));
+ tl.to('#mold',{y:300,rotation:-14,opacity:0,duration:.6,ease:CFG.OUT},at('expectativas'));OUT('#vs',at('expectativas'));
+ tl.to('#real',{x:-200,duration:.6,ease:CFG.MOVE},at('expectativas',.3));
+ [0,1,2].forEach(i=>tl.to('#rr'+i,{opacity:1,duration:.3},at('expectativas',.5)));tl.to(['#ro0','#ro1','#ro2','#miss'],{opacity:0,duration:.3},at('expectativas',.5));
+}
+// ESCENA 5 · CIERRE (49.9–65.6) — Acción: historia de desarrollo del Niño B (Bebé, 2, 4 años, Hoy) y su perfil con barras que se llenan
+//  (evaluación); galería de nueve niños distintos con «∞» (no hay una sola apariencia); vuelven A y B con «Acompañar mejor».
+// Persisten: Niño B → galería → A y B. Imagen final: A y B juntos con «Acompañar mejor».
+function escena5(){
+ const t0=at('cada nino');
+ OUT('#real',t0-.3);STEP(4,t0);
+ POP('#hist',t0);
+ [0,1,2,3].forEach(i=>IN('#hm'+i,at('propia')+i*.3));tl.to('#hfl',{width:'100%',duration:1.2,ease:'power1.inOut'},at('propia'));
+ POP('#prf',at('una evaluacion'));
+ [0,1,2,3].forEach(i=>{const e=document.getElementById('pb'+i);tl.to(e,{width:(+e.dataset.w*100)+'%',duration:.6,ease:CFG.MOVE},at('explorar')+i*.3);});
+ const tG=at('el autismo no');
+ OUT('#hist',tG-.3);OUT('#prf',tG-.3);
+ IN('#gal',tG);GAL.forEach((_,i)=>tl.fromTo('#g'+i,{opacity:0,scale:.6},{opacity:1,scale:1,duration:.3,ease:CFG.POP,immediateRender:false},tG+i*.12));
+ const tC=at('y conocer');
+ OUT('#gal',tC-.2);
+ tl.fromTo('#pa',{opacity:0,y:40,x:0,scale:.94,filter:'blur(0px)'},{opacity:1,y:0,scale:1,duration:.45,ease:CFG.POP,immediateRender:false},tC);
+ tl.fromTo('#pb',{opacity:0,y:40,x:0,scale:.94,filter:'blur(0px)'},{opacity:1,y:0,scale:1,duration:.45,ease:CFG.POP,immediateRender:false},tC+.15);
+ POP('#acm',at('acompanar'));
+}
+// ESCENA 6 · CTA (65.6–71.6) — Acción: encuesta «¿Conocías esta diversidad?» con dos opciones (se marca una); «Compártelo con alguien»;
+//  aviso final y web (quietos los últimos 0.5 s). Imagen final: aviso + web.
+function escena6(){
+ const t0=at('conocias');
+ ['#pa','#pb','#acm'].forEach(s=>OUT(s,t0-.3));tl.to('#st4',{opacity:0,duration:.3},t0-.3);
+ POP('#poll',t0);
+ tl.to('#o2',{backgroundColor:'#E7E1F4',duration:.2},at('diversidad',0,1)+.2);tl.to('#o2c',{backgroundColor:'#1E9E6A',borderColor:'#1E9E6A',duration:.2},at('diversidad',0,1)+.2);TXT('#o2c',at('diversidad',0,1)+.2,J.ok);
+ POP('#cta',at('comparte'));tl.to('#ctb',{scale:.85,duration:.12,yoyo:true,repeat:1},at('comparte',.6));
+ const tF=at('comprender',-.2);
+ ['#poll','#cta'].forEach(s=>OUT(s,tF-.1));
+ tl.to(['#av','#tlTop','#tl','#ticks'],{opacity:.25,duration:.3},tF);
+ tl.fromTo('#end',{opacity:0,scale:.96},{opacity:1,scale:1,duration:.5,ease:CFG.POP,immediateRender:false},tF+.15);
+}
+escena1();escena2();escena3();escena4();escena5();escena6();
+
+// ============ SUBTÍTULO ARRIBA (palabras por venir borrosas; clave en recuadro de selección) ============
+const KEYS=new Set(['diferentes','explicacion','hablar','comunicarse','compania','individuales','espectro','caracteristicas','apoyo','mismas','imagen','alto','expectativas','historia','evaluacion','apariencia','diversidad','acompanar','comparte']);
+(function(){const ph=[];let cur=[];const fl=()=>{if(cur.length){ph.push(cur);cur=[];}};
+ WORDS.forEach((w,i)=>{cur.push({w:w[0],t:w[1],e:w[2]});const nx=WORDS[i+1];if(cur.length>=6||/[,.:?]$/.test(w[0])||(nx&&nx[1]-w[2]>.45))fl();});fl();
+ const C=document.getElementById('caps');
+ ph.forEach((p,i)=>{const d=document.createElement('div');d.className='ph abs';d.id='ph'+i;
+  d.innerHTML=p.map((x,j)=>{const k=KEYS.has(norm(x.w)[0]);return `<span class="${k?'k':''}" id="p${i}w${j}">${k?'<i class="hl"></i>':''}${x.w}</span>`;}).join('');C.appendChild(d);
+  const s0=p[0].t-.12,e0=i+1<ph.length?ph[i+1][0].t-.12:CFG.DUR-.6;
+  tl.fromTo(d,{opacity:0,y:16},{opacity:1,y:0,duration:.18,immediateRender:false},s0);tl.to(d,{opacity:0,duration:.12},e0-.12);
+  p.forEach((x,j)=>{tl.fromTo('#p'+i+'w'+j,{opacity:.28,filter:'blur(7px)'},{opacity:1,filter:'blur(0px)',duration:.2,immediateRender:false},x.t);
+   if(KEYS.has(norm(x.w)[0]))tl.fromTo('#p'+i+'w'+j+' .hl',{opacity:0,scaleX:.6},{opacity:1,scaleX:1,duration:.22,ease:CFG.POP,immediateRender:false},x.t);});
+  gsap.set(d.querySelectorAll('span'),{opacity:.28,filter:'blur(7px)'});});
+})();
+window.DUR=CFG.DUR;
+window.seek=t=>{tl.time(Math.min(t,tl.duration()));};
+</script></body></html>
