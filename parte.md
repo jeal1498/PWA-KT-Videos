@@ -17,6 +17,7 @@
 - ElevenLabs: la clave `ELEVENLABS_API_KEY` ya tiene permisos de lectura de voces y cuenta; plan Starter (39,781 créditos). La receta de los hooks virales es guion con CTA hablado, Eleven v3 y velocidad 1.10x (`atempo`); el guion 001 quedó recortado a 60 s.
 - Hooks virales: gráficos del 001 aprobados (v4, 27 nov) y guardados en `graficos/`: pantalla completa sin Karen, 30 fps, sincronizados con la voz. La instrucción de Eduardo (acciones por bloque, ≤4 palabras, analogías literales, escala, persistencia, zonas seguras, escenas modulares) quedó en `references/hooks-virales.md` y `PLANTILLA-DISTRIBUCION.md` pasó a pantalla completa.
 - Hooks virales: portada del 001 aprobada (estilo de los gráficos v4: «Es inteligente, pero no pone atención», bombilla y engranajes Comprender ≠ Atención); guardados `portada.png`, `graficos/portada.html` y `video.mp4` con la portada como primer cuadro y en bucle (el aviso final se funde 0.5 s en la portada; 60.8 s). Aprobado como receta para los siguientes: `final-hook.sh` (bucle + portada) y `plantilla-hooks/portada.html` en el skill.
+- Hooks virales: 002 aprobado y guardado (gráficos, portada «¿Desobediente… o necesita otro apoyo?», `video.mp4` en bucle con portada como primer cuadro, 58 s).
 - Todo cambio a `parte.md` se guarda directo en `main` (Karen).
 
 ## … Falta
@@ -26,7 +27,7 @@
 - Pasar el 41 de la rama de la sesión a `main`.
 
 - Hooks virales 031 a 040: generar la voz con la receta cuando haya créditos (Starter no alcanzó para los 40; Eduardo los dejó pendientes).
-- Hooks virales: faltan los gráficos del 002 al 040 (receta del 001 v4). Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
+- Hooks virales: faltan los gráficos del 003 al 040 (receta del 001 v4). Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
 
 ## ✗ No tocar
 - Diagnosticar o decir que algo «cura»: el contenido orienta, no diagnostica.
