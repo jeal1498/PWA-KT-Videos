@@ -20,9 +20,7 @@
 
 Empieza sus trabajos, pierde las instrucciones y deja todo incompleto.
 
-En casa ocurre algo parecido.
-
-Sabe qué tiene que hacer, pero parece que no consigue avanzar.»
+Sabe qué hacer, pero no consigue avanzar.»
 
 ### GIRO (18–34 s)
 
