@@ -41,7 +41,8 @@ Hoja de respuestas → tarea · barra de avance → camino · bombilla → engra
 3. Reescribir objetos (`D`, `O(...)`), rótulos y las funciones de escena en `index.html`.
 4. `bash $SK/scripts/previa-hook.sh <trabajo> --hoja` y revisar todas las `hoja_N.png` (un cuadro por segundo).
 5. `previa-hook.sh <trabajo>` con `run_in_background` → `SendUserFile` de `previa-720.mp4`.
-6. Aprobado: guardar `index.html` y `words.js` en `hooks virales/NNN - …/graficos/` (sin mp4, gsap ni fuentes).
+6. **Portada** (aprobada con el 001): editar `<trabajo>/portada.html` (viene de la plantilla) con el estilo de los gráficos: fondo lavanda→rosa, etiqueta ciruela arriba (y 250), gancho en Outfit 112 con la segunda parte en calcomanía arena girada, y abajo el dibujo clave del video (y 850–1600) con ≤2 rótulos. `bash $SK/scripts/portada.sh <trabajo>` → revisar `portada.png` → `SendUserFile`.
+7. Aprobados previa y portada: `bash $SK/scripts/final-hook.sh <trabajo> "hooks virales/NNN - …"`. Hace el **bucle** (el aviso final se funde 0.5 s en la portada) y pone la portada como **primer cuadro**; guarda `video.mp4`, `portada.png` y `graficos/` (index.html, words.js, portada.html; sin gsap ni fuentes). Revisar el cierre y mandar `loop-720.mp4`.
 
 ## Revisión
 - **Nada vacío:** nunca >1 s con un solo objeto o un lado vacío.
@@ -49,3 +50,4 @@ Hoja de respuestas → tarea · barra de avance → camino · bombilla → engra
 - **Pivotes:** los grupos SVG giran y escalan desde su centro (`transformOrigin:'50% 50%'`); las barras desde la izquierda.
 - **Corte limpio:** cada escena sale antes de que entre la siguiente.
 - El aviso «Este video orienta y no diagnostica.» y la web cierran los últimos ≈1.5 s.
+- **Bucle:** el último cuadro es la portada (igual que el primero); nada debe animarse en los últimos 0.5 s del HTML.
