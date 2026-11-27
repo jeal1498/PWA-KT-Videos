@@ -1,5 +1,5 @@
 #!/bin/bash
-# Uso: nuevo-hook.sh <trabajo> "<carpeta del hook>"   Copia la plantilla (la del 001 v4), gsap, fuentes,
+# Uso: nuevo-hook.sh <trabajo> "<carpeta del hook>"   Copia la plantilla vigente (estilo de referencias, 008 v2; la anterior está en plantilla-hooks-v1), gsap, fuentes,
 # la voz (voz.mp3) y los tiempos por palabra (words.json → words.js).
 set -e; SK="$(cd "$(dirname "$0")/.." && pwd)"; mkdir -p "$1"
 cp "$SK"/plantilla-hooks/* "$1"/; cp "$SK"/assets/gsap.min.js "$SK"/assets/fonts/*.woff2 "$1"/

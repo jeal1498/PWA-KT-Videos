@@ -1,6 +1,18 @@
 # Hooks virales: referencia
 
-Para todo video de la carpeta `hooks virales/`. Receta aprobada con el **001 v4 (27 nov 2026)**: Karen **no sale**; voz en off clonada (ElevenLabs) y gráficos a **pantalla completa**. Fuente de referencia: `hooks virales/001 - …/graficos/index.html` (= `plantilla-hooks/index.html`).
+Para todo video de la carpeta `hooks virales/`. Karen **no sale**: voz en off clonada (ElevenLabs) y gráficos a **pantalla completa**.
+
+## Receta vigente: estilo de referencias (aprobada con el 008 v2, 27 nov 2026)
+Desde el 008 v2, todos los hooks siguientes usan este estilo. Las referencias están en `hooks virales/_referencias/`, con un `README.md`. La plantilla es `plantilla-hooks/index.html` (= `hooks virales/008 - …/v2/graficos/index.html`) y `nuevo-hook.sh` la copia. El estilo ilustrado anterior (001–008 v1) quedó en `plantilla-hooks-v1/` y solo se usa si lo piden.
+- **Fondo:** cuadrícula fina lavanda sobre `#F7F4FA`. Paleta de Karen: ciruela `#2E2545`, lavanda, rosa, arena; verde `#1E9E6A` solo para «hecho» y rojo `#C0392B` solo para pausa o alerta.
+- **Línea de tiempo:** línea vertical a la izquierda (x 100) con avatar y chip de paso numerado (`01 La tarea` … `05 Qué hacer`), uno por bloque del guion. Las marcas de la línea suben en cada cambio de paso.
+- **Subtítulo arriba** (y 300–460, Outfit 62): frases de ≤6 palabras. Las palabras dichas se ven nítidas y las que siguen aparecen borrosas; la palabra clave va en un recuadro de selección lavanda con esquinas. No hay subtítulo abajo.
+- **Contenido** (x 160–960, y 640–1420): tarjetas tipo app (documento, notificación, registro, ajuste con interruptor, cita «Agendar → Agendada», lista con palomitas), diagramas sencillos (anillo con nodos y contador 1/3→3/3) y comparación A/B lado a lado con «≠». Íconos SVG simples con trazo ciruela.
+- **Hilo continuo:** el objeto del gancho (en el 008, el documento en blanco y el cronómetro) persiste o vuelve al final transformado (se llena). Hay contadores que suben (cronómetro, palabras, habilidades).
+- **Movimiento:** las tarjetas entran desde abajo con `back.out(1.35)` y salen hacia arriba. Lo secundario se atenúa con desenfoque. Nada vacío más de 1 s.
+- **Cierre:** el CTA va en una pastilla con botón; luego el aviso «Este video orienta y no diagnostica.» y la web. La portada usa el mismo estilo: chip, gancho con la parte clave en recuadro de selección y la tarjeta del gancho.
+- Siguen vigentes la instrucción obligatoria (abajo, puntos 1–10) y los elementos nuevos en cada video: el estilo se comparte, pero el contenido de las tarjetas y de los diagramas cambia según el tema.
+
 
 ## Instrucción obligatoria (Eduardo, 27 nov 2026) — aplicarla en cada video
 1. Propón una acción visual por bloque y después arma la animación.
@@ -25,6 +37,7 @@ Para gráficos (HyperFrames, Remotion o la plantilla GSAP):
 - **006:** contador de clics y palitos de conteo, mensajes «Guarda tus juguetes» que se apagan, cubos ABC/carrito/patito con círculos punteados, escritorio con cuadernos, huellas y puerta, oreja que rebota ondas, pizarra con tarjetas de imán (cubo, cuaderno, zapato), banda transportadora y caja, diana, cajonera, montón de 20 tarjetitas → 3 tarjetas grandes numeradas, candados con llaves distintas, calendario semanal con palomitas, brújula, control de volumen con bocina, tren con vagones, caja de juguetes ordenada, refrigerador con notas de imán.
 - **007:** tarjeta «2 + 3 =» con respuesta 5 y palomita, hoja de examen con borrador y «?», niño con globo de diálogo, pizarra de tiza (sol, nube, flecha), reloj analógico que avanza, muro de ladrillos, nota 4 en círculo rojo, garabato de frustración, estante con libro que entra y sale, símbolo ≠, ojo con pupila, bandeja con tres pelotas que rebotan, manómetro con vapor, libro con «zzz» y pesas tachados, cadena de tres eslabones (libro, archivero, lápiz y hoja) con marcador, tres exámenes con nota 5 e iconos, iceberg con la nota en la punta, signo «?» rojo, escritorio con lámpara.
 - **008:** cuaderno abierto con lápiz quieto, temporizador de sector rosa, botón ▶ que se aprieta sin respuesta, cinco lápices que se acomodan y se revuelven, pájaro que cruza, ventana con cortinas (desde fuera), batería que se vacía, fila de dominó con ▶ en la primera ficha, torre de control con ondas y líneas punteadas, ancla sobre la ficha, etiqueta «Flojo» que se despega, sofá, bicicleta con freno, «≠», nubes (rayo, zzz, ?), «TDAH» con señal de prohibido, flecha circular, puerta de consultorio que se abre, pasos Abrir/Leer/Comenzar, fichas que caen en cadena, cuaderno que se llena, ícono de compartir.
+- **008 v2 (estilo de referencias):** documento «Tarea · Cuaderno» con cursor y contador de palabras, cronómetro 00:00→41:00, notificación «Ya, empieza la tarea», registro «Lo que pasa» con «↻ Se repite», etiqueta «Parece: sin ganas», anillo de funciones ejecutivas (Iniciar/Organizar/Dirigir, contador 3/3, Iniciar en pausa), tarjetas Opción A/B con «≠» y «¿Flojo?», tarjetas «Motivo 1-3», interruptor «TDAH · No es automático», semana con días marcados y áreas (Escuela, Casa, Ánimo), cita «Valoración especializada» Agendar→Agendada, «Flojo» tachado, lista Abrir/Leer/Escribir, pastilla «Compártelo con otra familia».
 
 ## Especificación (bloque `CFG` al inicio de la línea de tiempo)
 - Lienzo 1080×1920 (9:16), 30 fps; duración = fin de la última palabra de `words.json` + 0.1 s (el 001: 60.1 s = 1803 cuadros). Audio: `voz.mp3` de la carpeta (receta de voz: guion con CTA hablado, Eleven v3, 1.10x).

@@ -42,7 +42,7 @@ El mismo esquema de lote: su guion entra en la aprobación 1 y el video editado 
 Subtítulos palabra por palabra, layout dividido (gráficos arriba, Karen abajo), escenario animado por bloques, silencios recortados (`recortar.py`) y color grading (`color.sh`). Pasos, ejemplo y trampas en `references/con-cara.md`; revisar cuadro por cuadro (`--vistazo 1`) antes de entregar.
 
 ## Hooks virales (carpeta `hooks virales/`)
-Sin Karen: voz en off y gráficos a pantalla completa, con la instrucción obligatoria de Eduardo (acciones por bloque, ≤4 palabras, analogías literales, escala, persistencia, sincronía, zonas seguras, escenas modulares): leer `references/hooks-virales.md`. Plantilla en `plantilla-hooks/` (`nuevo-hook.sh`, `previa-hook.sh`).
+Sin Karen: voz en off y gráficos a pantalla completa, con la instrucción obligatoria de Eduardo (acciones por bloque, ≤4 palabras, analogías literales, escala, persistencia, sincronía, zonas seguras, escenas modulares): leer `references/hooks-virales.md`. Desde el 008 v2 (27 nov 2026), el estilo vigente es el de los videos de referencia (`hooks virales/_referencias/`): cuadrícula, línea de tiempo con pasos, subtítulo arriba con palabra clave resaltada y tarjetas tipo app. Plantilla en `plantilla-hooks/` (`nuevo-hook.sh`, `previa-hook.sh`); la ilustrada anterior está en `plantilla-hooks-v1/`.
 
 ## Reglas que no cambian
 - Orienta, no diagnostica: nunca «cura» ni diagnosticar por video. Todo video cierra con «Este video orienta y no diagnostica.» y `psicologakarentrujillo.com.mx`.
