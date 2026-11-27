@@ -15,15 +15,15 @@
 
 ### DESARROLLO (5–18 s)
 
-«Primero necesitamos conocer qué está ocurriendo.
+«Primero hay que conocer qué está ocurriendo.
 
-Hablamos sobre el motivo de consulta, los antecedentes y las dificultades actuales.
+Se habla sobre el motivo de consulta, los antecedentes y las dificultades actuales.
 
-También revisamos cómo se presentan en la casa, la escuela o el trabajo.»
+También se revisa cómo se presentan en la casa, la escuela o el trabajo.»
 
 ### GIRO (18–34 s)
 
-«Después seleccionamos las herramientas adecuadas para cada caso.
+«Después se seleccionan las herramientas adecuadas para cada caso.
 
 Pueden incluir entrevistas, cuestionarios y pruebas que exploran distintas habilidades cognitivas.
 
@@ -33,15 +33,15 @@ La selección depende de la edad y de la pregunta clínica.»
 
 ### PROVOCACIÓN (34–46 s)
 
-«Porque evaluar no significa aplicar todo lo que tenemos disponible.
+«Porque evaluar no significa aplicar todo lo que está disponible.
 
 Significa elegir lo que realmente puede aportar información útil sobre esa persona.»
 
 ### CIERRE PROFESIONAL (46–60 s)
 
-«Finalmente, integramos los resultados con la historia y la observación clínica.
+«Finalmente, se integran los resultados con la historia y la observación clínica.
 
-Después explicamos los hallazgos y las recomendaciones.
+Después se explican los hallazgos y las recomendaciones.
 
 Una evaluación debe ayudarte a comprender qué sucede y qué apoyos pueden ser adecuados.»
 
@@ -63,7 +63,7 @@ Una evaluación debe ayudarte a comprender qué sucede y qué apoyos pueden ser 
 
 ## CTA
 
-Cierre hablado: «¿Qué te gustaría saber antes de iniciar una evaluación? Te leo en comentarios.»
+Cierre hablado: «¿Qué te gustaría saber antes de iniciar una evaluación? Compártelo en comentarios.»
 
 CTA visual opcional: «Pregunta sin pena»
 

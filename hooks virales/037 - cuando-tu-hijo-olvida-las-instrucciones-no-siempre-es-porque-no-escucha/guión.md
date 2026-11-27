@@ -14,7 +14,7 @@
 “Le dices: guarda tus zapatos, recoge la mochila y lávate las manos. Parece que te escuchó, pero unos segundos después ya olvidó qué seguía.”
 
 **GIRO (18–34 s)**  
-“Una habilidad que participa en esto es la memoria de trabajo: nos ayuda a mantener información en mente mientras la usamos. Puede costar más cuando hay varios pasos, distracciones o cansancio.”
+“Una habilidad que participa en esto es la memoria de trabajo: ayuda a mantener información en mente mientras se usa. Puede costar más cuando hay varios pasos, distracciones o cansancio.”
 
 **PROVOCACIÓN (34–46 s)**  
 “Repetir ‘pon atención’ no siempre resuelve el problema. A veces necesita instrucciones más breves, de una en una, y apoyos visuales.”

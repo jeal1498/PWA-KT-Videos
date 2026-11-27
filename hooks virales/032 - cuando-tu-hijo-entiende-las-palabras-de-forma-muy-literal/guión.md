@@ -19,7 +19,7 @@
 
 “Échame una mano”, “ahorita” o “ya casi” dependen del contexto.
 
-Algunos niños pueden necesitar que expliquemos con más claridad qué queremos decir.»
+Algunos niños pueden necesitar una explicación más clara de lo que se quiere decir.»
 
 ### GIRO (18–34 s)
 
@@ -61,7 +61,7 @@ Significa reducir las ambigüedades para que el mensaje llegue mejor.»
 
 ## CTA
 
-Cierre hablado: «¿Qué expresión cotidiana suele causar confusión en casa? Cuéntame.»
+Cierre hablado: «¿Qué expresión cotidiana suele causar confusión en casa? Compártelo en comentarios.»
 
 CTA visual opcional: «¿Ahorita cuándo?»
 

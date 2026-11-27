@@ -36,7 +36,7 @@ Pero también existen otras razones para postergar las cosas.»
 
 ### PROVOCACIÓN (34–46 s)
 
-«Quiero que pienses en algo:
+«Vale la pena pensar en algo:
 
 ¿Realmente no quieres hacerlo o llevas años queriendo hacerlo sin conseguir organizarte para comenzar?
 

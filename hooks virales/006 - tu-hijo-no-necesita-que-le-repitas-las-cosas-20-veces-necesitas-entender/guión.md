@@ -30,7 +30,7 @@ Y terminas pensando que simplemente no te escucha.»
 
 «Pero existe una habilidad importante llamada memoria de trabajo.
 
-Nos permite mantener información en mente mientras realizamos una actividad.
+Permite mantener información en mente mientras se realiza una actividad.
 
 Si esta habilidad presenta dificultades, seguir instrucciones puede resultar complicado.
 
@@ -72,7 +72,7 @@ Se trata de descubrir qué apoyo necesita para avanzar.»
 
 ## CTA
 
-Cierre hablado: «¿Qué instrucción tienes que repetir constantemente en casa? Te leo en comentarios.»
+Cierre hablado: «¿Qué instrucción tienes que repetir constantemente en casa? Compártelo en comentarios.»
 
 CTA visual opcional: «¿Qué suele olvidar?»
 

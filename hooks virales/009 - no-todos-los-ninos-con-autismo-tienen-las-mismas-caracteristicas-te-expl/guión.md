@@ -1,5 +1,5 @@
 
-# No todos los niños con autismo tienen las mismas características. Te explico por qué
+# No todos los niños con autismo tienen las mismas características. Por qué
 
 ## Ficha estratégica
 
@@ -12,7 +12,7 @@
 
 ### HOOK (0–5 s)
 
-«Dos niños pueden tener autismo y comportarse de maneras completamente diferentes. Te explico por qué.»
+«Dos niños pueden tener autismo y comportarse de maneras completamente diferentes. Y tiene una explicación.»
 
 ### DESARROLLO (5–18 s)
 
@@ -34,13 +34,13 @@ Sus características pueden variar en comunicación social, interacción y patro
 
 También existen diferencias en las necesidades de apoyo.
 
-Por eso, no podemos esperar que todos los niños presenten las mismas características.»
+Por eso, no se puede esperar que todos los niños presenten las mismas características.»
 
 ### PROVOCACIÓN (34–46 s)
 
-«El problema aparece cuando buscamos que un niño se parezca a una imagen específica del autismo.
+«El problema aparece cuando se busca que un niño se parezca a una imagen específica del autismo.
 
-Podemos pasar por alto características importantes simplemente porque no coinciden con nuestras expectativas.»
+Se pueden pasar por alto características importantes simplemente porque no coinciden con las expectativas.»
 
 ### CIERRE PROFESIONAL (46–60 s)
 

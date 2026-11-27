@@ -30,7 +30,7 @@ Y así termina pasando el día.»
 
 «Organizar actividades requiere varias funciones ejecutivas.
 
-Necesitamos priorizar, mantener información en mente y cambiar entre tareas.
+Se necesita priorizar, mantener información en mente y cambiar entre tareas.
 
 Cuando estas habilidades presentan dificultades, actividades aparentemente sencillas pueden exigir mucho esfuerzo.
 
@@ -38,7 +38,7 @@ Esto puede ocurrir en personas con TDAH, aunque existen otras explicaciones.»
 
 ### PROVOCACIÓN (34–46 s)
 
-«Quiero que pienses en algo:
+«Vale la pena pensar en algo:
 
 ¿Estás cansado por la cantidad de cosas que haces o por el esfuerzo constante que necesitas para organizarlas?»
 
@@ -48,7 +48,7 @@ Esto puede ocurrir en personas con TDAH, aunque existen otras explicaciones.»
 
 Una evaluación especializada puede explorar tu atención y funcionamiento ejecutivo.
 
-No debemos normalizar años de dificultades sin intentar comprenderlas.
+No hay que normalizar años de dificultades sin intentar comprenderlas.
 
 Tu experiencia también merece una explicación.»
 

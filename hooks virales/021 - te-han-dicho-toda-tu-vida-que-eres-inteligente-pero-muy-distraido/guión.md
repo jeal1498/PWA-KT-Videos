@@ -26,7 +26,7 @@ Y escuchaste muchas veces: tienes potencial, pero no te esfuerzas suficiente.»
 
 ### GIRO (18–34 s)
 
-«Pero existe algo importante que debemos entender.
+«Pero existe algo importante que conviene entender.
 
 La inteligencia y las funciones ejecutivas son habilidades diferentes.
 
@@ -68,7 +68,7 @@ Se trata de comprenderla y encontrar la explicación adecuada.»
 
 ## CTA
 
-Cierre hablado: «¿También creciste escuchando esa frase? Cuéntame tu experiencia. Quizá alguien más se identifique.»
+Cierre hablado: «¿También creciste escuchando esa frase? Comparte tu experiencia. Quizá alguien más se identifique.»
 
 CTA visual opcional: «¿Te lo dijeron siempre?»
 

@@ -36,9 +36,9 @@ La hiperactividad puede manifestarse como inquietud interna, necesidad constante
 
 ### PROVOCACIÓN (34–46 s)
 
-«Por eso, no podemos descartar TDAH solamente porque una persona no sea inquieta físicamente.
+«Por eso, no se puede descartar TDAH solamente porque una persona no sea inquieta físicamente.
 
-Pero tampoco debemos asumirlo por tener una mente ocupada.»
+Pero tampoco hay que asumirlo por tener una mente ocupada.»
 
 ### CIERRE PROFESIONAL (46–60 s)
 
@@ -66,7 +66,7 @@ Y comprender cómo se manifiesta en cada persona es fundamental.»
 
 ## CTA
 
-Cierre hablado: «¿Cómo imaginabas el TDAH antes de conocer más sobre él? Te leo en comentarios.»
+Cierre hablado: «¿Cómo imaginabas el TDAH antes de conocer más sobre él? Compártelo en comentarios.»
 
 CTA visual opcional: «¿Cambió tu perspectiva?»
 

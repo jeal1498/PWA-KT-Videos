@@ -38,7 +38,7 @@ Pero depender constantemente de la presión también tiene consecuencias.»
 
 ### PROVOCACIÓN (34–46 s)
 
-«Quiero preguntarte algo:
+«Aquí surge una pregunta:
 
 ¿Realmente trabajas mejor bajo presión o necesitas llegar al límite para conseguir empezar?
 

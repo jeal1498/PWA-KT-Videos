@@ -8,7 +8,7 @@
 ## Guion hablado
 
 **HOOK (0–5 s)**  
-“Una mala calificación no nos dice, por sí sola, qué está pasando con tu hijo.”
+“Una mala calificación no dice, por sí sola, qué está pasando con tu hijo.”
 
 **DESARROLLO (5–18 s)**  
 “Detrás de una dificultad escolar puede haber problemas de atención, memoria, lenguaje, aprendizaje, sueño, emociones o incluso condiciones del entorno.”
@@ -17,10 +17,10 @@
 “Una evaluación neuropsicológica no busca poner una etiqueta por una nota. Explora distintas habilidades, integra la historia del desarrollo y analiza cómo esas dificultades aparecen en la vida cotidiana.”
 
 **PROVOCACIÓN (34–46 s)**  
-“Antes de concluir que no estudia, que no se esfuerza o que no puede, necesitamos entender qué está interfiriendo.”
+“Antes de concluir que no estudia, que no se esfuerza o que no puede, hay que entender qué está interfiriendo.”
 
 **CIERRE PROFESIONAL (46–60 s)**  
-“Cuando identificamos fortalezas y necesidades, podemos orientar apoyos más adecuados en casa y en la escuela. El objetivo no es juzgar: es comprender.”
+“Cuando se identifican fortalezas y necesidades, se pueden orientar apoyos más adecuados en casa y en la escuela. El objetivo no es juzgar: es comprender.”
 
 ## Dirección audiovisual
 

@@ -36,7 +36,7 @@ No necesariamente está intentando complicarte las cosas.»
 
 ### PROVOCACIÓN (34–46 s)
 
-«Y quiero que pienses en esto:
+«Y conviene pensar en esto:
 
 ¿Estás corrigiendo su comportamiento sin saber qué está haciendo tan difícil esa tarea?
 
@@ -50,7 +50,7 @@ Una evaluación especializada puede identificar las habilidades que necesitan ap
 
 Tu hijo no necesita vivir cada tarea como una batalla.
 
-Necesita que comprendamos qué está ocurriendo.»
+Necesita que se comprenda qué está ocurriendo.»
 
 ## Dirección audiovisual
 
@@ -70,7 +70,7 @@ Necesita que comprendamos qué está ocurriendo.»
 
 ## CTA
 
-Cierre hablado: «¿Las tareas también son difíciles en casa? Cuéntame cómo lo viven.»
+Cierre hablado: «¿Las tareas también son difíciles en casa? Comenta cómo lo viven.»
 
 CTA visual opcional: «No estás solo.»
 

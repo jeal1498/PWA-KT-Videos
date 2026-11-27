@@ -32,7 +32,7 @@ Pero también pueden relacionarse con otras diferencias del desarrollo, experien
 
 Por ejemplo, evitar el ruido no significa automáticamente tener autismo.
 
-Necesitamos comprender el conjunto de características.»
+Es necesario comprender el conjunto de características.»
 
 ### PROVOCACIÓN (34–46 s)
 

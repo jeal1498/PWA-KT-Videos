@@ -36,9 +36,9 @@ Aunque también existen otras explicaciones.»
 
 ### PROVOCACIÓN (34–46 s)
 
-«Por eso, no debemos confundir ser reservado con tener dificultades persistentes en la comunicación social.
+«Por eso, no hay que confundir ser reservado con tener dificultades persistentes en la comunicación social.
 
-Tampoco debemos asumir que todo niño tímido está dentro del espectro.»
+Tampoco hay que asumir que todo niño tímido está dentro del espectro.»
 
 ### CIERRE PROFESIONAL (46–60 s)
 
@@ -68,7 +68,7 @@ Se trata de entender qué necesita para relacionarse a su manera.»
 
 ## CTA
 
-Cierre hablado: «¿Tu hijo necesita tiempo para relacionarse o has observado otras dificultades? Cuéntame tu experiencia.»
+Cierre hablado: «¿Tu hijo necesita tiempo para relacionarse o has observado otras dificultades? Comparte tu experiencia.»
 
 CTA visual opcional: «¿Te resulta familiar?»
 

@@ -38,9 +38,9 @@ Esto puede relacionarse con la flexibilidad cognitiva y la regulación emocional
 
 ### PROVOCACIÓN (34–46 s)
 
-«Pero no debemos asumir que toda reacción intensa significa autismo.
+«Pero no hay que asumir que toda reacción intensa significa autismo.
 
-También debemos preguntarnos qué tan frecuentes son estas situaciones y cómo afectan su vida cotidiana.»
+También conviene preguntarse qué tan frecuentes son estas situaciones y cómo afectan su vida cotidiana.»
 
 ### CIERRE PROFESIONAL (46–60 s)
 

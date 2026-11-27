@@ -36,7 +36,7 @@ Pero estas conductas, por sí solas, no confirman un diagnóstico.»
 
 «La pregunta no debería ser solamente: ¿por qué se porta así?
 
-También debemos preguntarnos: ¿desde cuándo ocurre y cuánto afecta su vida diaria?»
+También conviene preguntarse: ¿desde cuándo ocurre y cuánto afecta su vida diaria?»
 
 ### CIERRE PROFESIONAL (46–60 s)
 
@@ -66,7 +66,7 @@ Se trata de entender cuándo existe una dificultad que necesita atención.»
 
 ## CTA
 
-Cierre hablado: «¿Has observado alguna de estas situaciones? Cuéntame cuál te genera más dudas.»
+Cierre hablado: «¿Has observado alguna de estas situaciones? Comenta cuál te genera más dudas.»
 
 CTA visual opcional: «¿Cuál reconoces?»
 

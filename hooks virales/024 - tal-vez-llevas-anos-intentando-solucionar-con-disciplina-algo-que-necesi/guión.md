@@ -28,7 +28,7 @@ Y comienzas nuevamente desde cero.»
 
 «Pero quizá necesitas considerar algo diferente.
 
-La organización también depende de nuestras funciones ejecutivas.
+La organización también depende de las funciones ejecutivas.
 
 Estas habilidades permiten planificar, priorizar, iniciar actividades y regular la atención.
 
@@ -36,9 +36,9 @@ Si existen dificultades persistentes, solamente exigirte más disciplina puede n
 
 ### PROVOCACIÓN (34–46 s)
 
-«No estoy diciendo que tengas TDAH.
+«Esto no significa que tengas TDAH.
 
-Estoy diciendo que, si llevas años enfrentando las mismas dificultades, mereces investigar por qué ocurren.»
+Significa que, si llevas años enfrentando las mismas dificultades, mereces investigar por qué ocurren.»
 
 ### CIERRE PROFESIONAL (46–60 s)
 
@@ -55,7 +55,7 @@ A veces, el primer paso es dejar de adivinar y comenzar a evaluar.»
 - **Inicio:** Una agenda nueva aparece junto a un calendario. La primera semana está organizada; las siguientes comienzan a llenarse de pendientes olvidados.
 - **Desarrollo:** Se muestran aplicaciones, alarmas y listas que aparecen y desaparecen. La ilustración adulta vuelve repetidamente al punto inicial.
 - **Giro:** Una lupa revela un conjunto de engranajes: planificación, organización, iniciación y atención.
-- **Provocación:** Una etiqueta que dice «Me falta disciplina» se rompe. Aparece una pantalla con la frase «¿Y si investigamos?».
+- **Provocación:** Una etiqueta que dice «Me falta disciplina» se rompe. Aparece una pantalla con la frase «¿Y si se investiga?».
 - **Cierre:** Una agenda se transforma en un expediente de evaluación. Las piezas representan historia personal, funcionamiento actual y posibles explicaciones.
 
 ## Textos destacados en pantalla

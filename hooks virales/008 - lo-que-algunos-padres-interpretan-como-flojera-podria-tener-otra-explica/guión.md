@@ -30,13 +30,13 @@ Desde fuera parece que no tiene ganas de hacer nada.»
 
 Una de ellas es la iniciación de actividades.
 
-Forma parte de las funciones ejecutivas, relacionadas con organizar y dirigir nuestras acciones.
+Forma parte de las funciones ejecutivas, relacionadas con organizar y dirigir las propias acciones.
 
 Cuando existen dificultades en estas habilidades, empezar puede resultar especialmente complicado.»
 
 ### PROVOCACIÓN (34–46 s)
 
-«Y aquí quiero dejarte una pregunta:
+«Y aquí queda una pregunta:
 
 ¿Tu hijo realmente está evitando esforzarse o está teniendo dificultades para comenzar?
 
@@ -50,7 +50,7 @@ No significa automáticamente que exista TDAH.
 
 Pero si ocurre constantemente y afecta su funcionamiento, merece una valoración especializada.
 
-Antes de llamarlo flojo, investiguemos qué necesita.»
+Antes de llamarlo flojo, conviene investigar qué necesita.»
 
 ## Dirección audiovisual
 
@@ -66,7 +66,7 @@ Antes de llamarlo flojo, investiguemos qué necesita.»
 - «Iniciación de actividades»
 - «Funciones ejecutivas»
 - «No siempre es flojera»
-- «Investiguemos qué ocurre»
+- «Investigar qué ocurre»
 
 ## CTA
 

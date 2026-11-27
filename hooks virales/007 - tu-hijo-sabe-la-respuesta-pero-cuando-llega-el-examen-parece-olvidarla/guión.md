@@ -26,7 +26,7 @@ Después llegan las malas calificaciones y la frustración.»
 
 ### GIRO (18–34 s)
 
-«Aquí debemos entender algo.
+«Aquí hay algo que entender.
 
 Aprender información y recuperarla durante un examen son procesos diferentes.
 

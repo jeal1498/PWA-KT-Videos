@@ -38,7 +38,7 @@ Las exigencias laborales, familiares y económicas pueden hacer más visibles di
 
 Pero cuidado: identificarte con algunos síntomas en internet no significa tener TDAH.
 
-Necesitamos conocer tu historia completa.»
+Es necesario conocer tu historia completa.»
 
 ### CIERRE PROFESIONAL (46–60 s)
 
@@ -48,7 +48,7 @@ También permite identificar otras posibles explicaciones.
 
 No es demasiado tarde para comprender lo que te ha ocurrido.
 
-A veces, entender nuestra historia cambia las preguntas que nos hacemos.»
+A veces, entender la propia historia cambia las preguntas que uno se hace.»
 
 ## Dirección audiovisual
 
@@ -68,7 +68,7 @@ A veces, entender nuestra historia cambia las preguntas que nos hacemos.»
 
 ## CTA
 
-Cierre hablado: «¿Has comenzado a entender situaciones de tu infancia desde otra perspectiva? Te leo en comentarios.»
+Cierre hablado: «¿Has comenzado a entender situaciones de tu infancia desde otra perspectiva? Compártelo en comentarios.»
 
 CTA visual opcional: «¿Te está pasando?»
 

@@ -28,7 +28,7 @@ El autismo no se identifica observando una sola conducta.»
 
 «El contacto visual es solamente una parte de la comunicación social.
 
-También debemos observar cómo comparte intereses, utiliza gestos y comprende las interacciones.
+También hay que observar cómo comparte intereses, utiliza gestos y comprende las interacciones.
 
 Además, las características pueden manifestarse de maneras diferentes en cada persona.
 
@@ -38,7 +38,7 @@ No todos los niños presentan las mismas señales.»
 
 «Entonces, la pregunta no debería ser solamente si mira a los ojos.
 
-Debemos observar cómo se comunica y se relaciona en diferentes situaciones.»
+Hay que observar cómo se comunica y se relaciona en diferentes situaciones.»
 
 ### CIERRE PROFESIONAL (46–60 s)
 

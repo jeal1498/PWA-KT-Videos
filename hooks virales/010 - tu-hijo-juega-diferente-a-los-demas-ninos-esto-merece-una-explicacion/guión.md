@@ -28,7 +28,7 @@ Y entonces comienzas a preguntarte si algo está pasando.»
 
 «El juego puede mostrarnos mucho sobre el desarrollo infantil.
 
-Nos permite observar la imaginación, la flexibilidad y la interacción social.
+Permite observar la imaginación, la flexibilidad y la interacción social.
 
 En algunos niños autistas pueden aparecer patrones de juego diferentes.
 
@@ -46,9 +46,9 @@ Es qué características presenta su juego y cómo se relacionan con otras área
 
 Una evaluación especializada puede explorar la comunicación, la interacción y los patrones de comportamiento.
 
-No necesitamos obligarlo a jugar como otros niños.
+No hace falta obligarlo a jugar como otros niños.
 
-Necesitamos comprender cómo juega y qué nos está mostrando.»
+Hace falta comprender cómo juega y qué está mostrando.»
 
 ## Dirección audiovisual
 

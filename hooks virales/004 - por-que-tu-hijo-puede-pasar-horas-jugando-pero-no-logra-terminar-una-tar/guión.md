@@ -40,7 +40,7 @@ Son demandas muy diferentes para el cerebro.»
 
 Pero tampoco significa que necesariamente lo tenga.
 
-Necesitamos observar el funcionamiento completo del niño.»
+Hace falta observar el funcionamiento completo del niño.»
 
 ### CIERRE PROFESIONAL (46–60 s)
 

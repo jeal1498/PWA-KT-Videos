@@ -33,7 +33,7 @@ Por ejemplo: “En cinco minutos guardamos los juguetes y vamos a cenar”.»
 
 «Pero avisar no siempre elimina el malestar.
 
-Si el cambio sigue siendo difícil, no significa que el niño esté manipulándote. Necesitamos observar qué parte de la transición le cuesta.»
+Si el cambio sigue siendo difícil, no significa que el niño esté manipulándote. Hace falta observar qué parte de la transición le cuesta.»
 
 ### CIERRE PROFESIONAL (46–60 s)
 
@@ -63,7 +63,7 @@ La meta es acompañar la transición, no ganar una discusión.»
 
 Cierre hablado: «¿Qué transición suele costar más en casa: dejar el juego, bañarse o salir?»
 
-CTA visual opcional: «Te leo»
+CTA visual opcional: «Cuéntalo en comentarios»
 
 ## Control de calidad
 

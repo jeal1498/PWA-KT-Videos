@@ -1,4 +1,4 @@
-# Estas son algunas de las pruebas que utilizo para evaluar el TDAH
+# Estas son algunas de las pruebas que se usan para evaluar el TDAH
 
 ## Ficha estratégica
 
@@ -11,7 +11,7 @@
 
 ### HOOK (0–5 s)
 
-«¿Sabías que no todas las pruebas para evaluar el TDAH miden lo mismo? Te explico.»
+«¿Sabías que no todas las pruebas para evaluar el TDAH miden lo mismo?»
 
 ### DESARROLLO (5–18 s)
 
@@ -19,7 +19,7 @@
 
 Otras exploran la atención, el control de impulsos o las funciones ejecutivas.
 
-Y también podemos evaluar habilidades cognitivas, como la memoria de trabajo.»
+Y también se pueden evaluar habilidades cognitivas, como la memoria de trabajo.»
 
 ### GIRO (18–34 s)
 
@@ -33,7 +33,7 @@ WISC-V permite conocer distintas habilidades cognitivas.»
 
 ### PROVOCACIÓN (34–46 s)
 
-«Pero quiero dejar algo claro: ninguna de estas pruebas, por sí sola, confirma el TDAH.
+«Pero hay que dejar algo claro: ninguna de estas pruebas, por sí sola, confirma el TDAH.
 
 Lo importante es interpretar cada resultado dentro de la historia completa.»
 
@@ -63,7 +63,7 @@ Es integrar información para comprender las necesidades de cada persona.»
 
 ## CTA
 
-Cierre hablado: «¿Te gustaría que explique alguna de estas pruebas con más detalle? Déjame tu pregunta.»
+Cierre hablado: «¿Qué prueba te gustaría conocer con más detalle? Deja tu pregunta en comentarios.»
 
 CTA visual opcional: «¿Cuál quieres conocer?»
 

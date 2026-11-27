@@ -1,4 +1,4 @@
-# Soy neuropsicóloga y hay algo que quiero aclarar sobre el diagnóstico de TDAH
+# Hay algo que conviene aclarar sobre el diagnóstico de TDAH
 
 ## Ficha estratégica
 
@@ -11,7 +11,7 @@
 
 ### HOOK (0–5 s)
 
-«Soy neuropsicóloga y quiero aclararte algo: el TDAH no se diagnostica con una sola prueba.»
+«Hay algo que conviene aclarar: el TDAH no se diagnostica con una sola prueba.»
 
 ### DESARROLLO (5–18 s)
 
@@ -23,11 +23,11 @@ Esas señales pueden orientar una evaluación, pero necesitan contexto.»
 
 ### GIRO (18–34 s)
 
-«Para valorar el TDAH, revisamos la historia de desarrollo y los síntomas.
+«Para valorar el TDAH, se revisa la historia de desarrollo y los síntomas.
 
-También exploramos cómo afectan la escuela, el trabajo y la vida cotidiana.
+También se explora cómo afectan la escuela, el trabajo y la vida cotidiana.
 
-Además, consideramos otras condiciones que pueden producir dificultades parecidas.
+Además, se consideran otras condiciones que pueden producir dificultades parecidas.
 
 El diagnóstico surge de integrar toda esa información.»
 
@@ -35,7 +35,7 @@ El diagnóstico surge de integrar toda esa información.»
 
 «Por eso, desconfía de las conclusiones rápidas.
 
-Una etiqueta puede parecer una respuesta, pero primero necesitamos comprender qué está ocurriendo.»
+Una etiqueta puede parecer una respuesta, pero primero hay que comprender qué está ocurriendo.»
 
 ### CIERRE PROFESIONAL (46–60 s)
 
@@ -67,7 +67,7 @@ Es llegar a una conclusión clínica responsable.»
 
 Cierre hablado: «¿Qué dudas tienes sobre el diagnóstico del TDAH? Déjalas en comentarios.»
 
-CTA visual opcional: «Hablemos del diagnóstico»
+CTA visual opcional: «Habla del diagnóstico con un especialista»
 
 ## Control de calidad
 

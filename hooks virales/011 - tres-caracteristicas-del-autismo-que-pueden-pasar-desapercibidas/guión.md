@@ -36,7 +36,7 @@ Por eso, observar solamente cómo se comporta en público puede ser insuficiente
 
 «Y algo importante: ninguna de estas características confirma autismo por separado.
 
-Necesitamos conocer su historia de desarrollo y observar un conjunto de características.»
+Es necesario conocer su historia de desarrollo y observar un conjunto de características.»
 
 ### CIERRE PROFESIONAL (46–60 s)
 

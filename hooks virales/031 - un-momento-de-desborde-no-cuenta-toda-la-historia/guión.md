@@ -11,7 +11,7 @@
 
 ### HOOK (0–5 s)
 
-«Cuando un niño se desborda, lo último que necesita es que intentemos adivinar qué diagnóstico tiene en ese momento.»
+«Cuando un niño se desborda, lo último que necesita es que se intente adivinar qué diagnóstico tiene en ese momento.»
 
 ### DESARROLLO (5–18 s)
 
@@ -19,7 +19,7 @@
 
 A veces ocurrió después de mucho ruido, cansancio, frustración o varios cambios seguidos.
 
-Desde fuera vemos la reacción, pero no siempre conocemos todo lo que la provocó.»
+Desde fuera se ve la reacción, pero no siempre se conoce todo lo que la provocó.»
 
 ### GIRO (18–34 s)
 
@@ -27,11 +27,11 @@ Desde fuera vemos la reacción, pero no siempre conocemos todo lo que la provoc�
 
 Pero una reacción intensa también puede aparecer por muchas otras razones.
 
-Por eso necesitamos observar qué ocurrió antes, durante y después.»
+Por eso hay que observar qué ocurrió antes, durante y después.»
 
 ### PROVOCACIÓN (34–46 s)
 
-«Llamarlo automáticamente berrinche o manipulación puede hacer que pasemos por alto lo que necesita.
+«Llamarlo automáticamente berrinche o manipulación puede hacer que se pase por alto lo que necesita.
 
 Y llamarlo autismo por un solo episodio también sería una conclusión apresurada.»
 

@@ -65,7 +65,7 @@ No debe convertirse en la respuesta definitiva.»
 
 ## CTA
 
-Cierre hablado: «¿Alguna vez contestaste uno de estos cuestionarios? Cuéntame qué te hizo pensar.»
+Cierre hablado: «¿Alguna vez contestaste uno de estos cuestionarios? Comparte qué te hizo pensar.»
 
 CTA visual opcional: «¿Te pasó?»
 

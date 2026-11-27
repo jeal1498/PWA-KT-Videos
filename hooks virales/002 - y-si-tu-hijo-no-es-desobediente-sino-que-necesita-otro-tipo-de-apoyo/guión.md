@@ -28,7 +28,7 @@ Entonces llegan los regaños, la frustración y una discusión más.»
 
 ### GIRO (18–34 s)
 
-«Pero hay algo que pocas veces nos detenemos a investigar.
+«Pero hay algo que pocas veces se investiga.
 
 ¿Y si seguir varias instrucciones representa una dificultad para él?
 
@@ -42,7 +42,7 @@ No todos los niños procesan y ejecutan las indicaciones de la misma manera.»
 
 Significa dejar de asumir que todo ocurre por falta de voluntad.
 
-A veces, necesitamos cambiar la manera de acompañar.»
+A veces, hay que cambiar la manera de acompañar.»
 
 ### CIERRE PROFESIONAL (46–60 s)
 

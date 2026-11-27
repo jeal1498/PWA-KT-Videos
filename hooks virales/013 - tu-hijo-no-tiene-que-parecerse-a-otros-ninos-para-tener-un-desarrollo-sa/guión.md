@@ -32,13 +32,13 @@ Cada niño tiene su propio ritmo, fortalezas y características.
 
 Lo importante es observar cómo se comunica, aprende, juega y se relaciona.
 
-También debemos reconocer cuándo existen dificultades que necesitan atención.»
+También hay que reconocer cuándo existen dificultades que necesitan atención.»
 
 ### PROVOCACIÓN (34–46 s)
 
-«No necesitamos convertir cada diferencia en un problema.
+«No hace falta convertir cada diferencia en un problema.
 
-Pero tampoco debemos ignorar algo que está afectando su bienestar.
+Pero tampoco hay que ignorar algo que está afectando su bienestar.
 
 Aceptar sus diferencias y buscar apoyo pueden ir de la mano.»
 
@@ -46,9 +46,9 @@ Aceptar sus diferencias y buscar apoyo pueden ir de la mano.»
 
 «Si tienes dudas sobre su desarrollo, una evaluación especializada puede orientarte.
 
-No buscamos que tu hijo sea igual a los demás.
+No se busca que tu hijo sea igual a los demás.
 
-Buscamos comprender sus necesidades y favorecer su desarrollo.
+Se busca comprender sus necesidades y favorecer su desarrollo.
 
 Porque ser diferente no significa estar mal.»
 

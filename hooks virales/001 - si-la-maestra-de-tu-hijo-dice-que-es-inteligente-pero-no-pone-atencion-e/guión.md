@@ -26,7 +26,7 @@ Sabe qué tiene que hacer, pero parece que no consigue avanzar.»
 
 ### GIRO (18–34 s)
 
-«Y aquí hay algo importante que debemos entender.
+«Y aquí hay algo importante que conviene entender.
 
 Comprender una explicación y mantener la atención no son lo mismo.
 
@@ -38,15 +38,15 @@ Por eso, un niño puede tener buenas capacidades y enfrentar dificultades escola
 
 «Pero cuidado: no toda distracción significa TDAH.
 
-Antes de pensar que no se esfuerza, necesitamos investigar qué está dificultando su desempeño.»
+Antes de pensar que no se esfuerza, es necesario investigar qué está dificultando su desempeño.»
 
 ### CIERRE PROFESIONAL (46–60 s)
 
 «Una evaluación especializada permite explorar sus fortalezas y dificultades.
 
-No buscamos medir cuánto vale un niño.
+No se busca medir cuánto vale un niño.
 
-Buscamos entender cómo aprende y qué apoyos necesita.
+Se busca entender cómo aprende y qué apoyos necesita.
 
 Porque saber mucho también puede coexistir con necesitar ayuda.»
 
@@ -68,7 +68,7 @@ Porque saber mucho también puede coexistir con necesitar ayuda.»
 
 ## CTA
 
-Cierre hablado: «¿Te ha pasado con tu hijo? Cuéntame en comentarios. Quizá otra familia también necesite escuchar esto.»
+Cierre hablado: «¿Te ha pasado con tu hijo? Cuéntalo en comentarios. Quizá otra familia también necesite escuchar esto.»
 
 CTA visual opcional: «¿Te identificas?»
 

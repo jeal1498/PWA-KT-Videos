@@ -23,7 +23,7 @@ Pero para ese niño, la sensación puede ser realmente difícil de tolerar.»
 
 ### GIRO (18–34 s)
 
-«A esto podemos llamarlo una diferencia en el procesamiento sensorial.
+«A esto se le puede llamar una diferencia en el procesamiento sensorial.
 
 Algunos niños perciben ciertos sonidos, luces, olores o texturas con mucha intensidad.
 
@@ -61,7 +61,7 @@ No se trata de obligarlo a soportarlo todo, sino de entender qué necesita.»
 
 ## CTA
 
-Cierre hablado: «¿Qué sonidos o texturas suelen incomodar más a tu hijo? Te leo en comentarios.»
+Cierre hablado: «¿Qué sonidos o texturas suelen incomodar más a tu hijo? Compártelo en comentarios.»
 
 CTA visual opcional: «Comparte tu experiencia»
 
