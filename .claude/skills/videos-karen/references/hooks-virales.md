@@ -14,6 +14,12 @@ Para gráficos (HyperFrames, Remotion o la plantilla GSAP):
 7. Respeta márgenes y zonas seguras para que los gráficos y el micro-copy no choquen con subtítulos ni bordes del encuadre.
 8. Usa curvas de movimiento suaves y naturales, evitando cortes bruscos o efectos innecesarios que distraigan del dato o la idea central.
 9. Estructura cada escena de forma modular y limpia para que sea fácil retocar tiempos, tamaños o textos después.
+10. **Elementos nuevos en cada video** (Eduardo, 27 nov 2026): dibuja elementos gráficos nuevos para que el video no se parezca a los anteriores. Revisa la lista «Elementos ya usados» y no repitas sus dibujos ni metáforas principales; solo se comparten el estilo (fondo, colores, trazo, rótulos, subtítulos) y el aviso final. Al guardar, agrega a la lista los elementos del video nuevo.
+
+## Elementos ya usados (no repetir)
+- **001:** hoja de respuestas con checks, reloj, cabeza con bombilla, barra de avance → camino con banderín, engranajes Comprender/Atención/Memoria/Organización, señal de alerta, círculos Distracción ⊃ TDAH, etiqueta «No se esfuerza», caja «?» con lupa, hoja de evaluación (clipboard), regla de medir con ✗, rompecabezas Fortalezas/Dificultades/Apoyos, burbuja de comentarios con corazón.
+- **002:** burbujas de regaño que caen, tarjetas de instrucciones (juguetes, zapatos, mochila), pelota, estrellas en zigzag y nube de lluvia, engranajes Atención/Memoria de trabajo/Autorregulación, niños mini, cerca de límites, etiqueta «Desobediente» → «?», adulto junto al niño con corazón, pasos 1-2-3 sobre camino con meta, corredor dando vueltas en círculo, casa.
+- **003:** estrellitas de travesura, cartas boca abajo numeradas sobre una mesa, fila de cartas chicas, dos niños con burbujas que se interrumpen, boleto de turno, barras de actividad a medias, mochila que tira nota/lápiz/cuaderno, engranaje Autorregulación, líneas punteadas a conceptos, sello «No confirma TDAH», línea de tiempo con reloj/casa/escuela y lupa, piezas Desarrollo/Conducta/Contextos, lupa saltando entre travesuras con ✗, bombilla sobre el niño.
 
 ## Especificación (bloque `CFG` al inicio de la línea de tiempo)
 - Lienzo 1080×1920 (9:16), 30 fps; duración = fin de la última palabra de `words.json` + 0.1 s (el 001: 60.1 s = 1803 cuadros). Audio: `voz.mp3` de la carpeta (receta de voz: guion con CTA hablado, Eleven v3, 1.10x).
@@ -36,7 +42,7 @@ Para gráficos (HyperFrames, Remotion o la plantilla GSAP):
 Hoja de respuestas → tarea · barra de avance → camino · bombilla → engranaje «Comprender» → viaja al niño · niño → hoja de evaluación · chips «Fortalezas/Dificultades» → piezas del rompecabezas · rompecabezas → burbuja de comentarios. Escala: «Memoria» y «Organización» son engranajes chicos; «TDAH» es un círculo chico dentro de «Distracción».
 
 ## Pasos (`SK=.claude/skills/videos-karen`, trabajo en el scratchpad)
-1. Escribir la tabla de acciones por bloque (instrucción, punto 1) y mostrarla antes del código.
+1. Escribir la tabla de acciones por bloque (instrucción, punto 1) con elementos nuevos (punto 10) y mostrarla antes del código.
 2. `bash $SK/scripts/nuevo-hook.sh <trabajo> "hooks virales/NNN - …"` (plantilla + voz + `words.js`).
 3. Reescribir objetos (`D`, `O(...)`), rótulos y las funciones de escena en `index.html`.
 4. `bash $SK/scripts/previa-hook.sh <trabajo> --hoja` y revisar todas las `hoja_N.png` (un cuadro por segundo).
