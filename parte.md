@@ -12,6 +12,7 @@
 - Con cara, el rótulo con cédula se sube a y≈620 (`.nametag{top:620px!important}` en el bloque custom) para no tapar los ojos.
 - 41 Cobran la terapia si no voy (vie 4 dic): video 100 % gráfico y sin voz, aprobado el 15 nov y guardado en la rama de la sesión `ccr-5d2398ee-dcl86a` (falta pasarlo a `main`). Zona segura de TikTok (x 60 a 960, y 250 a 1440), centrado, loop (termina en la portada) y textos corregidos por Karen («terapia psicológica»). Recetas en `references/estilo-v2.md` y `loop.sh`.
 - Hooks virales (voz en off de ElevenLabs, Karen sin cara): guiones de `hooks virales/` reescritos a tercera persona (001–028 y los de contenido nuevo 029–040); los diálogos de ejemplo entre comillas se dejaron igual.
+- Hooks virales: se borraron las 9 carpetas viejas (solo encabezado) del 029 al 037; quedan 40 carpetas, una por número, con el guion completo.
 - Todo cambio a `parte.md` se guarda directo en `main` (Karen).
 
 ## … Falta
@@ -19,8 +20,6 @@
 
 - Karen confirma en el `copy.md` del 41: horas de aviso para cancelar, si deja «Netflix» y la cédula en el primer cuadro.
 - Pasar el 41 de la rama de la sesión a `main`.
-
-- Hooks virales: del 029 al 037 hay dos carpetas por número (una con título viejo y solo encabezado, otra con el guion completo y tema distinto). Decidir cuál se queda.
 
 ## ✗ No tocar
 - Diagnosticar o decir que algo «cura»: el contenido orienta, no diagnostica.
