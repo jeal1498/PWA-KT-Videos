@@ -1,0 +1,292 @@
+<!doctype html><html><head><meta charset="utf-8"><title>007 gráficos</title>
+<style>
+@font-face{font-family:Outfit;src:url(Outfit-700-latin.woff2);font-weight:700}
+@font-face{font-family:'Maven Pro';src:url(MavenPro-700-latin.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;font-family:Outfit,sans-serif;background:linear-gradient(180deg,#C6BCE2 0%,#F9DEE3 100%);position:relative}
+body::before{content:"";position:absolute;left:-160px;top:1280px;width:480px;height:480px;border-radius:50%;background:rgba(255,255,255,.28);box-shadow:1000px -1100px 0 -40px rgba(245,231,214,.45)}
+#stage{position:absolute;left:0;top:300px;width:1080px;height:1000px}
+#sv{position:absolute;left:0;top:0}
+#ht{position:absolute;left:0;top:0;width:1080px;height:1000px}
+.st{position:absolute;white-space:nowrap;background:#F5E7D6;border:5px solid #2E2545;border-radius:26px;font:700 52px/1 Outfit;color:#2E2545;padding:14px 30px;box-shadow:6px 7px 0 #F9DEE3;opacity:0}
+.pl{position:absolute;white-space:nowrap;background:#fff;border:6px solid #2E2545;border-radius:30px;font:700 44px/1 Outfit;color:#2E2545;width:440px;height:104px;line-height:92px;text-align:center;opacity:0;box-shadow:5px 6px 0 #F9DEE3}
+.big{position:absolute;font:700 150px/1 Outfit;color:#2E2545;opacity:0;white-space:nowrap}
+.lb{position:absolute;font:700 44px/1 Outfit;color:#2E2545;opacity:0;white-space:nowrap;text-align:center}
+.cap{position:absolute;left:40px;right:40px;top:1290px;text-align:center;z-index:50;opacity:0;line-height:1.5}
+.pw{display:inline-block;background:rgba(46,37,69,.88);color:#fff;font:700 58px/1.25 "Maven Pro",sans-serif;padding:6px 20px;margin:5px 4px;border-radius:18px;opacity:0}
+.pw.k{color:#C6BCE2}
+</style></head><body>
+<div id="stage">
+<svg id="sv" width="1080" height="1000" viewBox="0 0 1080 1000"><defs>
+<filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence id="rtb" type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="1"/><feDisplacementMap in="SourceGraphic" scale="5"/></filter></defs>
+<g id="gg" filter="url(#rough)"></g></svg>
+<div id="ht"></div></div>
+<script src="gsap.min.js"></script>
+<script src="words.js"></script>
+<script>
+const S='stroke="#2E2545" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"';
+const GR='#10b77f';
+// ---------- tiempos reales de la voz
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9ñ\s]/g,' ').split(/\s+/).filter(Boolean);
+const WN=WORDS.map(w=>norm(w[0])[0]||'');
+function at(frag,off,nth){const f=norm(frag);let c=0;
+ for(let i=0;i<=WN.length-f.length;i++){let ok=true;for(let j=0;j<f.length;j++)if(WN[i+j]!==f[j]){ok=false;break;}
+  if(ok){if((nth||0)===c)return +(WORDS[i][1]+(off||0)).toFixed(2);c++;}}
+ throw new Error('no encuentro: '+frag);}
+// ---------- dibujos (centrados en 0,0)
+function gear(r,n,fill){let p=[];const st=2*Math.PI/n;
+ for(let i=0;i<n;i++){const a=i*st;[[-.28,r],[-.18,r+26],[.18,r+26],[.28,r]].forEach(([k,rr])=>{const aa=a+k*st;p.push((rr*Math.cos(aa)).toFixed(1)+' '+(rr*Math.sin(aa)).toFixed(1));});}
+ return `<path d="M${p.join('L')}Z" fill="${fill}" ${S}/><circle r="${r*.38}" fill="#fff" ${S}/><circle r="10" fill="#2E2545"/>`;}
+// ---------- dibujos nuevos del 007 (centrados en 0,0)
+const T=(tx,y,fs,x,col,id)=>`<text ${id?'id="'+id+'"':''} x="${x||0}" y="${y||0}" text-anchor="middle" font-family="Outfit" font-weight="700" font-size="${fs||40}" fill="${col||'#2E2545'}">${tx}</text>`;
+const RED='#C0392B';
+const D={
+check:`<path d="M-34 0L-10 26L38 -30" fill="none" stroke="${GR}" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>`,
+cross:`<path d="M-60 -60L60 60M60 -60L-60 60" fill="none" stroke="#C0392B" stroke-width="20" stroke-linecap="round"/>`,
+neq:`<path d="M-60 -22H60M-60 28H60M-34 70L34 -70" fill="none" stroke="#2E2545" stroke-width="20" stroke-linecap="round"/>`};
+
+const EXAM=()=>`<rect x="-150" y="-200" width="300" height="400" rx="12" fill="#fff" ${S}/>`+T('EXAMEN',-146,36)+[-60,30,120].map(y=>T('2 + 3 =',y,42,-34)+`<path d="M30 ${y+6}H120" fill="none" ${S} stroke-width="5"/>`).join('');
+const BOOK=(f)=>`<rect x="-30" y="-52" width="60" height="104" rx="6" fill="${f}" ${S}/><path d="M-30 -30H30M-30 30H30" fill="none" ${S} stroke-width="4"/>`;
+const EYE=`<path d="M-90 0Q0 -84 90 0Q0 84 -90 0Z" fill="#fff" ${S}/><circle id="pup" r="32" fill="#C6BCE2" ${S}/><circle r="12" fill="#2E2545"/>`;
+const TRAY=`<g id="jb1"><circle cx="-60" cy="30" r="26" fill="#F9DEE3" ${S}/></g><g id="jb2"><circle cx="0" cy="30" r="26" fill="#C6BCE2" ${S}/></g><g id="jb3"><circle cx="60" cy="30" r="26" fill="#F5E7D6" ${S}/></g><path d="M-100 150Q-100 100 -60 100H60Q100 100 100 150V180H-100Z" fill="#F5E7D6" ${S}/>`;
+const GAUGE=`<circle r="110" fill="#fff" ${S}/><path d="M-78 52A96 96 0 0 1 78 52" fill="none" stroke="#C6BCE2" stroke-width="16"/><path d="M42 -88A96 96 0 0 1 78 52" fill="none" stroke="${RED}" stroke-width="16"/><g id="gnd"><circle r="84" fill="none" stroke="none"/><path d="M0 0V-80" fill="none" ${S} stroke-width="9"/></g><circle r="14" fill="#2E2545"/><rect x="-24" y="104" width="48" height="36" rx="8" fill="#F5E7D6" ${S}/><circle class="vp" cx="-30" cy="-130" r="20" fill="#fff" ${S} stroke-width="4"/><circle class="vp" cx="10" cy="-150" r="26" fill="#fff" ${S} stroke-width="4"/><circle class="vp" cx="50" cy="-128" r="18" fill="#fff" ${S} stroke-width="4"/>`;
+const LINK=(ic)=>`<rect x="-100" y="-80" width="200" height="160" rx="64" fill="#fff" ${S} stroke-width="12"/><g transform="scale(.9)">${ic}</g>`;
+const ICB=BOOK('#F9DEE3');
+const ICC=`<rect x="-44" y="-56" width="88" height="112" rx="8" fill="#F5E7D6" ${S}/><path d="M-44 0H44" fill="none" ${S}/><path d="M-16 -28H16M-16 28H16" fill="none" ${S} stroke-width="8"/>`;
+const ICP=`<rect x="-36" y="-50" width="72" height="90" rx="6" fill="#fff" ${S} stroke-width="5"/><path d="M-20 -24H20M-20 -4H20" fill="none" stroke="#C6BCE2" stroke-width="7" stroke-linecap="round"/><path d="M-4 52L60 -12L76 4L12 68L-8 72Z" fill="#F9DEE3" ${S} stroke-width="5"/>`;
+const SM=(ic,sc,x,y)=>`<g transform="translate(${x||0} ${y||0}) scale(${sc})">${ic}</g>`;
+const g=document.getElementById('gg');
+const O=(id,inner)=>`<g id="${id}" class="o">${inner}</g>`;
+const WALL=`<rect x="-250" y="-100" width="500" height="200" rx="10" fill="#F5E7D6" ${S}/><path d="M-250 -33H250M-250 33H250M-100 -100V-33M100 -100V-33M-200 -33V33M0 -33V33M200 -33V33M-100 33V100M100 33V100" fill="none" ${S} stroke-width="5"/>`;
+g.innerHTML=[
+ O('qa',`<rect x="-130" y="-170" width="260" height="340" rx="14" fill="#fff" ${S}/>`+T('2 + 3 =',-30,66)+`<path d="M-80 100H80" fill="none" ${S} stroke-width="6"/>`),
+ O('ans',T('5',0,110)+SM(D.check,.5,78,-50)),
+ O('ers',`<g transform="rotate(-14)"><rect x="-70" y="-34" width="140" height="68" rx="12" fill="#F9DEE3" ${S}/><rect x="-70" y="-34" width="50" height="68" rx="12" fill="#C6BCE2" ${S}/></g>`),
+ O('ex',EXAM()),O('ex2',EXAM()),O('ex3',EXAM()),
+ O('qmk',T('?',0,190,0,RED)),
+ O('kid',`<path d="M-70 110Q-70 -6 0 -6Q70 -6 70 110Z" fill="#F9DEE3" ${S}/><circle cy="-66" r="52" fill="#F5E7D6" ${S}/><path d="M-52 -76Q-52 -130 0 -130Q52 -130 52 -76Q10 -98 -52 -76Z" fill="#2E2545"/><circle cx="-18" cy="-60" r="6" fill="#2E2545"/><circle cx="18" cy="-60" r="6" fill="#2E2545"/><path d="M-16 -36Q0 -22 16 -36" fill="none" ${S} stroke-width="5"/>`),
+ O('sp1',`<path d="M-100 -60H100Q112 -60 112 -48V48Q112 60 100 60H-40L-70 100L-62 60H-100Q-112 60 -112 48V-48Q-112 -60 -100 -60Z" fill="#fff" ${S}/>`+SM(D.check,.5,0,0)),
+ O('sp2',`<path d="M-100 -60H100Q112 -60 112 -48V48Q112 60 100 60H-40L-70 100L-62 60H-100Q-112 60 -112 48V-48Q-112 -60 -100 -60Z" fill="#fff" ${S}/><path d="M-70 -24H70M-70 0H70M-70 24H20" fill="none" stroke="#C6BCE2" stroke-width="9" stroke-linecap="round"/>`),
+ O('cb',`<rect x="-300" y="-210" width="600" height="420" rx="14" fill="#F5E7D6" ${S}/><rect x="-272" y="-182" width="544" height="364" rx="6" fill="#2E2545"/><rect x="-120" y="210" width="240" height="18" rx="6" fill="#fff" ${S} stroke-width="4"/>`),
+ O('ptr',`<path d="M0 0L200 -250" fill="none" ${S} stroke-width="10"/><circle cx="200" cy="-250" r="14" fill="${RED}" ${S} stroke-width="4"/>`),
+ O('sun',`<path d="M-40 0A40 40 0 1 0 40 0A40 40 0 1 0 -40 0M0 -62V-84M0 62V84M-62 0H-84M62 0H84M-44 -44L-60 -60M44 -44L60 -60M-44 44L-60 60M44 44L60 60" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>`),
+ O('cld',`<path d="M-70 36Q-100 36 -100 6Q-100 -24 -65 -24Q-60 -60 -20 -60Q20 -60 28 -30Q70 -30 70 6Q70 36 40 36Z" fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round"/>`),
+ O('arw',`<path d="M0 -60V60M-24 34L0 62L24 34" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>`),
+ O('clk',`<circle r="74" fill="#fff" ${S}/><path d="M0 -58V-66M0 58V66M-58 0H-66M58 0H66" fill="none" ${S} stroke-width="5"/><g id="clkH"><circle r="52" fill="none" stroke="none"/><path d="M0 0V-50" fill="none" stroke="${RED}" stroke-width="8" stroke-linecap="round"/></g><circle r="8" fill="#2E2545"/>`),
+ O('wl',WALL),
+ O('grd',`<circle r="62" fill="#fff" stroke="${RED}" stroke-width="8"/>`+T('4',28,84,0,RED)),
+ O('frs',`<path d="M-60 20L-30 -22L0 20L30 -22L60 20" fill="none" stroke="${RED}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>`),
+ O('shf',`<rect x="-250" y="-160" width="500" height="320" rx="12" fill="#F5E7D6" ${S}/><rect x="-224" y="-134" width="448" height="268" rx="6" fill="#fff" ${S} stroke-width="4"/><path d="M-224 0H224" fill="none" ${S} stroke-width="10"/>`+[[-196,'#C6BCE2',70],[-150,'#F9DEE3',84],[-102,'#F5E7D6',66],[-56,'#C6BCE2',80]].map(([x,f,h])=>`<rect x="${x}" y="${-6-h}" width="40" height="${h}" rx="5" fill="${f}" ${S} stroke-width="4"/>`).join('')+[[-180,'#F9DEE3',64],[-136,'#C6BCE2',72],[-90,'#F5E7D6',58],[100,'#F9DEE3',70]].map(([x,f,h])=>`<rect x="${x}" y="${128-h}" width="40" height="${h}" rx="5" fill="${f}" ${S} stroke-width="4"/>`).join('')),
+ O('bk',BOOK('#F9DEE3').replace(/<path[^>]*\/>/,'')+`<path d="M-30 -30H30M-30 30H30" fill="none" ${S} stroke-width="4"/>`),
+ O('neq',D.neq),
+ O('eye',EYE),O('jug',TRAY),O('gau',GAUGE),
+ O('bkc',`<g transform="rotate(-8)"><rect x="-80" y="-60" width="160" height="120" rx="8" fill="#F9DEE3" ${S}/><path d="M-80 -30H80M-80 30H80" fill="none" ${S} stroke-width="5"/></g>`+T('zzz',-76,44,70,'#2E2545')),
+ O('dmb',`<path d="M-90 0H90" fill="none" ${S} stroke-width="14"/><rect x="-120" y="-50" width="40" height="100" rx="10" fill="#C6BCE2" ${S}/><rect x="80" y="-50" width="40" height="100" rx="10" fill="#C6BCE2" ${S}/>`),
+ O('x1',D.cross),O('x2',D.cross),
+ ...[[1,ICB],[2,ICC],[3,ICP]].map(([i,ic])=>O('lk'+i,LINK(ic))),
+ O('cn1',`<rect x="-55" y="-26" width="110" height="52" rx="26" fill="#C6BCE2" ${S} stroke-width="8"/>`),
+ O('cn2',`<rect x="-55" y="-26" width="110" height="52" rx="26" fill="#C6BCE2" ${S} stroke-width="8"/>`),
+ O('pin',`<path d="M0 0C-44 -52 -48 -96 0 -96C48 -96 44 -52 0 0Z" fill="${RED}" ${S}/><circle cy="-64" r="13" fill="#fff"/>`),
+ ...[1,2,3].map(i=>O('ts'+i,`<rect x="-100" y="-130" width="200" height="260" rx="12" fill="#fff" ${S}/><path d="M-60 -20H60M-60 20H60M-60 60H10" fill="none" stroke="#C6BCE2" stroke-width="8" stroke-linecap="round"/><circle cx="46" cy="-82" r="38" fill="#fff" stroke="${RED}" stroke-width="7"/>`+T('5',-60,52,46,RED))),
+ O('i1',SM(EYE.replace('id="pup"',''),.8)),O('i2',SM(TRAY.replace(/id="jb\d"/g,''),.7,0,-30)),O('i3',SM(GAUGE.replace('id="gnd"','').replace(/class="vp"/g,'class="vq" opacity="0"'),.6,0,0)),
+ O('sub',`<path d="M-120 0H140L230 120L130 270L-40 320L-190 220L-170 100Z" fill="#fff" ${S}/>`),
+ O('sea',`<rect x="-480" y="0" width="960" height="400" fill="rgba(198,188,226,.45)"/><path d="M-480 0H480" fill="none" ${S}/>`),
+ O('tip',`<path d="M-110 0L-40 -130L10 -80L50 -150L130 0Z" fill="#fff" ${S}/>`),
+ O('g5',`<circle r="44" fill="#fff" stroke="${RED}" stroke-width="7"/>`+T('5',20,60,0,RED)),
+ O('qm2',T('?',0,150,0,RED)),
+ O('lmp',`<path d="M-160 120H160" fill="none" ${S} stroke-width="8"/><path d="M-140 120V30H20V120" fill="none" ${S} stroke-width="0"/><rect x="-120" y="70" width="120" height="50" rx="6" fill="#F9DEE3" ${S}/><path d="M60 120V-20L110 -90" fill="none" ${S} stroke-width="10"/><path d="M90 -120L150 -80L110 -60Z" fill="#F5E7D6" ${S}/><path d="M120 -50L150 120" fill="none" stroke="#C6BCE2" stroke-width="12" opacity=".5"/>`),
+ O('ck2',D.check)
+].join('');
+// ---------- HTML: rótulos (≤4 palabras)
+const H=document.getElementById('ht');
+const st=(id,tx,x,y,fs,rot)=>H.insertAdjacentHTML('beforeend',`<div class="st" id="${id}" data-r="${rot||0}" style="left:${x}px;top:${y}px;${fs?'font-size:'+fs+'px':''}">${tx}</div>`);
+const pl=(id,tx,x,y)=>H.insertAdjacentHTML('beforeend',`<div class="pl" id="${id}" style="left:${x}px;top:${y}px;width:auto;padding:0 28px;font-size:40px">${tx}</div>`);
+const lb=(id,tx,x,y)=>H.insertAdjacentHTML('beforeend',`<div class="lb" id="${id}" style="left:${x}px;top:${y}px">${tx}</div>`);
+st('sEc','En casa sí responde',540,900,0,-2);
+st('sEx','El examen cambia todo',540,900,0,2);
+st('sAp','Aprender no es recuperar',540,900,0,-2);
+st('sHv','Hay varias explicaciones',540,900,0,2);
+st('sVr','Hay varias explicaciones',540,900,0,-2);
+st('sNn','Una nota no explica',540,900,0,2);
+st('sCa','¿En casa sí puede?',540,900,0,-2);
+pl('pAp','Aprender',200,170);pl('pRe','Recuperar',880,170);
+pl('pAt','Atención',200,170);pl('pMt','Memoria',540,170);pl('pEm','Emociones',880,170);
+pl('nE','No estudió',690,280);pl('nS','No se esfuerza',690,450);
+pl('pc1','Aprender',200,170);pl('pc2','Recordar',540,170);pl('pc3','Demostrar',880,170);
+lb('l1','Atención',560,490);lb('l2','Memoria',560,575);lb('l3','Emociones',560,660);
+H.insertAdjacentHTML('beforeend','<div id="end" style="position:absolute;left:0;top:0;width:1080px;height:1000px;opacity:0"><div style="position:absolute;left:90px;top:330px;width:900px;text-align:center;font:700 70px/1.15 Outfit;color:#2E2545">Este video orienta y no diagnostica.</div><div class="st" style="left:540px;top:620px;opacity:1;font:700 40px/1 \'Maven Pro\';transform:translate(-50%,-50%)">psicologakarentrujillo.com.mx</div></div>');
+// ============ ESPECIFICACIÓN (se define antes que las escenas) ============
+// Lienzo 1080×1920 (9:16) · 30 fps · 64.6 s · audio = voz.mp3 (1.10x)
+// Zonas seguras: gráficos dentro de x 60–1020 y página y 300–1250 (escenario); subtítulos en y 1290–1440 (nada de gráficos ahí).
+// Micro-copy: máximo 4 palabras por momento visual (sin contar subtítulos). Bucle: nada se anima en los últimos 0.5 s.
+const CFG={FPS:30,DUR:+(WORDS[WORDS.length-1][2]+.1).toFixed(2),W:1080,H:1920,
+ POP:'back.out(1.35)',   // entradas: suaves, un solo rebote leve
+ MOVE:'power3.inOut',    // desplazamientos
+ OUT:'power2.in',        // salidas
+ T:{pop:.5,move:.7,out:.3}};
+gsap.set('.o',{opacity:0,transformOrigin:'50% 50%'});
+
+gsap.set('.st,.big,.lb',{xPercent:-50,yPercent:-50});
+gsap.set('.pl',{xPercent:-50,opacity:0});
+document.querySelectorAll('.st').forEach(e=>gsap.set(e,{rotation:+e.dataset.r}));
+const tl=gsap.timeline({paused:true});
+const ST=(s,v)=>gsap.set(s,v);
+const POP=(s,t,sc,x,y,d)=>{const f={scale:.3,opacity:0},v={scale:sc||1,opacity:1,duration:d||CFG.T.pop,ease:CFG.POP,immediateRender:false};if(x!==undefined){f.x=x;f.y=y;v.x=x;v.y=y;}tl.fromTo(s,f,v,t);};
+const OUT=(s,t,d)=>tl.to(s,{opacity:0,scale:'*=0.7',duration:d||CFG.T.out,ease:CFG.OUT},t);
+const MV=(s,t,v,d,e)=>tl.to(s,Object.assign({duration:d||CFG.T.move,ease:e||CFG.MOVE},v),t);
+const FROM=(s,t,f,v,d)=>tl.fromTo(s,f,Object.assign({duration:d||CFG.T.pop,ease:CFG.POP,immediateRender:false},v),t);
+const PLI=(s,t)=>tl.fromTo(s,{opacity:0,scale:.6},{opacity:1,scale:1,duration:.4,ease:CFG.POP,immediateRender:false},t);
+const DIM=(s,t)=>tl.to(s,{opacity:.25,filter:'blur(3px)',duration:.4},t);
+const SHAKE=(s,t,n,dx)=>tl.to(s,{x:'+='+(dx||10),duration:.07,yoyo:true,repeat:n||5,ease:'sine.inOut'},t);
+const DRAW=(s,t,d)=>{const p=document.querySelector(s+' path'),L=p.getTotalLength();gsap.set(p,{strokeDasharray:L,strokeDashoffset:L});tl.set(s,{opacity:1,scale:1},t);tl.fromTo(p,{strokeDashoffset:L},{strokeDashoffset:0,duration:d||.35,ease:'power1.inOut',immediateRender:false},t);};
+gsap.set('#clkH,#gnd',{transformOrigin:'50% 50%'});gsap.set('#gnd',{rotation:-62});gsap.set('.vp,.vq',{opacity:0});
+const LIT=(s,t)=>tl.to(s,{opacity:1,filter:'blur(0px)',duration:.4},t);
+// ============ ESCENA 1 · HOOK (0–5.0) ============
+// Acción: una tarjeta con «2 + 3 =» recibe la respuesta 5 con palomita; la misma pregunta aparece en una hoja de examen en blanco;
+//   un borrador pasa sobre el 5 y lo borra; un «?» rojo cae sobre el examen.
+// Persisten: tarjeta y examen. Imagen final: tarjeta sin respuesta, examen en blanco con «?».
+function escena1(){
+ POP('#qa',0,1.5,540,470);
+ PLI('#sEc',.3);
+ POP('#ans',at('responde',.1),1.5,540,615);
+ const tL=at('llega el examen');
+ POP('#ex',tL,1.5,790,470);MV('#qa',tL,{x:270},.6);MV('#ans',tL,{x:270},.6);
+ OUT('#sEc',at('examen')-.15);PLI('#sEx',at('examen'));
+ const tO=at('olvido');
+ POP('#ers',tO-.15,1.3,120,615);MV('#ers',tO+.05,{x:400},.6,'power2.inOut');
+ tl.to('#ans',{opacity:0,duration:.2},tO+.3);
+ POP('#qmk',at('absolutamente'),1.5,790,470);
+}
+// ============ ESCENA 2 · DESARROLLO (5.0–18.9) ============
+// Acción: un niño responde (burbuja con palomita) y explica el tema en una pizarra (sol, nube, flecha con tiza); la pizarra se cambia por el
+//   examen con un reloj que avanza; un muro de ladrillos se levanta sobre las preguntas; llega la nota 4 y un garabato rojo de frustración.
+// Persisten: niño (de la pizarra al examen). Imagen final: niño con garabato, examen con muro, reloj y nota 4.
+function escena2(){
+ const t0=at('le preguntas')-.25;
+ ['#qa','#ex','#ers','#qmk','#sEx'].forEach(s=>OUT(s,t0));
+ POP('#kid',at('le preguntas'),1.6,170,640);POP('#cb',at('le preguntas'),1,690,420);
+ POP('#sp1',at('responde sin'),1.3,190,390);
+ const tE=at('incluso puede');
+ OUT('#sp1',tE-.2);
+ POP('#ptr',tE+.15,1.2,250,600);
+ ST('#sun',{x:530,y:360,scale:1.4});ST('#cld',{x:715,y:350,scale:1.4});ST('#arw',{x:880,y:400,scale:1.4});
+ DRAW('#sun',at('el tema'),.4);DRAW('#cld',at('con sus propias'),.4);DRAW('#arw',at('palabras'),.35);
+ POP('#sp2',at('con sus propias'),1.3,190,390);
+ tl.to('#ptr',{rotation:6,duration:.25,yoyo:true,repeat:5,ease:'sine.inOut'},tE+.8);
+ const tR=at('pero recibe')-.2;
+ ['#cb','#ptr','#sun','#cld','#arw','#sp2'].forEach(s=>OUT(s,tR));
+ POP('#ex2',at('pero recibe'),1.5,620,450);
+ POP('#clk',at('el examen',0,1),1.25,905,230);
+ tl.fromTo('#clkH',{rotation:0},{rotation:1080,duration:2.6,ease:'none',immediateRender:false},at('el examen',.1,1));
+ const tB=at('se bloquea');
+ FROM('#wl',tB-.2,{opacity:0,scale:1.1,x:620,y:900},{opacity:1,scale:1.1,x:620,y:690},.5);
+ SHAKE('#kid',tB+.3,5,8);
+ POP('#grd',at('malas calificaciones'),1.6,860,520);
+ POP('#frs',at('la frustracion'),1.5,170,400);
+ SHAKE('#frs',at('la frustracion',.4),5,10);
+}
+// ============ ESCENA 3 · GIRO (18.9–34.9) ============
+// Acción: un estante recibe un libro (aprender) y lo suelta hacia afuera (recuperar), con «≠» entre ambos; luego un ojo (atención),
+//   una bandeja con tres pelotas que rebotan (memoria de trabajo) y un manómetro (regulación emocional); el manómetro se agranda y su aguja
+//   sube a la zona roja con vapor (la presión).
+// Persisten: manómetro (crece al centro). Imagen final: manómetro grande con la aguja en rojo y vapor.
+function escena3(){
+ const tP=at('aqui hay',-.3);
+ ['#kid','#ex2','#clk','#wl','#grd','#frs'].forEach(s=>OUT(s,tP));
+ POP('#shf',at('aqui hay',.2),1.5,540,500);
+ const tA=at('aprender informacion');
+ FROM('#bk',tA,{opacity:0,scale:1.5,x:140,y:320,rotation:-20},{opacity:1,scale:1.5,x:690,y:462,rotation:0},.8);PLI('#pAp',tA);
+ const tRe=at('recuperarla');
+ MV('#bk',tRe,{x:890,y:380,rotation:-14},.8);PLI('#pRe',tRe);
+ POP('#neq',at('procesos diferentes'),.7,540,222);
+ PLI('#sAp',at('procesos diferentes'));
+ const tT=at('tambien intervienen',-.25);
+ ['#shf','#bk','#pAp','#pRe','#neq','#sAp'].forEach(s=>OUT(s,tT));
+ PLI('#sHv',at('tambien intervienen',.1));
+ POP('#eye',at('la atencion'),1.6,190,500);PLI('#pAt',at('la atencion'));
+ tl.to('#pup',{x:28,duration:.25,yoyo:true,repeat:3,ease:'sine.inOut'},at('la atencion',.4));
+ POP('#jug',at('la memoria'),1.5,540,480);PLI('#pMt',at('la memoria'));
+ ['#jb1','#jb2','#jb3'].forEach((s,i)=>tl.to(s,{y:-120-i*20,duration:.35,yoyo:true,repeat:5,ease:'sine.out'},at('la memoria')+.1*i));
+ POP('#gau',at('la regulacion'),1.4,880,540);PLI('#pEm',at('la regulacion'));
+ const tG=at('la presion',-.2);
+ ['#eye','#jug','#pAt','#pMt','#pEm','#sHv'].forEach(s=>OUT(s,tG));
+ MV('#gau',tG,{x:540,y:560,scale:1.9});
+ tl.to('#gnd',{rotation:62,duration:1.6,ease:'power1.in'},at('la presion',.3));
+ const tD=at('dificultar');
+ SHAKE('#gau',tD,6,8);
+ tl.fromTo('.vp',{opacity:0,y:0},{opacity:1,y:-30,duration:.5,stagger:.12,ease:'power1.out',immediateRender:false},tD);
+}
+// ============ ESCENA 4 · PROVOCACIÓN (34.9–44.3) ============
+// Acción: un libro con «zzz» y unas pesas (no estudió / no se esfuerza) junto a sus rótulos; las dos se tachan con ✗;
+//   una cadena de tres eslabones (libro = aprender, archivero = recordar, lápiz y hoja = demostrar) con un marcador que salta de uno a otro.
+// Persisten: nada (la cadena es nueva). Imagen final: cadena de tres eslabones con el marcador en «Demostrar».
+function escena4(){
+ const tN=at('entonces',-.2);
+ OUT('#gau',tN);
+ POP('#bkc',at('entonces',.1),1.6,190,360);
+ POP('#dmb',at('concluir'),1.4,190,550);
+ PLI('#nE',at('no estudio'));PLI('#nS',at('no se esfuerza'));
+ const tQ=at('preguntate');
+ POP('#x1',tQ,1.2,190,360);POP('#x2',tQ+.2,1.2,190,550);
+ const tC=at('su dificultad');
+ ['#bkc','#dmb','#x1','#x2','#nE','#nS'].forEach(s=>OUT(s,tC-.25));
+ [200,540,880].forEach((x,i)=>POP('#lk'+(i+1),tC+i*.15,1.2,x,520));
+ POP('#cn1',tC+.3,.9,370,520);POP('#cn2',tC+.45,.9,710,520);
+ PLI('#pc1',at('aprender',0,1));PLI('#pc2',at('recordar'));PLI('#pc3',at('demostrar'));
+ FROM('#pin',at('aprender',-.1,1),{opacity:0,scale:1.2,x:200,y:330},{opacity:1,scale:1.2,x:200,y:420},.4);
+ MV('#pin',at('recordar',-.1),{x:540},.4);MV('#pin',at('demostrar',-.1),{x:880},.4);
+ tl.to(['#lk1','#lk2','#lk3'],{y:'-=18',duration:.2,yoyo:true,repeat:1,ease:'sine.out',stagger:.12},at('sabe'));
+}
+// ============ ESCENA 5 · CIERRE (44.3–59.2) ============
+// Acción: tres exámenes con la misma nota 5 y una causa distinta cada uno (ojo, pelotas, manómetro); un iceberg: la nota es la punta y
+//   debajo, apagado, lo que no se ve; al explorar se encienden Atención, Memoria, Emociones; la nota vuelve a ser la punta; al final un «?».
+// Persisten: iconos de ojo, pelotas y manómetro (vuelven como etiquetas bajo el agua). Imagen final: iceberg con «?» sobre la punta.
+function escena5(){
+ const tN=at('no todas',-.25);
+ ['#lk1','#lk2','#lk3','#cn1','#cn2','#pin','#pc1','#pc2','#pc3'].forEach(s=>OUT(s,tN));
+ [200,540,880].forEach((x,i)=>{POP('#ts'+(i+1),at('no todas')+i*.2,1.3,x,390);POP('#i'+(i+1),at('durante',0,1)+i*.2,1.5,x,690);});
+ PLI('#sVr',at('misma explicacion'));
+ const tI=at('una evaluacion',-.3,1);
+ [1,2,3].forEach(i=>{OUT('#ts'+i,tI);OUT('#i'+i,tI);});OUT('#sVr',tI);
+ POP('#sub',at('una evaluacion',0,1),1.2,540,400);DIM('#sub',at('una evaluacion',.5,1));
+ POP('#sea',at('una evaluacion',0,1),1,540,400);POP('#tip',at('una evaluacion',.1,1),1.2,540,400);POP('#g5',at('una evaluacion',.3,1),1.2,540,320);
+ LIT('#sub',at('explorar'));
+ ['l1','l2','l3'].forEach((id,i)=>PLI('#'+id,[at('explorar',.6),at('habilidades'),at('involucradas')][i]));
+ const tR=at('porque una');
+ DIM('#sub',tR);['#l1','#l2','#l3'].forEach(s=>tl.to(s,{opacity:.25,duration:.4},tR));
+ tl.to(['#tip','#g5'],{scale:1.12,duration:.35,yoyo:true,repeat:1,ease:'sine.inOut'},at('un resultado'));
+ PLI('#sNn',at('calificacion muestra'));
+ const tQ=at('pero no siempre');
+ OUT('#sNn',tQ-.1);LIT('#sub',tQ);['#l1','#l2','#l3'].forEach(s=>tl.to(s,{opacity:1,duration:.4},tQ));
+ POP('#qm2',at('que ocurrio'),1.3,730,240);
+}
+// ============ ESCENA 6 · CTA (59.2–64.6) ============
+// Acción: escritorio con lámpara y libro: «¿En casa sí puede?» con palomita; el examen con muro y garabato rojo; aviso final y web
+//   (quietos los últimos 0.5 s).
+// Imagen final: aviso «Este video orienta y no diagnostica.» + web.
+function escena6(){
+ const tO=at('tu hijo',-.3);
+ ['#sub','#sea','#tip','#g5','#qm2','#l1','#l2','#l3','#sNn'].forEach(s=>OUT(s,tO));
+ POP('#lmp',at('tu hijo'),1.5,260,570);POP('#ex3',at('tu hijo',.4),1.3,790,480);PLI('#sCa',at('tu hijo',.1));
+ POP('#ck2',at('responde en casa'),1.5,230,320);
+  FROM('#wl',at('se bloquea en',.3),{opacity:0,scale:.8,x:790,y:900},{opacity:1,scale:.8,x:790,y:690},.5);
+ const tF=at('comparte',-.2);
+ ['#lmp','#ck2','#ex3','#wl','#sCa'].forEach(s=>OUT(s,tF-.1));
+ tl.fromTo('#end',{opacity:0,scale:.92,transformOrigin:'50% 50%'},{opacity:1,scale:1,duration:.5,ease:CFG.POP,immediateRender:false},tF+.15);
+}
+escena1();escena2();escena3();escena4();escena5();escena6();
+// ============ SUBTÍTULOS (tiempos reales de words.json) ============
+const KEYS=new Set(['examen','examenes','atencion','memoria','emocional','evaluacion','calificacion','recuperarla','aprender','recordar','demostrar','explicacion','entender','dificultad','presion']);
+(function(){const caps=[];let cur=[];
+ const flush=()=>{if(cur.length){caps.push(cur);cur=[];}};
+ WORDS.forEach((w,i)=>{cur.push({w:w[0],t:w[1],e:w[2]});const nx=WORDS[i+1];
+  if(cur.length>=3||/[,.:?…]$/.test(w[0])||(nx&&nx[1]-w[2]>.45))flush();});flush();
+ caps.forEach((c,i)=>{const d=document.createElement('div');d.className='cap';d.id='cap'+i;
+  d.innerHTML=c.map((x,j)=>`<span class="pw${KEYS.has(norm(x.w)[0])?' k':''}" id="c${i}w${j}">${x.w}</span>`).join(' ');document.body.appendChild(d);
+  const s0=c[0].t,e0=Math.min(i+1<caps.length?caps[i+1][0].t-.03:CFG.DUR-.05,c[c.length-1].e+.9);
+  tl.set('#cap'+i,{opacity:1},s0);tl.set('#cap'+i,{opacity:0},e0);
+  c.forEach((x,j)=>tl.fromTo('#c'+i+'w'+j,{opacity:0,scale:.5,y:10,transformOrigin:'50% 80%'},{opacity:1,scale:1,y:0,duration:.25,ease:'power2.out',immediateRender:false},x.t));});
+})();
+window.DUR=CFG.DUR;
+window.seek=t=>{tl.time(Math.min(t,tl.duration()));document.getElementById('rtb').setAttribute('seed',1+Math.floor(t*12)%7);};
+</script></body></html>
