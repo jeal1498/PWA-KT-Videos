@@ -11,6 +11,7 @@ Desde el 008 v2, todos los hooks siguientes usan este estilo. Las referencias es
 - **Hilo continuo:** el objeto del gancho (en el 008, el documento en blanco y el cronómetro) persiste o vuelve al final transformado (se llena). Hay contadores que suben (cronómetro, palabras, habilidades).
 - **Movimiento:** las tarjetas entran desde abajo con `back.out(1.35)` y salen hacia arriba. Lo secundario se atenúa con desenfoque. Nada vacío más de 1 s.
 - **Cierre:** el CTA va en una pastilla con botón; luego el aviso «Este video orienta y no diagnostica.» y la web. La portada usa el mismo estilo: chip, gancho con la parte clave en recuadro de selección y la tarjeta del gancho.
+- **Tamaño de texto (Eduardo, 28 nov 2026):** se ve en TikTok, Reels y Shorts y lo ven adultos que quizá usan lentes: **ningún texto menor a 40 px** (rótulos de tarjeta ≥34 px, nombres e ítems 40–54 px, chip de paso 40 px). Mejor pocas tarjetas grandes que muchas chicas; los dibujos (carritos, íconos) también grandes. Revisar un cuadro a tamaño real, no solo la hoja de contacto.
 - Siguen vigentes la instrucción obligatoria (abajo, puntos 1–10) y los elementos nuevos en cada video: el estilo se comparte, pero el contenido de las tarjetas y de los diagramas cambia según el tema.
 
 
