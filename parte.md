@@ -1,4 +1,4 @@
-# PARTE · 27 nov 2026
+# PARTE · 28 nov 2026
 
 ## ✓ Decidido
 - nov1 a nov4 de Drive son los videos 36 (Instrucciones de una en una), 37 (Camuflaje en mujeres adultas), 38 (Qué esperar de la evaluación de tu hijo) y 39 (Dormir tarde por tiempo para ti).
@@ -26,6 +26,7 @@
 - Hooks virales: 008 v2 aprobado y guardado como el 008 (reemplaza a la v1, ilustrada) con el estilo de los videos de referencia (portada «¿Media hora y ni una palabra?», 60.6 s, bucle). Desde ahora es la receta para los siguientes: plantilla en `plantilla-hooks/`, la ilustrada anterior en `plantilla-hooks-v1/`, referencias en `hooks virales/_referencias/`.
 - Hooks virales: 009 aprobado y guardado con la receta nueva (portada «¿Dos niños con autismo tan distintos?», 71.6 s, bucle).
 - Hooks virales: 010 aprobado y guardado (portada «¿Tu hijo juega diferente a los demás niños?», 65.8 s, bucle) con la regla nueva de Eduardo: textos ≥40 px (se ve en celular, adultos con lentes).
+- Hooks virales: 008, 009 y 010 rehechos con textos ≥40 px (portadas y videos en bucle regenerados el 28 nov, pedido de Eduardo); 001–007 siguen ilustrados y sin cambio.
 - Todo cambio a `parte.md` se guarda directo en `main` (Karen).
 
 ## … Falta
@@ -35,7 +36,7 @@
 - Pasar el 41 de la rama de la sesión a `main`.
 
 - Hooks virales 031 a 040: generar la voz con la receta cuando haya créditos (Starter no alcanzó para los 40; Eduardo los dejó pendientes).
-- Hooks virales: faltan los gráficos del 011 al 040 (receta del 008 v2, estilo de referencias, textos ≥40 px). Pendiente: rehacer 008 y 009 con los textos grandes (pedido de Eduardo 28 nov). Del 001 al 007 se quedan como están (estilo ilustrado), decidió Eduardo el 27 nov. Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
+- Hooks virales: faltan los gráficos del 011 al 040 (receta del 008 v2, estilo de referencias, textos ≥40 px). Del 001 al 007 se quedan como están (estilo ilustrado), decidió Eduardo el 27 nov. Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
 
 ## ✗ No tocar
 - Diagnosticar o decir que algo «cura»: el contenido orienta, no diagnostica.

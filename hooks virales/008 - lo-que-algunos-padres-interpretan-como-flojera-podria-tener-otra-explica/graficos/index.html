@@ -77,15 +77,16 @@ const I={
 const STEPS=[['01','La tarea'],['02','Lo que se ve'],['03','Iniciación'],['04','La pregunta'],['05','Qué hacer']];
 document.getElementById('chips').innerHTML=STEPS.map((s,i)=>`<div class="chip abs" id="st${i}"><b>${s[0]}</b>${s[1]}</div>`).join('');
 document.getElementById('ticks').innerHTML=[...Array(36)].map((_,i)=>`<i style="top:${i*110+30}px"></i>`).join('');
+document.head.insertAdjacentHTML('beforeend','<style>.lbl{font-size:34px!important}.ttl{font-size:52px}.chip{height:64px;font:700 40px/64px \'Maven Pro\';border-radius:32px;top:528px}.chip b{height:44px;line-height:44px;width:66px;font-size:30px;border-radius:22px}.row{font-size:44px!important;height:110px!important}.row .tm{font-size:36px!important}.node{width:260px!important}.node .nm{font-size:44px}.node .tg{font-size:34px;padding:6px 16px}</style>');
 // ---------- escenas (HTML)
 const W=document.getElementById('world');
 const add=h=>W.insertAdjacentHTML('beforeend',h);
 // S1 · la tarea (tarjeta tipo documento + cronómetro)  — vuelve al final
-add(`<div class="abs card" id="doc" style="left:210px;top:660px;width:720px;height:560px;opacity:0">
+add(`<div class="abs card" id="doc" style="left:190px;top:660px;width:760px;height:560px;opacity:0">
  <div style="display:flex;align-items:center;gap:12px;height:84px;padding:0 30px;border-bottom:2px solid #EFEAF6">
   <i style="width:16px;height:16px;border-radius:50%;background:#F9DEE3;border:2px solid #2E2545"></i><i style="width:16px;height:16px;border-radius:50%;background:#F5E7D6;border:2px solid #2E2545"></i><i style="width:16px;height:16px;border-radius:50%;background:#C6BCE2;border:2px solid #2E2545"></i>
-  <span class="lbl" style="margin-left:14px">Tarea · Cuaderno</span>
-  <span id="wc" class="pill" style="margin-left:auto;background:#F9DEE3;font-size:24px;padding:10px 18px">0 palabras</span></div>
+  <span class="lbl" style="margin-left:14px">Tarea</span>
+  <span id="wc" class="pill" style="margin-left:auto;background:#F9DEE3;font-size:34px;padding:10px 18px">0 palabras</span></div>
  <div style="position:relative;padding:40px 46px">
   ${[0,1,2,3,4,5].map(i=>`<div style="height:2px;background:#EDE8F5;margin:0 0 62px"></div>`).join('')}
   <div id="car" class="abs" style="left:46px;top:26px;width:5px;height:50px;background:#2E2545;border-radius:2px"></div>
@@ -93,54 +94,54 @@ add(`<div class="abs card" id="doc" style="left:210px;top:660px;width:720px;heig
  </div></div>`);
 add(`<div class="abs pill" id="tmr" style="left:570px;top:1290px;transform:translateX(-50%);background:#2E2545;color:#fff;font:700 54px/1 Outfit;padding:20px 40px;display:flex;gap:18px;align-items:center;opacity:0"><svg width="44" height="44" viewBox="-20 -20 40 40"><circle r="15" fill="none" stroke="#fff" stroke-width="3.5"/><path d="M0 -8V0L6 4" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/><path d="M-5 -20H5" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/></svg><span id="tmT">00:00</span></div>`);
 // S2 · notificación + registro de lo que pasa
-add(`<div class="abs card" id="ntf" style="left:210px;top:650px;width:720px;height:128px;display:flex;align-items:center;gap:22px;padding:0 28px;opacity:0">
+add(`<div class="abs card" id="ntf" style="left:190px;top:650px;width:760px;height:140px;display:flex;align-items:center;gap:22px;padding:0 28px;opacity:0">
  <div style="width:74px;height:74px;border-radius:22px;background:#2E2545;display:flex;align-items:center;justify-content:center;flex:none">${I.play.replace('#2E2545','#fff')}</div>
- <div><div class="lbl" style="margin-bottom:10px">Ahora</div><div class="ttl" style="font-size:38px">«Ya, empieza la tarea»</div></div></div>`);
-add(`<div class="abs card" id="log" style="left:210px;top:810px;width:720px;height:420px;overflow:hidden;opacity:0">
- <div style="display:flex;align-items:center;height:80px;padding:0 30px"><span class="lbl">Lo que pasa</span><span id="rep" class="pill" style="margin-left:auto;background:#E7E1F4;font-size:24px;padding:10px 18px;opacity:0">↻ Se repite</span></div>
+ <div><div class="lbl" style="margin-bottom:10px">Ahora</div><div class="ttl" style="font-size:44px">«Ya, empieza la tarea»</div></div></div>`);
+add(`<div class="abs card" id="log" style="left:190px;top:820px;width:760px;height:450px;overflow:hidden;opacity:0">
+ <div style="display:flex;align-items:center;height:80px;padding:0 30px"><span class="lbl">Lo que pasa</span><span id="rep" class="pill" style="margin-left:auto;background:#E7E1F4;font-size:34px;padding:10px 18px;opacity:0">↻ Se repite</span></div>
  <div class="row" id="r0"><div class="ic">${I.eye}</div>Mira la hoja<span class="tm">4:31</span></div>
  <div class="row" id="r1"><div class="ic">${I.pen}</div>Acomoda lápices<span class="tm">4:33</span></div>
  <div class="row" id="r2"><div class="ic">${I.spin}</div>Se distrae<span class="tm">4:36</span></div>
  <div class="row" id="r3" style="border-top:0"></div></div>`);
-add(`<div class="abs pill" id="tag" style="left:600px;top:990px;transform:translate(-50%,-50%) rotate(-6deg);background:#F5E7D6;border:4px solid #2E2545;font:700 46px/1 Outfit;padding:20px 34px;box-shadow:8px 9px 0 #F9DEE3;opacity:0">Parece: sin ganas</div>`);
+add(`<div class="abs pill" id="tag" style="left:600px;top:990px;transform:translate(-50%,-50%) rotate(-6deg);background:#F5E7D6;border:4px solid #2E2545;font:700 54px/1 Outfit;padding:20px 34px;box-shadow:8px 9px 0 #F9DEE3;opacity:0">Parece: sin ganas</div>`);
 // S3 · anillo de funciones ejecutivas
 add(`<svg class="abs" id="ring" style="left:270px;top:700px;opacity:0" width="600" height="600"><circle cx="300" cy="300" r="270" fill="none" stroke="#B9AFD6" stroke-width="3" stroke-dasharray="6 12"/></svg>`);
 add(`<svg class="abs" id="lnk" style="left:0;top:0;opacity:1" width="1080" height="1920">
- <path id="lk0" d="M570 935V840" stroke="#2E2545" stroke-width="4" stroke-dasharray="4 10" stroke-linecap="round" opacity="0"/>
+ <path id="lk0" d="M570 925V880" stroke="#2E2545" stroke-width="4" stroke-dasharray="4 10" stroke-linecap="round" opacity="0"/>
  <path id="lk1" d="M490 1060L370 1150" stroke="#2E2545" stroke-width="4" stroke-dasharray="4 10" stroke-linecap="round" opacity="0"/>
  <path id="lk2" d="M650 1060L770 1150" stroke="#2E2545" stroke-width="4" stroke-dasharray="4 10" stroke-linecap="round" opacity="0"/></svg>`);
 add(`<div class="abs" id="ctr" style="left:570px;top:1000px;transform:translate(-50%,-50%);opacity:0;display:flex;flex-direction:column;align-items:center;gap:14px">
  <div style="width:190px;height:150px;border-radius:34px;background:#fff;border:3px solid #2E2545;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 40px rgba(56,47,81,.16)">${I.sliders}</div>
- <div class="pill" id="cnt" style="background:#2E2545;color:#fff;font-size:24px;padding:10px 18px">0/3 habilidades</div></div>`);
+ <div class="pill" id="cnt" style="background:#2E2545;color:#fff;font-size:38px;padding:10px 20px">0/3 habilidades</div></div>`);
 const NODE=(id,ic,nm,tg,x,y)=>add(`<div class="abs node" id="${id}" style="left:${x}px;top:${y}px;transform:translate(-50%,-50%);opacity:0"><div class="sq" id="${id}q">${ic}</div><div class="nm">${nm}</div><div class="tg" id="${id}t">${tg}</div></div>`);
-NODE('n0',I.play,'Iniciar','empezar',570,740);NODE('n1',I.grid,'Organizar','ordenar',330,1230);NODE('n2',I.arrow,'Dirigir','guiar',810,1230);
-add(`<div class="abs" id="n0p" style="left:570px;top:710px;transform:translate(-50%,-50%);opacity:0">${I.pause}</div>`);
+NODE('n0',I.play,'Iniciar','empezar',570,750);NODE('n1',I.grid,'Organizar','ordenar',330,1230);NODE('n2',I.arrow,'Dirigir','guiar',810,1230);
+add(`<div class="abs" id="n0p" style="left:570px;top:694px;transform:translate(-50%,-50%);opacity:0">${I.pause}</div>`);
 // S4 · comparación A / B
-add(`<div class="abs pill" id="q4" style="left:570px;top:690px;transform:translateX(-50%);background:#fff;border:3px solid #2E2545;font-size:40px;opacity:0">¿Qué está pasando?</div>`);
-const OPT=(id,lb,ic,tx,x)=>add(`<div class="abs card" id="${id}" style="left:${x}px;top:830px;width:340px;height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;text-align:center">
- <span class="lbl">${lb}</span><div style="width:140px;height:140px;border-radius:38px;background:#E7E1F4;display:flex;align-items:center;justify-content:center">${ic}</div><div class="ttl" style="font-size:40px;padding:0 20px">${tx}</div></div>`);
-OPT('oa','Opción A',I.hand,'Evita<br>esforzarse',200);OPT('ob','Opción B',I.lock,'Le cuesta<br>comenzar',600);
+add(`<div class="abs pill" id="q4" style="left:570px;top:690px;transform:translateX(-50%);background:#fff;border:3px solid #2E2545;font-size:48px;opacity:0">¿Qué está pasando?</div>`);
+const OPT=(id,lb,ic,tx,x)=>add(`<div class="abs card" id="${id}" style="left:${x}px;top:830px;width:360px;height:470px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;text-align:center">
+ <span class="lbl">${lb}</span><div style="width:140px;height:140px;border-radius:38px;background:#E7E1F4;display:flex;align-items:center;justify-content:center">${ic}</div><div class="ttl" style="font-size:46px;padding:0 14px">${tx}</div></div>`);
+OPT('oa','Opción A',I.hand,'Evita<br>esforzarse',180);OPT('ob','Opción B',I.lock,'Le cuesta<br>comenzar',590);
 add(`<div class="abs" id="neq" style="left:570px;top:1050px;transform:translate(-50%,-50%);width:96px;height:96px;border-radius:50%;background:#2E2545;color:#fff;font:700 64px/96px Outfit;text-align:center;opacity:0">≠</div>`);
-add(`<div class="abs pill" id="fl4" style="left:370px;top:820px;transform:translate(-50%,-50%) rotate(-8deg);background:#F5E7D6;border:4px solid #2E2545;font:700 40px/1 Outfit;padding:14px 26px;box-shadow:6px 7px 0 #F9DEE3;opacity:0">¿Flojo?</div>`);
+add(`<div class="abs pill" id="fl4" style="left:370px;top:820px;transform:translate(-50%,-50%) rotate(-8deg);background:#F5E7D6;border:4px solid #2E2545;font:700 52px/1 Outfit;padding:14px 28px;box-shadow:6px 7px 0 #F9DEE3;opacity:0">¿Flojo?</div>`);
 // S5 · motivos, TDAH no automático, frecuencia, valoración, pasos
-[0,1,2].forEach(i=>add(`<div class="abs card" id="m${i}" style="left:${200+i*250}px;top:820px;width:220px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;opacity:0"><div style="width:110px;height:110px;border-radius:30px;background:${['#F9DEE3','#E7E1F4','#F5E7D6'][i]};display:flex;align-items:center;justify-content:center">${I.q}</div><span class="lbl">Motivo ${i+1}</span></div>`));
-add(`<div class="abs card" id="tg5" style="left:210px;top:860px;width:720px;height:220px;display:flex;align-items:center;padding:0 44px;gap:26px;opacity:0">
- <div><div class="ttl" style="font-size:64px">TDAH</div><div class="lbl" style="margin-top:12px">No es automático</div></div>
+[0,1,2].forEach(i=>add(`<div class="abs card" id="m${i}" style="left:${190+i*260}px;top:820px;width:240px;height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;opacity:0"><div style="width:110px;height:110px;border-radius:30px;background:${['#F9DEE3','#E7E1F4','#F5E7D6'][i]};display:flex;align-items:center;justify-content:center">${I.q}</div><span class="lbl">Motivo ${i+1}</span></div>`));
+add(`<div class="abs card" id="tg5" style="left:190px;top:860px;width:760px;height:250px;display:flex;align-items:center;padding:0 44px;gap:26px;opacity:0">
+ <div><div class="ttl" style="font-size:80px">TDAH</div><div class="lbl" style="margin-top:12px">No es automático</div></div>
  <div style="margin-left:auto;width:190px;height:100px;border-radius:50px;background:#E7E1F4;border:3px solid #2E2545;position:relative"><div id="knob" style="position:absolute;left:10px;top:10px;width:74px;height:74px;border-radius:50%;background:#fff;border:3px solid #2E2545"></div></div></div>`);
-add(`<div class="abs card" id="wk" style="left:210px;top:760px;width:720px;height:300px;padding:30px 34px;opacity:0">
+add(`<div class="abs card" id="wk" style="left:190px;top:760px;width:760px;height:340px;padding:30px 34px;opacity:0">
  <div class="lbl" style="margin-bottom:26px">Cada semana</div>
- <div style="display:flex;gap:14px">${['L','M','M','J','V','S','D'].map((d,i)=>`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:14px"><span style="font:700 28px/1 'Maven Pro';color:#8E86A6">${d}</span><div id="wd${i}" style="width:70px;height:70px;border-radius:20px;background:#F3F0F8;display:flex;align-items:center;justify-content:center"></div></div>`).join('')}</div></div>`);
-add(`<div class="abs" id="af" style="left:210px;top:1100px;width:720px;display:flex;gap:18px;justify-content:center;opacity:0">${['Escuela','Casa','Ánimo'].map((t,i)=>`<span id="af${i}" class="pill" style="background:#fff;border:3px solid #2E2545;font-size:30px;display:flex;gap:10px;align-items:center"><i style="width:14px;height:14px;border-radius:50%;background:#C0392B;display:inline-block"></i>${t}</span>`).join('')}</div>`);
-add(`<div class="abs card" id="bk" style="left:210px;top:800px;width:720px;height:400px;padding:40px 44px;opacity:0">
- <div class="lbl">Neuropsicología</div><div class="ttl" style="font-size:54px;margin:18px 0 12px">Valoración<br>especializada</div>
- <div id="bkb" class="pill" style="position:absolute;left:44px;right:44px;bottom:40px;text-align:center;background:#2E2545;color:#fff;font-size:34px;padding:24px">Agendar</div>
- <div id="bko" class="pill" style="position:absolute;left:44px;right:44px;bottom:40px;text-align:center;background:#1E9E6A;color:#fff;font-size:34px;padding:24px;opacity:0;display:flex;justify-content:center;gap:12px;align-items:center">${I.ok} Agendada</div></div>`);
-add(`<div class="abs pill" id="fl5" style="left:570px;top:760px;transform:translate(-50%,-50%) rotate(-6deg);background:#F5E7D6;border:4px solid #2E2545;font:700 64px/1 Outfit;padding:20px 40px;box-shadow:8px 9px 0 #F9DEE3;opacity:0">Flojo<div id="fl5x" style="position:absolute;left:18px;right:18px;top:50%;height:8px;background:#C0392B;border-radius:4px;transform-origin:0 50%;transform:scaleX(0)"></div></div>`);
-add(`<div class="abs card" id="cl" style="left:210px;top:880px;width:720px;padding:16px 0;opacity:0">${['Abrir el cuaderno','Leer la instrucción','Escribir la primera palabra'].map((t,i)=>`<div class="row" id="cr${i}" style="${i?'':'border-top:0'};height:104px"><div class="ck" id="cc${i}"></div>${t}</div>`).join('')}</div>`);
+ <div style="display:flex;gap:14px">${['L','M','M','J','V','S','D'].map((d,i)=>`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:14px"><span style="font:700 40px/1 'Maven Pro';color:#8E86A6">${d}</span><div id="wd${i}" style="width:84px;height:84px;border-radius:22px;background:#F3F0F8;display:flex;align-items:center;justify-content:center"></div></div>`).join('')}</div></div>`);
+add(`<div class="abs" id="af" style="left:190px;top:1140px;width:760px;display:flex;gap:18px;justify-content:center;opacity:0">${['Escuela','Casa','Ánimo'].map((t,i)=>`<span id="af${i}" class="pill" style="background:#fff;border:3px solid #2E2545;font-size:40px;display:flex;gap:12px;align-items:center"><i style="width:14px;height:14px;border-radius:50%;background:#C0392B;display:inline-block"></i>${t}</span>`).join('')}</div>`);
+add(`<div class="abs card" id="bk" style="left:190px;top:800px;width:760px;height:470px;padding:40px 44px;opacity:0">
+ <div class="lbl">Neuropsicología</div><div class="ttl" style="font-size:62px;margin:18px 0 12px">Valoración<br>especializada</div>
+ <div id="bkb" class="pill" style="position:absolute;left:44px;right:44px;bottom:40px;text-align:center;background:#2E2545;color:#fff;font-size:46px;padding:24px">Agendar</div>
+ <div id="bko" class="pill" style="position:absolute;left:44px;right:44px;bottom:40px;text-align:center;background:#1E9E6A;color:#fff;font-size:46px;padding:24px;opacity:0;display:flex;justify-content:center;gap:12px;align-items:center">${I.ok} Agendada</div></div>`);
+add(`<div class="abs pill" id="fl5" style="left:570px;top:760px;transform:translate(-50%,-50%) rotate(-6deg);background:#F5E7D6;border:4px solid #2E2545;font:700 90px/1 Outfit;padding:20px 44px;box-shadow:8px 9px 0 #F9DEE3;opacity:0">Flojo<div id="fl5x" style="position:absolute;left:18px;right:18px;top:50%;height:8px;background:#C0392B;border-radius:4px;transform-origin:0 50%;transform:scaleX(0)"></div></div>`);
+add(`<div class="abs card" id="cl" style="left:190px;top:880px;width:760px;padding:16px 0;opacity:0">${['Abrir el cuaderno','Leer la instrucción','Escribir una palabra'].map((t,i)=>`<div class="row" id="cr${i}" style="${i?'':'border-top:0'};height:124px"><div class="ck" id="cc${i}"></div>${t}</div>`).join('')}</div>`);
 // S6 · CTA
-add(`<div class="abs pill" id="cta" style="left:570px;top:1290px;transform:translateX(-50%);background:#2E2545;color:#fff;font:700 38px/1 'Maven Pro';padding:16px 16px 16px 36px;display:flex;gap:22px;align-items:center;opacity:0">Compártelo con otra familia<span id="ctb" style="width:72px;height:72px;border-radius:50%;background:#C6BCE2;display:flex;align-items:center;justify-content:center">${I.send.replace('#fff','#2E2545')}</span></div>`);
+add(`<div class="abs pill" id="cta" style="left:570px;top:1290px;transform:translateX(-50%);background:#2E2545;color:#fff;font:700 44px/1 'Maven Pro';padding:16px 16px 16px 36px;display:flex;gap:22px;align-items:center;opacity:0">Compártelo con otra familia<span id="ctb" style="width:72px;height:72px;border-radius:50%;background:#C6BCE2;display:flex;align-items:center;justify-content:center">${I.send.replace('#fff','#2E2545')}</span></div>`);
 add(`<div class="abs end" id="end"><div class="abs" style="left:150px;width:840px;top:820px;text-align:center;font:700 74px/1.15 Outfit">Este video orienta y no diagnostica.</div>
- <div class="abs pill" style="left:570px;top:1080px;transform:translateX(-50%);background:#fff;border:3px solid #2E2545;font-size:34px">psicologakarentrujillo.com.mx</div></div>`);
+ <div class="abs pill" style="left:570px;top:1080px;transform:translateX(-50%);background:#fff;border:3px solid #2E2545;font-size:40px;padding:16px 30px">psicologakarentrujillo.com.mx</div></div>`);
 
 // ============ LÍNEA DE TIEMPO ============
 gsap.set('#world > *',{opacity:0});
@@ -232,7 +233,7 @@ function escena5(){
  const tC=at('si ocurre');
  OUT('#tg5',tC-.3);POP('#wk',tC);
  [0,1,2,3,4].forEach(i=>tl.to('#wd'+i,{backgroundColor:'#C6BCE2',duration:.15,onStart:()=>{},},at('constantemente')+i*.15));
- [0,1,2,3,4].forEach(i=>TXT('#wd'+i,at('constantemente')+i*.15,`<svg width="34" height="34" viewBox="-20 -20 40 40"><path d="M-10 0L-3 8L11 -8" fill="none" stroke="#2E2545" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>`));
+ [0,1,2,3,4].forEach(i=>TXT('#wd'+i,at('constantemente')+i*.15,`<svg width="46" height="46" viewBox="-20 -20 40 40"><path d="M-10 0L-3 8L11 -8" fill="none" stroke="#2E2545" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>`));
  IN('#af',at('afecta'));[0,1,2].forEach(i=>tl.fromTo('#af'+i,{y:20,opacity:0},{y:0,opacity:1,duration:.3,ease:CFG.POP,immediateRender:false},at('afecta')+i*.15));
  const tV=at('merece');
  OUT('#wk',tV-.3);OUT('#af',tV-.3);POP('#bk',tV);
@@ -266,6 +267,7 @@ function escena6(){
 }
 gsap.set('#wr0 path,#wr1 path,#wr2 path',{strokeDasharray:2000,strokeDashoffset:2000});
 escena1();escena2();escena3();escena4();escena5();escena6();
+
 
 // ============ SUBTÍTULO ARRIBA (palabras por venir borrosas; clave en recuadro de selección) ============
 const KEYS=new Set(['media','palabra','comience','lapices','distraerse','ganas','habilidades','iniciacion','ejecutivas','empezar','esforzarse','comenzar','misma','motivos','tdah','constantemente','valoracion','flojo','investigar','comparte']);
