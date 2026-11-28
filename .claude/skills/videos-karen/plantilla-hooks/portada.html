@@ -6,9 +6,9 @@ body{width:1080px;height:1920px;overflow:hidden;position:relative;font-family:'M
 .a{position:absolute}
 .tl{left:98px;top:0;width:4px;height:1920px;background:#DDD5EE}.tt{left:98px;top:0;width:4px;height:250px;background:#2E2545}
 .av{left:68px;top:238px;width:64px;height:64px;border-radius:50%;background:#2E2545;box-shadow:0 0 0 6px #F7F4FA;display:flex;align-items:center;justify-content:center}
-.chip{left:150px;top:248px;height:44px;border-radius:22px;background:#2E2545;color:#fff;font:700 27px/44px 'Maven Pro';padding:0 22px 0 8px;display:flex;gap:12px;align-items:center}
-.chip b{width:46px;height:30px;line-height:30px;border-radius:15px;background:#C6BCE2;color:#2E2545;text-align:center;font-size:20px}
-h1{left:160px;right:60px;top:360px;font:700 116px/1.12 Outfit;letter-spacing:-.02em}
+.chip{left:150px;top:240px;height:64px;border-radius:32px;background:#2E2545;color:#fff;font:700 40px/64px 'Maven Pro';padding:0 24px 0 10px;display:flex;gap:12px;align-items:center}
+.chip b{width:66px;height:44px;line-height:44px;border-radius:22px;background:#C6BCE2;color:#2E2545;text-align:center;font-size:30px}
+h1{left:160px;right:60px;top:350px;font:700 112px/1.1 Outfit;letter-spacing:-.02em}
 .hl{position:relative;display:inline-block;padding:0 14px;z-index:0}
 .hl i{position:absolute;left:0;right:0;top:12px;bottom:4px;background:#C6BCE2;border:4px solid #2E2545;z-index:-1}
 .hl i::before,.hl i::after{content:"";position:absolute;width:18px;height:18px;background:#fff;border:4px solid #2E2545}
@@ -23,9 +23,21 @@ h1{left:160px;right:60px;top:360px;font:700 116px/1.12 Outfit;letter-spacing:-.0
 </style>
 <div class="a tl"></div><div class="a tt"></div>
 <div class="a av"><svg width="38" height="38" viewBox="-20 -20 40 40"><path d="M-12 12L-14 16L-10 14L12 -8L8 -12Z" fill="#F5E7D6" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
-<div class="a chip"><b>01</b>Iniciar tareas</div>
-<h1 class="a">¿Media hora y <span class="hl"><i></i>ni una palabra?</span></h1>
-<div class="a card"><div class="hd"><i style="background:#F9DEE3"></i><i style="background:#F5E7D6"></i><i style="background:#C6BCE2"></i><span class="lbl" style="margin-left:14px">Tarea · Cuaderno</span><span class="pill" style="margin-left:auto;background:#F9DEE3">0 palabras</span></div>
-<div style="position:relative;padding-top:40px"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div>
-<div class="a" style="left:46px;top:26px;width:5px;height:50px;background:#2E2545;border-radius:2px"></div></div></div>
-<div class="a tm"><svg width="52" height="52" viewBox="-20 -20 40 40"><circle r="15" fill="none" stroke="#fff" stroke-width="3.5"/><path d="M0 -8V0L6 4" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/><path d="M-5 -20H5" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/></svg>30:00</div>
+<div class="a chip"><b>01</b>Las pistas</div>
+<h1 class="a">Tres características que pasan <span class="hl"><i></i>desapercibidas</span></h1>
+<div id="stage"></div>
+<script>
+const SV=(b,w)=>`<svg width="${w||64}" height="${w||64}" viewBox="-20 -20 40 40">${b}</svg>`;
+const K='fill="none" stroke="#2E2545" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"';
+const ICS=[SV(`<path d="M-15 -12H9Q13 -12 13 -8V2Q13 6 9 6H-4L-10 12V6H-15Q-19 6 -19 2V-8Q-19 -12 -15 -12Z" fill="#fff" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/><path d="M-12 -3H6" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/>`,76),
+SV(`<rect x="-15" y="-13" width="30" height="28" rx="5" fill="#fff" stroke="#2E2545" stroke-width="3"/><path d="M-15 -4H15M-8 -17V-10M8 -17V-10" ${K}/><circle cx="-7" cy="4" r="2.4" fill="#2E2545"/><circle cx="1" cy="4" r="2.4" fill="#2E2545"/><circle cx="9" cy="4" r="2.4" fill="#C6BCE2"/><circle cx="-7" cy="10" r="2.4" fill="#2E2545"/>`,76),
+SV(`<path d="M0 -15L4.5 -4.5L16 -3.5L7.5 4L10 15L0 9L-10 15L-7.5 4L-16 -3.5L-4.5 -4.5Z" fill="#F9DEE3" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/>`,76)];
+const tiles=[130,340,550].map((x,i)=>`<div style="position:absolute;left:${x}px;top:370px;width:120px;height:120px;border-radius:30px;background:#fff;border:3px solid #2E2545;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px rgba(56,47,81,.14)">${ICS[i]}<span style="position:absolute;right:-12px;top:-14px;width:40px;height:40px;border-radius:50%;background:#2E2545;color:#fff;font:700 28px/40px Outfit;text-align:center">?</span></div>`).join('');
+const CUR='background:repeating-linear-gradient(90deg,#C6BCE2 0 36px,#B2A6D4 36px 72px)';
+document.getElementById('stage').innerHTML=`<div class="a" style="left:160px;top:1050px;width:800px;height:540px;overflow:hidden;background:#F3F0F8;border:2px solid #E3DCEF;border-radius:28px;box-shadow:0 22px 50px rgba(56,47,81,.12)">
+ <svg style="position:absolute;left:290px;top:40px" width="220" height="290" viewBox="-110 -20 220 290"><circle cx="0" cy="60" r="62" fill="#CFC7E2"/><path d="M-100 270Q-100 150 0 150Q100 150 100 270Z" fill="#CFC7E2"/></svg>
+ ${tiles}
+ <div style="position:absolute;left:-290px;top:0;width:402px;height:540px;${CUR};border-right:5px solid #2E2545"></div>
+ <div style="position:absolute;left:688px;top:0;width:402px;height:540px;${CUR};border-left:5px solid #2E2545"></div>
+ <div style="position:absolute;left:0;top:0;width:800px;height:14px;background:#2E2545"></div></div>`;
+</script>
