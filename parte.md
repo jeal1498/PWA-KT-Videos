@@ -29,6 +29,7 @@
 - Hooks virales: 008, 009 y 010 rehechos con textos ≥40 px (portadas y videos en bucle regenerados el 28 nov, pedido de Eduardo); 001–007 siguen ilustrados y sin cambio.
 - Hooks virales: 011 aprobado y guardado (portada «Tres características que pasan desapercibidas», 70.8 s). Del 008 al 011 llevan la leyenda fija «Neuropsicóloga Karen Trujillo» y el cierre con nombre, «Neuropsicóloga · Cancún», cédula y web (sin avatar); así se hacen los siguientes.
 - Hooks virales: 012 aprobado y guardado (portada «¿Es timidez o algo más?», 66 s, bucle, con leyenda y cierre con datos de Karen).
+- Hooks virales: 013 aprobado y guardado (portada «Tu hijo no tiene que ser igual a los demás», 65 s, bucle).
 - Todo cambio a `parte.md` se guarda directo en `main` (Karen).
 
 ## … Falta
@@ -38,7 +39,7 @@
 - Pasar el 41 de la rama de la sesión a `main`.
 
 - Hooks virales 031 a 040: generar la voz con la receta cuando haya créditos (Starter no alcanzó para los 40; Eduardo los dejó pendientes).
-- Hooks virales: faltan los gráficos del 013 al 040 (receta del 008 v2, estilo de referencias, textos ≥40 px). Del 001 al 007 se quedan como están (estilo ilustrado), decidió Eduardo el 27 nov. Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
+- Hooks virales: faltan los gráficos del 014 al 040 (receta del 008 v2, estilo de referencias, textos ≥40 px). Del 001 al 007 se quedan como están (estilo ilustrado), decidió Eduardo el 27 nov. Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
 
 ## ✗ No tocar
 - Diagnosticar o decir que algo «cura»: el contenido orienta, no diagnostica.

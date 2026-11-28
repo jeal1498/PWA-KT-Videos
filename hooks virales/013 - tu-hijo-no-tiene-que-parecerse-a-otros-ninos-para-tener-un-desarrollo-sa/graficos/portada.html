@@ -1,0 +1,38 @@
+<!doctype html><meta charset=utf-8><style>
+@font-face{font-family:Outfit;src:url(Outfit-700-latin.woff2);font-weight:700}
+@font-face{font-family:'Maven Pro';src:url(MavenPro-700-latin.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;position:relative;font-family:'Maven Pro';color:#2E2545;background:#F7F4FA;background-image:linear-gradient(rgba(198,188,226,.28) 1px,transparent 1px),linear-gradient(90deg,rgba(198,188,226,.28) 1px,transparent 1px);background-size:40px 40px}
+.a{position:absolute}
+.tl{left:98px;top:0;width:4px;height:1920px;background:#DDD5EE}.tt{left:98px;top:0;width:4px;height:250px;background:#2E2545}
+.av{left:68px;top:238px;width:64px;height:64px;border-radius:50%;background:#2E2545;box-shadow:0 0 0 6px #F7F4FA;display:flex;align-items:center;justify-content:center}
+.chip{left:150px;top:240px;height:64px;border-radius:32px;background:#2E2545;color:#fff;font:700 40px/64px 'Maven Pro';padding:0 24px 0 10px;display:flex;gap:12px;align-items:center}
+.chip b{width:66px;height:44px;line-height:44px;border-radius:22px;background:#C6BCE2;color:#2E2545;text-align:center;font-size:30px}
+h1{left:160px;right:60px;top:350px;font:700 112px/1.1 Outfit;letter-spacing:-.02em}
+.hl{position:relative;display:inline-block;padding:0 14px;z-index:0}
+.hl i{position:absolute;left:0;right:0;top:12px;bottom:4px;background:#C6BCE2;border:4px solid #2E2545;z-index:-1}
+.hl i::before,.hl i::after{content:"";position:absolute;width:18px;height:18px;background:#fff;border:4px solid #2E2545}
+.hl i::before{left:-12px;top:-12px}.hl i::after{right:-12px;bottom:-12px}
+.card{left:210px;top:780px;width:720px;height:480px;background:#fff;border:2px solid #E3DCEF;border-radius:28px;box-shadow:0 22px 50px rgba(56,47,81,.12)}
+.hd{display:flex;align-items:center;gap:12px;height:84px;padding:0 30px;border-bottom:2px solid #EFEAF6}
+.hd i{width:16px;height:16px;border-radius:50%;border:2px solid #2E2545}
+.lbl{font:700 22px/1 'Maven Pro';letter-spacing:.14em;text-transform:uppercase;color:#8E86A6}
+.pill{border-radius:999px;font:700 24px/1 'Maven Pro';padding:10px 18px}
+.ln{height:2px;background:#EDE8F5;margin:0 46px 62px}
+.tm{left:570px;top:1320px;transform:translateX(-50%);background:#2E2545;color:#fff;font:700 64px/1 Outfit;padding:22px 44px;border-radius:999px;display:flex;gap:20px;align-items:center}
+</style>
+<div class="a tl"></div><div class="a tt"></div>
+<div class="a av"><svg width="38" height="38" viewBox="-20 -20 40 40"><path d="M-12 12L-14 16L-10 14L12 -8L8 -12Z" fill="#F5E7D6" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+<div class="a chip"><b>01</b>Cada niño</div>
+<h1 class="a">Tu hijo no tiene que ser <span class="hl"><i></i>igual</span> a los demás</h1>
+<div id="stage"></div>
+<script>
+const SIL=(c)=>`<svg width="130" height="180" viewBox="0 0 110 150"><circle cx="55" cy="40" r="34" fill="${c}"/><path d="M5 150Q5 84 55 84Q105 84 105 150Z" fill="${c}"/></svg>`;
+const KID=`<svg width="100%" height="100%" viewBox="-50 -50 100 100"><circle r="50" fill="#E7E1F4"/><circle cy="4" r="26" fill="#F5E7D6" stroke="#2E2545" stroke-width="3"/><path d="M-28 6Q-32 -30 0 -32Q32 -30 28 6Q26 -12 14 -16Q0 -10 -14 -18Q-26 -12 -28 6Z" fill="#8A6A4E" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/><circle cx="-9" cy="6" r="3" fill="#2E2545"/><circle cx="9" cy="6" r="3" fill="#2E2545"/><path d="M-7 15Q0 20 7 15" fill="none" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/><path d="M-36 50Q-36 30 0 30Q36 30 36 50" fill="#fff" stroke="#2E2545" stroke-width="3"/></svg>`;
+document.getElementById('stage').innerHTML=`<div class="a" style="left:160px;top:840px;width:800px;height:560px;background:#fff;border:2px solid #E3DCEF;border-radius:28px;box-shadow:0 22px 50px rgba(56,47,81,.12)">
+ <svg style="position:absolute;left:0;top:0" width="800" height="560"><path d="M30 290H770" fill="none" stroke="#8E86A6" stroke-width="5" stroke-dasharray="3 12" stroke-linecap="round"/></svg>
+ ${[0,1,2,3].map(i=>`<div style="position:absolute;left:${24+i*150}px;top:290px">${SIL('#CFC7E2')}</div>`).join('')}
+ <div style="position:absolute;left:615px;top:150px;width:150px;height:150px;border-radius:50%;overflow:hidden;border:5px solid #2E2545;box-shadow:0 10px 24px rgba(56,47,81,.2)">${KID}</div>
+ <svg style="position:absolute;left:630px;top:310px" width="120" height="150" viewBox="0 0 110 150"><path d="M5 150Q5 24 55 24Q105 24 105 150Z" fill="#E7E1F4" stroke="#2E2545" stroke-width="5"/></svg>
+ <div style="position:absolute;left:30px;top:34px;border-radius:999px;background:#E7E1F4;font:700 44px/1 'Maven Pro';padding:16px 30px">Jugar · Hablar · Relacionarse</div></div>`;
+</script>
