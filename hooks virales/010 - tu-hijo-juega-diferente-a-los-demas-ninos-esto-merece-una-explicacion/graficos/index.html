@@ -1,0 +1,315 @@
+<!doctype html><html><head><meta charset="utf-8"><title>008 v2 gráficos</title>
+<style>
+@font-face{font-family:Outfit;src:url(Outfit-700-latin.woff2);font-weight:700}
+@font-face{font-family:'Maven Pro';src:url(MavenPro-700-latin.woff2);font-weight:700}
+:root{--ink:#2E2545;--lav:#C6BCE2;--lav2:#E7E1F4;--rosa:#F9DEE3;--arena:#F5E7D6;--bg:#F7F4FA;--mute:#8E86A6;--ok:#1E9E6A;--red:#C0392B}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;position:relative;font-family:'Maven Pro',sans-serif;color:var(--ink);
+ background-color:var(--bg);background-image:linear-gradient(rgba(198,188,226,.28) 1px,transparent 1px),linear-gradient(90deg,rgba(198,188,226,.28) 1px,transparent 1px);background-size:40px 40px}
+.abs{position:absolute}
+/* línea de tiempo */
+#tl{left:98px;top:0;width:4px;height:1920px;background:#DDD5EE}
+#tlTop{left:98px;top:0;width:4px;height:540px;background:var(--ink)}
+#ticks{left:92px;top:0;width:16px;height:4000px}
+#ticks i{position:absolute;left:4px;width:8px;height:3px;background:#C9C0DE}
+#av{left:68px;top:528px;width:64px;height:64px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px var(--bg)}
+.chip{left:150px;top:540px;height:44px;border-radius:22px;background:var(--ink);color:#fff;font:700 27px/44px 'Maven Pro';padding:0 22px 0 8px;white-space:nowrap;opacity:0;display:flex;align-items:center;gap:12px}
+.chip b{display:inline-block;width:46px;height:30px;line-height:30px;border-radius:15px;background:var(--lav);color:var(--ink);text-align:center;font-size:20px}
+/* subtítulo arriba */
+.ph{left:160px;width:860px;top:300px;text-align:center;font:700 62px/1.25 Outfit;opacity:0}
+.ph span{display:inline-block;margin:0 7px;position:relative;z-index:0}
+.ph span.k{padding:0 10px}
+.ph span .hl{position:absolute;left:-2px;right:-2px;top:6px;bottom:2px;background:var(--lav);border:3px solid var(--ink);z-index:-1;opacity:0}
+.ph span .hl::before,.ph span .hl::after{content:"";position:absolute;width:12px;height:12px;background:#fff;border:3px solid var(--ink)}
+.ph span .hl::before{left:-8px;top:-8px}.ph span .hl::after{right:-8px;bottom:-8px}
+/* tarjetas */
+.card{background:#fff;border:2px solid #E3DCEF;border-radius:28px;box-shadow:0 22px 50px rgba(56,47,81,.12)}
+.sc{left:0;top:0;width:1080px;height:1920px}
+.pill{border-radius:999px;font:700 30px/1 'Maven Pro';padding:14px 26px;white-space:nowrap}
+.lbl{font:700 22px/1 'Maven Pro';letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.ttl{font:700 40px/1.1 Outfit}
+.row{display:flex;align-items:center;gap:22px;height:92px;border-top:2px solid #EFEAF6;padding:0 30px;font:700 34px/1 'Maven Pro'}
+.row .ic{width:56px;height:56px;border-radius:16px;background:var(--lav2);display:flex;align-items:center;justify-content:center}
+.row .tm{margin-left:auto;color:var(--mute);font-size:26px}
+.node{display:flex;flex-direction:column;align-items:center;gap:10px;width:220px}
+.node .sq{width:120px;height:120px;border-radius:30px;background:#fff;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px rgba(56,47,81,.14)}
+.node .nm{font:700 34px/1 Outfit}
+.node .tg{font:700 22px/1 'Maven Pro';background:var(--lav2);border-radius:12px;padding:6px 12px}
+.ck{width:46px;height:46px;border-radius:50%;border:3px solid #CFC7E2;display:flex;align-items:center;justify-content:center;flex:none}
+.end{left:0;top:0;width:1080px;height:1920px;opacity:0}
+</style></head><body>
+<div id="tl" class="abs"></div><div id="tlTop" class="abs"></div><div id="ticks" class="abs"></div>
+<div id="av" class="abs"><svg width="38" height="38" viewBox="-20 -20 40 40"><path d="M-12 12L-14 16L-10 14L12 -8L8 -12Z" fill="#F5E7D6" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+<div id="chips"></div>
+<div id="world"></div>
+<div id="caps"></div>
+<script src="gsap.min.js"></script>
+<script src="words.js"></script>
+<script>
+// ============ ESPECIFICACIÓN ============
+// Lienzo 1080×1920 (9:16) · 30 fps · duración = fin de la última palabra + 0.1 s · audio = voz.mp3 (1.10x)
+// Estilo de las referencias (hooks virales/_referencias): cuadrícula, línea de tiempo con paso numerado, tarjetas tipo app,
+// subtítulo arriba (y 300–460) con palabra clave en recuadro de selección y palabras por venir borrosas.
+// Zonas: subtítulo y 300–460 · paso y 540 · contenido x 160–960, y 640–1420 · nada en los últimos 0.5 s.
+const CFG={FPS:30,DUR:+(WORDS[WORDS.length-1][2]+.1).toFixed(2),POP:'back.out(1.35)',MOVE:'power3.inOut',OUT:'power2.in'};
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9ñ\s]/g,' ').split(/\s+/).filter(Boolean);
+const WN=WORDS.map(w=>norm(w[0])[0]||'');
+function at(frag,off,nth){const f=norm(frag);let c=0;
+ for(let i=0;i<=WN.length-f.length;i++){let ok=true;for(let j=0;j<f.length;j++)if(WN[i+j]!==f[j]){ok=false;break;}
+  if(ok){if((nth||0)===c)return +(WORDS[i][1]+(off||0)).toFixed(2);c++;}}
+ throw new Error('no encuentro: '+frag);}
+// ---------- íconos (SVG en línea, trazo ciruela)
+const I={
+ eye:'<svg width="34" height="34" viewBox="-20 -20 40 40"><path d="M-17 0Q0 -16 17 0Q0 16 -17 0Z" fill="none" stroke="#2E2545" stroke-width="3.5"/><circle r="5" fill="#2E2545"/></svg>',
+ pen:'<svg width="34" height="34" viewBox="-20 -20 40 40"><path d="M-12 12L-14 16L-10 14L12 -8L8 -12Z" fill="#F5E7D6" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/></svg>',
+ spin:'<svg width="34" height="34" viewBox="-20 -20 40 40"><path d="M0 0a3 3 0 0 1 6 0a6 6 0 0 1 -12 0a9 9 0 0 1 18 0a12 12 0 0 1 -24 0" fill="none" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/></svg>',
+ play:'<svg width="56" height="56" viewBox="-20 -20 40 40"><path d="M-7 -11L11 0L-7 11Z" fill="#2E2545"/></svg>',
+ pause:'<svg width="56" height="56" viewBox="-20 -20 40 40"><rect x="-9" y="-11" width="6" height="22" rx="2" fill="#C0392B"/><rect x="3" y="-11" width="6" height="22" rx="2" fill="#C0392B"/></svg>',
+ grid:'<svg width="56" height="56" viewBox="-20 -20 40 40"><rect x="-13" y="-13" width="11" height="11" rx="3" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.5"/><rect x="2" y="-13" width="11" height="11" rx="3" fill="#fff" stroke="#2E2545" stroke-width="2.5"/><rect x="-13" y="2" width="11" height="11" rx="3" fill="#fff" stroke="#2E2545" stroke-width="2.5"/><rect x="2" y="2" width="11" height="11" rx="3" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.5"/></svg>',
+ arrow:'<svg width="56" height="56" viewBox="-20 -20 40 40"><path d="M-12 8L0 -6L12 8" fill="none" stroke="#2E2545" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M0 -6V14" stroke="#2E2545" stroke-width="4" stroke-linecap="round"/></svg>',
+ sliders:'<svg width="70" height="70" viewBox="-20 -20 40 40"><path d="M-12 -9H12M-12 0H12M-12 9H12" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/><circle cx="-4" cy="-9" r="4" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.5"/><circle cx="6" cy="0" r="4" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.5"/><circle cx="-6" cy="9" r="4" fill="#F5E7D6" stroke="#2E2545" stroke-width="2.5"/></svg>',
+ ok:'<svg width="28" height="28" viewBox="-20 -20 40 40"><path d="M-10 0L-3 8L11 -8" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ send:'<svg width="40" height="40" viewBox="-20 -20 40 40"><path d="M-14 -2L14 -12L4 14L0 2Z" fill="#fff"/></svg>',
+ q:'<svg width="60" height="60" viewBox="-20 -20 40 40"><text y="10" text-anchor="middle" font-family="Outfit" font-weight="700" font-size="30" fill="#2E2545">?</text></svg>',
+ hand:'<svg width="70" height="70" viewBox="-20 -20 40 40"><path d="M-9 14V-4M-9 -4V-12M-3 -4V-15M3 -4V-13M9 -2V-9M-9 14H7Q11 14 11 8V-2" fill="none" stroke="#2E2545" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ lock:'<svg width="70" height="70" viewBox="-20 -20 40 40"><path d="M-7 -2V-8Q-7 -15 0 -15Q7 -15 7 -8V-2" fill="none" stroke="#2E2545" stroke-width="3.2"/><rect x="-12" y="-3" width="24" height="18" rx="4" fill="#F9DEE3" stroke="#2E2545" stroke-width="3"/><path d="M-4 3L5 6L-4 10Z" fill="#2E2545"/></svg>'};
+// ---------- pasos de la línea de tiempo
+// ---------- pasos de la línea de tiempo
+const STEPS=[['01','El juego'],['02','Lo que se ve'],['03','Qué muestra'],['04','La pregunta'],['05','Comprender']];
+document.getElementById('chips').innerHTML=STEPS.map((s,i)=>`<div class="chip abs" id="st${i}"><b>${s[0]}</b>${s[1]}</div>`).join('');
+document.getElementById('ticks').innerHTML=[...Array(36)].map((_,i)=>`<i style="top:${i*110+30}px"></i>`).join('');
+document.head.insertAdjacentHTML('beforeend','<style>.sel{position:absolute;border:3px solid #2E2545;background:rgba(198,188,226,.35);opacity:0}.sel::before,.sel::after{content:"";position:absolute;width:14px;height:14px;background:#fff;border:3px solid #2E2545}.sel::before{left:-9px;top:-9px}.sel::after{right:-9px;bottom:-9px}.car{position:absolute;bottom:0}.lbl{font-size:34px!important}.ttl{font-size:52px}.chip{height:64px;font:700 40px/64px \'Maven Pro\';border-radius:32px;top:528px}.chip b{height:44px;line-height:44px;width:66px;font-size:30px;border-radius:22px}.node{width:280px}</style>');
+// ---------- íconos y dibujos del 010
+const SV=(b,w)=>`<svg width="${w||40}" height="${w||40}" viewBox="-20 -20 40 40">${b}</svg>`;
+const SK='fill="none" stroke="#2E2545" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"';
+const CAR=(f,w)=>`<svg width="${w}" height="${w*.6}" viewBox="0 0 100 60" style="display:block;overflow:visible"><path d="M6 40Q6 32 15 30L28 14Q31 10 37 10H62Q68 10 72 15L84 30Q94 32 94 40V47H6Z" fill="${f}" stroke="#2E2545" stroke-width="4" stroke-linejoin="round"/><path d="M34 16H48V30H27ZM54 16H63Q66 16 68 19L77 30H54Z" fill="#fff" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/><circle cx="28" cy="48" r="10" fill="#2E2545"/><circle cx="72" cy="48" r="10" fill="#2E2545"/><circle cx="28" cy="48" r="4" fill="#C6BCE2"/><circle cx="72" cy="48" r="4" fill="#C6BCE2"/></svg>`;
+const AVA=(bg,hair,skin,k)=>`<svg width="100%" height="100%" viewBox="-50 -50 100 100"><circle r="50" fill="${bg}"/><circle cy="4" r="26" fill="${skin||'#F5E7D6'}" stroke="#2E2545" stroke-width="3"/>${[
+ `<path d="M-27 0Q-28 -30 0 -30Q28 -30 27 0Q14 -16 -27 0Z" fill="${hair}" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/>`,
+ `<path d="M-28 6Q-32 -30 0 -32Q32 -30 28 6Q26 -12 14 -16Q0 -10 -14 -18Q-26 -12 -28 6Z" fill="${hair}" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/>`,
+ `<circle cx="-14" cy="-24" r="10" fill="${hair}" stroke="#2E2545" stroke-width="3"/><circle cx="14" cy="-24" r="10" fill="${hair}" stroke="#2E2545" stroke-width="3"/><path d="M-26 -4Q-26 -28 0 -28Q26 -28 26 -4Q10 -18 -26 -4Z" fill="${hair}" stroke="#2E2545" stroke-width="3"/>`,
+ `<path d="M-26 -6L-20 -26L-8 -18L0 -30L8 -18L20 -26L26 -6Z" fill="${hair}" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/>`][k]}<circle cx="-9" cy="6" r="3" fill="#2E2545"/><circle cx="9" cy="6" r="3" fill="#2E2545"/><path d="M-7 15Q0 20 7 15" fill="none" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/><path d="M-36 50Q-36 30 0 30Q36 30 36 50" fill="${hair==='#2E2545'?'#F9DEE3':'#fff'}" stroke="#2E2545" stroke-width="3"/></svg>`;
+const KID=['#E7E1F4','#8A6A4E','#F5E7D6',1];
+const J={
+ loop:SV(`<path d="M-12 2A12 12 0 1 1 -4 12" ${SK}/><path d="M-17 -5L-12 3L-4 -1" ${SK}/>`),
+ grid:SV(`<rect x="-15" y="-15" width="13" height="13" rx="3" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.6"/><rect x="2" y="-15" width="13" height="13" rx="3" fill="#fff" stroke="#2E2545" stroke-width="2.6"/><rect x="-15" y="2" width="13" height="13" rx="3" fill="#fff" stroke="#2E2545" stroke-width="2.6"/><rect x="2" y="2" width="13" height="13" rx="3" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.6"/>`),
+ group:SV(`<circle cx="-10" cy="-4" r="6" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.6"/><circle cx="10" cy="-4" r="6" fill="#F5E7D6" stroke="#2E2545" stroke-width="2.6"/><circle cy="-6" r="7" fill="#fff" stroke="#2E2545" stroke-width="2.6"/><path d="M-18 14Q-18 4 -10 4M18 14Q18 4 10 4M-9 14Q-9 2 0 2Q9 2 9 14" fill="none" stroke="#2E2545" stroke-width="2.6" stroke-linecap="round"/>`),
+ chat:SV(`<path d="M-15 -12H9Q13 -12 13 -8V2Q13 6 9 6H-4L-10 12V6H-15Q-19 6 -19 2V-8Q-19 -12 -15 -12Z" fill="#fff" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/><path d="M-12 -3H6" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/>`),
+ inter:SV(`<path d="M-16 -13H0Q3 -13 3 -10V-3Q3 0 0 0H-8L-12 4V0H-16Q-19 0 -19 -3V-10Q-19 -13 -16 -13Z" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.8" stroke-linejoin="round"/><path d="M-2 4H14Q17 4 17 7V13Q17 16 14 16H12V20L7 16H-2Q-5 16 -5 13V7Q-5 4 -2 4Z" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.8" stroke-linejoin="round" transform="translate(0 -4)"/>`),
+ pat:SV(`<rect x="-17" y="-6" width="9" height="12" rx="2" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.6"/><rect x="-4.5" y="-6" width="9" height="12" rx="2" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.6"/><rect x="8" y="-6" width="9" height="12" rx="2" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.6"/>`),
+ imag:SV(`<path d="M-12 8Q-18 8 -18 2Q-18 -4 -11 -4Q-10 -12 -1 -12Q7 -12 8 -5Q16 -5 16 2Q16 8 10 8Z" fill="#fff" stroke="#2E2545" stroke-width="2.8" stroke-linejoin="round"/><path d="M-1 -4L.8 .5L5 1.6L.8 2.7L-1 7L-2.8 2.7L-7 1.6L-2.8 .5Z" fill="#2E2545"/>`,64),
+ flex:SV(`<path d="M-14 -5H12M6 -11L12 -5L6 1" ${SK}/><path d="M14 6H-12M-6 0L-12 6L-6 12" ${SK}/>`,64),
+ inter2:SV(`<path d="M-16 -13H0Q3 -13 3 -10V-3Q3 0 0 0H-8L-12 4V0H-16Q-19 0 -19 -3V-10Q-19 -13 -16 -13Z" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.8" stroke-linejoin="round"/><path d="M-2 4H14Q17 4 17 7V13Q17 16 14 16H12V20L7 16H-2Q-5 16 -5 13V7Q-5 4 -2 4Z" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.8" stroke-linejoin="round" transform="translate(0 -4)"/>`,64),
+ growth:SV(`<rect x="-15" y="3" width="8" height="12" rx="2" fill="#F5E7D6" stroke="#2E2545" stroke-width="2.8"/><rect x="-4" y="-5" width="8" height="20" rx="2" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.8"/><rect x="7" y="-14" width="8" height="29" rx="2" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.8"/>`,70),
+ ok:'<svg width="24" height="24" viewBox="-20 -20 40 40"><path d="M-10 0L-3 8L11 -8" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ send:SV(`<path d="M-14 -2L14 -12L4 14L0 2Z" fill="#2E2545"/>`),
+ proh:SV(`<circle r="15" fill="none" stroke="#C0392B" stroke-width="4"/><path d="M-10 -10L10 10" stroke="#C0392B" stroke-width="4" stroke-linecap="round"/>`,70),
+ clip:SV(`<rect x="-11" y="-13" width="22" height="28" rx="4" fill="#fff" stroke="#2E2545" stroke-width="3"/><rect x="-6" y="-17" width="12" height="7" rx="3" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.6"/><path d="M-6 -2H6M-6 5H6M-6 11H1" stroke="#2E2545" stroke-width="2.6" stroke-linecap="round"/>`,40)};
+// ---------- escenas (HTML)
+const W=document.getElementById('world');
+const add=h=>W.insertAdjacentHTML('beforeend',h);
+const CF=['#F9DEE3','#C6BCE2','#F5E7D6','#fff','#E7E1F4'],CW=[80,104,128,152,176],GAP=20;
+const POS=ord=>{let x=(800-(CW.reduce((a,b)=>a+b)+GAP*4))/2;const p={};ord.forEach(r=>{p[r]=x;x+=CW[r]+GAP;});return p;};
+const SORT=POS([0,1,2,3,4]),MIX=POS([2,4,0,3,1]);
+const CARS=(pf)=>`<div style="position:absolute;left:0;top:104px;width:800px;height:122px">${[0,1,2,3,4].map(r=>`<div class="car" id="${pf}${r}" style="left:${SORT[r]}px;width:${CW[r]}px">${CAR(CF[r],CW[r])}</div>`).join('')}</div>`;
+const HEAD=(sz,nm)=>`<div style="position:absolute;left:30px;top:16px;width:${sz}px;height:${sz}px">${AVA(...KID)}</div><div class="ttl" style="position:absolute;left:${sz+50}px;top:22px">${nm}</div>`;
+// S1: juego compartido y el niño
+add(`<div class="abs card" id="grp" style="left:160px;top:660px;width:800px;height:290px"><div class="lbl" style="position:absolute;left:34px;top:28px">Juego compartido</div>
+ <svg id="gl" style="position:absolute;left:0;top:0;opacity:0" width="800" height="290"><path d="M246 160Q290 112 334 160M466 160Q510 112 554 160" fill="none" stroke="#8E86A6" stroke-width="4" stroke-dasharray="3 10" stroke-linecap="round"/><circle cx="290" cy="124" r="15" fill="#F9DEE3" stroke="#2E2545" stroke-width="3"/><circle cx="510" cy="124" r="15" fill="#C6BCE2" stroke="#2E2545" stroke-width="3"/></svg>
+ ${[['#F9DEE3','#2E2545','#F5E7D6',0,140],['#E7E1F4','#8A6A4E','#E9C9A8',2,345],['#F5E7D6','#5B3B2A','#D9B08C',3,550]].map((a,i)=>`<div id="gk${i}" style="position:absolute;left:${a[4]}px;top:100px;width:110px;height:110px;opacity:0">${AVA(a[0],a[1],a[2],a[3])}</div>`).join('')}</div>`);
+add(`<div class="abs card" id="kid" style="left:160px;top:1000px;width:800px;height:330px">${HEAD(76,'Tu hijo')}
+ <div id="pdif" class="pill" style="position:absolute;right:30px;top:28px;background:#E7E1F4;font-size:40px;opacity:0">Juega distinto</div>${CARS('c')}
+ <div id="kr1" style="position:absolute;left:0;right:0;top:262px;height:110px;border-top:2px solid #EFEAF6;display:flex;align-items:center;gap:20px;padding:0 34px;font:700 48px/1 'Maven Pro';opacity:0"><div style="width:56px;height:56px;border-radius:16px;background:#E7E1F4;display:flex;align-items:center;justify-content:center">${J.loop}</div>Misma actividad<span id="cnt" style="margin-left:auto;font:700 64px/1 Outfit">×0</span></div>
+ <div id="kr2" style="position:absolute;left:0;right:0;top:372px;height:230px;border-top:2px solid #EFEAF6;opacity:0"><div style="position:absolute;left:40px;top:34px;font:700 48px/1 'Maven Pro'">Objetos</div><div id="lpe" style="position:absolute;right:40px;top:34px;font:700 48px/1 'Maven Pro'">Personas</div>
+  <div style="position:absolute;left:40px;right:40px;top:130px;height:16px;border-radius:8px;background:linear-gradient(90deg,#F9DEE3,#E7E1F4,#C6BCE2)"></div><div id="knb" style="position:absolute;left:374px;top:111px;width:54px;height:54px;border-radius:50%;background:#2E2545;border:5px solid #fff;box-shadow:0 8px 18px rgba(56,47,81,.25)"></div></div></div>`);
+add(`<div class="abs pill" id="qst" style="left:560px;top:1330px;transform:translateX(-50%);background:#2E2545;color:#fff;font:700 48px/1 Outfit;padding:20px 40px;display:flex;gap:16px;align-items:center"><span style="width:64px;height:64px;border-radius:50%;background:#C6BCE2;color:#2E2545;display:flex;align-items:center;justify-content:center">?</span>¿Algo está pasando?</div>`);
+// S3: juego → desarrollo, áreas, patrones, un dato
+add(`<div class="abs card" id="hdr" style="left:160px;top:660px;width:800px;height:200px"><div id="t1" style="position:absolute;left:30px;top:45px;width:110px;height:110px;border-radius:30px;background:#fff;border:3px solid #2E2545;display:flex;align-items:center;justify-content:center">${CAR('#F9DEE3',78)}</div>
+ <div id="n1" class="ttl" style="position:absolute;left:146px;top:70px;font-size:58px">Juego</div>
+ <svg id="ar" style="position:absolute;left:310px;top:70px" width="130" height="60" viewBox="0 0 130 60"><path id="arp" pathLength="1" d="M6 30H110M92 12L112 30L92 48" fill="none" stroke="#2E2545" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+ <div id="t2" style="position:absolute;left:450px;top:45px;width:110px;height:110px;border-radius:30px;background:#fff;border:3px solid #2E2545;display:flex;align-items:center;justify-content:center;opacity:0">${J.growth}</div>
+ <div id="n2" class="ttl" style="position:absolute;left:576px;top:50px;font-size:44px;line-height:1.1;opacity:0">Desarrollo<br>infantil</div></div>`);
+const ND=[['Imaginación',J.imag,130],['Flexibilidad',J.flex,410],['Interacción',J.inter2,690]];
+ND.forEach((n,i)=>add(`<div class="abs node" id="nd${i}" style="left:${n[2]}px;top:920px"><div class="sq" id="nq${i}">${n[1]}<span id="nk${i}" style="position:absolute;right:-12px;top:-12px;width:40px;height:40px;border-radius:50%;background:#1E9E6A;border:3px solid #fff;display:flex;align-items:center;justify-content:center;opacity:0">${J.ok}</span></div><div class="nm" style="font-size:42px">${n[0]}</div></div>`));
+add(`<div class="sel" id="sel" style="left:${194}px;top:904px;width:152px;height:152px"></div>`);
+const TS=[`<circle cx="30" cy="30" r="19" fill="#F9DEE3" stroke="#2E2545" stroke-width="4"/>`,`<path d="M30 8L52 50H8Z" fill="#C6BCE2" stroke="#2E2545" stroke-width="4" stroke-linejoin="round"/>`,`<rect x="11" y="11" width="38" height="38" rx="6" fill="#F5E7D6" stroke="#2E2545" stroke-width="4"/>`,`<path d="M30 6L54 30L30 54L6 30Z" fill="#E7E1F4" stroke="#2E2545" stroke-width="4" stroke-linejoin="round"/>`,`<path d="M8 40A22 22 0 0 1 52 40Z" fill="#F9DEE3" stroke="#2E2545" stroke-width="4" stroke-linejoin="round"/>`,`<circle cx="30" cy="30" r="17" fill="#fff" stroke="#2E2545" stroke-width="4"/><circle cx="30" cy="30" r="6" fill="#C6BCE2"/>`];
+const TILE=(id,svg)=>`<div id="${id}" style="width:100px;height:100px;border-radius:24px;background:#fff;border:2px solid #E3DCEF;box-shadow:0 10px 24px rgba(56,47,81,.10);display:flex;align-items:center;justify-content:center;opacity:0"><svg width="60" height="60" viewBox="0 0 60 60">${svg}</svg></div>`;
+add(`<div class="abs card" id="pat" style="left:160px;top:700px;width:800px;height:500px"><div class="lbl" style="position:absolute;left:40px;top:34px">Variado</div>
+ <div style="position:absolute;left:40px;top:76px;display:flex;gap:24px">${TS.map((s,i)=>TILE('pv'+i,s)).join('')}</div>
+ <div id="prl" style="position:absolute;left:40px;top:232px;font:700 48px/1 Outfit;padding:8px 20px;z-index:0"><i id="phl" style="position:absolute;inset:0;background:#C6BCE2;border:3px solid #2E2545;z-index:-1;opacity:0"></i>Se repite</div>
+ <div style="position:absolute;left:40px;top:326px;display:flex;gap:24px">${TS.map((s,i)=>TILE('pr'+i,TS[2])).join('')}</div></div>`);
+add(`<div class="abs card" id="slots" style="left:160px;top:700px;width:800px;height:430px"><div class="lbl" style="position:absolute;left:30px;top:32px">Un dato más</div><div id="ct" style="position:absolute;right:30px;top:16px;font:700 64px/1 Outfit">0/5</div>
+ <div style="position:absolute;left:30px;top:120px;display:flex;gap:25px">${[0,1,2,3,4].map(i=>`<div id="sl${i}" style="width:128px;height:150px;border-radius:24px;border:3px dashed #B5ABD0;display:flex;align-items:center;justify-content:center;font:700 54px/1 Outfit;color:#B5ABD0;position:relative">${i==0?`<div id="sf" style="position:absolute;inset:-3px;border-radius:24px;background:#fff;border:3px solid #2E2545;display:flex;align-items:center;justify-content:center;opacity:0">${CAR('#F9DEE3',90)}</div>`:''}?</div>`).join('')}</div>
+ <div id="sp" class="pill" style="position:absolute;left:400px;top:316px;transform:translateX(-50%);background:#2E2545;color:#fff;font-size:46px;padding:18px 34px;opacity:0">No confirma autismo</div></div>`);
+// S4: meta, columnas y conectores
+const CHK=[...Array(12)].map((_,r)=>[0,1].map(c=>`<i style="display:block;width:20px;height:20px;background:${(r+c)%2?'#2E2545':'#fff'}"></i>`).join('')).join('');
+add(`<div class="abs card" id="meta" style="left:160px;top:700px;width:800px;height:430px"><div id="mfl" style="position:absolute;left:0;top:0;width:800px;height:430px"><div class="pill" style="position:absolute;left:300px;top:26px;background:#E7E1F4;font-size:44px">Jugar como todos</div>
+ <div style="position:absolute;left:626px;top:126px;width:40px;height:226px;display:grid;grid-template-columns:20px 20px;border:3px solid #2E2545;overflow:hidden">${CHK}</div></div>
+ <div style="position:absolute;left:40px;right:40px;top:352px;border-top:5px dashed #B5ABD0"></div><div id="mcar" style="position:absolute;left:50px;top:268px">${CAR('#F9DEE3',130)}</div></div>`);
+const CY=[850,1010,1170];
+const CHIP=(id,x,y,tx,ic)=>add(`<div class="abs card" id="${id}" style="left:${x}px;top:${y-50}px;width:380px;height:100px;border-radius:26px;display:flex;align-items:center;gap:12px;padding:0 14px;font:700 40px/1 'Maven Pro'"><span style="width:58px;height:58px;border-radius:16px;background:#E7E1F4;display:flex;align-items:center;justify-content:center;flex:none">${ic}</span>${tx}<span id="${id}k" style="position:absolute;right:-12px;top:-14px;width:42px;height:42px;border-radius:50%;background:#1E9E6A;border:3px solid #fff;display:flex;align-items:center;justify-content:center;opacity:0">${J.ok}</span></div>`);
+add(`<svg class="abs" id="cn" style="left:0;top:0;opacity:1" width="1080" height="1920">${CY.map((y,i)=>`<path id="cn${i}" pathLength="1" d="M540 ${y}H580" fill="none" stroke="#8E86A6" stroke-width="4" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1"/>`).join('')}${CY.map((y,i)=>`<path id="spl${i}" pathLength="1" d="M540 ${y}L560 790" fill="none" stroke="#8E86A6" stroke-width="4" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1"/><path id="spr${i}" pathLength="1" d="M580 ${y}L560 790" fill="none" stroke="#8E86A6" stroke-width="4" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1"/>`).join('')}</svg>`);
+add(`<div class="abs lbl" id="hl1" style="left:160px;top:742px">Su juego</div><div class="abs lbl" id="hl2" style="left:580px;top:742px">Otras áreas</div>`);
+[['Repetición',J.loop],['Clasificación',J.grid],['Compartir',J.group]].forEach((c,i)=>CHIP('l'+i,160,CY[i],c[0],c[1]));
+[['Comunicación',J.chat],['Interacción',J.inter],['Patrones',J.pat]].forEach((c,i)=>CHIP('r'+i,580,CY[i],c[0],c[1]));
+add(`<div class="abs pill" id="ctr" style="left:560px;top:690px;transform:translateX(-50%);background:#2E2545;color:#fff;font:700 50px/1 Outfit;padding:24px 50px;box-shadow:0 22px 50px rgba(56,47,81,.25)">Desarrollo integral</div>`);
+add(`<div class="abs pill" id="evp" style="left:560px;top:1320px;transform:translateX(-50%);background:#fff;border:3px solid #2E2545;font-size:46px;padding:20px 34px;display:flex;gap:14px;align-items:center;box-shadow:0 14px 30px rgba(56,47,81,.12)">${J.clip}Evaluación especializada</div>`);
+// S5 cierre: obligar y comprender
+add(`<div class="abs card" id="forc" style="left:160px;top:760px;width:800px;height:300px"><div class="lbl" style="position:absolute;left:34px;top:30px">Obligarlo</div>
+ <div id="fcp" style="position:absolute;left:60px;top:110px;width:680px;height:110px;border-radius:28px;background:#F3F0F8;border:3px solid #2E2545;display:flex;align-items:center;gap:20px;padding:0 30px;font:700 54px/1 Outfit"><span id="fcx" style="opacity:0;margin-right:-2px">${J.proh}</span>Jugar como otros<span id="fcs" style="position:absolute;left:30px;top:53px;height:6px;width:0;background:#C0392B;border-radius:3px"></span></div></div>`);
+add(`<div class="abs card" id="fin" style="left:160px;top:760px;width:800px;height:480px">${HEAD(76,'Tu hijo')}${CARS('f')}<div id="fsel" class="sel" style="left:24px;top:100px;width:752px;height:136px"></div>
+ <div id="fbl" class="pill" style="position:absolute;left:400px;top:310px;transform:translateX(-50%);background:#2E2545;color:#fff;font:700 50px/1 Outfit;padding:22px 34px;display:flex;gap:14px;align-items:center;opacity:0">${J.chat.replace('#fff','#C6BCE2')}Cada juego comunica</div></div>`);
+// S6 cta
+add(`<div class="abs card" id="tags" style="left:160px;top:700px;width:800px;height:330px"><div class="lbl" style="position:absolute;left:34px;top:30px">Formas de juego</div>
+ <div style="position:absolute;left:34px;top:90px;width:740px;display:flex;flex-wrap:wrap;gap:20px">${['Alinear juguetes','Repetir','Jugar solo','Clasificar'].map((t,i)=>`<div id="tg${i}" class="pill" style="background:#E7E1F4;font-size:44px;padding:20px 30px;opacity:0">${t}</div>`).join('')}</div></div>`);
+add(`<div class="abs pill" id="cta" style="left:560px;top:1090px;transform:translateX(-50%);background:#2E2545;color:#fff;font:700 44px/1 'Maven Pro';padding:16px 16px 16px 36px;display:flex;gap:22px;align-items:center;opacity:0">Compártela en comentarios<span id="ctb" style="width:72px;height:72px;border-radius:50%;background:#C6BCE2;display:flex;align-items:center;justify-content:center">${J.send}</span></div>`);
+add(`<div class="abs end" id="end"><div class="abs" style="left:150px;width:840px;top:820px;text-align:center;font:700 74px/1.15 Outfit">Este video orienta y no diagnostica.</div>
+ <div class="abs pill" style="left:570px;top:1080px;transform:translateX(-50%);background:#fff;border:3px solid #2E2545;font-size:34px">psicologakarentrujillo.com.mx</div></div>`);
+
+// ============ LÍNEA DE TIEMPO ============
+gsap.set('#world > *',{opacity:0});gsap.set('.car',{opacity:0});gsap.set('#cn',{opacity:1});gsap.set(['#sel','#fsel'],{opacity:0});
+const tl=gsap.timeline({paused:true});
+const POP=(s,t,d)=>tl.fromTo(s,{opacity:0,y:40,scale:.94},{opacity:1,y:0,scale:1,duration:d||.45,ease:CFG.POP,immediateRender:false},t);
+const OUT=(s,t)=>tl.to(s,{opacity:0,y:-60,duration:.3,ease:CFG.OUT},t);
+const IN=(s,t)=>tl.fromTo(s,{opacity:0},{opacity:1,duration:.3,immediateRender:false},t);
+const DIM=(s,t)=>tl.to(s,{opacity:.35,filter:'blur(2px)',duration:.4},t);
+const LIT=(s,t)=>tl.to(s,{opacity:1,filter:'blur(0px)',duration:.4},t);
+let cur=-1;
+const STEP=(i,t)=>{if(cur>=0)tl.to('#st'+cur,{opacity:0,y:-20,duration:.25},t-.25);
+ tl.fromTo('#st'+i,{opacity:0,y:20},{opacity:1,y:0,duration:.35,ease:CFG.POP,immediateRender:false},t);
+ tl.to('#ticks',{y:-(i+1)*110,duration:.6,ease:CFG.MOVE},t-.25);
+ tl.fromTo('#av',{scale:.8},{scale:1,duration:.35,ease:CFG.POP,immediateRender:false},t);cur=i;};
+const TXT=(s,t,tx)=>tl.call(()=>{document.querySelector(s).innerHTML=tx;},null,t);
+const ROW=(s,t)=>tl.fromTo(s,{opacity:0,x:-30},{opacity:1,x:0,duration:.35,ease:CFG.POP,immediateRender:false},t);
+const DRAW=(s,t,d)=>tl.to(s,{strokeDashoffset:0,duration:d||.5,ease:'power1.inOut'},t);
+const CH=(s,t)=>tl.fromTo(s,{opacity:0,scale:.3},{opacity:1,scale:1,duration:.3,ease:CFG.POP,immediateRender:false},t);
+
+// ESCENA 1 · HOOK (0–5.1) — Acción: una ficha «Juego compartido» con tres niños unidos por una pelota; abajo la ficha «Tu hijo»: cinco
+//  carritos de tamaños distintos aparecen revueltos y se alinean en fila; etiqueta «Juega distinto».
+// Persisten: ficha «Tu hijo» y los carritos. Imagen final: juego compartido (atenuado) y la fila de carritos del niño.
+function escena1(){
+ STEP(0,0);POP('#grp',0);
+ [0,1,2].forEach(i=>CH('#gk'+i,.2+i*.3));
+ IN('#gl',at('juntos'));
+ POP('#kid',at('tu hijo'));DIM('#grp',at('tu hijo',.2));
+ const ys=[-26,12,-34,6,-18],rs=[-24,18,-12,30,-20],xs=[-24,28,-12,26,-30];
+ [0,1,2,3,4].forEach(r=>{const dx=MIX[r]-SORT[r];
+  gsap.set('#c'+r,{x:dx+xs[r],y:ys[r],rotation:rs[r]});
+  tl.fromTo('#c'+r,{opacity:0,scale:.5},{opacity:1,scale:1,duration:.3,ease:CFG.POP,immediateRender:false},at('prefiere')+r*.07);
+  tl.to('#c'+r,{x:dx,y:0,rotation:0,duration:.5,ease:CFG.MOVE},at('alinear')+r*.06);});
+ POP('#pdif',at('otra manera'),.4);
+}
+// ESCENA 2 · DESARROLLO (5.1–18.4) — Acción: el juego compartido sale; la ficha del niño sube y crece; los carritos se ordenan por tamaño;
+//  «Misma actividad» con contador ×0→×14; una barra «Objetos ↔ Personas» cuya perilla se va a «Objetos»; «¿Algo está pasando?».
+// Persisten: ficha «Tu hijo» y carritos. Imagen final: ficha completa atenuada con la pregunta.
+function escena2(){
+ const t0=at('quiza',-.1);
+ OUT('#grp',t0);STEP(1,t0+.1);
+ tl.to('#kid',{top:660,height:620,duration:.6,ease:CFG.MOVE},t0);
+ [0,1,2,3,4].forEach(r=>tl.to('#c'+r,{x:0,duration:.6,ease:CFG.MOVE},at('tamano')+r*.05));
+ tl.to('#pdif',{opacity:0,duration:.25},t0);
+ ROW("#kr1",at('repite'));
+ const o={v:0};tl.to(o,{v:14,duration:2,ease:'none',onUpdate(){document.getElementById('cnt').textContent='×'+Math.round(o.v);}},at('misma'));
+ ROW("#kr2",at('parece mas'));
+ tl.to('#knb',{left:30,duration:.7,ease:CFG.MOVE},at('objetos'));
+ tl.to('#lpe',{opacity:.3,duration:.4},at('compartir'));
+ DIM('#kid',at('y entonces'));POP('#qst',at('preguntarte'));
+}
+// ESCENA 3 · GIRO (18.4–34.8) — Acción: «Juego → Desarrollo infantil»; tres áreas (imaginación, flexibilidad, interacción) se encienden con una
+//  selección que pasa de una a otra; dos filas de fichas (variado vs. se repite); cinco ranuras de las que solo una se llena (1/5) y «No confirma autismo».
+// Persisten: el carrito (en el título). Imagen final: ranuras 1/5 con «No confirma autismo».
+function escena3(){
+ const t0=at('el juego puede');
+ ['#kid','#qst'].forEach(s=>OUT(s,t0-.3));STEP(2,t0);
+ POP('#hdr',t0);
+ DRAW('#arp',at('mostrarnos'),.5);
+ tl.fromTo(['#t2','#n2'],{opacity:0,scale:.6},{opacity:1,scale:1,duration:.4,ease:CFG.POP,immediateRender:false},at('sobre el desarrollo'));
+ const tn=at('permite');
+ ND.forEach((n,i)=>{POP('#nd'+i,tn+i*.12);tl.to('#nd'+i,{opacity:.4,duration:.3},tn+.7+i*.0);});
+ const ts=[at('imaginacion'),at('flexibilidad'),at('interaccion')];
+ tl.fromTo('#sel',{opacity:0,left:194},{opacity:1,left:194,duration:.3,immediateRender:false},ts[0]-.15);
+ ts.forEach((t,i)=>{tl.to('#sel',{left:ND[i][2]+64,duration:.4,ease:CFG.MOVE},t-.15);
+  tl.to('#nd'+i,{opacity:1,duration:.3},t);tl.to('#nq'+i,{backgroundColor:'#F4F0FA',duration:.3},t);CH('#nk'+i,t+.25);});
+ const tp=at('en algunos');
+ ['#hdr','#sel','#nd0','#nd1','#nd2'].forEach(s=>OUT(s,tp-.3));
+ POP('#pat',tp);
+ [0,1,2,3,4,5].forEach(i=>{CH('#pv'+i,tp+.15+i*.1);CH('#pr'+i,at('patrones')+i*.12);});
+ IN('#phl',at('patrones'));
+ const tq=at('pero jugar');
+ OUT('#pat',tq-.3);POP('#slots',tq);
+ tl.fromTo('#sf',{opacity:0,scale:.6},{opacity:1,scale:1,duration:.4,ease:CFG.POP,immediateRender:false},at('distinto'));
+ TXT('#ct',at('distinto'),'1/5');TXT('#ct',tq,'0/5');
+ POP('#sp',at('tener autismo'));
+}
+// ESCENA 4 · PROVOCACIÓN (34.8–43.4) — Acción: un carrito avanza hacia la meta «Jugar como todos» y la meta se desvanece; el carrito sigue libre.
+//  Dos columnas «Su juego» (Repetición, Clasificación, Compartir) y «Otras áreas» (Comunicación, Interacción, Patrones) unidas por líneas.
+// Persisten: carrito. Imagen final: seis fichas conectadas de dos en dos.
+function escena4(){
+ const t0=at('la pregunta');
+ ['#slots','#sp'].forEach(s=>OUT(s,t0-.3));STEP(3,t0);
+ POP('#meta',t0);
+ tl.to('#mcar',{x:230,duration:1.4,ease:'power1.inOut'},at('no es si'));
+ tl.to('#mfl',{opacity:0,y:-40,filter:'blur(6px)',duration:.5,ease:CFG.OUT},at('demas',-.1));
+ tl.to('#mcar',{x:520,duration:.9,ease:'power1.inOut'},at('demas'));
+ const tc=at('es que');
+ OUT('#meta',tc-.3);
+ IN('#hl1',tc);IN('#hl2',tc+.1);
+ [0,1,2].forEach(i=>POP('#l'+i,[at('caracteristicas'),at('presenta'),at('su juego')][i]));
+  [0,1,2].forEach(i=>{const t=[at('se relacionan'),at('con otras'),at('areas')][i];POP('#r'+i,t);DRAW('#cn'+i,t+.15,.5);});
+}
+// ESCENA 5 · CIERRE (43.4–60.1) — Acción: las líneas pasan a un centro «Desarrollo integral»; «Evaluación especializada» marca con palomita
+//  Comunicación, Interacción y Patrones; «Jugar como otros» se prohíbe; vuelve el niño con sus carritos en fila: «Cada juego comunica».
+// Persisten: seis fichas → centro → ficha del niño. Imagen final: ficha «Tu hijo» con carritos y «Cada juego comunica».
+function escena5(){
+ const t0=at('cuando existen');
+ STEP(4,t0);OUT('#hl1',t0);OUT('#hl2',t0);
+ const to=at('observar el desarrollo');
+ tl.to(['#cn0','#cn1','#cn2'],{opacity:0,duration:.3},to);
+ POP('#ctr',at('de manera integral'),.5);
+ [0,1,2].forEach(i=>{DRAW('#spl'+i,at('integral')+i*.1,.4);DRAW('#spr'+i,at('integral')+i*.1,.4);});
+ POP('#evp',at('una evaluacion'));
+ ['#l0','#l1','#l2'].forEach(s=>DIM(s,at('explorar')));
+ [0,1,2].forEach(i=>{const t=[at('comunicacion'),at('interaccion',0,1),at('patrones',0,1)][i];
+  tl.to('#r'+i,{backgroundColor:'#EFE9FA',duration:.3},t);CH('#r'+i+'k',t+.1);});
+ const tf=at('no hace falta');
+ ['#evp','#l0','#l1','#l2','#r0','#r1','#r2','#ctr'].forEach(s=>OUT(s,tf-.3));
+ tl.to(['#spl0','#spl1','#spl2','#spr0','#spr1','#spr2'],{opacity:0,duration:.3},tf-.3);
+ POP('#forc',tf);
+ IN('#fcx',at('como otros'));tl.to('#fcs',{width:620,duration:.5,ease:'power2.out'},at('como otros'));
+ const tc=at('hace falta comprender');
+ OUT('#forc',tc-.3);POP('#fin',tc);
+ [0,1,2,3,4].forEach(r=>tl.fromTo('#f'+r,{opacity:0,y:30,scale:.7},{opacity:1,y:0,scale:1,duration:.35,ease:CFG.POP,immediateRender:false},tc+.1+r*.07));
+ tl.fromTo('#fsel',{opacity:0,scale:.9},{opacity:1,scale:1,duration:.3,ease:CFG.POP,immediateRender:false},at('como juega'));
+ POP('#fbl',at('que esta mostrando'),.4);
+}
+// ESCENA 6 · CTA (60.1–65.9) — Acción: «Formas de juego» con cuatro etiquetas (se marca una); «Compártela en comentarios»;
+//  aviso final y web (quieto el último 0.5 s). Imagen final: aviso + web.
+function escena6(){
+ const t0=at('has observado');
+ OUT('#fin',t0-.3);tl.to('#st4',{opacity:0,duration:.3},t0-.3);
+ POP('#tags',t0);
+ [0,1,2,3].forEach(i=>CH('#tg'+i,at('alguna forma')+i*.22));
+ tl.to('#tg0',{backgroundColor:'#2E2545',color:'#fff',duration:.25},at('dudas'));
+ POP('#cta',at('puedes'));tl.to('#ctb',{scale:.85,duration:.12,yoyo:true,repeat:1},at('compartirla',.2));
+ const tF=at('en comentarios',-.1);
+ ['#tags','#cta'].forEach(s=>OUT(s,tF-.1));
+ tl.to(['#av','#tlTop','#tl','#ticks'],{opacity:.25,duration:.3},tF);
+ tl.fromTo('#end',{opacity:0,scale:.96},{opacity:1,scale:1,duration:.45,ease:CFG.POP,immediateRender:false},tF+.1);
+}
+escena1();escena2();escena3();escena4();escena5();escena6();
+
+// ============ SUBTÍTULO ARRIBA (palabras por venir borrosas; clave en recuadro de selección) ============
+const KEYS=new Set(['alinear','tamano','repite','objetos','autismo','imaginacion','flexibilidad','interaccion','distinto','demas','caracteristicas','integral','especializada','comprender','comentarios','dudas']);
+(function(){const ph=[];let cur=[];const fl=()=>{if(cur.length){ph.push(cur);cur=[];}};
+ WORDS.forEach((w,i)=>{cur.push({w:w[0],t:w[1],e:w[2]});const nx=WORDS[i+1];if(cur.length>=6||/[,.:?]$/.test(w[0])||(nx&&nx[1]-w[2]>.45))fl();});fl();
+ const C=document.getElementById('caps');
+ ph.forEach((p,i)=>{const d=document.createElement('div');d.className='ph abs';d.id='ph'+i;
+  d.innerHTML=p.map((x,j)=>{const k=KEYS.has(norm(x.w)[0]);return `<span class="${k?'k':''}" id="p${i}w${j}">${k?'<i class="hl"></i>':''}${x.w}</span>`;}).join('');C.appendChild(d);
+  const s0=p[0].t-.12,e0=i+1<ph.length?ph[i+1][0].t-.12:CFG.DUR-.6;
+  tl.fromTo(d,{opacity:0,y:16},{opacity:1,y:0,duration:.18,immediateRender:false},s0);tl.to(d,{opacity:0,duration:.12},e0-.12);
+  p.forEach((x,j)=>{tl.fromTo('#p'+i+'w'+j,{opacity:.28,filter:'blur(7px)'},{opacity:1,filter:'blur(0px)',duration:.2,immediateRender:false},x.t);
+   if(KEYS.has(norm(x.w)[0]))tl.fromTo('#p'+i+'w'+j+' .hl',{opacity:0,scaleX:.6},{opacity:1,scaleX:1,duration:.22,ease:CFG.POP,immediateRender:false},x.t);});
+  gsap.set(d.querySelectorAll('span'),{opacity:.28,filter:'blur(7px)'});});
+})();
+window.DUR=CFG.DUR;
+window.seek=t=>{tl.time(Math.min(t,tl.duration()));};
+</script></body></html>
