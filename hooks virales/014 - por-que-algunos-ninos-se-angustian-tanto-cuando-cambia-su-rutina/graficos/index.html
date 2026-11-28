@@ -1,0 +1,293 @@
+<!doctype html><html><head><meta charset="utf-8"><title>008 v2 gráficos</title>
+<style>
+@font-face{font-family:Outfit;src:url(Outfit-700-latin.woff2);font-weight:700}
+@font-face{font-family:'Maven Pro';src:url(MavenPro-700-latin.woff2);font-weight:700}
+:root{--ink:#2E2545;--lav:#C6BCE2;--lav2:#E7E1F4;--rosa:#F9DEE3;--arena:#F5E7D6;--bg:#F7F4FA;--mute:#8E86A6;--ok:#1E9E6A;--red:#C0392B}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;position:relative;font-family:'Maven Pro',sans-serif;color:var(--ink);
+ background-color:var(--bg);background-image:linear-gradient(rgba(198,188,226,.28) 1px,transparent 1px),linear-gradient(90deg,rgba(198,188,226,.28) 1px,transparent 1px);background-size:40px 40px}
+.abs{position:absolute}
+/* línea de tiempo */
+#tl{left:98px;top:0;width:4px;height:1920px;background:#DDD5EE}
+#tlTop{left:98px;top:0;width:4px;height:540px;background:var(--ink)}
+#ticks{left:92px;top:0;width:16px;height:4000px}
+#ticks i{position:absolute;left:4px;width:8px;height:3px;background:#C9C0DE}
+#av{left:68px;top:528px;width:64px;height:64px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px var(--bg)}
+.chip{left:150px;top:540px;height:44px;border-radius:22px;background:var(--ink);color:#fff;font:700 27px/44px 'Maven Pro';padding:0 22px 0 8px;white-space:nowrap;opacity:0;display:flex;align-items:center;gap:12px}
+.chip b{display:inline-block;width:46px;height:30px;line-height:30px;border-radius:15px;background:var(--lav);color:var(--ink);text-align:center;font-size:20px}
+/* subtítulo arriba */
+.ph{left:160px;width:860px;top:300px;text-align:center;font:700 62px/1.25 Outfit;opacity:0}
+.ph span{display:inline-block;margin:0 7px;position:relative;z-index:0}
+.ph span.k{padding:0 10px}
+.ph span .hl{position:absolute;left:-2px;right:-2px;top:6px;bottom:2px;background:var(--lav);border:3px solid var(--ink);z-index:-1;opacity:0}
+.ph span .hl::before,.ph span .hl::after{content:"";position:absolute;width:12px;height:12px;background:#fff;border:3px solid var(--ink)}
+.ph span .hl::before{left:-8px;top:-8px}.ph span .hl::after{right:-8px;bottom:-8px}
+/* tarjetas */
+.card{background:#fff;border:2px solid #E3DCEF;border-radius:28px;box-shadow:0 22px 50px rgba(56,47,81,.12)}
+.sc{left:0;top:0;width:1080px;height:1920px}
+.pill{border-radius:999px;font:700 30px/1 'Maven Pro';padding:14px 26px;white-space:nowrap}
+.lbl{font:700 22px/1 'Maven Pro';letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.ttl{font:700 40px/1.1 Outfit}
+.row{display:flex;align-items:center;gap:22px;height:92px;border-top:2px solid #EFEAF6;padding:0 30px;font:700 34px/1 'Maven Pro'}
+.row .ic{width:56px;height:56px;border-radius:16px;background:var(--lav2);display:flex;align-items:center;justify-content:center}
+.row .tm{margin-left:auto;color:var(--mute);font-size:26px}
+.node{display:flex;flex-direction:column;align-items:center;gap:10px;width:220px}
+.node .sq{width:120px;height:120px;border-radius:30px;background:#fff;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px rgba(56,47,81,.14)}
+.node .nm{font:700 34px/1 Outfit}
+.node .tg{font:700 22px/1 'Maven Pro';background:var(--lav2);border-radius:12px;padding:6px 12px}
+.ck{width:46px;height:46px;border-radius:50%;border:3px solid #CFC7E2;display:flex;align-items:center;justify-content:center;flex:none}
+.end{left:0;top:0;width:1080px;height:1920px;opacity:0}
+</style></head><body>
+<div id="tl" class="abs"></div><div id="tlTop" class="abs"></div><div id="ticks" class="abs"></div>
+<div id="av" class="abs"><svg width="38" height="38" viewBox="-20 -20 40 40"><path d="M-12 12L-14 16L-10 14L12 -8L8 -12Z" fill="#F5E7D6" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+<div id="chips"></div>
+<div id="world"></div>
+<div id="caps"></div>
+<script src="gsap.min.js"></script>
+<script src="words.js"></script>
+<script>
+// ============ ESPECIFICACIÓN ============
+// Lienzo 1080×1920 (9:16) · 30 fps · duración = fin de la última palabra + 0.1 s · audio = voz.mp3 (1.10x)
+// Estilo de las referencias (hooks virales/_referencias): cuadrícula, línea de tiempo con paso numerado, tarjetas tipo app,
+// subtítulo arriba (y 300–460) con palabra clave en recuadro de selección y palabras por venir borrosas.
+// Zonas: subtítulo y 300–460 · paso y 540 · contenido x 160–960, y 640–1420 · nada en los últimos 0.5 s.
+const CFG={FPS:30,DUR:+(WORDS[WORDS.length-1][2]+2.1).toFixed(2),POP:'back.out(1.35)',MOVE:'power3.inOut',OUT:'power2.in'};
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9ñ\s]/g,' ').split(/\s+/).filter(Boolean);
+const WN=WORDS.map(w=>norm(w[0])[0]||'');
+function at(frag,off,nth){const f=norm(frag);let c=0;
+ for(let i=0;i<=WN.length-f.length;i++){let ok=true;for(let j=0;j<f.length;j++)if(WN[i+j]!==f[j]){ok=false;break;}
+  if(ok){if((nth||0)===c)return +(WORDS[i][1]+(off||0)).toFixed(2);c++;}}
+ throw new Error('no encuentro: '+frag);}
+// ---------- íconos (SVG en línea, trazo ciruela)
+const I={
+ eye:'<svg width="34" height="34" viewBox="-20 -20 40 40"><path d="M-17 0Q0 -16 17 0Q0 16 -17 0Z" fill="none" stroke="#2E2545" stroke-width="3.5"/><circle r="5" fill="#2E2545"/></svg>',
+ pen:'<svg width="34" height="34" viewBox="-20 -20 40 40"><path d="M-12 12L-14 16L-10 14L12 -8L8 -12Z" fill="#F5E7D6" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/></svg>',
+ spin:'<svg width="34" height="34" viewBox="-20 -20 40 40"><path d="M0 0a3 3 0 0 1 6 0a6 6 0 0 1 -12 0a9 9 0 0 1 18 0a12 12 0 0 1 -24 0" fill="none" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/></svg>',
+ play:'<svg width="56" height="56" viewBox="-20 -20 40 40"><path d="M-7 -11L11 0L-7 11Z" fill="#2E2545"/></svg>',
+ pause:'<svg width="56" height="56" viewBox="-20 -20 40 40"><rect x="-9" y="-11" width="6" height="22" rx="2" fill="#C0392B"/><rect x="3" y="-11" width="6" height="22" rx="2" fill="#C0392B"/></svg>',
+ grid:'<svg width="56" height="56" viewBox="-20 -20 40 40"><rect x="-13" y="-13" width="11" height="11" rx="3" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.5"/><rect x="2" y="-13" width="11" height="11" rx="3" fill="#fff" stroke="#2E2545" stroke-width="2.5"/><rect x="-13" y="2" width="11" height="11" rx="3" fill="#fff" stroke="#2E2545" stroke-width="2.5"/><rect x="2" y="2" width="11" height="11" rx="3" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.5"/></svg>',
+ arrow:'<svg width="56" height="56" viewBox="-20 -20 40 40"><path d="M-12 8L0 -6L12 8" fill="none" stroke="#2E2545" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M0 -6V14" stroke="#2E2545" stroke-width="4" stroke-linecap="round"/></svg>',
+ sliders:'<svg width="70" height="70" viewBox="-20 -20 40 40"><path d="M-12 -9H12M-12 0H12M-12 9H12" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/><circle cx="-4" cy="-9" r="4" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.5"/><circle cx="6" cy="0" r="4" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.5"/><circle cx="-6" cy="9" r="4" fill="#F5E7D6" stroke="#2E2545" stroke-width="2.5"/></svg>',
+ ok:'<svg width="28" height="28" viewBox="-20 -20 40 40"><path d="M-10 0L-3 8L11 -8" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ send:'<svg width="40" height="40" viewBox="-20 -20 40 40"><path d="M-14 -2L14 -12L4 14L0 2Z" fill="#fff"/></svg>',
+ q:'<svg width="60" height="60" viewBox="-20 -20 40 40"><text y="10" text-anchor="middle" font-family="Outfit" font-weight="700" font-size="30" fill="#2E2545">?</text></svg>',
+ hand:'<svg width="70" height="70" viewBox="-20 -20 40 40"><path d="M-9 14V-4M-9 -4V-12M-3 -4V-15M3 -4V-13M9 -2V-9M-9 14H7Q11 14 11 8V-2" fill="none" stroke="#2E2545" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ lock:'<svg width="70" height="70" viewBox="-20 -20 40 40"><path d="M-7 -2V-8Q-7 -15 0 -15Q7 -15 7 -8V-2" fill="none" stroke="#2E2545" stroke-width="3.2"/><rect x="-12" y="-3" width="24" height="18" rx="4" fill="#F9DEE3" stroke="#2E2545" stroke-width="3"/><path d="M-4 3L5 6L-4 10Z" fill="#2E2545"/></svg>'};
+// ---------- pasos de la línea de tiempo
+// ---------- pasos de la línea de tiempo
+// ---------- pasos de la línea de tiempo
+const STEPS=[['01','El cambio'],['02','Parece pequeño'],['03','Previsibilidad'],['04','No todo es'],['05','Anticipar']];
+document.getElementById('chips').innerHTML=STEPS.map((s,i)=>`<div class="chip abs" id="st${i}"><b>${s[0]}</b>${s[1]}</div>`).join('');
+document.getElementById('ticks').innerHTML=[...Array(36)].map((_,i)=>`<i style="top:${i*110+30}px"></i>`).join('');
+document.head.insertAdjacentHTML('beforeend','<style>.lbl{font-size:34px!important}.ttl{font-size:52px}.chip{height:64px;font:700 40px/64px \'Maven Pro\';border-radius:32px;top:528px}.chip b{height:44px;line-height:44px;width:66px;font-size:30px;border-radius:22px}.sel{position:absolute;border:3px solid #2E2545;background:rgba(198,188,226,.3);opacity:0}.sel::before,.sel::after{content:"";position:absolute;width:14px;height:14px;background:#fff;border:3px solid #2E2545}.sel::before{left:-9px;top:-9px}.sel::after{right:-9px;bottom:-9px}.dot{position:absolute;border-radius:50%;overflow:hidden;border:4px solid #fff;box-shadow:0 8px 20px rgba(56,47,81,.18)}.tl2{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border-radius:30px;background:#fff;border:3px solid #2E2545;font:700 44px/1 Outfit;text-align:center}</style>');
+// ---------- dibujos del 014
+const SV=(b,w)=>`<svg width="${w||64}" height="${w||64}" viewBox="-20 -20 40 40">${b}</svg>`;
+const K='fill="none" stroke="#2E2545" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"';
+const KIDA=`<svg width="100%" height="100%" viewBox="-50 -50 100 100"><circle r="50" fill="#E7E1F4"/><circle cy="4" r="26" fill="#F5E7D6" stroke="#2E2545" stroke-width="3"/><path d="M-28 6Q-32 -30 0 -32Q32 -30 28 6Q26 -12 14 -16Q0 -10 -14 -18Q-26 -12 -28 6Z" fill="#8A6A4E" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/><circle cx="-9" cy="6" r="3" fill="#2E2545"/><circle cx="9" cy="6" r="3" fill="#2E2545"/><path d="M-7 15Q0 20 7 15" fill="none" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/><path d="M-36 50Q-36 30 0 30Q36 30 36 50" fill="#fff" stroke="#2E2545" stroke-width="3"/></svg>`;
+const J={
+ ok:'<svg width="26" height="26" viewBox="-20 -20 40 40"><path d="M-10 0L-3 8L11 -8" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ plane:SV(`<path d="M-14 -2L14 -12L4 14L0 2Z" fill="#fff"/>`,44),
+ door:SV(`<rect x="-10" y="-15" width="20" height="30" rx="2" fill="#F5E7D6" stroke="#2E2545" stroke-width="3"/><circle cx="5" cy="1" r="2" fill="#2E2545"/>`,100),
+ tree:SV(`<circle cy="-5" r="12" fill="#C6BCE2" stroke="#2E2545" stroke-width="3"/><path d="M0 7V16" ${K}/>`,100),
+ plate:SV(`<circle r="13" fill="#fff" stroke="#2E2545" stroke-width="3"/><circle r="6" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.4"/>`,100),
+ home:SV(`<path d="M-14 0L0 -13L14 0V14H-14Z" fill="#F9DEE3" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/><rect x="-4" y="3" width="8" height="11" fill="#fff" stroke="#2E2545" stroke-width="2.4"/>`,100),
+ school:SV(`<path d="M-15 -3L0 -13L15 -3V14H-15Z" fill="#C6BCE2" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/><path d="M0 -13V-19L6 -17L0 -15M-5 14V4H5V14" ${K}/>`,100),
+ bolt:SV(`<path d="M3 -16L-9 2H0L-3 16L9 -4H0Z" fill="#C0392B" stroke="#C0392B" stroke-width="2" stroke-linejoin="round"/>`,70),
+ bend:SV(`<path d="M-14 -5H12M6 -11L12 -5L6 1" ${K}/><path d="M14 6H-12M-6 0L-12 6L-6 12" ${K}/>`,90),
+ gauge:SV(`<path d="M-15 8A15 15 0 0 1 15 8" ${K}/><path d="M0 8L7 -4" stroke="#C0392B" stroke-width="3.4" stroke-linecap="round"/><circle cy="8" r="2.6" fill="#2E2545"/>`,90),
+ shield:SV(`<path d="M0 -15L14 -9V3Q14 12 0 16Q-14 12 -14 3V-9Z" fill="#1E9E6A" stroke="#fff" stroke-width="2"/><path d="M-6 0L-2 5L7 -5" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>`,80),
+ bell:SV(`<path d="M-11 8Q-8 6 -8 -2Q-8 -11 0 -11Q8 -11 8 -2Q8 6 11 8Z" fill="#F5E7D6" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/><path d="M-3 12Q0 15 3 12" stroke="#2E2545" stroke-width="3" fill="none" stroke-linecap="round"/>`,60)};
+// ---------- escenas (HTML)
+const W=document.getElementById('world');
+const add=h=>W.insertAdjacentHTML('beforeend',h);
+const CARD=(id,h,x,w,extra)=>`<div class="abs card" id="${id}" style="left:${x||160}px;top:660px;width:${w||800}px;height:${h}px;opacity:0;${extra||''}">`;
+const PL=(id,tx,css)=>`<div id="${id}" class="pill" style="position:absolute;${css};opacity:0">${tx}</div>`;
+// S1 · mapa de navegación (hilo: vuelve al final con el camino tranquilo)
+add(CARD('nav',620,160,800,'background:#EEF0F5;overflow:hidden')+`<svg style="position:absolute;left:0;top:0" width="800" height="620"><g stroke="#fff" stroke-width="30">${[150,300,450].map(y=>`<path d="M0 ${y}H800"/>`).join('')}${[150,350,550].map(x=>`<path d="M${x} 0V620"/>`).join('')}</g>
+ <path id="ur" pathLength="1" d="M150 450V300H350V150H550" fill="none" stroke="#2E2545" stroke-width="12" stroke-dasharray="1" stroke-dashoffset="1" stroke-linecap="round" stroke-linejoin="round"/>
+ <path id="dt" pathLength="1" d="M350 300V450H550V150" fill="none" stroke="#C0392B" stroke-width="12" stroke-dasharray="1" stroke-dashoffset="1" stroke-linecap="round" stroke-linejoin="round"/>
+ <path id="gr" pathLength="1" d="M150 450V300H350V150H550" fill="none" stroke="#1E9E6A" stroke-width="12" stroke-dasharray="1" stroke-dashoffset="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div style="position:absolute;left:90px;top:410px;width:120px;height:120px;border-radius:50%;background:#fff;border:4px solid #2E2545;display:flex;align-items:center;justify-content:center;opacity:1">${J.school.replace(/width="100" height="100"/,'width="80" height="80"')}</div>
+ <div style="position:absolute;left:490px;top:90px;width:120px;height:120px;border-radius:50%;background:#fff;border:4px solid #2E2545;display:flex;align-items:center;justify-content:center">${J.home.replace(/width="100" height="100"/,'width="80" height="80"')}</div>
+ <div id="sgn" style="position:absolute;left:290px;top:236px;width:120px;height:120px;opacity:0"><svg width="120" height="120" viewBox="-60 -60 120 120"><path d="M0 -50L52 40H-52Z" fill="#F5E7D6" stroke="#C0392B" stroke-width="9" stroke-linejoin="round"/><text y="26" text-anchor="middle" font-family="Outfit" font-weight="700" font-size="60" fill="#C0392B">!</text></svg></div>
+ <div id="trv" class="dot" style="left:110px;top:410px;width:80px;height:80px;border-color:#2E2545;z-index:3">${KIDA}</div>
+ <div id="bst" style="position:absolute;left:400px;top:340px;width:110px;height:110px;opacity:0"><svg width="110" height="110" viewBox="-55 -55 110 110"><path d="M0 -52L12 -26L40 -38L28 -12L54 0L28 12L40 38L12 26L0 52L-12 26L-40 38L-28 12L-54 0L-28 -12L-40 -38L-12 -26Z" fill="#C0392B"/><text y="20" text-anchor="middle" font-family="Outfit" font-weight="700" font-size="56" fill="#fff">!</text></svg></div>
+ <div id="clm" style="position:absolute;left:610px;top:90px;width:100px;height:100px;border-radius:50%;background:#1E9E6A;border:5px solid #fff;display:flex;align-items:center;justify-content:center;opacity:0">${J.ok.replace('width="26" height="26"','width="56" height="56"')}</div>
+ ${PL('qpq','¿Por qué?','left:400px;top:535px;transform:translateX(-50%);background:#2E2545;color:#fff;font-size:50px')}</div>`);
+// S2 · rutina y ondas
+const TL=[['Salir',J.door,20],['Parque',J.tree,280],['Cena',J.plate,540]];
+add(CARD('rut',560)+`<div class="lbl" style="position:absolute;left:34px;top:28px">Su rutina</div>`+TL.map((t,i)=>`<div id="rt${i}" class="tl2" style="left:${t[2]}px;top:100px;width:240px;height:330px;opacity:0">${t[1]}${t[0]}${i==0?'<span id="hr" style="position:absolute;top:18px;right:16px;background:#2E2545;color:#fff;font:700 40px/1 Outfit;padding:8px 16px;border-radius:14px">7:30</span>':''}</div>`).join('')+
+ `<div id="rtn" class="tl2" style="left:280px;top:100px;width:240px;height:330px;border-style:dashed;background:#F3F0F8;color:#8E86A6;opacity:0"><span style="font-size:110px">?</span>Plan nuevo</div>`+PL('cnc','Cancelado','left:300px;top:200px;background:#F9DEE3;color:#C0392B;border:4px solid #C0392B;font-size:48px;transform:rotate(-10deg)')+PL('rtl','Sin aviso','left:400px;top:480px;transform:translateX(-50%);background:#2E2545;color:#fff;font-size:44px')+`</div>`);
+add(CARD('rip',560)+[['Para otros',190,'#9E93C4',1],['Para tu hijo',590,'#C0392B',4]].map((p,i)=>`<div id="rp${i}" style="position:absolute;left:${p[1]-190}px;top:0;width:380px;height:560px;opacity:0">${[1,2,3,4].slice(0,p[3]>1?4:1).map((r,j)=>`<div class="rg${i}" style="position:absolute;left:${190-(p[3]>1?50*(j+1):42)}px;top:${240-(p[3]>1?50*(j+1):42)}px;width:${p[3]>1?100*(j+1):84}px;height:${p[3]>1?100*(j+1):84}px;border-radius:50%;border:${p[3]>1?6:5}px solid ${p[2]};opacity:0"></div>`).join('')}<div class="dot" style="left:${190-(i?55:22)}px;top:${240-(i?55:22)}px;width:${i?110:44}px;height:${i?110:44}px;border-color:#2E2545">${i?KIDA:''}${i?'':'<div style="width:100%;height:100%;background:#2E2545"></div>'}</div><div style="position:absolute;left:0;right:0;top:470px;text-align:center;font:700 46px/1 Outfit">${p[0]}</div></div>`).join('')+`</div>`);
+// S3 · tablero «primero–luego», conceptos
+const BC=[['Primero',J.school,'Escuela',20],['Luego',J.tree,'Parque',280],['Después',J.home,'Casa',540]];
+add(CARD('brd',640)+BC.map((b,i)=>`<div id="bh${i}" class="lbl" style="position:absolute;left:${b[3]}px;top:36px;width:240px;text-align:center;opacity:0">${b[0]}</div><div id="bc${i}" class="tl2" style="left:${b[3]}px;top:100px;width:240px;height:330px;opacity:0">${b[1]}${b[2]}</div>`).join('')+
+ `<svg style="position:absolute;left:0;top:0" width="800" height="640"><path d="M262 265H278M522 265H538" stroke="#2E2545" stroke-width="6" stroke-linecap="round"/></svg>
+ <div id="chg" class="tl2" style="left:280px;top:100px;width:240px;height:330px;background:#F9DEE3;border-color:#C0392B;color:#C0392B;opacity:0">${J.bolt}¡Cambio!</div>
+ <div id="nwc" class="tl2" style="left:280px;top:100px;width:240px;height:330px;background:#E7F5EE;border-color:#1E9E6A;opacity:0"><span style="position:absolute;top:-24px;right:-18px;width:64px;height:64px;border-radius:50%;background:#2E2545;display:flex;align-items:center;justify-content:center">${J.bell.replace('#F5E7D6','#fff')}</span>${J.tree}Parque nuevo</div>`+
+ PL('ptg','Orden visible','left:400px;top:480px;transform:translateX(-50%);background:#fff;border:3px solid #2E2545;font-size:44px')+`<div id="shl" style="position:absolute;left:560px;top:476px;opacity:0">${J.shield}</div>
+ ${PL('atm','En el autismo','left:34px;top:560px;background:#F9DEE3;font-size:44px')}${PL('ant','Aviso previo','left:400px;top:540px;transform:translateX(-50%);background:#1E9E6A;color:#fff;font-size:46px')}</div>`);
+add(CARD('cpt',620)+[['Flexibilidad<br>cognitiva',J.bend,20],['Regulación<br>emocional',J.gauge,410]].map((c,i)=>`<div id="cp${i}" class="tl2" style="left:${c[2]}px;top:130px;width:370px;height:400px;font-size:48px;line-height:1.1;opacity:0">${c[1]}${c[0]}</div>`).join('')+`<div id="cbt" style="position:absolute;left:350px;top:20px;opacity:0;display:flex;gap:10px;align-items:center;font:700 40px/1 'Maven Pro'">${J.bolt.replace('width="70" height="70"','width="56" height="56"')}Cambio inesperado</div></div>`);
+// S4 · reacción ≠ autismo, calendario de frecuencia, rueda del día
+add(CARD('rx',440)+`<div class="lbl" style="position:absolute;left:34px;top:28px">Una reacción intensa</div>`+PL('r1','Reacción intensa','left:34px;top:170px;background:#F9DEE3;color:#C0392B;font-size:48px;padding:26px 34px')+PL('r2','Autismo','right:34px;top:170px;background:#F3F0F8;border:3px dashed #8E86A6;color:#8E86A6;font-size:48px;padding:26px 34px')+
+ `<svg style="position:absolute;left:0;top:0" width="800" height="440"><path id="ra" pathLength="1" d="M440 232H540" fill="none" stroke="#8E86A6" stroke-width="7" stroke-dasharray=".1 .1" stroke-dashoffset="1" stroke-linecap="round"/></svg><div id="rq" style="position:absolute;left:468px;top:190px;width:72px;height:72px;border-radius:50%;background:#2E2545;color:#fff;font:700 50px/72px Outfit;text-align:center;opacity:0">?</div></div>`);
+const DAYS=['L','M','M','J','V','S','D'];const HITS=[3,9,10,16,22,25];
+add(CARD('hm',660)+`<div class="lbl" style="position:absolute;left:34px;top:28px">Este mes</div><div id="hcn" class="pill" style="position:absolute;right:34px;top:14px;background:#2E2545;color:#fff;font-size:46px">×0</div>
+ <div style="position:absolute;left:30px;top:100px;width:740px;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;text-align:center;font:700 38px/1 'Maven Pro';color:#8E86A6">${DAYS.map(d=>`<span>${d}</span>`).join('')}</div>
+ <div style="position:absolute;left:30px;top:156px;width:740px;display:grid;grid-template-columns:repeat(7,1fr);gap:8px">${[...Array(28)].map((_,i)=>`<div style="height:88px;border-radius:18px;background:#F3F0F8;display:flex;align-items:center;justify-content:center">${HITS.includes(i)?`<i id="hh${HITS.indexOf(i)}" style="width:50px;height:50px;border-radius:50%;background:#C0392B;opacity:0"></i>`:''}</div>`).join('')}</div>
+ <div id="hsl" class="sel" style="left:22px;top:146px;width:756px;height:480px"></div>
+ ${PL('hpe','Persistente','left:400px;top:640px;transform:translateX(-50%);background:#F9DEE3;color:#C0392B;font-size:46px')}</div>`);
+const RING=[['Mañana',-90],['Tarde',30],['Noche',150]];
+add(CARD('rgc',600)+`<svg style="position:absolute;left:140px;top:30px" width="520" height="520" viewBox="-130 -130 260 260">${RING.map((r,i)=>{const a0=(r[1]+4)*Math.PI/180,a1=(r[1]+116)*Math.PI/180;return `<path id="sg${i}" d="M${100*Math.cos(a0)} ${100*Math.sin(a0)}A100 100 0 0 1 ${100*Math.cos(a1)} ${100*Math.sin(a1)}" fill="none" stroke="#C6BCE2" stroke-width="44" stroke-linecap="round"/>`;}).join('')}</svg>
+ <div style="position:absolute;left:0;right:0;top:230px;text-align:center;font:700 56px/1.1 Outfit">Vida<br>cotidiana</div>
+ ${RING.map((r,i)=>`<div id="rl${i}" class="pill" style="position:absolute;left:${[300,560,40][i]}px;top:${[20,360,360][i]}px;background:#fff;border:3px solid #2E2545;font-size:42px;opacity:0">${r[0]}</div>`).join('')}</div>`);
+// S5 · cierre
+add(`<div class="abs" id="trap" style="left:560px;top:1310px;transform:translateX(-50%);opacity:0"></div>`);
+add(`<div class="abs pill" id="bnc" style="left:190px;top:690px;background:#F3F0F8;border:3px dashed #8E86A6;color:#8E86A6;font-size:56px;padding:20px 44px;opacity:0">Berrinche<span id="bnx" style="position:absolute;left:18px;top:50%;height:8px;width:0;background:#C0392B;border-radius:4px"></span></div>`);
+add(`<div class="abs pill" id="tqp" style="left:560px;top:1330px;transform:translateX(-50%);background:#1E9E6A;color:#fff;font-size:50px;padding:20px 44px;display:flex;gap:14px;align-items:center;opacity:0">Tranquilidad ${J.ok}</div>`);
+// S6 · CTA
+const NT=[['Otra ruta','#F9DEE3',170,700,-3],['Plan cancelado','#F5E7D6',560,690,2],['Hora nueva','#E7E1F4',180,950,2],['Comida nueva','#fff',570,960,-2]];
+NT.forEach((n,i)=>add(`<div class="abs" id="nt${i}" style="left:${n[2]}px;top:${n[3]}px;width:350px;height:210px;background:${n[1]};border:3px solid #2E2545;border-radius:14px;box-shadow:8px 10px 0 rgba(46,37,69,.12);display:flex;align-items:center;justify-content:center;text-align:center;padding:0 24px;font:700 50px/1.1 Outfit;transform:rotate(${n[4]}deg);opacity:0">${n[0]}</div>`));
+add(`<div class="abs card" id="cmp" style="left:160px;top:1230px;width:800px;height:170px;display:flex;align-items:center;gap:22px;padding:0 30px;opacity:0"><div class="dot" style="position:relative;width:96px;height:96px;flex:none">${KIDA}</div><div id="ctx" style="flex:1;font:700 46px/1.1 'Maven Pro'"></div><span id="snb" style="width:92px;height:92px;border-radius:50%;background:#2E2545;display:flex;align-items:center;justify-content:center;flex:none">${J.plane}</span></div>`);
+add(`<div class="abs end" id="end"><div class="abs" style="left:150px;width:840px;top:500px;text-align:center;font:700 70px/1.15 Outfit">Este video orienta y no diagnostica.</div>
+ <div class="abs" style="left:160px;top:780px;width:800px;height:600px;background:#fff;border:2px solid #E3DCEF;border-radius:28px;box-shadow:0 22px 50px rgba(56,47,81,.12);display:flex;flex-direction:column;align-items:center;padding-top:84px;gap:24px;text-align:center"><div style="font:700 78px/1 Outfit">Karen Trujillo</div><div style="font:700 44px/1.2 'Maven Pro'">Neuropsicóloga · Cancún</div><div class="pill" style="background:#E7E1F4;font-size:42px;padding:18px 34px">Cédula 11009616</div><div class="pill" style="background:#2E2545;color:#fff;font-size:40px;padding:18px 34px;margin-top:6px">psicologakarentrujillo.com.mx</div></div></div>`);
+add(`<div class="abs" id="ley" style="left:150px;top:190px;background:#fff;border:3px solid #2E2545;border-radius:999px;font:700 40px/1 'Maven Pro';padding:14px 30px;box-shadow:0 10px 24px rgba(56,47,81,.12);opacity:0">Neuropsicóloga Karen Trujillo</div>`);
+
+// ============ LÍNEA DE TIEMPO ============
+gsap.set('#world > *',{opacity:0});gsap.set('.sel',{opacity:0});
+const tl=gsap.timeline({paused:true});
+const POP=(s,t,d)=>tl.fromTo(s,{opacity:0,y:40,scale:.94},{opacity:1,y:0,scale:1,duration:d||.45,ease:CFG.POP,immediateRender:false},t);
+const OUT=(s,t)=>tl.to(s,{opacity:0,y:-60,duration:.3,ease:CFG.OUT},t);
+const IN=(s,t)=>tl.fromTo(s,{opacity:0},{opacity:1,duration:.3,immediateRender:false},t);
+let cur=-1;
+const STEP=(i,t)=>{if(cur>=0)tl.to('#st'+cur,{opacity:0,y:-20,duration:.25},t-.25);
+ tl.fromTo('#st'+i,{opacity:0,y:20},{opacity:1,y:0,duration:.35,ease:CFG.POP,immediateRender:false},t);
+ tl.to('#ticks',{y:-(i+1)*110,duration:.6,ease:CFG.MOVE},t-.25);
+ tl.fromTo('#av',{scale:.8},{scale:1,duration:.35,ease:CFG.POP,immediateRender:false},t);cur=i;};
+const TXT=(s,t,tx)=>tl.call(()=>{document.querySelector(s).innerHTML=tx;},null,t);
+const CH=(s,t)=>tl.fromTo(s,{opacity:0,scale:.3},{opacity:1,scale:1,duration:.3,ease:CFG.POP,immediateRender:false},t);
+const DRAW=(s,t,d)=>tl.to(s,{strokeDashoffset:0,duration:d||.5,ease:'power1.inOut'},t);
+
+// ESCENA 1 · HOOK (0–5.3) — Acción: un mapa de navegación con la escuela y la casa; el niño recorre la ruta habitual (negra); aparece una señal «!»
+//  y la ruta cambia por un desvío rojo; estalla una «!» roja y aparece «¿Por qué?».
+// Persisten: mapa y niño (hilo; vuelven con el camino verde). Imagen final: desvío rojo, estallido y «¿Por qué?».
+function escena1(){
+ STEP(0,0);POP('#nav',0);
+ DRAW('#ur',at('camino'),.9);
+ tl.to('#trv',{top:260,duration:.45,ease:'none'},at('camino',.3));tl.to('#trv',{left:310,top:260,duration:.45,ease:'none'},at('camino',.75));
+ CH('#sgn',at('tu hijo'));tl.to('#ur',{opacity:.25,duration:.3},at('tu hijo'));
+ DRAW('#dt',at('hijo',.4),.8);tl.to('#trv',{left:310,top:410,duration:.4,ease:'none'},at('tuvo',.1));
+ CH('#bst',at('reaccion'));tl.to('#bst',{scale:1.15,duration:.15,yoyo:true,repeat:3},at('reaccion',.3));
+ POP('#qpq',at('por que'));
+}
+// ESCENA 2 · DESARROLLO (5.3–19.0) — Acción: tres fichas de rutina (Salir, Parque, Cena); la hora de salir pasa de 7:30 a 8:15; «Parque» se sella
+//  «Cancelado» y cae, y entra un «Plan nuevo»; después, ondas: una gota chica para otros y ondas enormes en el niño.
+// Persisten: niño (en las ondas). Imagen final: ondas grandes en torno al niño.
+function escena2(){
+ const t0=at('quiza');
+ ['#nav','#qpq'].forEach(s=>OUT(s,t0-.3));STEP(1,t0);POP('#rut',t0);
+ [0,1,2].forEach(i=>CH('#rt'+i,t0+.2+i*.2));
+ TXT('#hr',at('salir'),'8:15');tl.fromTo('#hr',{scale:1.4},{scale:1,duration:.3,immediateRender:false},at('salir'));
+ CH('#cnc',at('cancelaste',.4));tl.to('#rt1',{y:330,rotation:14,opacity:0,duration:.6,ease:CFG.OUT},at('esperaba'));OUT('#cnc',at('esperaba'));
+ CH('#rtn',at('simplemente'));POP('#rtl',at('hacer algo'));
+ const t1=at('para otros');
+ OUT('#rut',t1-.3);POP('#rip',t1);
+ IN('#rp0',t1);tl.fromTo('.rg0',{opacity:.9,scale:.4},{opacity:0,scale:1,duration:.9,immediateRender:false},at('para otros',.7));tl.fromTo('.rg0',{opacity:.9,scale:.4},{opacity:0,scale:1,duration:.9,immediateRender:false},at('pequeno'));
+ IN('#rp1',at('pero para'));
+ tl.fromTo('.rg1',{opacity:.9,scale:.2},{opacity:0,scale:1,duration:1.2,stagger:.25,repeat:1,immediateRender:false},at('representar'));
+}
+// ESCENA 3 · GIRO (19.0–36.7) — Acción: tablero «Primero–Luego–Después» con escuela, parque y casa; un escudo «Orden visible»; un «¡Cambio!» rojo cae en el
+//  lugar del parque y todo tiembla («En el autismo»); dos conceptos: «Flexibilidad cognitiva» y «Regulación emocional».
+// Persisten: tablero. Imagen final: dos conceptos con «Cambio inesperado».
+function escena3(){
+ const t0=at('algunos ninos');
+ OUT('#rip',t0-.3);STEP(2,t0);POP('#brd',t0);
+ [0,1,2].forEach(i=>{CH('#bc'+i,t0+.2+i*.25);IN('#bh'+i,t0+.2+i*.25);});
+ POP('#ptg',at('previsibilidad'));CH('#shl',at('seguros'));tl.to('#ptg',{opacity:0,duration:.3},at('saber'));
+ tl.to('#shl',{opacity:0,duration:.3},at('saber'));
+ tl.to('#bc1',{boxShadow:'0 0 0 8px rgba(198,188,226,.8)',duration:.3,yoyo:true,repeat:1},at('ocurrira'));
+ tl.to('#bc2',{boxShadow:'0 0 0 8px rgba(198,188,226,.8)',duration:.3,yoyo:true,repeat:1},at('despues'));
+ const tc=at('en el autismo');
+ tl.fromTo('#chg',{opacity:0,y:-300,rotation:-8},{opacity:1,y:0,rotation:0,duration:.45,ease:CFG.POP,immediateRender:false},at('inesperados',-.4));
+ tl.to('#bc1',{opacity:0,duration:.2},at('inesperados',-.4));
+ tl.to(['#bc0','#bc2','#chg'],{x:'+=10',duration:.07,yoyo:true,repeat:7},at('inesperados'));
+ CH('#atm',tc);
+ const t1=at('esto puede');
+ OUT('#brd',t1-.3);POP('#cpt',t1);IN('#cbt',t1);
+ CH('#cp0',at('flexibilidad'));CH('#cp1',at('regulacion'));
+}
+// ESCENA 4 · PROVOCACIÓN (36.7–46.5) — Acción: «Reacción intensa» y «Autismo» unidos por una flecha punteada con «?»; un calendario del mes con seis
+//  puntos rojos y contador ×6 (frecuencia); una rueda del día con tres tramos (Mañana, Tarde, Noche) que se tiñen.
+// Persisten: calendario. Imagen final: rueda con tramos afectados.
+function escena4(){
+ const t0=at('pero no hay');
+ OUT('#cpt',t0-.3);STEP(3,t0);POP('#rx',t0);
+ CH('#r1',t0+.2);CH('#r2',at('significa'));DRAW('#ra',at('significa'),.6);CH('#rq',at('autismo',0,1));
+ const t1=at('tambien conviene');
+ OUT('#rx',t1-.3);POP('#hm',t1);
+ const o={v:0};
+ [0,1,2,3,4,5].forEach(i=>{tl.fromTo('#hh'+i,{opacity:0,scale:.3},{opacity:1,scale:1,duration:.3,ease:CFG.POP,immediateRender:false},at('frecuentes')+i*.3);});
+ tl.to(o,{v:6,duration:1.8,ease:'none',onUpdate(){document.getElementById('hcn').textContent='×'+Math.round(o.v);}},at('frecuentes'));
+ const t2=at('como afectan');
+ OUT('#hm',t2-.3);POP('#rgc',t2);
+ [0,1,2].forEach(i=>CH('#rl'+i,t2+.2+i*.2));
+ tl.to(['#sg0','#sg2'],{attr:{stroke:'#F2A3A3'},duration:.4},at('vida'));tl.to('#sg1',{attr:{stroke:'#F2A3A3'},duration:.4},at('cotidiana'));
+}
+// ESCENA 5 · CIERRE (46.5–61.5) — Acción: el tablero vuelve y el parque llega como «Parque nuevo» con aviso (campana); el calendario vuelve con
+//  «Persistente» y una selección; el mapa vuelve con el camino verde y «Tranquilidad»; «Berrinche» se tacha.
+// Persisten: tablero → calendario → mapa. Imagen final: camino verde con «Tranquilidad» y «Berrinche» tachado.
+function escena5(){
+ const t0=at('anticipar');
+ OUT('#rgc',t0-.3);STEP(4,t0);
+ tl.fromTo('#brd',{opacity:0,y:40,scale:.94},{opacity:1,y:0,scale:1,duration:.45,ease:CFG.POP,immediateRender:false},t0);
+ tl.set(['#chg','#atm'],{opacity:0},t0);tl.set('#bc1',{opacity:0},t0);tl.set('#bc0,#bc2',{x:0},t0);
+ CH('#nwc',at('apoyos'));POP('#ant',at('visuales'));
+ const t1=at('si la dificultad');
+ OUT('#brd',t1-.3);OUT('#ant',t1-.3);
+ tl.fromTo('#hm',{opacity:0,y:40,scale:.94},{opacity:1,y:0,scale:1,duration:.45,ease:CFG.POP,immediateRender:false},t1);
+ CH('#hpe',at('persistente'));
+ tl.fromTo('#hsl',{opacity:0},{opacity:1,duration:.3,immediateRender:false},at('explorar'));
+ const t2=at('comprender');
+ OUT('#hm',t2-.3);
+ tl.fromTo('#nav',{opacity:0,y:40,scale:.94},{opacity:1,y:0,scale:1,duration:.45,ease:CFG.POP,immediateRender:false},t2);
+ tl.set(['#sgn','#bst','#qpq','#dt'],{opacity:0},t2);tl.set('#ur',{opacity:0},t2);tl.set('#trv',{left:110,top:410},t2);
+ DRAW('#gr',at('necesidad'),1.5);
+ tl.to('#trv',{top:260,duration:.4,ease:'none'},at('necesidad'));tl.to('#trv',{left:310,duration:.4,ease:'none'},at('necesidad',.4));tl.to('#trv',{top:110,duration:.4,ease:'none'},at('necesidad',.8));tl.to('#trv',{left:510,duration:.4,ease:'none'},at('necesidad',1.2));
+ CH('#clm',at('previsibilidad',0,1));POP('#tqp',at('previsibilidad',0,1));
+ POP('#bnc',at('berrinche',-.4));tl.to('#bnx',{width:'calc(100% - 36px)',duration:.5,ease:'power2.out'},at('berrinche'));
+}
+// ESCENA 6 · CTA (61.5–66.5) — Acción: cuatro notas adhesivas con cambios (Otra ruta, Plan cancelado, Hora nueva, Comida nueva); una línea que se escribe
+//  «Cuando cambia…» con botón de enviar; aviso final y datos de Karen (quietos el último 0.5 s). Imagen final: aviso + datos.
+function escena6(){
+ const t0=at('que cambios');
+ ['#nav','#tqp','#bnc'].forEach(s=>OUT(s,t0-.3));tl.to('#st4',{opacity:0,duration:.3},t0-.3);
+ [0,1,2,3].forEach(i=>POP('#nt'+i,t0+i*.25));
+ tl.to('#nt1',{scale:1.06,duration:.2,yoyo:true,repeat:1},at('dificultad',0,1)+.2);
+ const tc=at('cuentamelo');
+ POP('#cmp',tc-.7);
+ const w='Cuando cambia...';[...w].forEach((c,i)=>TXT('#ctx',tc-.2+i*.045,w.slice(0,i+1)));
+ tl.to('#snb',{backgroundColor:'#1E9E6A',duration:.2},at('en comentarios'));
+ const tF=at('comentarios',.4);
+ [0,1,2,3].forEach(i=>OUT('#nt'+i,tF-.1));OUT('#cmp',tF-.1);
+ tl.to(['#av','#tlTop','#tl','#ticks'],{opacity:.25,duration:.3},tF);tl.to('#ley',{opacity:0,duration:.3},tF);
+ tl.fromTo('#end',{opacity:0,scale:.96},{opacity:1,scale:1,duration:.45,ease:CFG.POP,immediateRender:false},tF+.1);
+}
+escena1();escena2();escena3();escena4();escena5();escena6();
+tl.fromTo('#ley',{opacity:0,y:-10},{opacity:1,y:0,duration:.5,immediateRender:false},.3);
+
+// ============ SUBTÍTULO ARRIBA (palabras por venir borrosas; clave en recuadro de selección) ============
+const KEYS=new Set(['camino','reaccion','pequeno','dificil','previsibilidad','seguros','inesperados','flexibilidad','regulacion','frecuentes','cotidiana','anticipar','visuales','persistente','necesidad','berrinche','comentarios']);
+(function(){const ph=[];let cur=[];const fl=()=>{if(cur.length){ph.push(cur);cur=[];}};
+ WORDS.forEach((w,i)=>{cur.push({w:w[0],t:w[1],e:w[2]});const nx=WORDS[i+1];if(cur.length>=6||/[,.:?]$/.test(w[0])||(nx&&nx[1]-w[2]>.45))fl();});fl();
+ const C=document.getElementById('caps');
+ ph.forEach((p,i)=>{const d=document.createElement('div');d.className='ph abs';d.id='ph'+i;
+  d.innerHTML=p.map((x,j)=>{const k=KEYS.has(norm(x.w)[0]);return `<span class="${k?'k':''}" id="p${i}w${j}">${k?'<i class="hl"></i>':''}${x.w}</span>`;}).join('');C.appendChild(d);
+  const s0=p[0].t-.12,e0=i+1<ph.length?ph[i+1][0].t-.12:WORDS[WORDS.length-1][2]+.4;
+  tl.fromTo(d,{opacity:0,y:16},{opacity:1,y:0,duration:.18,immediateRender:false},s0);tl.to(d,{opacity:0,duration:.12},e0-.12);
+  p.forEach((x,j)=>{tl.fromTo('#p'+i+'w'+j,{opacity:.28,filter:'blur(7px)'},{opacity:1,filter:'blur(0px)',duration:.2,immediateRender:false},x.t);
+   if(KEYS.has(norm(x.w)[0]))tl.fromTo('#p'+i+'w'+j+' .hl',{opacity:0,scaleX:.6},{opacity:1,scaleX:1,duration:.22,ease:CFG.POP,immediateRender:false},x.t);});
+  gsap.set(d.querySelectorAll('span'),{opacity:.28,filter:'blur(7px)'});});
+})();
+window.DUR=CFG.DUR;
+window.seek=t=>{tl.time(Math.min(t,tl.duration()));};
+</script></body></html>
