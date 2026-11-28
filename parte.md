@@ -31,6 +31,7 @@
 - Hooks virales: 012 aprobado y guardado (portada «¿Es timidez o algo más?», 66 s, bucle, con leyenda y cierre con datos de Karen).
 - Hooks virales: 013 aprobado y guardado (portada «Tu hijo no tiene que ser igual a los demás», 65 s, bucle).
 - Hooks virales: 014 aprobado y guardado (portada «¿Cambió la rutina y tuvo esa reacción?», 68.6 s, bucle).
+- Hooks virales (28 nov, Eduardo): regla para todos los hooks nuevos: leyenda fija «Neuropsicóloga Karen Trujillo» durante el video y cierre de texto (sin avatar) con «Karen Trujillo», «Neuropsicóloga · Cancún» (sin «clínica»), cédula 11009616 y web; el video dura 2.1 s más que la voz para que el cierre se lea. Quedó en `references/hooks-virales.md` y en la plantilla `plantilla-hooks/`. Del 008 al 014 ya la llevan.
 - Todo cambio a `parte.md` se guarda directo en `main` (Karen).
 
 ## … Falta
@@ -40,7 +41,7 @@
 - Pasar el 41 de la rama de la sesión a `main`.
 
 - Hooks virales 031 a 040: generar la voz con la receta cuando haya créditos (Starter no alcanzó para los 40; Eduardo los dejó pendientes).
-- Hooks virales: faltan los gráficos del 015 al 040 (receta del 008 v2, estilo de referencias, textos ≥40 px). Del 001 al 007 se quedan como están (estilo ilustrado), decidió Eduardo el 27 nov. Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
+- Hooks virales: faltan los gráficos del 015 al 040 (receta del 008 v2: estilo de referencias, textos ≥40 px, leyenda fija y cierre con datos de Karen). Del 001 al 007 se quedan como están (estilo ilustrado), decidió Eduardo el 27 nov. Con 1.10x, 25 de las 30 voces pasan de 60 s (hasta 71 s en el 009): decidir si se recortan guiones.
 
 ## ✗ No tocar
 - Diagnosticar o decir que algo «cura»: el contenido orienta, no diagnostica.
