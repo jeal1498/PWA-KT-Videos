@@ -51,7 +51,7 @@ body{width:1080px;height:1920px;overflow:hidden;position:relative;font-family:'M
 // Estilo de las referencias (hooks virales/_referencias): cuadrícula, línea de tiempo con paso numerado, tarjetas tipo app,
 // subtítulo arriba (y 300–460) con palabra clave en recuadro de selección y palabras por venir borrosas.
 // Zonas: subtítulo y 300–460 · paso y 540 · contenido x 160–960, y 640–1420 · nada en los últimos 0.5 s.
-const CFG={FPS:30,DUR:+(WORDS[WORDS.length-1][2]+.1).toFixed(2),POP:'back.out(1.35)',MOVE:'power3.inOut',OUT:'power2.in'};
+const CFG={FPS:30,DUR:+(WORDS[WORDS.length-1][2]+2.1).toFixed(2),POP:'back.out(1.35)',MOVE:'power3.inOut',OUT:'power2.in'};
 const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9ñ\s]/g,' ').split(/\s+/).filter(Boolean);
 const WN=WORDS.map(w=>norm(w[0])[0]||'');
 function at(frag,off,nth){const f=norm(frag);let c=0;
@@ -146,8 +146,9 @@ add(`<div class="abs card" id="poll" style="left:190px;top:700px;width:760px;hei
  <div id="o1" style="height:110px;border-radius:24px;border:3px solid #2E2545;display:flex;align-items:center;padding:0 28px;font:700 40px/1 'Maven Pro';margin-bottom:20px;gap:16px"><span id="o1c" class="ck" style="width:42px;height:42px"></span>Sí, ya lo sabía</div>
  <div id="o2" style="height:110px;border-radius:24px;border:3px solid #2E2545;display:flex;align-items:center;padding:0 28px;font:700 40px/1 'Maven Pro';gap:16px"><span id="o2c" class="ck" style="width:42px;height:42px"></span>Es nuevo para mí</div></div>`);
 add(`<div class="abs pill" id="cta" style="left:560px;top:1300px;transform:translateX(-50%);background:#2E2545;color:#fff;font:700 44px/1 'Maven Pro';padding:16px 16px 16px 36px;display:flex;gap:22px;align-items:center;opacity:0">Compártelo con alguien<span id="ctb" style="width:72px;height:72px;border-radius:50%;background:#C6BCE2;display:flex;align-items:center;justify-content:center">${J.send}</span></div>`);
-add(`<div class="abs end" id="end"><div class="abs" style="left:150px;width:840px;top:820px;text-align:center;font:700 74px/1.15 Outfit">Este video orienta y no diagnostica.</div>
- <div class="abs pill" style="left:570px;top:1080px;transform:translateX(-50%);background:#fff;border:3px solid #2E2545;font-size:40px;padding:16px 30px">psicologakarentrujillo.com.mx</div></div>`);
+add(`<div class="abs end" id="end"><div class="abs" style="left:150px;width:840px;top:500px;text-align:center;font:700 70px/1.15 Outfit">Este video orienta y no diagnostica.</div>
+ <div class="abs" style="left:160px;top:780px;width:800px;height:600px;background:#fff;border:2px solid #E3DCEF;border-radius:28px;box-shadow:0 22px 50px rgba(56,47,81,.12);display:flex;flex-direction:column;align-items:center;padding-top:84px;gap:24px;text-align:center"><div style="font:700 78px/1 Outfit">Karen Trujillo</div><div style="font:700 44px/1.2 'Maven Pro'">Neuropsicóloga · Cancún</div><div class="pill" style="background:#E7E1F4;font-size:42px;padding:18px 34px">Cédula 11009616</div><div class="pill" style="background:#2E2545;color:#fff;font-size:40px;padding:18px 34px;margin-top:6px">psicologakarentrujillo.com.mx</div></div></div>`);
+add(`<div class="abs" id="ley" style="left:150px;top:190px;background:#fff;border:3px solid #2E2545;border-radius:999px;font:700 40px/1 'Maven Pro';padding:14px 30px;box-shadow:0 10px 24px rgba(56,47,81,.12);opacity:0">Neuropsicóloga Karen Trujillo</div>`);
 
 // ============ LÍNEA DE TIEMPO ============
 gsap.set('#world > *',{opacity:0});
@@ -249,10 +250,11 @@ function escena6(){
  POP('#cta',at('comparte'));tl.to('#ctb',{scale:.85,duration:.12,yoyo:true,repeat:1},at('comparte',.6));
  const tF=at('comprender',-.2);
  ['#poll','#cta'].forEach(s=>OUT(s,tF-.1));
- tl.to(['#av','#tlTop','#tl','#ticks'],{opacity:.25,duration:.3},tF);
+ tl.to(['#av','#tlTop','#tl','#ticks'],{opacity:.25,duration:.3},tF);tl.to('#ley',{opacity:0,duration:.3},tF);
  tl.fromTo('#end',{opacity:0,scale:.96},{opacity:1,scale:1,duration:.5,ease:CFG.POP,immediateRender:false},tF+.15);
 }
 escena1();escena2();escena3();escena4();escena5();escena6();
+tl.fromTo('#ley',{opacity:0,y:-10},{opacity:1,y:0,duration:.5,immediateRender:false},.3);
 
 // ============ SUBTÍTULO ARRIBA (palabras por venir borrosas; clave en recuadro de selección) ============
 const KEYS=new Set(['diferentes','explicacion','hablar','comunicarse','compania','individuales','espectro','caracteristicas','apoyo','mismas','imagen','alto','expectativas','historia','evaluacion','apariencia','diversidad','acompanar','comparte']);
@@ -261,7 +263,7 @@ const KEYS=new Set(['diferentes','explicacion','hablar','comunicarse','compania'
  const C=document.getElementById('caps');
  ph.forEach((p,i)=>{const d=document.createElement('div');d.className='ph abs';d.id='ph'+i;
   d.innerHTML=p.map((x,j)=>{const k=KEYS.has(norm(x.w)[0]);return `<span class="${k?'k':''}" id="p${i}w${j}">${k?'<i class="hl"></i>':''}${x.w}</span>`;}).join('');C.appendChild(d);
-  const s0=p[0].t-.12,e0=i+1<ph.length?ph[i+1][0].t-.12:CFG.DUR-.6;
+  const s0=p[0].t-.12,e0=i+1<ph.length?ph[i+1][0].t-.12:WORDS[WORDS.length-1][2]+.4;
   tl.fromTo(d,{opacity:0,y:16},{opacity:1,y:0,duration:.18,immediateRender:false},s0);tl.to(d,{opacity:0,duration:.12},e0-.12);
   p.forEach((x,j)=>{tl.fromTo('#p'+i+'w'+j,{opacity:.28,filter:'blur(7px)'},{opacity:1,filter:'blur(0px)',duration:.2,immediateRender:false},x.t);
    if(KEYS.has(norm(x.w)[0]))tl.fromTo('#p'+i+'w'+j+' .hl',{opacity:0,scaleX:.6},{opacity:1,scaleX:1,duration:.22,ease:CFG.POP,immediateRender:false},x.t);});
