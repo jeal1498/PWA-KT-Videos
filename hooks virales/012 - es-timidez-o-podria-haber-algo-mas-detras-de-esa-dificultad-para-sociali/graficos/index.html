@@ -1,0 +1,304 @@
+<!doctype html><html><head><meta charset="utf-8"><title>008 v2 gráficos</title>
+<style>
+@font-face{font-family:Outfit;src:url(Outfit-700-latin.woff2);font-weight:700}
+@font-face{font-family:'Maven Pro';src:url(MavenPro-700-latin.woff2);font-weight:700}
+:root{--ink:#2E2545;--lav:#C6BCE2;--lav2:#E7E1F4;--rosa:#F9DEE3;--arena:#F5E7D6;--bg:#F7F4FA;--mute:#8E86A6;--ok:#1E9E6A;--red:#C0392B}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;position:relative;font-family:'Maven Pro',sans-serif;color:var(--ink);
+ background-color:var(--bg);background-image:linear-gradient(rgba(198,188,226,.28) 1px,transparent 1px),linear-gradient(90deg,rgba(198,188,226,.28) 1px,transparent 1px);background-size:40px 40px}
+.abs{position:absolute}
+/* línea de tiempo */
+#tl{left:98px;top:0;width:4px;height:1920px;background:#DDD5EE}
+#tlTop{left:98px;top:0;width:4px;height:540px;background:var(--ink)}
+#ticks{left:92px;top:0;width:16px;height:4000px}
+#ticks i{position:absolute;left:4px;width:8px;height:3px;background:#C9C0DE}
+#av{left:68px;top:528px;width:64px;height:64px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px var(--bg)}
+.chip{left:150px;top:540px;height:44px;border-radius:22px;background:var(--ink);color:#fff;font:700 27px/44px 'Maven Pro';padding:0 22px 0 8px;white-space:nowrap;opacity:0;display:flex;align-items:center;gap:12px}
+.chip b{display:inline-block;width:46px;height:30px;line-height:30px;border-radius:15px;background:var(--lav);color:var(--ink);text-align:center;font-size:20px}
+/* subtítulo arriba */
+.ph{left:160px;width:860px;top:300px;text-align:center;font:700 62px/1.25 Outfit;opacity:0}
+.ph span{display:inline-block;margin:0 7px;position:relative;z-index:0}
+.ph span.k{padding:0 10px}
+.ph span .hl{position:absolute;left:-2px;right:-2px;top:6px;bottom:2px;background:var(--lav);border:3px solid var(--ink);z-index:-1;opacity:0}
+.ph span .hl::before,.ph span .hl::after{content:"";position:absolute;width:12px;height:12px;background:#fff;border:3px solid var(--ink)}
+.ph span .hl::before{left:-8px;top:-8px}.ph span .hl::after{right:-8px;bottom:-8px}
+/* tarjetas */
+.card{background:#fff;border:2px solid #E3DCEF;border-radius:28px;box-shadow:0 22px 50px rgba(56,47,81,.12)}
+.sc{left:0;top:0;width:1080px;height:1920px}
+.pill{border-radius:999px;font:700 30px/1 'Maven Pro';padding:14px 26px;white-space:nowrap}
+.lbl{font:700 22px/1 'Maven Pro';letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.ttl{font:700 40px/1.1 Outfit}
+.row{display:flex;align-items:center;gap:22px;height:92px;border-top:2px solid #EFEAF6;padding:0 30px;font:700 34px/1 'Maven Pro'}
+.row .ic{width:56px;height:56px;border-radius:16px;background:var(--lav2);display:flex;align-items:center;justify-content:center}
+.row .tm{margin-left:auto;color:var(--mute);font-size:26px}
+.node{display:flex;flex-direction:column;align-items:center;gap:10px;width:220px}
+.node .sq{width:120px;height:120px;border-radius:30px;background:#fff;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px rgba(56,47,81,.14)}
+.node .nm{font:700 34px/1 Outfit}
+.node .tg{font:700 22px/1 'Maven Pro';background:var(--lav2);border-radius:12px;padding:6px 12px}
+.ck{width:46px;height:46px;border-radius:50%;border:3px solid #CFC7E2;display:flex;align-items:center;justify-content:center;flex:none}
+.end{left:0;top:0;width:1080px;height:1920px;opacity:0}
+</style></head><body>
+<div id="tl" class="abs"></div><div id="tlTop" class="abs"></div><div id="ticks" class="abs"></div>
+<div id="av" class="abs"><svg width="38" height="38" viewBox="-20 -20 40 40"><path d="M-12 12L-14 16L-10 14L12 -8L8 -12Z" fill="#F5E7D6" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+<div id="chips"></div>
+<div id="world"></div>
+<div id="caps"></div>
+<script src="gsap.min.js"></script>
+<script src="words.js"></script>
+<script>
+// ============ ESPECIFICACIÓN ============
+// Lienzo 1080×1920 (9:16) · 30 fps · duración = fin de la última palabra + 0.1 s · audio = voz.mp3 (1.10x)
+// Estilo de las referencias (hooks virales/_referencias): cuadrícula, línea de tiempo con paso numerado, tarjetas tipo app,
+// subtítulo arriba (y 300–460) con palabra clave en recuadro de selección y palabras por venir borrosas.
+// Zonas: subtítulo y 300–460 · paso y 540 · contenido x 160–960, y 640–1420 · nada en los últimos 0.5 s.
+const CFG={FPS:30,DUR:+(WORDS[WORDS.length-1][2]+2.1).toFixed(2),POP:'back.out(1.35)',MOVE:'power3.inOut',OUT:'power2.in'};
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9ñ\s]/g,' ').split(/\s+/).filter(Boolean);
+const WN=WORDS.map(w=>norm(w[0])[0]||'');
+function at(frag,off,nth){const f=norm(frag);let c=0;
+ for(let i=0;i<=WN.length-f.length;i++){let ok=true;for(let j=0;j<f.length;j++)if(WN[i+j]!==f[j]){ok=false;break;}
+  if(ok){if((nth||0)===c)return +(WORDS[i][1]+(off||0)).toFixed(2);c++;}}
+ throw new Error('no encuentro: '+frag);}
+// ---------- íconos (SVG en línea, trazo ciruela)
+const I={
+ eye:'<svg width="34" height="34" viewBox="-20 -20 40 40"><path d="M-17 0Q0 -16 17 0Q0 16 -17 0Z" fill="none" stroke="#2E2545" stroke-width="3.5"/><circle r="5" fill="#2E2545"/></svg>',
+ pen:'<svg width="34" height="34" viewBox="-20 -20 40 40"><path d="M-12 12L-14 16L-10 14L12 -8L8 -12Z" fill="#F5E7D6" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/></svg>',
+ spin:'<svg width="34" height="34" viewBox="-20 -20 40 40"><path d="M0 0a3 3 0 0 1 6 0a6 6 0 0 1 -12 0a9 9 0 0 1 18 0a12 12 0 0 1 -24 0" fill="none" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/></svg>',
+ play:'<svg width="56" height="56" viewBox="-20 -20 40 40"><path d="M-7 -11L11 0L-7 11Z" fill="#2E2545"/></svg>',
+ pause:'<svg width="56" height="56" viewBox="-20 -20 40 40"><rect x="-9" y="-11" width="6" height="22" rx="2" fill="#C0392B"/><rect x="3" y="-11" width="6" height="22" rx="2" fill="#C0392B"/></svg>',
+ grid:'<svg width="56" height="56" viewBox="-20 -20 40 40"><rect x="-13" y="-13" width="11" height="11" rx="3" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.5"/><rect x="2" y="-13" width="11" height="11" rx="3" fill="#fff" stroke="#2E2545" stroke-width="2.5"/><rect x="-13" y="2" width="11" height="11" rx="3" fill="#fff" stroke="#2E2545" stroke-width="2.5"/><rect x="2" y="2" width="11" height="11" rx="3" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.5"/></svg>',
+ arrow:'<svg width="56" height="56" viewBox="-20 -20 40 40"><path d="M-12 8L0 -6L12 8" fill="none" stroke="#2E2545" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M0 -6V14" stroke="#2E2545" stroke-width="4" stroke-linecap="round"/></svg>',
+ sliders:'<svg width="70" height="70" viewBox="-20 -20 40 40"><path d="M-12 -9H12M-12 0H12M-12 9H12" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/><circle cx="-4" cy="-9" r="4" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.5"/><circle cx="6" cy="0" r="4" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.5"/><circle cx="-6" cy="9" r="4" fill="#F5E7D6" stroke="#2E2545" stroke-width="2.5"/></svg>',
+ ok:'<svg width="28" height="28" viewBox="-20 -20 40 40"><path d="M-10 0L-3 8L11 -8" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ send:'<svg width="40" height="40" viewBox="-20 -20 40 40"><path d="M-14 -2L14 -12L4 14L0 2Z" fill="#fff"/></svg>',
+ q:'<svg width="60" height="60" viewBox="-20 -20 40 40"><text y="10" text-anchor="middle" font-family="Outfit" font-weight="700" font-size="30" fill="#2E2545">?</text></svg>',
+ hand:'<svg width="70" height="70" viewBox="-20 -20 40 40"><path d="M-9 14V-4M-9 -4V-12M-3 -4V-15M3 -4V-13M9 -2V-9M-9 14H7Q11 14 11 8V-2" fill="none" stroke="#2E2545" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ lock:'<svg width="70" height="70" viewBox="-20 -20 40 40"><path d="M-7 -2V-8Q-7 -15 0 -15Q7 -15 7 -8V-2" fill="none" stroke="#2E2545" stroke-width="3.2"/><rect x="-12" y="-3" width="24" height="18" rx="4" fill="#F9DEE3" stroke="#2E2545" stroke-width="3"/><path d="M-4 3L5 6L-4 10Z" fill="#2E2545"/></svg>'};
+// ---------- pasos de la línea de tiempo
+// ---------- pasos de la línea de tiempo
+// ---------- pasos de la línea de tiempo
+const STEPS=[['01','Acercarse'],['02','Lo que pasa'],['03','Dos caminos'],['04','Sin etiquetas'],['05','Comprender']];
+document.getElementById('chips').innerHTML=STEPS.map((s,i)=>`<div class="chip abs" id="st${i}"><b>${s[0]}</b>${s[1]}</div>`).join('');
+document.getElementById('ticks').innerHTML=[...Array(36)].map((_,i)=>`<i style="top:${i*110+30}px"></i>`).join('');
+document.head.insertAdjacentHTML('beforeend','<style>.lbl{font-size:34px!important}.ttl{font-size:52px}.chip{height:64px;font:700 40px/64px \'Maven Pro\';border-radius:32px;top:528px}.chip b{height:44px;line-height:44px;width:66px;font-size:30px;border-radius:22px}.sel{position:absolute;border:3px solid #2E2545;background:rgba(198,188,226,.3);opacity:0}.dot{position:absolute;border-radius:50%;overflow:hidden;border:4px solid #fff;box-shadow:0 8px 20px rgba(56,47,81,.18)}</style>');
+// ---------- dibujos del 012
+const SV=(b,w)=>`<svg width="${w||64}" height="${w||64}" viewBox="-20 -20 40 40">${b}</svg>`;
+const K='fill="none" stroke="#2E2545" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"';
+const AVA=(bg,hair,skin,k)=>`<svg width="100%" height="100%" viewBox="-50 -50 100 100"><circle r="50" fill="${bg}"/><circle cy="4" r="26" fill="${skin}" stroke="#2E2545" stroke-width="3"/>${[
+ `<path d="M-28 6Q-32 -30 0 -32Q32 -30 28 6Q26 -12 14 -16Q0 -10 -14 -18Q-26 -12 -28 6Z" fill="${hair}" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/>`,
+ `<path d="M-27 0Q-28 -30 0 -30Q28 -30 27 0Q14 -16 -27 0Z" fill="${hair}" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/>`,
+ `<circle cx="-14" cy="-24" r="10" fill="${hair}" stroke="#2E2545" stroke-width="3"/><circle cx="14" cy="-24" r="10" fill="${hair}" stroke="#2E2545" stroke-width="3"/><path d="M-26 -4Q-26 -28 0 -28Q26 -28 26 -4Q10 -18 -26 -4Z" fill="${hair}" stroke="#2E2545" stroke-width="3"/>`,
+ `<path d="M-30 20Q-36 -34 0 -34Q36 -34 30 20Q28 -6 0 -14Q-28 -6 -30 20Z" fill="${hair}" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/>`][k||0]}<circle cx="-9" cy="6" r="3" fill="#2E2545"/><circle cx="9" cy="6" r="3" fill="#2E2545"/><path d="M-7 15Q0 20 7 15" fill="none" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/><path d="M-36 50Q-36 30 0 30Q36 30 36 50" fill="#fff" stroke="#2E2545" stroke-width="3"/></svg>`;
+const KIDA=AVA('#E7E1F4','#8A6A4E','#F5E7D6',0);
+const PEER=[['#F9DEE3','#2E2545','#F5E7D6',1],['#F5E7D6','#5B3B2A','#D9B08C',2],['#C6BCE2','#8A6A4E','#E9C9A8',0],['#E7E1F4','#2E2545','#E9C9A8',2]];
+const J={
+ ok:'<svg width="26" height="26" viewBox="-20 -20 40 40"><path d="M-10 0L-3 8L11 -8" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ plane:SV(`<path d="M-14 -2L14 -12L4 14L0 2Z" fill="#fff"/>`,44),
+ chat:SV(`<path d="M-15 -12H9Q13 -12 13 -8V2Q13 6 9 6H-4L-10 12V6H-15Q-19 6 -19 2V-8Q-19 -12 -15 -12Z" fill="#fff" stroke="#2E2545" stroke-width="3" stroke-linejoin="round"/><path d="M-12 -3H6" stroke="#2E2545" stroke-width="3" stroke-linecap="round"/>`,56),
+ ball:SV(`<circle r="14" fill="#F9DEE3" stroke="#2E2545" stroke-width="3"/><path d="M-14 0Q0 -8 14 0M-4 -13Q6 0 -4 13" ${K}/>`,100),
+ rope:SV(`<path d="M-14 -12Q-18 14 0 14Q18 14 14 -12" ${K}/><rect x="-18" y="-17" width="7" height="12" rx="3" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.6"/><rect x="11" y="-17" width="7" height="12" rx="3" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.6"/>`,100),
+ swing:SV(`<path d="M-16 16L-8 -14L8 -14L16 16M-6 -14V4M6 -14V4" ${K}/><rect x="-9" y="4" width="18" height="5" rx="2" fill="#F5E7D6" stroke="#2E2545" stroke-width="2.6"/>`,100),
+ growth:SV(`<rect x="-15" y="3" width="8" height="12" rx="2" fill="#F5E7D6" stroke="#2E2545" stroke-width="2.8"/><rect x="-4" y="-5" width="8" height="20" rx="2" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.8"/><rect x="7" y="-14" width="8" height="29" rx="2" fill="#C6BCE2" stroke="#2E2545" stroke-width="2.8"/>`,60),
+ group:SV(`<circle cx="-10" cy="-4" r="6" fill="#F9DEE3" stroke="#2E2545" stroke-width="2.6"/><circle cx="10" cy="-4" r="6" fill="#F5E7D6" stroke="#2E2545" stroke-width="2.6"/><circle cy="-6" r="7" fill="#fff" stroke="#2E2545" stroke-width="2.6"/><path d="M-18 14Q-18 4 -10 4M18 14Q18 4 10 4M-9 14Q-9 2 0 2Q9 2 9 14" fill="none" stroke="#2E2545" stroke-width="2.6" stroke-linecap="round"/>`,72)};
+// ---------- escenas (HTML)
+const W=document.getElementById('world');
+const add=h=>W.insertAdjacentHTML('beforeend',h);
+const CARD=(id,h,x,w,extra)=>`<div class="abs card" id="${id}" style="left:${x||160}px;top:660px;width:${w||800}px;height:${h}px;opacity:0;${extra||''}">`;
+// S1 · mapa de la reunión (hilo: vuelve al final con el camino completo)
+add(CARD('map',600,160,800,'background:#F3F0F8')+`<div class="lbl" style="position:absolute;left:34px;top:28px">La reunión</div>
+ <svg style="position:absolute;left:0;top:0" width="800" height="600"><path id="lk" pathLength="1" d="M480 190L600 150L690 250L560 310L480 190M600 150L560 310M480 190L690 250" fill="none" stroke="#B5ABD0" stroke-width="4" stroke-dasharray="1" stroke-dashoffset="1" stroke-linecap="round"/>
+  <path id="gz" pathLength="1" d="M260 440Q330 440 380 370" fill="none" stroke="#2E2545" stroke-width="6" stroke-dasharray="1" stroke-dashoffset="1" stroke-linecap="round"/>
+  <path id="rt" pathLength="1" d="M260 460Q340 540 420 440Q470 380 440 330Q500 300 520 270" fill="none" stroke="#1E9E6A" stroke-width="7" stroke-dasharray="1" stroke-dashoffset="1" stroke-linecap="round"/></svg>
+ ${[[470,130,0],[570,100,1],[650,200,2],[520,270,3]].map((p,i)=>`<div id="pg${i}" class="dot" style="left:${p[0]}px;top:${p[1]}px;width:100px;height:100px;opacity:0">${AVA(...PEER[p[2]])}</div>`).join('')}
+ <div id="adl" class="dot" style="left:40px;top:340px;width:150px;height:150px;opacity:0">${AVA('#F5E7D6','#5B3B2A','#E9C9A8',3)}</div>
+ <div id="chd" class="dot" style="left:150px;top:410px;width:120px;height:120px;border-color:#2E2545">${KIDA}</div>
+ <div id="qb" style="position:absolute;left:350px;top:290px;width:90px;height:90px;border-radius:50%;background:#2E2545;color:#fff;font:700 62px/90px Outfit;text-align:center;opacity:0">?</div>
+ <div id="okb" style="position:absolute;left:405px;top:285px;width:70px;height:70px;border-radius:50%;background:#1E9E6A;border:4px solid #fff;display:flex;align-items:center;justify-content:center;opacity:0">${J.ok}</div>
+ <div id="wnt" style="position:absolute;left:120px;top:330px;width:110px;height:80px;border-radius:24px;background:#fff;border:3px solid #2E2545;display:flex;align-items:center;justify-content:center;opacity:0">${J.group}</div></div>`);
+add(`<div class="abs pill" id="nr" style="left:560px;top:1300px;transform:translateX(-50%);background:#2E2545;color:#fff;font-size:46px;opacity:0">Cerca de ti</div>`);
+// S2 · patio, batería, etiqueta
+const GM=[['Pelota',J.ball],['Cuerda',J.rope],['Columpio',J.swing]];
+add(CARD('pat',600)+`<div class="lbl" style="position:absolute;left:34px;top:28px">En el patio</div>
+ ${GM.map((g,i)=>`<div id="iv${i}" class="pill" style="position:absolute;left:${34+i*256}px;top:84px;background:#E7E1F4;font-size:40px;padding:14px 22px;opacity:0">¿Juegas?</div>
+ <div id="gm${i}" style="position:absolute;left:${34+i*256}px;top:180px;width:236px;height:270px;border-radius:30px;background:#fff;border:3px solid #2E2545;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;font:700 42px/1 Outfit;opacity:0">${g[1]}${g[0]}</div>`).join('')}
+ <svg style="position:absolute;left:0;top:0" width="800" height="600"><path id="by" pathLength="1" d="M110 540Q300 470 490 540" fill="none" stroke="#2E2545" stroke-width="5" stroke-dasharray="1" stroke-dashoffset="1" stroke-linecap="round"/></svg>
+ <div id="pk" class="dot" style="left:44px;top:480px;width:110px;height:110px;border-color:#2E2545;opacity:0">${KIDA}</div></div>`);
+add(CARD('bat',560)+`<div class="lbl" style="position:absolute;left:34px;top:28px">Confianza</div>
+ <div style="position:absolute;left:60px;top:150px;width:620px;height:240px;border-radius:44px;border:8px solid #2E2545;background:#fff;overflow:hidden"><div id="bfl" style="width:0%;height:100%;background:linear-gradient(90deg,#F9DEE3,#C6BCE2)"></div></div>
+ <div style="position:absolute;left:688px;top:215px;width:34px;height:110px;border-radius:0 14px 14px 0;background:#2E2545"></div>
+ <div id="bpc" style="position:absolute;left:0;width:760px;top:166px;text-align:center;font:700 150px/200px Outfit">0%</div>
+ <div style="position:absolute;left:60px;right:60px;top:440px;display:flex;align-items:center;gap:20px;font:700 44px/1 'Maven Pro'"><svg width="64" height="64" viewBox="-20 -20 40 40"><circle r="15" fill="none" stroke="#2E2545" stroke-width="3.5"/><path id="hnd" d="M0 0V-9" stroke="#2E2545" stroke-width="3.5" stroke-linecap="round"/></svg>Se necesita tiempo</div></div>`);
+add(CARD('tg',620,160,800,'overflow:hidden')+`<div style="position:absolute;left:290px;top:36px;width:220px;height:220px">${KIDA}</div>
+ <div id="bdg" style="position:absolute;left:150px;top:270px;width:500px;height:300px;border-radius:26px;background:#fff;border:4px solid #2E2545;overflow:hidden;transform:rotate(-3deg);box-shadow:8px 10px 0 #F9DEE3;opacity:0"><div style="height:96px;background:#C0392B;color:#fff;font:700 54px/96px Outfit;text-align:center;letter-spacing:.05em">HOLA, SOY</div><div id="bnm" style="font:700 112px/200px Outfit;text-align:center;color:#2E2545"></div></div></div>`);
+// S3 · dos caminos
+add(CARD('dg',330)+`<div class="dot" style="left:24px;top:60px;width:130px;height:130px;border-color:#2E2545">${KIDA}</div>
+ <svg style="position:absolute;left:0;top:0" width="800" height="770"><path id="pa" pathLength="1" d="M156 125H570" fill="none" stroke="#1E9E6A" stroke-width="7" stroke-dasharray="1" stroke-dashoffset="1" stroke-linecap="round"/>
+  <path id="pb" pathLength="1" d="M90 192V340" fill="none" stroke="#2E2545" stroke-width="6" stroke-dasharray="1" stroke-dashoffset="1" stroke-linecap="round"/></svg>
+ <div id="clk" style="position:absolute;left:310px;top:70px;width:110px;height:110px;border-radius:50%;background:#fff;border:4px solid #2E2545;display:flex;align-items:center;justify-content:center;opacity:0"><svg width="64" height="64" viewBox="-20 -20 40 40"><circle r="15" fill="none" stroke="#2E2545" stroke-width="3.5"/><path d="M0 0V-9M0 0L7 3" stroke="#2E2545" stroke-width="3.5" stroke-linecap="round"/></svg></div>
+ <div id="cf" class="pill" style="position:absolute;left:580px;top:85px;background:#1E9E6A;color:#fff;font-size:42px;display:flex;gap:10px;align-items:center;opacity:0">Confianza</div>
+ <div id="ln1" class="lbl" style="position:absolute;left:170px;top:190px;opacity:0">Timidez</div>
+ ${[['Señales sociales',360],['Conversaciones',460],['Situaciones',560]].map((r,i)=>`<div id="rw${i}" style="position:absolute;left:34px;top:${r[1]-10}px;width:620px;height:96px;border-radius:26px;background:#fff;border:3px solid #2E2545;display:flex;align-items:center;gap:20px;padding:0 24px;font:700 44px/1 'Maven Pro';opacity:0"><span style="width:56px;height:56px;border-radius:50%;background:#E7E1F4;display:flex;align-items:center;justify-content:center;font:700 40px/1 Outfit">${i+1}</span>${r[0]}<span style="margin-left:auto;width:50px;height:50px;border-radius:50%;background:#2E2545;color:#fff;font:700 34px/50px Outfit;text-align:center">?</span></div>`).join('')}
+ <div id="ata" class="pill" style="position:absolute;left:34px;top:262px;background:#F9DEE3;font-size:42px;opacity:0">Pueden aparecer en autismo</div>
+ <div id="oex" class="pill" style="position:absolute;right:34px;top:676px;background:#2E2545;color:#fff;font-size:42px;opacity:0">Otras explicaciones</div></div>`);
+// S4 · gráfica y diagrama
+add(CARD('cht',600)+`<div class="lbl" style="position:absolute;left:34px;top:28px">Comodidad social</div>
+ <svg style="position:absolute;left:0;top:0" width="800" height="600"><path d="M90 90V400H730" fill="none" stroke="#2E2545" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path id="up" pathLength="1" d="M100 380Q300 360 420 250Q540 150 720 120" fill="none" stroke="#2E2545" stroke-width="8" stroke-dasharray="1" stroke-dashoffset="1" stroke-linecap="round"/>
+  <path id="fl" pathLength="1" d="M100 392Q300 380 420 376Q560 372 720 366" fill="none" stroke="#C0392B" stroke-width="8" stroke-dasharray="1" stroke-dashoffset="1" stroke-linecap="round"/></svg>
+ <div class="lbl" style="position:absolute;right:50px;top:416px">Tiempo</div>
+ <div id="lg1" class="pill" style="position:absolute;left:34px;top:490px;background:#E7E1F4;font-size:42px;opacity:0">Reservado</div>
+ <div id="lg2" class="pill" style="position:absolute;left:340px;top:490px;background:#F9DEE3;color:#C0392B;font-size:42px;opacity:0">Persistente</div></div>`);
+add(CARD('vn',650)+`<div id="cA" style="position:absolute;left:40px;top:80px;width:430px;height:430px;border-radius:50%;background:rgba(198,188,226,.55);border:4px solid #2E2545;display:flex;align-items:center;justify-content:flex-start;padding-left:60px;font:700 52px/1 Outfit;opacity:0">Tímidos</div>
+ <div id="cB" style="position:absolute;left:400px;top:110px;width:360px;height:360px;border-radius:50%;background:rgba(249,222,227,.7);border:4px solid #2E2545;display:flex;align-items:center;justify-content:flex-end;padding-right:36px;font:700 52px/1 Outfit;opacity:0">Espectro</div>
+ <div id="nt2" class="pill" style="position:absolute;left:400px;top:550px;transform:translateX(-50%);background:#2E2545;color:#fff;font-size:46px;opacity:0">No todos</div></div>`);
+// S5 · red, anillos, empujar, mapa final
+add(CARD('net',640)+`<div id="qq" class="pill" style="position:absolute;left:400px;top:26px;transform:translateX(-50%);background:#fff;border:3px solid #2E2545;font-size:46px;opacity:0">¿Qué ocurre?</div>
+ <svg style="position:absolute;left:0;top:0" width="800" height="640"><path id="n1" pathLength="1" d="M400 330L170 230" stroke="#2E2545" stroke-width="7" fill="none" stroke-dasharray="1" stroke-dashoffset="1" stroke-linecap="round"/><path id="n2" pathLength="1" d="M400 330L630 230" stroke="#2E2545" stroke-width="5" fill="none" stroke-dasharray=".04 .05" stroke-dashoffset="1" stroke-linecap="round"/></svg>
+ <div id="np0" class="dot" style="left:90px;top:170px;width:130px;height:130px;opacity:0">${AVA(...PEER[0])}</div><div id="np1" class="dot" style="left:580px;top:170px;width:130px;height:130px;opacity:0">${AVA(...PEER[1])}</div><div id="np2" class="dot" style="left:335px;top:470px;width:130px;height:130px;border-style:dashed;opacity:0">${AVA(...PEER[2])}</div>
+ <div class="dot" style="left:320px;top:260px;width:160px;height:160px;border-color:#2E2545">${KIDA}</div></div>`);
+add(`<div class="abs" id="rgs" style="left:0;top:800px;width:1080px;opacity:0"></div>`);
+[['rs','Desarrollo social',J.group.replace('width="72" height="72"','width="90" height="90"'),170],['rc','Comunicativo',J.chat.replace('width="56" height="56"','width="90" height="90"'),570]].forEach(f=>add(`<div class="abs card" id="${f[0]}" style="left:${f[3]}px;top:760px;width:380px;height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;text-align:center;font:700 44px/1.1 Outfit;padding:0 16px"><div style="position:relative;width:240px;height:240px"><svg width="240" height="240" viewBox="-120 -120 240 240"><circle r="100" fill="none" stroke="#EDE8F5" stroke-width="22"/><circle id="${f[0]}c" r="100" fill="none" stroke="#2E2545" stroke-width="22" stroke-linecap="round" stroke-dasharray="628" stroke-dashoffset="628" transform="rotate(-90)"/></svg><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">${f[2]}</div></div>${f[1]}</div>`));
+add(CARD('psh',440,160,800)+`<div class="dot" style="left:40px;top:150px;width:150px;height:150px;border-color:#2E2545">${KIDA}</div>
+ <svg style="position:absolute;left:0;top:0" width="800" height="440"><path id="pa2" pathLength="1" d="M205 225H520M488 190L522 225L488 260" fill="none" stroke="#C0392B" stroke-width="12" stroke-dasharray="1" stroke-dashoffset="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ ${[[580,120],[660,230],[570,290]].map((p,i)=>`<div class="dot" style="left:${p[0]}px;top:${p[1]}px;width:110px;height:110px">${AVA(...PEER[i])}</div>`).join('')}
+ <div id="xb" style="position:absolute;left:330px;top:150px;width:110px;height:110px;border-radius:50%;background:#C0392B;border:5px solid #fff;color:#fff;font:700 70px/100px Outfit;text-align:center;opacity:0">✕</div>
+ <div class="lbl" style="position:absolute;left:34px;top:28px">Obligarlo</div></div>`);
+add(`<div class="abs" id="chs" style="left:160px;top:1300px;width:800px;display:flex;gap:14px;justify-content:center;opacity:1">${['Hablar','Jugar','Otros medios'].map((t,i)=>`<span id="ch${i}" class="pill" style="background:#E7E1F4;font-size:42px;opacity:0">${t}</span>`).join('')}</div>`);
+add(`<div class="abs pill" id="mn" style="left:560px;top:1400px;transform:translateX(-50%);background:#2E2545;color:#fff;font-size:46px;opacity:0">A su manera</div>`);
+// S6 · CTA
+add(CARD('opt',360)+`<div class="lbl" style="position:absolute;left:34px;top:28px">¿Cuál ves?</div>
+ <div id="o1" class="pill" style="position:absolute;left:34px;right:34px;top:96px;height:100px;border:3px solid #2E2545;background:#fff;font-size:48px;line-height:68px;text-align:center;opacity:0">Necesita tiempo</div>
+ <div id="o2" class="pill" style="position:absolute;left:34px;right:34px;top:226px;height:100px;border:3px solid #2E2545;background:#fff;font-size:48px;line-height:68px;text-align:center;opacity:0">Otras dificultades</div></div>`);
+add(`<div class="abs card" id="cmp" style="left:160px;top:1100px;width:800px;height:170px;display:flex;align-items:center;gap:22px;padding:0 30px;opacity:0"><div class="dot" style="position:relative;width:96px;height:96px;flex:none">${KIDA}</div><div id="ctx" style="flex:1;font:700 46px/1.1 'Maven Pro'"></div><span id="snb" style="width:92px;height:92px;border-radius:50%;background:#2E2545;display:flex;align-items:center;justify-content:center;flex:none">${J.plane}</span></div>`);
+add(`<div class="abs end" id="end"><div class="abs" style="left:150px;width:840px;top:500px;text-align:center;font:700 70px/1.15 Outfit">Este video orienta y no diagnostica.</div>
+ <div class="abs" style="left:160px;top:780px;width:800px;height:600px;background:#fff;border:2px solid #E3DCEF;border-radius:28px;box-shadow:0 22px 50px rgba(56,47,81,.12);display:flex;flex-direction:column;align-items:center;padding-top:84px;gap:24px;text-align:center"><div style="font:700 78px/1 Outfit">Karen Trujillo</div><div style="font:700 44px/1.2 'Maven Pro'">Neuropsicóloga · Cancún</div><div class="pill" style="background:#E7E1F4;font-size:42px;padding:18px 34px">Cédula 11009616</div><div class="pill" style="background:#2E2545;color:#fff;font-size:40px;padding:18px 34px;margin-top:6px">psicologakarentrujillo.com.mx</div></div></div>`);
+add(`<div class="abs" id="ley" style="left:150px;top:190px;background:#fff;border:3px solid #2E2545;border-radius:999px;font:700 40px/1 'Maven Pro';padding:14px 30px;box-shadow:0 10px 24px rgba(56,47,81,.12);opacity:0">Neuropsicóloga Karen Trujillo</div>`);
+
+// ============ LÍNEA DE TIEMPO ============
+gsap.set('#world > *',{opacity:0});gsap.set('#chs',{opacity:1});gsap.set('.sel',{opacity:0});
+const tl=gsap.timeline({paused:true});
+const POP=(s,t,d)=>tl.fromTo(s,{opacity:0,y:40,scale:.94},{opacity:1,y:0,scale:1,duration:d||.45,ease:CFG.POP,immediateRender:false},t);
+const OUT=(s,t)=>tl.to(s,{opacity:0,y:-60,duration:.3,ease:CFG.OUT},t);
+const IN=(s,t)=>tl.fromTo(s,{opacity:0},{opacity:1,duration:.3,immediateRender:false},t);
+const DIM=(s,t)=>tl.to(s,{opacity:.35,filter:'blur(2px)',duration:.4},t);
+let cur=-1;
+const STEP=(i,t)=>{if(cur>=0)tl.to('#st'+cur,{opacity:0,y:-20,duration:.25},t-.25);
+ tl.fromTo('#st'+i,{opacity:0,y:20},{opacity:1,y:0,duration:.35,ease:CFG.POP,immediateRender:false},t);
+ tl.to('#ticks',{y:-(i+1)*110,duration:.6,ease:CFG.MOVE},t-.25);
+ tl.fromTo('#av',{scale:.8},{scale:1,duration:.35,ease:CFG.POP,immediateRender:false},t);cur=i;};
+const TXT=(s,t,tx)=>tl.call(()=>{document.querySelector(s).innerHTML=tx;},null,t);
+const CH=(s,t)=>tl.fromTo(s,{opacity:0,scale:.3},{opacity:1,scale:1,duration:.3,ease:CFG.POP,immediateRender:false},t);
+const DRAW=(s,t,d,to)=>tl.to(s,{strokeDashoffset:to||0,duration:d||.5,ease:'power1.inOut'},t);
+
+// ESCENA 1 · HOOK (0–5.1) — Acción: mapa de una reunión: cuatro niños juntos (unidos por líneas) a la derecha y, abajo a la izquierda, tu hijo;
+//  aparece su deseo (un globo con un grupo); una flecha avanza hacia el grupo y se detiene con un «?».
+// Persisten: mapa, hijo y grupo (hilo; vuelven al final con el camino completo). Imagen final: flecha detenida con «?».
+function escena1(){
+ STEP(0,0);POP('#map',0);
+ [0,1,2,3].forEach(i=>CH('#pg'+i,.25+i*.2));DRAW('#lk',at('amigos',-.2),.8);
+ CH('#wnt',at('quiere'));tl.to('#wnt',{opacity:0,duration:.3},at('pero'));
+ DRAW('#gz',at('acercarse'),.7);CH('#qb',at('parece')+.2);
+ tl.to('#chd',{x:-14,duration:.08,yoyo:true,repeat:5},at('hacerlo'));
+}
+// ESCENA 2 · DESARROLLO (5.1–15.0) — Acción: se suma un adulto junto al niño («Cerca de ti»); un patio con tres juegos, invitaciones «¿Juegas?»
+//  y un salto que evita dos; una batería de «Confianza» que sube a 80 %; una etiqueta «HOLA, SOY Tímido».
+// Persisten: hijo (avatar). Imagen final: etiqueta «Tímido» sobre el niño.
+function escena2(){
+ const t0=at('en reuniones');
+ STEP(1,t0);CH('#adl',t0);POP('#nr',at('cerca'));
+ const t1=at('en la escuela');
+ ['#map','#nr'].forEach(s=>OUT(s,t1-.3));POP('#pat',t1);
+ [0,1,2].forEach(i=>{POP('#gm'+i,at('puede evitar')+i*.12-.5);CH('#iv'+i,at('algunos juegos')+i*.15-.3);});
+ CH('#pk',at('evitar'));DRAW('#by',at('evitar'),.8);tl.to(['#gm0','#gm1'],{opacity:.4,duration:.3},at('algunos juegos'));
+ const t2=at('quiza');
+ OUT('#pat',t2-.3);POP('#bat',t2);
+ const o={v:0};tl.to(o,{v:80,duration:2.2,ease:'power1.inOut',onUpdate(){document.getElementById('bpc').textContent=Math.round(o.v)+'%';document.getElementById('bfl').style.width=o.v+'%';}},at('tarda'));
+ tl.to('#hnd',{rotation:720,transformOrigin:'0px 0px',duration:2.2,ease:'none'},at('tarda'));
+ const t3=at('y piensas');
+ OUT('#bat',t3-.3);POP('#tg',t3);
+ tl.fromTo('#bdg',{opacity:0,y:-120,rotation:-12},{opacity:1,y:0,rotation:-3,duration:.5,ease:CFG.POP,immediateRender:false},at('simplemente'));
+ TXT('#bnm',at('es timido'),'Tímido');
+}
+// ESCENA 3 · GIRO (15.0–32.5) — Acción: el niño y dos caminos. Arriba (timidez): línea con reloj hasta «Confianza ✓». Abajo: tres paradas con «?»
+//  (señales sociales, conversaciones, situaciones); etiqueta «Pueden aparecer en autismo»; y «Otras explicaciones».
+// Persisten: el niño (inicio de los caminos). Imagen final: dos caminos con «Otras explicaciones».
+function escena3(){
+ const t0=at('la timidez');
+ OUT('#tg',t0-.3);STEP(2,t0);POP('#dg',t0);
+ IN('#ln1',t0+.3);DRAW('#pa',at('timidez'),1.2);CH('#clk',at('tiempo'));CH('#cf',at('confianza'));
+ tl.to('#dg',{height:770,duration:.6,ease:CFG.MOVE},at('pero tambien',-.1));DRAW('#pb',at('pero tambien'),.8);
+ [0,1,2].forEach(i=>POP('#rw'+i,[at('senales'),at('conversaciones'),at('situaciones')][i]-.2,.4));
+ POP('#ata',at('autismo'));
+ POP('#oex',at('otras'));
+ tl.to('#cf',{opacity:.45,duration:.3},at('aunque'));
+}
+// ESCENA 4 · PROVOCACIÓN (32.5–42.8) — Acción: gráfica «Comodidad social vs. Tiempo»: «Reservado» sube con el tiempo; «Persistente» se queda abajo;
+//  luego dos círculos que se cruzan poco: «Tímidos» y «Espectro» con «No todos».
+// Imagen final: círculos casi separados con «No todos».
+function escena4(){
+ const t0=at('por eso');
+ OUT('#dg',t0-.3);STEP(3,t0);POP('#cht',t0);
+ DRAW('#up',at('confundir'),1.6);CH('#lg1',at('reservado'));
+ DRAW('#fl',at('persistentes'),1.2);CH('#lg2',at('persistentes'));
+ const t1=at('tampoco');
+ OUT('#cht',t1-.3);POP('#vn',t1);
+ CH('#cA',at('asumir'));CH('#cB',at('espectro'));CH('#nt2',at('dentro del'));
+}
+// ESCENA 5 · CIERRE (42.8–57.4) — Acción: el niño con tres compañeros: una relación firme, una punteada y una sin línea («¿Qué ocurre?»); dos anillos
+//  (Desarrollo social, Comunicativo) que se llenan; una flecha roja que empuja al grupo, tachada; vuelve el mapa y el camino se completa a su manera.
+// Persisten: niño → mapa del inicio. Imagen final: mapa con camino verde, ✓ y «Hablar · Jugar · Otros medios».
+function escena5(){
+ const t0=at('lo importante');
+ OUT('#vn',t0-.3);STEP(4,t0);POP('#net',t0);
+ POP('#qq',at('que ocurre'));
+ [0,1,2].forEach(i=>CH('#np'+i,at('que ocurre')+.2+i*.2));
+ DRAW('#n1',at('afecta'),.5);DRAW('#n2',at('sus relaciones'),.5);
+ const t1=at('una evaluacion');
+ OUT('#net',t1-.3);POP('#rs',t1);POP('#rc',t1+.2);
+ tl.to('#rsc',{strokeDashoffset:190,duration:1.1,ease:'power2.out'},at('desarrollo social'));tl.to('#rcc',{strokeDashoffset:230,duration:1.1,ease:'power2.out'},at('comunicativo'));
+ const t2=at('no se trata');
+ ['#rs','#rc'].forEach(s=>OUT(s,t2-.3));POP('#psh',t2);
+ DRAW('#pa2',at('obligarlo'),.5);CH('#xb',at('socializar'));
+ const t3=at('se trata de',0,1);
+ OUT('#psh',t3-.3);
+ tl.fromTo('#map',{opacity:0,y:40,scale:.94},{opacity:1,y:0,scale:1,duration:.45,ease:CFG.POP,immediateRender:false},t3);
+ tl.set(['#qb','#gz','#wnt'],{opacity:0},t3);tl.set('#chd',{x:0},t3);
+ [0,1,2].forEach(i=>CH('#ch'+i,[at('entender'),at('necesita'),at('relacionarse')][i]));
+ DRAW('#rt',at('necesita'),1.7);CH('#okb',at('a su manera')+.5);POP('#mn',at('a su manera'));
+}
+// ESCENA 6 · CTA (57.4–63.9) — Acción: «¿Cuál ves?» con dos botones (Necesita tiempo, Otras dificultades); «Comparte tu experiencia» con una línea
+//  que se escribe y un botón de enviar; aviso final y datos (quietos el último 0.5 s).
+// Imagen final: aviso + datos de Karen.
+function escena6(){
+ const t0=at('tu hijo necesita');
+ ['#map','#chs','#mn'].forEach(s=>OUT(s,t0-.3));tl.to('#st4',{opacity:0,duration:.3},t0-.3);
+ POP('#opt',t0);
+ CH('#o1',at('necesita tiempo'));CH('#o2',at('otras dificultades'));
+ tl.to('#o1',{backgroundColor:'#E7E1F4',duration:.2},at('tiempo',0,1)+.4);tl.to('#o2',{backgroundColor:'#E7E1F4',duration:.2},at('otras dificultades')+.5);
+ const tc=at('comparte');
+ tl.to('#snb',{backgroundColor:'#1E9E6A',duration:.2},at('experiencia'));
+ POP('#cmp',at('o has observado'));
+ const w='Mi hijo...';[...w].forEach((c,i)=>TXT('#ctx',tc+.2+i*.08,w.slice(0,i+1)));
+ const tF=at('experiencia',.35);
+ ['#opt','#cmp'].forEach(s=>OUT(s,tF-.1));
+ tl.to(['#av','#tlTop','#tl','#ticks'],{opacity:.25,duration:.3},tF);tl.to('#ley',{opacity:0,duration:.3},tF);
+ tl.fromTo('#end',{opacity:0,scale:.96},{opacity:1,scale:1,duration:.45,ease:CFG.POP,immediateRender:false},tF+.1);
+}
+escena1();escena2();escena3();escena4();escena5();escena6();
+tl.fromTo('#ley',{opacity:0,y:-10},{opacity:1,y:0,duration:.5,immediateRender:false},.3);
+
+// ============ SUBTÍTULO ARRIBA (palabras por venir borrosas; clave en recuadro de selección) ============
+const KEYS=new Set(['amigos','acercarse','timido','confianza','senales','autismo','explicaciones','reservado','persistentes','espectro','comprender','especializada','socializar','manera','dificultades','experiencia']);
+(function(){const ph=[];let cur=[];const fl=()=>{if(cur.length){ph.push(cur);cur=[];}};
+ WORDS.forEach((w,i)=>{cur.push({w:w[0],t:w[1],e:w[2]});const nx=WORDS[i+1];if(cur.length>=6||/[,.:?]$/.test(w[0])||(nx&&nx[1]-w[2]>.45))fl();});fl();
+ const C=document.getElementById('caps');
+ ph.forEach((p,i)=>{const d=document.createElement('div');d.className='ph abs';d.id='ph'+i;
+  d.innerHTML=p.map((x,j)=>{const k=KEYS.has(norm(x.w)[0]);return `<span class="${k?'k':''}" id="p${i}w${j}">${k?'<i class="hl"></i>':''}${x.w}</span>`;}).join('');C.appendChild(d);
+  const s0=p[0].t-.12,e0=i+1<ph.length?ph[i+1][0].t-.12:WORDS[WORDS.length-1][2]+.4;
+  tl.fromTo(d,{opacity:0,y:16},{opacity:1,y:0,duration:.18,immediateRender:false},s0);tl.to(d,{opacity:0,duration:.12},e0-.12);
+  p.forEach((x,j)=>{tl.fromTo('#p'+i+'w'+j,{opacity:.28,filter:'blur(7px)'},{opacity:1,filter:'blur(0px)',duration:.2,immediateRender:false},x.t);
+   if(KEYS.has(norm(x.w)[0]))tl.fromTo('#p'+i+'w'+j+' .hl',{opacity:0,scaleX:.6},{opacity:1,scaleX:1,duration:.22,ease:CFG.POP,immediateRender:false},x.t);});
+  gsap.set(d.querySelectorAll('span'),{opacity:.28,filter:'blur(7px)'});});
+})();
+window.DUR=CFG.DUR;
+window.seek=t=>{tl.time(Math.min(t,tl.duration()));};
+</script></body></html>
